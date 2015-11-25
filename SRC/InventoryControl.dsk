@@ -1,0 +1,278 @@
+[Closed Files]
+File_0=SourceModule,'D:\ПРОЕКТЫ\Регистрация\Serial Generator\U_SerialGenerator.pas',0,1,206,1,211,0,0
+File_1=SourceModule,'c:\program files\borland\delphi7\source\rtl\Sys\system.pas',0,1,10065,1,10075,0,0
+File_2=SourceModule,'D:\ПРОЕКТЫ\Регистрация\U_Registration.pas',0,1,1,1,1,0,1
+
+[Modules]
+Module0=D:\PROJECTS\Складской учет\SRC\U_Main.pas
+Module1=D:\PROJECTS\Складской учет\SRC\U_DM.pas
+Module2=D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas
+Module3=D:\PROJECTS\Складской учет\SRC\InventoryControl.dpr
+Module4=D:\PROJECTS\Складской учет\SRC\U_NewStock.pas
+Module5=D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas
+Module6=D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas
+Count=7
+EditWindowCount=1
+
+[D:\PROJECTS\Складской учет\SRC\U_Main.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_DM.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\InventoryControl.dpr]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_NewStock.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[C:\Program Files\Borland\Delphi7\Bin\ProjectGroup1.bpg]
+FormState=0
+FormOnTop=0
+
+[EditWindow0]
+ViewCount=7
+CurrentView=1
+View0=0
+View1=1
+View2=2
+View3=3
+View4=4
+View5=5
+View6=6
+CodeExplorer=CodeExplorer@EditWindow0
+MessageView=MessageView@EditWindow0
+Create=1
+Visible=1
+State=0
+Left=238
+Top=118
+Width=1126
+Height=620
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=1114
+ClientHeight=586
+LeftPanelSize=140
+LeftPanelClients=CodeExplorer@EditWindow0
+LeftPanelData=000004000000000000000000000000000000000000000000000100000000000000000C000000436F64654578706C6F726572FFFFFFFF
+RightPanelSize=0
+BottomPanelSize=0
+BottomPanelClients=MessageView@EditWindow0
+BottomPanelData=00000400010000000B0000004D657373616765566965775A040000000000000255000000000000000100000000000000000000000001000000005A0400000B0000004D65737361676556696577FFFFFFFF
+
+[View0]
+Module=D:\PROJECTS\Складской учет\SRC\InventoryControl.dpr
+CursorX=41
+CursorY=16
+TopLine=1
+LeftCol=1
+
+[View1]
+Module=D:\PROJECTS\Складской учет\SRC\U_Main.pas
+CursorX=52
+CursorY=10
+TopLine=1
+LeftCol=1
+
+[View2]
+Module=D:\PROJECTS\Складской учет\SRC\U_DM.pas
+CursorX=9
+CursorY=16
+TopLine=1
+LeftCol=1
+
+[View3]
+Module=D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas
+CursorX=1
+CursorY=1
+TopLine=1
+LeftCol=1
+
+[View4]
+Module=D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas
+CursorX=14
+CursorY=27
+TopLine=14
+LeftCol=1
+
+[View5]
+Module=D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas
+CursorX=13
+CursorY=46
+TopLine=32
+LeftCol=1
+
+[View6]
+Module=D:\PROJECTS\Складской учет\SRC\U_NewStock.pas
+CursorX=1
+CursorY=1
+TopLine=1
+LeftCol=1
+
+[Watches]
+Count=0
+
+[Breakpoints]
+Count=0
+
+[AddressBreakpoints]
+Count=0
+
+[Main Window]
+Create=1
+Visible=1
+State=0
+Left=239
+Top=0
+Width=1127
+Height=118
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=1115
+ClientHeight=84
+
+[ProjectManager]
+Create=1
+Visible=0
+State=0
+Left=369
+Top=372
+Width=446
+Height=313
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=434
+ClientHeight=283
+TBDockHeight=313
+LRDockWidth=446
+Dockable=1
+
+[AlignmentPalette]
+Create=1
+Visible=0
+State=0
+Left=200
+Top=124
+Width=156
+Height=84
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=150
+ClientHeight=60
+
+[PropertyInspector]
+Create=1
+Visible=1
+State=0
+Left=0
+Top=0
+Width=220
+Height=679
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=220
+ClientHeight=679
+TBDockHeight=359
+LRDockWidth=190
+Dockable=1
+SplitPos=85
+ArrangeBy=Name
+SelectedItem=DataSource
+ExpandedItems=Title
+HiddenCategories=
+
+[ObjectTree]
+Create=1
+Visible=1
+State=0
+Left=0
+Top=0
+Width=220
+Height=679
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=220
+ClientHeight=679
+TBDockHeight=240
+LRDockWidth=190
+Dockable=1
+
+[CodeExplorer@EditWindow0]
+Create=1
+Visible=1
+State=0
+Left=0
+Top=12
+Width=140
+Height=574
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=140
+ClientHeight=574
+TBDockHeight=305
+LRDockWidth=140
+Dockable=1
+
+[MessageView@EditWindow0]
+Create=1
+Visible=0
+State=0
+Left=12
+Top=0
+Width=1102
+Height=85
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=1102
+ClientHeight=85
+TBDockHeight=85
+LRDockWidth=443
+Dockable=1
+
+[DockHosts]
+DockHostCount=1
+
+[DockSite0]
+DockSiteType=1
+Create=1
+Visible=1
+State=0
+Left=-1
+Top=0
+Width=240
+Height=738
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=228
+ClientHeight=708
+TBDockHeight=240
+LRDockWidth=198
+Dockable=1
+TabPosition=0
+ActiveTab=Object Inspector
+TabDockClients=ObjectTree,PropertyInspector
+
