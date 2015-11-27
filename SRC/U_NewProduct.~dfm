@@ -19,9 +19,9 @@ object F_NewProduct: TF_NewProduct
   PixelsPerInch = 96
   TextHeight = 14
   object addProduct: TRzBitBtn
-    Left = 490
+    Left = 520
     Top = 368
-    Width = 97
+    Width = 83
     Anchors = [akRight, akBottom]
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
@@ -34,11 +34,11 @@ object F_NewProduct: TF_NewProduct
     Kind = bkOK
   end
   object cancelProduct: TRzBitBtn
-    Left = 594
+    Left = 608
     Top = 368
-    Width = 97
+    Width = 83
     Anchors = [akRight, akBottom]
-    Caption = #1054#1090#1084#1077#1085#1080#1090#1100
+    Caption = #1054#1090#1084#1077#1085#1072
     Font.Charset = RUSSIAN_CHARSET
     Font.Color = clWindowText
     Font.Height = -12
@@ -211,7 +211,7 @@ object F_NewProduct: TF_NewProduct
       Left = 472
       Top = 16
       Width = 113
-      Height = 17
+      Height = 15
       Caption = #1045#1076#1080#1085#1080#1094#1072' '#1080#1079#1084#1077#1088#1077#1085#1080#1103':'
       Font.Charset = RUSSIAN_CHARSET
       Font.Color = clWindowText
@@ -293,7 +293,7 @@ object F_NewProduct: TF_NewProduct
       Left = 600
       Top = 32
       Width = 97
-      Height = 25
+      Height = 23
       AllowKeyEdit = True
       Decimals = 2
       Max = 10000000000.000000000000000000
@@ -305,7 +305,7 @@ object F_NewProduct: TF_NewProduct
       Left = 264
       Top = 32
       Width = 97
-      Height = 25
+      Height = 23
       FrameHotTrack = True
       FrameVisible = True
       TabOrder = 1
@@ -314,7 +314,7 @@ object F_NewProduct: TF_NewProduct
       Left = 368
       Top = 32
       Width = 97
-      Height = 25
+      Height = 23
       AllowKeyEdit = True
       Decimals = 2
       Max = 10000000000.000000000000000000
@@ -327,7 +327,7 @@ object F_NewProduct: TF_NewProduct
       Left = 472
       Top = 32
       Width = 121
-      Height = 25
+      Height = 23
       FrameHotTrack = True
       FrameVisible = True
       TabOrder = 3
@@ -336,7 +336,7 @@ object F_NewProduct: TF_NewProduct
       Left = 8
       Top = 32
       Width = 249
-      Height = 25
+      Height = 23
       FrameHotTrack = True
       FrameVisible = True
       TabOrder = 4
@@ -345,7 +345,7 @@ object F_NewProduct: TF_NewProduct
       Left = 416
       Top = 72
       Width = 97
-      Height = 25
+      Height = 23
       Enabled = False
       FrameHotTrack = True
       FrameVisible = True

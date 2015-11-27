@@ -56,6 +56,7 @@ object F_NewProduct: TF_NewProduct
     Height = 249
     Anchors = [akLeft, akTop, akRight]
     AutoFitColWidths = True
+    DataSource = DM.SourceAddProducts
     DynProps = <>
     FrozenCols = 1
     IndicatorOptions = [gioShowRowIndicatorEh]
@@ -78,6 +79,7 @@ object F_NewProduct: TF_NewProduct
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'productName'
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
@@ -91,6 +93,7 @@ object F_NewProduct: TF_NewProduct
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'productCode'
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1050#1086#1076' '#1090#1086#1074#1072#1088#1072
@@ -104,6 +107,7 @@ object F_NewProduct: TF_NewProduct
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'productCount'
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1050#1086#1083'-'#1074#1086
@@ -117,6 +121,7 @@ object F_NewProduct: TF_NewProduct
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'productMeasured'
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1045#1076'. '#1080#1079#1084'.'
@@ -130,6 +135,7 @@ object F_NewProduct: TF_NewProduct
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'productPrice'
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1062#1077#1085#1072
@@ -143,6 +149,7 @@ object F_NewProduct: TF_NewProduct
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'productTotalPrice'
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1042#1089#1077#1075#1086
@@ -156,6 +163,7 @@ object F_NewProduct: TF_NewProduct
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'productStock'
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1057#1082#1083#1072#1076
@@ -211,7 +219,7 @@ object F_NewProduct: TF_NewProduct
       Left = 472
       Top = 16
       Width = 113
-      Height = 17
+      Height = 15
       Caption = #1045#1076#1080#1085#1080#1094#1072' '#1080#1079#1084#1077#1088#1077#1085#1080#1103':'
       Font.Charset = RUSSIAN_CHARSET
       Font.Color = clWindowText
@@ -293,7 +301,7 @@ object F_NewProduct: TF_NewProduct
       Left = 600
       Top = 32
       Width = 97
-      Height = 25
+      Height = 23
       AllowKeyEdit = True
       Decimals = 2
       Max = 10000000000.000000000000000000
@@ -305,7 +313,7 @@ object F_NewProduct: TF_NewProduct
       Left = 264
       Top = 32
       Width = 97
-      Height = 25
+      Height = 23
       FrameHotTrack = True
       FrameVisible = True
       TabOrder = 1
@@ -314,7 +322,7 @@ object F_NewProduct: TF_NewProduct
       Left = 368
       Top = 32
       Width = 97
-      Height = 25
+      Height = 23
       AllowKeyEdit = True
       Decimals = 2
       Max = 10000000000.000000000000000000
@@ -327,7 +335,7 @@ object F_NewProduct: TF_NewProduct
       Left = 472
       Top = 32
       Width = 121
-      Height = 25
+      Height = 23
       FrameHotTrack = True
       FrameVisible = True
       TabOrder = 3
@@ -336,7 +344,7 @@ object F_NewProduct: TF_NewProduct
       Left = 8
       Top = 32
       Width = 249
-      Height = 25
+      Height = 23
       FrameHotTrack = True
       FrameVisible = True
       TabOrder = 4
@@ -345,7 +353,7 @@ object F_NewProduct: TF_NewProduct
       Left = 416
       Top = 72
       Width = 97
-      Height = 25
+      Height = 23
       Enabled = False
       FrameHotTrack = True
       FrameVisible = True

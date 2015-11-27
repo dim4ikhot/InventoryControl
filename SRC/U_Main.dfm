@@ -70,10 +70,10 @@ object F_Main: TF_Main
     Top = 0
     Width = 1030
     Height = 520
-    ActivePage = TabClientsProviders
+    ActivePage = TabProducts
     ActivePageDefault = TabProducts
     Align = alClient
-    TabIndex = 2
+    TabIndex = 1
     TabOrder = 1
     TabOrientation = toBottom
     TabStyle = tsCutCorner
@@ -444,7 +444,7 @@ object F_Main: TF_Main
         Top = 0
         Width = 1028
         Height = 498
-        Position = 599
+        Position = 594
         Percent = 58
         UsePercent = True
         SplitterStyle = ssBump
@@ -452,9 +452,9 @@ object F_Main: TF_Main
         Align = alClient
         TabOrder = 0
         BarSize = (
-          599
+          594
           0
-          606
+          601
           498)
         UpperLeftControls = (
           RzToolbar1
@@ -465,7 +465,7 @@ object F_Main: TF_Main
         object RzToolbar1: TRzToolbar
           Left = 0
           Top = 0
-          Width = 599
+          Width = 594
           Height = 29
           Images = ProjIcon
           BorderInner = fsNone
@@ -478,43 +478,48 @@ object F_Main: TF_Main
             AddNewProvider
             RzSpacer1
             deleteProvider)
-          object AddNewProvider: TRzToolButton
-            Left = 12
-            Top = 2
-            Hint = #1044#1086#1073#1072#1074#1080#1090#1100' '#1087#1086#1089#1090#1072#1074#1097#1080#1082#1072
-            ImageIndex = 0
-            ParentShowHint = False
-            ShowHint = True
-            OnClick = AddNewProviderClick
-          end
           object RzSpacer1: TRzSpacer
-            Left = 37
+            Left = 42
             Top = 2
-          end
-          object deleteProvider: TRzToolButton
-            Left = 45
-            Top = 2
-            Hint = #1059#1076#1072#1083#1080#1090#1100' '#1087#1086#1089#1090#1072#1074#1097#1080#1082#1072
-            ImageIndex = 1
-            ParentShowHint = False
-            ShowHint = True
-            OnClick = deleteProviderClick
           end
           object RzSpacer2: TRzSpacer
             Left = 4
             Top = 2
             Grooved = True
           end
+          object AddNewProvider: TRzBitBtn
+            Left = 12
+            Top = 2
+            Width = 30
+            Hint = #1044#1086#1073#1072#1074#1080#1090#1100' '#1087#1086#1089#1090#1072#1074#1097#1080#1082#1072
+            HotTrack = True
+            TabOrder = 0
+            OnClick = AddNewProviderClick
+            ImageIndex = 0
+            Images = ProjIcon
+          end
+          object deleteProvider: TRzBitBtn
+            Left = 50
+            Top = 2
+            Width = 30
+            Hint = #1059#1076#1072#1083#1080#1090#1100' '#1087#1086#1089#1090#1072#1074#1097#1080#1082#1072
+            HotTrack = True
+            TabOrder = 1
+            OnClick = deleteProviderClick
+            ImageIndex = 1
+            Images = ProjIcon
+          end
         end
         object GridProviders: TDBGridEh
           Left = 0
           Top = 29
-          Width = 599
+          Width = 594
           Height = 469
           Align = alClient
           AutoFitColWidths = True
           DataSource = DM.SourceProviders
           DynProps = <>
+          Flat = True
           IndicatorOptions = [gioShowRowIndicatorEh]
           ParentShowHint = False
           ShowHint = True
@@ -559,7 +564,7 @@ object F_Main: TF_Main
         object RzToolbar2: TRzToolbar
           Left = 0
           Top = 0
-          Width = 422
+          Width = 427
           Height = 29
           Images = ProjIcon
           BorderInner = fsNone
@@ -572,43 +577,48 @@ object F_Main: TF_Main
             addClient
             RzSpacer3
             deleteClient)
-          object deleteClient: TRzToolButton
-            Left = 45
-            Top = 2
-            Hint = #1059#1076#1072#1083#1080#1090#1100' '#1082#1083#1080#1077#1085#1090#1072
-            ImageIndex = 1
-            ParentShowHint = False
-            ShowHint = True
-            OnClick = deleteClientClick
-          end
           object RzSpacer3: TRzSpacer
-            Left = 37
+            Left = 42
             Top = 2
-          end
-          object addClient: TRzToolButton
-            Left = 12
-            Top = 2
-            Hint = #1044#1086#1073#1072#1074#1080#1090#1100' '#1082#1083#1080#1077#1085#1090#1072
-            ImageIndex = 0
-            ParentShowHint = False
-            ShowHint = True
-            OnClick = addClientClick
           end
           object RzSpacer4: TRzSpacer
             Left = 4
             Top = 2
             Grooved = True
           end
+          object addClient: TRzBitBtn
+            Left = 12
+            Top = 2
+            Width = 30
+            Hint = #1044#1086#1073#1072#1074#1080#1090#1100' '#1082#1083#1080#1077#1085#1090#1072
+            HotTrack = True
+            TabOrder = 0
+            OnClick = addClientClick
+            ImageIndex = 0
+            Images = ProjIcon
+          end
+          object deleteClient: TRzBitBtn
+            Left = 50
+            Top = 2
+            Width = 30
+            Hint = #1059#1076#1072#1083#1080#1090#1100' '#1082#1083#1080#1077#1085#1090#1072
+            HotTrack = True
+            TabOrder = 1
+            OnClick = deleteClientClick
+            ImageIndex = 1
+            Images = ProjIcon
+          end
         end
         object GridClients: TDBGridEh
           Left = 0
           Top = 29
-          Width = 422
+          Width = 427
           Height = 469
           Align = alClient
           AutoFitColWidths = True
           DataSource = DM.SourceStocks
           DynProps = <>
+          Flat = True
           IndicatorOptions = [gioShowRowIndicatorEh]
           TabOrder = 1
           VertScrollBar.VisibleMode = sbAlwaysShowEh
@@ -649,7 +659,7 @@ object F_Main: TF_Main
     Left = 25
     Top = 254
     Bitmap = {
-      494C010104000900040010001000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
+      494C010104000900040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1049,7 +1059,8 @@ object F_Main: TF_Main
       FC3FFFFFC001FFFFFC3FFFFFC001FFFFFC3FFFFFC001FF00FC3FFFFFC0013F00
       FC3F8001C0010F8080018001C001020080018001C001000080018001C0018000
       80018001C001C000FC3FFFFFC001E01CFC3FFFFFC001FFFFFC3FFFFFC001FFFF
-      FC3FFFFFC003FFFFFC3FFFFFC00FFFFF}
+      FC3FFFFFC003FFFFFC3FFFFFC00FFFFF00000000000000000000000000000000
+      000000000000}
   end
   object MainMenu: TMainMenu
     Left = 65
@@ -1058,6 +1069,13 @@ object F_Main: TF_Main
       Caption = #1060#1072#1081#1083
       object ExitItem: TMenuItem
         Caption = #1042#1099#1093#1086#1076
+      end
+    end
+    object Option: TMenuItem
+      Caption = #1055#1072#1088#1072#1084#1077#1090#1088#1099
+      object BaseConnection: TMenuItem
+        Caption = #1055#1086#1076#1082#1083#1102#1095#1077#1085#1080#1077
+        OnClick = BaseConnectionClick
       end
     end
     object aboutItem: TMenuItem

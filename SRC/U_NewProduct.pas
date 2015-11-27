@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, RzButton, RzSpnEdt, StdCtrls, Mask, RzEdit, RzLabel,
   DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh, RzCmboBx,
-  ExtCtrls, RzPanel, GridsEh, DBAxisGridsEh, DBGridEh;
+  ExtCtrls, RzPanel, GridsEh, DBAxisGridsEh, DBGridEh, U_DM;
 
 type
   TF_NewProduct = class(TForm)

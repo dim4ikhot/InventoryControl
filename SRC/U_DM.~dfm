@@ -40,26 +40,13 @@ object DM: TDM
         Size = 100
       end
       item
-        Name = 'productCount'
-        DataType = ftFloat
+        Name = 'mtAddProductsField3'
       end
       item
-        Name = 'productMeasured'
-        DataType = ftString
-        Size = 100
+        Name = 'mtAddProductsField4'
       end
       item
-        Name = 'productPrice'
-        DataType = ftFloat
-      end
-      item
-        Name = 'productTotalPrice'
-        DataType = ftFloat
-      end
-      item
-        Name = 'productStock'
-        DataType = ftString
-        Size = 200
+        Name = 'mtAddProductsField5'
       end>
     IndexDefs = <>
     SortOptions = []
@@ -75,31 +62,6 @@ object DM: TDM
     LocaleID = 1024
     Left = 24
     Top = 248
-    object mtAddProductsproductName: TStringField
-      FieldName = 'productName'
-      Size = 1000
-    end
-    object mtAddProductsproductCode: TStringField
-      FieldName = 'productCode'
-      Size = 100
-    end
-    object mtAddProductsproductCount: TFloatField
-      FieldName = 'productCount'
-    end
-    object mtAddProductsproductMeasured: TStringField
-      FieldName = 'productMeasured'
-      Size = 100
-    end
-    object mtAddProductsproductPrice: TFloatField
-      FieldName = 'productPrice'
-    end
-    object mtAddProductsproductTotalPrice: TFloatField
-      FieldName = 'productTotalPrice'
-    end
-    object mtAddProductsproductStock: TStringField
-      FieldName = 'productStock'
-      Size = 200
-    end
   end
   object mainBase: TpFIBDatabase
     DBParams.Strings = (

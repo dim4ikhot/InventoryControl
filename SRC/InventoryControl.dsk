@@ -4,37 +4,17 @@ File_1=SourceModule,'c:\program files\borland\delphi7\source\rtl\Sys\system.pas'
 File_2=SourceModule,'D:\ПРОЕКТЫ\Регистрация\U_Registration.pas',0,1,1,1,1,0,1
 
 [Modules]
-Module0=D:\PROJECTS\Складской учет\SRC\U_Main.pas
-Module1=D:\PROJECTS\Складской учет\SRC\U_DM.pas
-Module2=D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas
-Module3=D:\PROJECTS\Складской учет\SRC\InventoryControl.dpr
-Module4=D:\PROJECTS\Складской учет\SRC\U_NewStock.pas
-Module5=D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas
-Module6=D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas
+Module0=D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas
+Module1=D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas
+Module2=D:\PROJECTS\Складской учет\SRC\U_NewStock.pas
+Module3=D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas
+Module4=D:\PROJECTS\Складской учет\SRC\U_DM.pas
+Module5=D:\PROJECTS\Складской учет\SRC\U_Main.pas
+Module6=D:\PROJECTS\Складской учет\SRC\InventoryControl.dpr
 Count=7
 EditWindowCount=1
 
-[D:\PROJECTS\Складской учет\SRC\U_Main.pas]
-ModuleType=SourceModule
-FormState=1
-FormOnTop=0
-
-[D:\PROJECTS\Складской учет\SRC\U_DM.pas]
-ModuleType=SourceModule
-FormState=1
-FormOnTop=0
-
-[D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas]
-ModuleType=SourceModule
-FormState=1
-FormOnTop=0
-
-[D:\PROJECTS\Складской учет\SRC\InventoryControl.dpr]
-ModuleType=SourceModule
-FormState=0
-FormOnTop=0
-
-[D:\PROJECTS\Складской учет\SRC\U_NewStock.pas]
+[D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=0
@@ -44,9 +24,29 @@ ModuleType=SourceModule
 FormState=1
 FormOnTop=0
 
-[D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas]
+[D:\PROJECTS\Складской учет\SRC\U_NewStock.pas]
 ModuleType=SourceModule
 FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_DM.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_Main.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\InventoryControl.dpr]
+ModuleType=SourceModule
+FormState=0
 FormOnTop=0
 
 [C:\Program Files\Borland\Delphi7\Bin\ProjectGroup1.bpg]
@@ -55,7 +55,7 @@ FormOnTop=0
 
 [EditWindow0]
 ViewCount=7
-CurrentView=1
+CurrentView=4
 View0=0
 View1=1
 View2=2
@@ -82,7 +82,7 @@ LeftPanelData=000004000000000000000000000000000000000000000000000100000000000000
 RightPanelSize=0
 BottomPanelSize=0
 BottomPanelClients=MessageView@EditWindow0
-BottomPanelData=00000400010000000B0000004D657373616765566965775A040000000000000255000000000000000100000000000000000000000001000000005A0400000B0000004D65737361676556696577FFFFFFFF
+BottomPanelData=00000400010000000B0000004D657373616765566965775A040000000000000255000000000000000100000000000000000000000001000000005A04000000000000FFFFFFFF
 
 [View0]
 Module=D:\PROJECTS\Складской учет\SRC\InventoryControl.dpr
@@ -201,7 +201,7 @@ LRDockWidth=190
 Dockable=1
 SplitPos=85
 ArrangeBy=Name
-SelectedItem=DataSource
+SelectedItem=Caption
 ExpandedItems=Title
 HiddenCategories=
 

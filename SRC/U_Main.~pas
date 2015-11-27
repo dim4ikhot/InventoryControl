@@ -7,7 +7,7 @@ uses
   Dialogs, RzSplit, RzTabs, RzPanel, ExtCtrls, RzButton, ImgList, U_NewStock,
   U_NewProduct, DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls,
   DynVarsEh, Menus, GridsEh, DBAxisGridsEh, DBGridEh, StdCtrls, RzCmboBx,
-  RzLabel, U_AddProviderClient, U_ProductInfo, U_DM;
+  RzLabel, U_AddProviderClient, U_ProductInfo, U_DM, U_BaseConnection;
 
 type
   TF_Main = class(TForm)
@@ -36,17 +36,19 @@ type
     RzToolbar2: TRzToolbar;
     GridProviders: TDBGridEh;
     GridClients: TDBGridEh;
-    AddNewProvider: TRzToolButton;
     RzSpacer1: TRzSpacer;
-    deleteProvider: TRzToolButton;
     RzSpacer2: TRzSpacer;
-    deleteClient: TRzToolButton;
     RzSpacer3: TRzSpacer;
-    addClient: TRzToolButton;
     RzSpacer4: TRzSpacer;
     CheckingAccaunt: TRzBitBtn;
     InvoiceOut: TRzBitBtn;
     MovoeToOtherStock: TRzBitBtn;
+    Option: TMenuItem;
+    BaseConnection: TMenuItem;
+    AddNewProvider: TRzBitBtn;
+    deleteProvider: TRzBitBtn;
+    addClient: TRzBitBtn;
+    deleteClient: TRzBitBtn;
     procedure addStockClick(Sender: TObject);
     procedure removeStockClick(Sender: TObject);
     procedure delProductClick(Sender: TObject);
@@ -58,6 +60,7 @@ type
     procedure deleteClientClick(Sender: TObject);
     procedure deleteProviderClick(Sender: TObject);
     procedure GridProductsDblClick(Sender: TObject);
+    procedure BaseConnectionClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -229,6 +232,16 @@ begin
     F_ProductInfo.ShowModal;
   finally
     FreeAndNil(F_ProductInfo);
+  end;
+end;
+
+procedure TF_Main.BaseConnectionClick(Sender: TObject);
+begin
+  try
+    Application.CreateForm(TF_BaseConnection, F_BaseConnection);
+    F_BaseConnection.showModal;
+  finally
+    FreeAndNil(F_BaseConnection);
   end;
 end;
 
