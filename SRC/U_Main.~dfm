@@ -99,10 +99,10 @@ object F_Main: TF_Main
     Top = 0
     Width = 1030
     Height = 520
-    ActivePage = TabProducts
+    ActivePage = TabClientsProviders
     ActivePageDefault = TabProducts
     Align = alClient
-    TabIndex = 1
+    TabIndex = 2
     TabOrder = 1
     TabOrientation = toBottom
     TabStyle = tsCutCorner
@@ -114,14 +114,15 @@ object F_Main: TF_Main
         Top = 0
         Width = 1028
         Height = 498
+        FixedPane = fpLowerRight
         Position = 875
         Percent = 85
-        LowerRight.ShowDockClientCaptions = False
         HotSpotVisible = True
         HotSpotDirection = hsdMax
         SplitterWidth = 7
         Align = alClient
-        Locked = True
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 0
         BarSize = (
           875
@@ -147,6 +148,7 @@ object F_Main: TF_Main
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
           TabOrder = 0
           VertScrollBar.VisibleMode = sbAlwaysShowEh
+          OnDrawColumnCell = DBGridEh1DrawColumnCell
           Columns = <
             item
               DynProps = <>
@@ -248,7 +250,6 @@ object F_Main: TF_Main
         Position = 871
         Percent = 85
         RealTimeDrag = True
-        LowerRight.ShowDockClientCaptions = False
         HotSpotVisible = True
         HotSpotDirection = hsdMax
         SplitterWidth = 7
@@ -287,6 +288,7 @@ object F_Main: TF_Main
           TabOrder = 0
           VertScrollBar.VisibleMode = sbAlwaysShowEh
           OnDblClick = GridProductsDblClick
+          OnDrawColumnCell = GridProductsDrawColumnCell
           Columns = <
             item
               DynProps = <>
@@ -567,6 +569,7 @@ object F_Main: TF_Main
           ShowHint = True
           TabOrder = 1
           VertScrollBar.VisibleMode = sbAlwaysShowEh
+          OnDrawColumnCell = GridProvidersDrawColumnCell
           Columns = <
             item
               DynProps = <>
@@ -668,6 +671,7 @@ object F_Main: TF_Main
           IndicatorOptions = [gioShowRowIndicatorEh]
           TabOrder = 1
           VertScrollBar.VisibleMode = sbAlwaysShowEh
+          OnDrawColumnCell = GridClientsDrawColumnCell
           Columns = <
             item
               DynProps = <>

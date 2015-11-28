@@ -99,10 +99,10 @@ object F_Main: TF_Main
     Top = 0
     Width = 1030
     Height = 520
-    ActivePage = TabStock
+    ActivePage = TabProducts
     ActivePageDefault = TabProducts
     Align = alClient
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 1
     TabOrientation = toBottom
     TabStyle = tsCutCorner
@@ -148,6 +148,7 @@ object F_Main: TF_Main
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
           TabOrder = 0
           VertScrollBar.VisibleMode = sbAlwaysShowEh
+          OnDrawColumnCell = DBGridEh1DrawColumnCell
           Columns = <
             item
               DynProps = <>
@@ -287,6 +288,7 @@ object F_Main: TF_Main
           TabOrder = 0
           VertScrollBar.VisibleMode = sbAlwaysShowEh
           OnDblClick = GridProductsDblClick
+          OnDrawColumnCell = GridProductsDrawColumnCell
           Columns = <
             item
               DynProps = <>
@@ -567,6 +569,7 @@ object F_Main: TF_Main
           ShowHint = True
           TabOrder = 1
           VertScrollBar.VisibleMode = sbAlwaysShowEh
+          OnDrawColumnCell = GridProvidersDrawColumnCell
           Columns = <
             item
               DynProps = <>
@@ -668,6 +671,7 @@ object F_Main: TF_Main
           IndicatorOptions = [gioShowRowIndicatorEh]
           TabOrder = 1
           VertScrollBar.VisibleMode = sbAlwaysShowEh
+          OnDrawColumnCell = GridClientsDrawColumnCell
           Columns = <
             item
               DynProps = <>

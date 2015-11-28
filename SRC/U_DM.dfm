@@ -58,8 +58,11 @@ object DM: TDM
       end
       item
         Name = 'productStock'
-        DataType = ftString
-        Size = 200
+        DataType = ftInteger
+      end
+      item
+        Name = 'productProvider'
+        DataType = ftInteger
       end>
     IndexDefs = <>
     SortOptions = []
@@ -96,9 +99,11 @@ object DM: TDM
     object mtAddProductsproductTotalPrice: TFloatField
       FieldName = 'productTotalPrice'
     end
-    object mtAddProductsproductStock: TStringField
+    object mtAddProductsproductStock: TIntegerField
       FieldName = 'productStock'
-      Size = 200
+    end
+    object mtAddProductsproductProvider: TIntegerField
+      FieldName = 'productProvider'
     end
   end
   object mainBase: TpFIBDatabase

@@ -13,6 +13,7 @@ object F_NewProduct: TF_NewProduct
   Font.Style = []
   OldCreateOrder = False
   Position = poOwnerFormCenter
+  OnCreate = FormCreate
   DesignSize = (
     700
     399)
@@ -56,13 +57,16 @@ object F_NewProduct: TF_NewProduct
     Height = 249
     Anchors = [akLeft, akTop, akRight]
     AutoFitColWidths = True
+    DataSource = DM.SourceAddProducts
     DynProps = <>
+    Flat = True
     FrozenCols = 1
     IndicatorOptions = [gioShowRowIndicatorEh]
     TabOrder = 2
     VertScrollBar.VisibleMode = sbAlwaysShowEh
     Columns = <
       item
+        Color = clBtnFace
         DynProps = <>
         EditButtons = <>
         Footers = <>
@@ -78,6 +82,7 @@ object F_NewProduct: TF_NewProduct
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'productName'
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
@@ -91,6 +96,7 @@ object F_NewProduct: TF_NewProduct
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'productCode'
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1050#1086#1076' '#1090#1086#1074#1072#1088#1072
@@ -104,6 +110,7 @@ object F_NewProduct: TF_NewProduct
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'productCount'
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1050#1086#1083'-'#1074#1086
@@ -117,6 +124,7 @@ object F_NewProduct: TF_NewProduct
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'productMeasured'
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1045#1076'. '#1080#1079#1084'.'
@@ -130,6 +138,7 @@ object F_NewProduct: TF_NewProduct
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'productPrice'
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1062#1077#1085#1072
@@ -143,6 +152,7 @@ object F_NewProduct: TF_NewProduct
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'productTotalPrice'
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1042#1089#1077#1075#1086
@@ -156,6 +166,7 @@ object F_NewProduct: TF_NewProduct
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'productStock'
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1057#1082#1083#1072#1076
@@ -297,9 +308,11 @@ object F_NewProduct: TF_NewProduct
       AllowKeyEdit = True
       Decimals = 2
       Max = 10000000000.000000000000000000
+      OnButtonClick = ProductPriceButtonClick
       FlatButtons = True
       FrameVisible = True
       TabOrder = 0
+      OnChange = ProductPriceChange
     end
     object ProductCode: TRzEdit
       Left = 264
@@ -318,10 +331,12 @@ object F_NewProduct: TF_NewProduct
       AllowKeyEdit = True
       Decimals = 2
       Max = 10000000000.000000000000000000
+      OnButtonClick = ProductCountButtonClick
       FlatButtons = True
       FrameHotTrack = True
       FrameVisible = True
       TabOrder = 2
+      OnChange = ProductCountChange
     end
     object ProductMeasured: TRzEdit
       Left = 472
@@ -374,6 +389,7 @@ object F_NewProduct: TF_NewProduct
       ParentShowHint = False
       ShowHint = True
       TabOrder = 7
+      OnClick = AddToMemTableClick
       ImageIndex = 0
       Images = F_Main.ProjIcon
     end
@@ -388,7 +404,7 @@ object F_NewProduct: TF_NewProduct
       ImageIndex = 2
       Images = F_Main.ProjIcon
     end
-    object RzComboBox1: TRzComboBox
+    object CBAllProviders: TRzComboBox
       Left = 264
       Top = 72
       Width = 145

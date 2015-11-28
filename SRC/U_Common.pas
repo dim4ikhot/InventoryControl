@@ -9,6 +9,7 @@ uses
 
   procedure ExtractServerName(const AFileName: String; var AServerName, ALocalPath: String);
   function GetCharCountFromStr(AChar: Char; AStr: String): Integer;
+  function RoundX(Num: Extended; Dig: integer): Extended;
 
 
 implementation
@@ -22,6 +23,29 @@ begin
   for i := 1 to Length(AStr) do
     if AStr[i] = AChar then
       Inc(Result);
+end;
+
+function RoundX(Num: Extended; Dig: integer): Extended;
+const
+  epsilon: Double = 0.000001;
+var
+  Fakt: Extended;
+  Vrem: Extended;
+  pw: Extended;
+begin
+  SetPrecisionMode(pmExtended);
+  Set8087CW(Default8087CW);
+
+  pw := Power(10, Dig);
+  Fakt := Frac(Num);
+  Fakt := pw * Fakt;
+  Vrem := Frac(Fakt);
+  Fakt := Int(Fakt);
+  if (Vrem - 0.5) >= -epsilon then
+    Fakt := Fakt + 1
+  else if (Vrem + 0.5) <= -epsilon then
+    Fakt := Fakt - 1;
+  Result := Int(Num) + Fakt/pw;
 end;
 
 procedure ExtractServerName(const AFileName: String; var AServerName, ALocalPath: String);

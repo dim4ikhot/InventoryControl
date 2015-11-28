@@ -17,7 +17,6 @@ uses
 begin
   Application.Initialize;
   Application.CreateForm(TDM, DM);
-  Application.CreateForm(TF_MovePosition, F_MovePosition);
   Application.Title := 'Складской учет';
   Application.CreateForm(TF_Main, F_Main);
   Application.Run;

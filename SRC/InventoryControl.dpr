@@ -10,7 +10,8 @@ uses
   U_DM in 'U_DM.pas' {DM: TDataModule},
   U_BaseConnection in 'U_BaseConnection.pas' {F_BaseConnection},
   U_Common in 'U_Common.pas',
-  U_MovePositions in 'U_MovePositions.pas' {F_MovePosition};
+  U_MovePositions in 'U_MovePositions.pas' {F_MovePosition},
+  U_BaseUpdate in 'U_BaseUpdate.pas';
 
 {$R *.res}
 

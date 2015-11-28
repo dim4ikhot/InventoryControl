@@ -65,6 +65,16 @@ type
     procedure GridProductsDblClick(Sender: TObject);
     procedure BaseConnectionClick(Sender: TObject);
     procedure MovoeToOtherStockClick(Sender: TObject);
+    procedure DBGridEh1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumnEh; State: TGridDrawState);
+    procedure GridProductsDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumnEh;
+      State: TGridDrawState);
+    procedure GridProvidersDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumnEh;
+      State: TGridDrawState);
+    procedure GridClientsDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumnEh; State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -259,6 +269,46 @@ begin
   finally
     FreeAndNil(F_MovePosition);
   end;
+end;
+
+procedure TF_Main.DBGridEh1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumnEh;
+  State: TGridDrawState);
+begin
+  if TDBGridEh(Sender).DataSource.DataSet.RecNo > 0 then
+    if Column.Index = 0 then                                                   // Ха- ха - ха БЛА!!!
+      TDBGridEh(Sender).Canvas.TextOut(Rect.Left + 5, Rect.Top,
+          IntToStr(TDBGridEh(Sender).DataSource.DataSet.RecNo));               // Вместо ID пишем порядковый номер в гриде.
+end;
+
+procedure TF_Main.GridProductsDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumnEh;
+  State: TGridDrawState);
+begin
+  if TDBGridEh(Sender).DataSource.DataSet.RecNo > 0 then
+    if Column.Index = 0 then                                                   // Ха- ха - ха БЛА!!!
+      TDBGridEh(Sender).Canvas.TextOut(Rect.Left + 5, Rect.Top,
+          IntToStr(TDBGridEh(Sender).DataSource.DataSet.RecNo));               // Вместо ID пишем порядковый номер в гриде.
+end;
+
+procedure TF_Main.GridProvidersDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumnEh;
+  State: TGridDrawState);
+begin
+  if TDBGridEh(Sender).DataSource.DataSet.RecNo > 0 then
+    if Column.Index = 0 then                                                   // Ха- ха - ха БЛА!!!
+      TDBGridEh(Sender).Canvas.TextOut(Rect.Left + 5, Rect.Top,
+          IntToStr(TDBGridEh(Sender).DataSource.DataSet.RecNo));               // Вместо ID пишем порядковый номер в гриде.
+end;
+
+procedure TF_Main.GridClientsDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumnEh;
+  State: TGridDrawState);
+begin
+  if TDBGridEh(Sender).DataSource.DataSet.RecNo > 0 then
+    if Column.Index = 0 then                                                   // Ха- ха - ха БЛА!!!
+      TDBGridEh(Sender).Canvas.TextOut(Rect.Left + 5, Rect.Top,
+          IntToStr(TDBGridEh(Sender).DataSource.DataSet.RecNo));               // Вместо ID пишем порядковый номер в гриде.
 end;
 
 end.

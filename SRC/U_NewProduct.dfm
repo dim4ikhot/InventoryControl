@@ -13,6 +13,7 @@ object F_NewProduct: TF_NewProduct
   Font.Style = []
   OldCreateOrder = False
   Position = poOwnerFormCenter
+  OnCreate = FormCreate
   DesignSize = (
     700
     399)
@@ -58,12 +59,15 @@ object F_NewProduct: TF_NewProduct
     AutoFitColWidths = True
     DataSource = DM.SourceAddProducts
     DynProps = <>
+    Flat = True
     FrozenCols = 1
     IndicatorOptions = [gioShowRowIndicatorEh]
     TabOrder = 2
     VertScrollBar.VisibleMode = sbAlwaysShowEh
+    OnDrawColumnCell = GridNewProductsDrawColumnCell
     Columns = <
       item
+        Color = clBtnFace
         DynProps = <>
         EditButtons = <>
         Footers = <>
@@ -305,9 +309,11 @@ object F_NewProduct: TF_NewProduct
       AllowKeyEdit = True
       Decimals = 2
       Max = 10000000000.000000000000000000
+      OnButtonClick = ProductPriceButtonClick
       FlatButtons = True
       FrameVisible = True
       TabOrder = 0
+      OnChange = ProductPriceChange
     end
     object ProductCode: TRzEdit
       Left = 264
@@ -326,10 +332,12 @@ object F_NewProduct: TF_NewProduct
       AllowKeyEdit = True
       Decimals = 2
       Max = 10000000000.000000000000000000
+      OnButtonClick = ProductCountButtonClick
       FlatButtons = True
       FrameHotTrack = True
       FrameVisible = True
       TabOrder = 2
+      OnChange = ProductCountChange
     end
     object ProductMeasured: TRzEdit
       Left = 472
@@ -382,6 +390,7 @@ object F_NewProduct: TF_NewProduct
       ParentShowHint = False
       ShowHint = True
       TabOrder = 7
+      OnClick = AddToMemTableClick
       ImageIndex = 0
       Images = F_Main.ProjIcon
     end
@@ -396,7 +405,7 @@ object F_NewProduct: TF_NewProduct
       ImageIndex = 2
       Images = F_Main.ProjIcon
     end
-    object RzComboBox1: TRzComboBox
+    object CBAllProviders: TRzComboBox
       Left = 264
       Top = 72
       Width = 145

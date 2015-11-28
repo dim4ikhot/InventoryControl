@@ -8,6 +8,7 @@ uses
   tlhelp32, ShellAPI;
 
   procedure ExtractServerName(const AFileName: String; var AServerName, ALocalPath: String);
+  function GetCharCountFromStr(AChar: Char; AStr: String): Integer;
 
 
 implementation
