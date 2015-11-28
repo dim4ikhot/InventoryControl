@@ -106,13 +106,16 @@ object DM: TDM
       'user_name=SYSDBA'
       'password=masterkey'
       'lc_ctype=WIN1251')
-    SQLDialect = 1
+    DefaultTransaction = TrmainBase
+    SQLDialect = 3
     Timeout = 0
+    DesignDBOptions = []
     WaitForRestoreConnect = 0
     Left = 24
     Top = 8
   end
   object tableStoks: TpFIBDataSet
+    AutoUpdateOptions.AutoReWriteSqls = True
     AutoUpdateOptions.WhenGetGenID = wgOnNewRecord
     Transaction = TRStoks
     Database = mainBase
@@ -122,6 +125,7 @@ object DM: TDM
     Top = 56
   end
   object tableProducts: TpFIBDataSet
+    AutoUpdateOptions.AutoReWriteSqls = True
     AutoUpdateOptions.WhenGetGenID = wgOnNewRecord
     Transaction = TrProducts
     Database = mainBase
@@ -131,6 +135,7 @@ object DM: TDM
     Top = 104
   end
   object tableClients: TpFIBDataSet
+    AutoUpdateOptions.AutoReWriteSqls = True
     AutoUpdateOptions.WhenGetGenID = wgOnNewRecord
     Transaction = TrClients
     Database = mainBase
@@ -140,6 +145,7 @@ object DM: TDM
     Top = 152
   end
   object tableProviders: TpFIBDataSet
+    AutoUpdateOptions.AutoReWriteSqls = True
     AutoUpdateOptions.WhenGetGenID = wgOnNewRecord
     Transaction = TrProviders
     Database = mainBase
@@ -200,5 +206,11 @@ object DM: TDM
     DataSet = mtAddProducts
     Left = 96
     Top = 248
+  end
+  object TrmainBase: TpFIBTransaction
+    DefaultDatabase = mainBase
+    TimeoutAction = TARollback
+    Left = 96
+    Top = 8
   end
 end

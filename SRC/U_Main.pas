@@ -7,7 +7,8 @@ uses
   Dialogs, RzSplit, RzTabs, RzPanel, ExtCtrls, RzButton, ImgList, U_NewStock,
   U_NewProduct, DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls,
   DynVarsEh, Menus, GridsEh, DBAxisGridsEh, DBGridEh, StdCtrls, RzCmboBx,
-  RzLabel, U_AddProviderClient, U_ProductInfo, U_DM, U_BaseConnection;
+  RzLabel, U_AddProviderClient, U_ProductInfo, U_DM, U_BaseConnection,
+  RzPrgres;
 
 type
   TF_Main = class(TForm)
@@ -28,7 +29,7 @@ type
     aboutItem: TMenuItem;
     ExitItem: TMenuItem;
     GridProducts: TDBGridEh;
-    RzComboBox1: TRzComboBox;
+    stockFilter: TRzComboBox;
     RzLabel1: TRzLabel;
     TabClientsProviders: TRzTabSheet;
     RzSplitter3: TRzSplitter;
@@ -49,6 +50,8 @@ type
     deleteProvider: TRzBitBtn;
     addClient: TRzBitBtn;
     deleteClient: TRzBitBtn;
+    ProgressAllOperations: TRzProgressBar;
+    RzLabel2: TRzLabel;
     procedure addStockClick(Sender: TObject);
     procedure removeStockClick(Sender: TObject);
     procedure delProductClick(Sender: TObject);
@@ -61,6 +64,7 @@ type
     procedure deleteProviderClick(Sender: TObject);
     procedure GridProductsDblClick(Sender: TObject);
     procedure BaseConnectionClick(Sender: TObject);
+    procedure MovoeToOtherStockClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -79,6 +83,8 @@ var
   F_Main: TF_Main;
 
 implementation
+
+uses U_MovePositions;
 
 {$R *.dfm}
 
@@ -242,6 +248,16 @@ begin
     F_BaseConnection.showModal;
   finally
     FreeAndNil(F_BaseConnection);
+  end;
+end;
+
+procedure TF_Main.MovoeToOtherStockClick(Sender: TObject);
+begin
+  try
+    Application.CreateForm(TF_MovePosition, F_MovePosition);
+    F_MovePosition.ShowModal;
+  finally
+    FreeAndNil(F_MovePosition);
   end;
 end;
 

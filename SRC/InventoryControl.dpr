@@ -8,7 +8,9 @@ uses
   U_AddProviderClient in 'U_AddProviderClient.pas' {F_AddClientProvider},
   U_ProductInfo in 'U_ProductInfo.pas' {F_ProductInfo},
   U_DM in 'U_DM.pas' {DM: TDataModule},
-  U_BaseConnection in 'U_BaseConnection.pas' {F_BaseConnection};
+  U_BaseConnection in 'U_BaseConnection.pas' {F_BaseConnection},
+  U_Common in 'U_Common.pas',
+  U_MovePositions in 'U_MovePositions.pas' {F_MovePosition};
 
 {$R *.res}
 

@@ -34,6 +34,7 @@ type
     mtAddProductsproductPrice: TFloatField;
     mtAddProductsproductTotalPrice: TFloatField;
     mtAddProductsproductStock: TStringField;
+    TrmainBase: TpFIBTransaction;
   private
     { Private declarations }
   public

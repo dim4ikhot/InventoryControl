@@ -27,6 +27,13 @@ type
     TrProviders: TpFIBTransaction;
     TrProvidersUpd: TpFIBTransaction;
     SourceAddProducts: TDataSource;
+    mtAddProductsproductName: TStringField;
+    mtAddProductsproductCode: TStringField;
+    mtAddProductsproductCount: TFloatField;
+    mtAddProductsproductMeasured: TStringField;
+    mtAddProductsproductPrice: TFloatField;
+    mtAddProductsproductTotalPrice: TFloatField;
+    mtAddProductsproductStock: TStringField;
   private
     { Private declarations }
   public

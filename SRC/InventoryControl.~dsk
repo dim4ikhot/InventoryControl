@@ -5,16 +5,32 @@ File_2=SourceModule,'D:\ПРОЕКТЫ\Регистрация\U_Registration.pas',0,1,1,1,1,0,1
 
 [Modules]
 Module0=D:\PROJECTS\Складской учет\SRC\U_Main.pas
-Module1=D:\PROJECTS\Складской учет\SRC\U_DM.pas
-Module2=D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas
-Module3=D:\PROJECTS\Складской учет\SRC\InventoryControl.dpr
-Module4=D:\PROJECTS\Складской учет\SRC\U_NewStock.pas
-Module5=D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas
-Module6=D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas
-Count=7
+Module1=D:\PROJECTS\Складской учет\SRC\InventoryControl.dpr
+Module2=D:\PROJECTS\Складской учет\SRC\U_BaseConnection.pas
+Module3=D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas
+Module4=D:\PROJECTS\Складской учет\SRC\U_DM.pas
+Module5=D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas
+Module6=D:\PROJECTS\Складской учет\SRC\U_NewStock.pas
+Module7=D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas
+Count=8
 EditWindowCount=1
 
 [D:\PROJECTS\Складской учет\SRC\U_Main.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=1
+
+[D:\PROJECTS\Складской учет\SRC\InventoryControl.dpr]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_BaseConnection.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=0
@@ -29,17 +45,7 @@ ModuleType=SourceModule
 FormState=1
 FormOnTop=0
 
-[D:\PROJECTS\Складской учет\SRC\InventoryControl.dpr]
-ModuleType=SourceModule
-FormState=0
-FormOnTop=0
-
 [D:\PROJECTS\Складской учет\SRC\U_NewStock.pas]
-ModuleType=SourceModule
-FormState=1
-FormOnTop=0
-
-[D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=0
@@ -54,7 +60,7 @@ FormState=0
 FormOnTop=0
 
 [EditWindow0]
-ViewCount=7
+ViewCount=8
 CurrentView=1
 View0=0
 View1=1
@@ -63,6 +69,7 @@ View3=3
 View4=4
 View5=5
 View6=6
+View7=7
 CodeExplorer=CodeExplorer@EditWindow0
 MessageView=MessageView@EditWindow0
 Create=1
@@ -82,51 +89,58 @@ LeftPanelData=000004000000000000000000000000000000000000000000000100000000000000
 RightPanelSize=0
 BottomPanelSize=0
 BottomPanelClients=MessageView@EditWindow0
-BottomPanelData=00000400010000000B0000004D657373616765566965775A040000000000000255000000000000000100000000000000000000000001000000005A0400000B0000004D65737361676556696577FFFFFFFF
+BottomPanelData=00000400010000000B0000004D657373616765566965775A040000000000000255000000000000000100000000000000000000000001000000005A0400000000000001000000005A0400000B0000004D65737361676556696577FFFFFFFF
 
 [View0]
 Module=D:\PROJECTS\Складской учет\SRC\InventoryControl.dpr
-CursorX=41
-CursorY=16
+CursorX=43
+CursorY=19
 TopLine=1
 LeftCol=1
 
 [View1]
 Module=D:\PROJECTS\Складской учет\SRC\U_Main.pas
-CursorX=52
-CursorY=10
-TopLine=1
+CursorX=1
+CursorY=220
+TopLine=218
 LeftCol=1
 
 [View2]
-Module=D:\PROJECTS\Складской учет\SRC\U_DM.pas
-CursorX=9
-CursorY=16
+Module=D:\PROJECTS\Складской учет\SRC\U_BaseConnection.pas
+CursorX=1
+CursorY=1
 TopLine=1
 LeftCol=1
 
 [View3]
+Module=D:\PROJECTS\Складской учет\SRC\U_DM.pas
+CursorX=9
+CursorY=39
+TopLine=1
+LeftCol=1
+
+[View4]
 Module=D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas
 CursorX=1
 CursorY=1
 TopLine=1
 LeftCol=1
 
-[View4]
+[View5]
 Module=D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas
 CursorX=14
 CursorY=27
 TopLine=14
 LeftCol=1
 
-[View5]
+[View6]
 Module=D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas
-CursorX=13
-CursorY=46
-TopLine=32
+CursorX=60
+CursorY=9
+TopLine=4
 LeftCol=1
 
-[View6]
+[View7]
 Module=D:\PROJECTS\Складской учет\SRC\U_NewStock.pas
 CursorX=1
 CursorY=1
@@ -201,8 +215,8 @@ LRDockWidth=190
 Dockable=1
 SplitPos=85
 ArrangeBy=Name
-SelectedItem=DataSource
-ExpandedItems=Title
+SelectedItem=OnClick
+ExpandedItems=Anchors,AutoUpdateOptions,CacheModelOptions,Title
 HiddenCategories=
 
 [ObjectTree]
