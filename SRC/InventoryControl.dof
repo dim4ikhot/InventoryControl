@@ -134,3 +134,7 @@ OriginalFilename=
 ProductName=
 ProductVersion=1.0.0.0
 Comments=
+[Excluded Packages]
+C:\Program Files\FastReports\FastReport\lib\frbde7.bpl=FastReport 2.5 BDE Components
+C:\Program Files\FastReports\FastReport\lib\frado7.bpl=FastReport 2.5 ADO Components
+C:\Program Files\FastReports\FastReport\lib\frdbx7.bpl=FastReport 2.5 DBX Components

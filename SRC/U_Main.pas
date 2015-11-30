@@ -8,7 +8,7 @@ uses
   U_NewProduct, DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls,
   DynVarsEh, Menus, GridsEh, DBAxisGridsEh, DBGridEh, StdCtrls, RzCmboBx,
   RzLabel, U_AddProviderClient, U_ProductInfo, U_DM, U_BaseConnection,
-  RzPrgres;
+  RzPrgres, U_about;
 
 type
   TF_Main = class(TForm)
@@ -75,6 +75,7 @@ type
       State: TGridDrawState);
     procedure GridClientsDrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumnEh; State: TGridDrawState);
+    procedure aboutItemClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -309,6 +310,16 @@ begin
     if Column.Index = 0 then                                                   // Ха- ха - ха БЛА!!!
       TDBGridEh(Sender).Canvas.TextOut(Rect.Left + 5, Rect.Top,
           IntToStr(TDBGridEh(Sender).DataSource.DataSet.RecNo));               // Вместо ID пишем порядковый номер в гриде.
+end;
+
+procedure TF_Main.aboutItemClick(Sender: TObject);
+begin
+  try
+    Application.CreateForm(TF_About, F_About);
+    F_About.showmodal;
+  finally
+    FreeAndNil(F_About);
+  end;
 end;
 
 end.

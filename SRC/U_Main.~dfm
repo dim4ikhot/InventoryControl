@@ -99,10 +99,10 @@ object F_Main: TF_Main
     Top = 0
     Width = 1030
     Height = 520
-    ActivePage = TabClientsProviders
+    ActivePage = TabProducts
     ActivePageDefault = TabProducts
     Align = alClient
-    TabIndex = 2
+    TabIndex = 1
     TabOrder = 1
     TabOrientation = toBottom
     TabStyle = tsCutCorner

@@ -11,7 +11,8 @@ uses
   U_BaseConnection in 'U_BaseConnection.pas' {F_BaseConnection},
   U_Common in 'U_Common.pas',
   U_MovePositions in 'U_MovePositions.pas' {F_MovePosition},
-  U_BaseUpdate in 'U_BaseUpdate.pas';
+  U_BaseUpdate in 'U_BaseUpdate.pas',
+  U_about in 'U_about.pas' {F_About};
 
 {$R *.res}
 
