@@ -266,12 +266,16 @@ object F_Main: TF_Main
           GridProducts)
         LowerRightControls = (
           RzLabel1
+          RzLabel3
+          RzLabel4
           addProduct
           delProduct
           stockFilter
           CheckingAccaunt
           InvoiceOut
-          MovoeToOtherStock)
+          MovoeToOtherStock
+          RzEdit1
+          InvoiceBtn)
         object GridProducts: TDBGridEh
           Left = 0
           Top = 0
@@ -366,12 +370,40 @@ object F_Main: TF_Main
           end
         end
         object RzLabel1: TRzLabel
-          Left = -866
+          Left = -3500
           Top = 104
           Width = 39
           Height = 15
           Anchors = [akTop, akRight]
           Caption = #1057#1082#1083#1072#1076':'
+          Font.Charset = RUSSIAN_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Times New Roman'
+          Font.Style = [fsBold]
+          ParentFont = False
+          Transparent = True
+        end
+        object RzLabel3: TRzLabel
+          Left = 12
+          Top = 120
+          Width = 103
+          Height = 15
+          Caption = #1060#1080#1083#1100#1090#1088' '#1087#1086' '#1089#1082#1083#1072#1076#1091':'
+          Font.Charset = RUSSIAN_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Times New Roman'
+          Font.Style = [fsBold]
+          ParentFont = False
+          Transparent = True
+        end
+        object RzLabel4: TRzLabel
+          Left = 12
+          Top = 168
+          Width = 38
+          Height = 15
+          Caption = #1055#1086#1080#1089#1082':'
           Font.Charset = RUSSIAN_CHARSET
           Font.Color = clWindowText
           Font.Height = -12
@@ -412,7 +444,7 @@ object F_Main: TF_Main
         end
         object stockFilter: TRzComboBox
           Left = 12
-          Top = 120
+          Top = 136
           Width = 129
           Height = 23
           Anchors = [akTop, akRight]
@@ -473,6 +505,34 @@ object F_Main: TF_Main
           TabOrder = 5
           OnClick = MovoeToOtherStockClick
           ImageIndex = 3
+          Images = ProjIcon
+        end
+        object RzEdit1: TRzEdit
+          Left = 12
+          Top = 184
+          Width = 129
+          Height = 23
+          Font.Charset = RUSSIAN_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Times New Roman'
+          Font.Style = [fsBold]
+          FrameHotTrack = True
+          FrameVisible = True
+          ParentFont = False
+          TabOrder = 6
+        end
+        object InvoiceBtn: TRzBitBtn
+          Left = 12
+          Top = 376
+          Width = 129
+          Height = 33
+          Hint = #1053#1072#1082#1083#1072#1076#1085#1072#1103' '#1087#1086' '#1087#1086#1089#1090#1091#1087#1083#1077#1085#1085#1099#1084' '#1090#1086#1074#1072#1088#1072#1084
+          Caption = #1055#1088#1080#1093#1086#1076#1085#1072#1103' '#1085#1072#1082#1083#1072#1076#1085#1072#1103
+          HotTrack = True
+          TabOrder = 7
+          OnClick = InvoiceBtnClick
+          ImageIndex = 2
           Images = ProjIcon
         end
       end

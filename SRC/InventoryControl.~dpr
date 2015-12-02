@@ -12,13 +12,16 @@ uses
   U_Common in 'U_Common.pas',
   U_MovePositions in 'U_MovePositions.pas' {F_MovePosition},
   U_BaseUpdate in 'U_BaseUpdate.pas',
-  U_about in 'U_about.pas' {F_About};
+  U_about in 'U_about.pas' {F_About},
+  U_FR in 'U_FR.pas' {F_FR},
+  XLSFile in 'XLSFile.pas';
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.CreateForm(TDM, DM);
+  Application.CreateForm(TF_FR, F_FR);
   Application.Title := 'Складской учет';
   Application.CreateForm(TF_Main, F_Main);
   Application.Run;

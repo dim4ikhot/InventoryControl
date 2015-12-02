@@ -41,6 +41,9 @@ type
     procedure ProductPriceButtonClick(Sender: TObject;
       Button: TSpinButtonType);
     procedure ProductPriceChange(Sender: TObject);
+    procedure GridNewProductsDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumnEh;
+      State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -145,6 +148,16 @@ end;
 procedure TF_NewProduct.ProductPriceChange(Sender: TObject);
 begin
   calcTotal;
+end;
+
+procedure TF_NewProduct.GridNewProductsDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumnEh;
+  State: TGridDrawState);
+begin
+  if TDBGridEh(Sender).DataSource.DataSet.RecNo > 0 then
+    if Column.Index = 0 then                                                   // Ха- ха - ха БЛА!!!
+      TDBGridEh(Sender).Canvas.TextOut(Rect.Left + 5, Rect.Top,
+          IntToStr(TDBGridEh(Sender).DataSource.DataSet.RecNo));               // Вместо ID пишем порядковый номер в гриде.
 end;
 
 end.

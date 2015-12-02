@@ -111,45 +111,75 @@ object addNewStock: TaddNewStock
     Left = 8
     Top = 24
     Width = 209
-    Height = 21
+    Height = 23
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Times New Roman'
+    Font.Style = [fsBold]
     FrameHotTrack = True
     FrameVisible = True
+    ParentFont = False
     TabOrder = 2
   end
   object RzEdit2: TRzEdit
     Left = 8
     Top = 64
     Width = 209
-    Height = 21
+    Height = 23
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Times New Roman'
+    Font.Style = [fsBold]
     FrameHotTrack = True
     FrameVisible = True
+    ParentFont = False
     TabOrder = 3
   end
   object RzEdit3: TRzEdit
     Left = 8
     Top = 104
     Width = 209
-    Height = 21
+    Height = 23
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Times New Roman'
+    Font.Style = [fsBold]
     FrameHotTrack = True
     FrameVisible = True
+    ParentFont = False
     TabOrder = 4
   end
   object RzEdit4: TRzEdit
     Left = 8
     Top = 144
     Width = 209
-    Height = 21
+    Height = 23
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Times New Roman'
+    Font.Style = [fsBold]
     FrameHotTrack = True
     FrameVisible = True
+    ParentFont = False
     TabOrder = 5
   end
   object RzEdit5: TRzEdit
     Left = 8
     Top = 184
     Width = 209
-    Height = 21
+    Height = 23
+    Font.Charset = RUSSIAN_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Times New Roman'
+    Font.Style = [fsBold]
     FrameHotTrack = True
     FrameVisible = True
+    ParentFont = False
     TabOrder = 6
   end
 end

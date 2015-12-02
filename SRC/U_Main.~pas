@@ -8,7 +8,7 @@ uses
   U_NewProduct, DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls,
   DynVarsEh, Menus, GridsEh, DBAxisGridsEh, DBGridEh, StdCtrls, RzCmboBx,
   RzLabel, U_AddProviderClient, U_ProductInfo, U_DM, U_BaseConnection,
-  RzPrgres;
+  RzPrgres, U_about, Mask, RzEdit, U_FR;
 
 type
   TF_Main = class(TForm)
@@ -52,6 +52,10 @@ type
     deleteClient: TRzBitBtn;
     ProgressAllOperations: TRzProgressBar;
     RzLabel2: TRzLabel;
+    RzLabel3: TRzLabel;
+    RzLabel4: TRzLabel;
+    RzEdit1: TRzEdit;
+    InvoiceBtn: TRzBitBtn;
     procedure addStockClick(Sender: TObject);
     procedure removeStockClick(Sender: TObject);
     procedure delProductClick(Sender: TObject);
@@ -75,6 +79,8 @@ type
       State: TGridDrawState);
     procedure GridClientsDrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumnEh; State: TGridDrawState);
+    procedure aboutItemClick(Sender: TObject);
+    procedure InvoiceBtnClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -309,6 +315,29 @@ begin
     if Column.Index = 0 then                                                   // Ха- ха - ха БЛА!!!
       TDBGridEh(Sender).Canvas.TextOut(Rect.Left + 5, Rect.Top,
           IntToStr(TDBGridEh(Sender).DataSource.DataSet.RecNo));               // Вместо ID пишем порядковый номер в гриде.
+end;
+
+procedure TF_Main.aboutItemClick(Sender: TObject);
+begin
+  try
+    Application.CreateForm(TF_About, F_About);
+    F_About.showmodal;
+  finally
+    FreeAndNil(F_About);
+  end;
+end;
+
+procedure TF_Main.InvoiceBtnClick(Sender: TObject);
+begin
+  try
+    try
+      Application.CreateForm(TF_FR, F_FR);
+      F_FR.ShowModal;
+    finally
+      FreeAndNil(F_FR);
+    end;
+  except
+  end;
 end;
 
 end.

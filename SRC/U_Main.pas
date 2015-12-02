@@ -8,7 +8,7 @@ uses
   U_NewProduct, DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls,
   DynVarsEh, Menus, GridsEh, DBAxisGridsEh, DBGridEh, StdCtrls, RzCmboBx,
   RzLabel, U_AddProviderClient, U_ProductInfo, U_DM, U_BaseConnection,
-  RzPrgres, U_about;
+  RzPrgres, U_about, Mask, RzEdit, U_FR;
 
 type
   TF_Main = class(TForm)
@@ -52,6 +52,10 @@ type
     deleteClient: TRzBitBtn;
     ProgressAllOperations: TRzProgressBar;
     RzLabel2: TRzLabel;
+    RzLabel3: TRzLabel;
+    RzLabel4: TRzLabel;
+    RzEdit1: TRzEdit;
+    InvoiceBtn: TRzBitBtn;
     procedure addStockClick(Sender: TObject);
     procedure removeStockClick(Sender: TObject);
     procedure delProductClick(Sender: TObject);
@@ -76,6 +80,7 @@ type
     procedure GridClientsDrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumnEh; State: TGridDrawState);
     procedure aboutItemClick(Sender: TObject);
+    procedure InvoiceBtnClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -319,6 +324,21 @@ begin
     F_About.showmodal;
   finally
     FreeAndNil(F_About);
+  end;
+end;
+
+procedure TF_Main.InvoiceBtnClick(Sender: TObject);
+begin
+  try
+    try
+      Vedomost := TVedomost.Create;
+      Vedomost.ShowReport;
+     { Application.CreateForm(TF_FR, F_FR);
+      F_FR.ShowModal; }
+    finally
+      FreeAndNil(Vedomost);
+    end;
+  except
   end;
 end;
 

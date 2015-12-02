@@ -64,6 +64,7 @@ object F_NewProduct: TF_NewProduct
     IndicatorOptions = [gioShowRowIndicatorEh]
     TabOrder = 2
     VertScrollBar.VisibleMode = sbAlwaysShowEh
+    OnDrawColumnCell = GridNewProductsDrawColumnCell
     Columns = <
       item
         Color = clBtnFace

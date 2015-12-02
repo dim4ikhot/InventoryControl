@@ -89,19 +89,19 @@ object addNewStock: TaddNewStock
     Transparent = True
   end
   object cancelStock: TRzBitBtn
-    Left = 120
+    Left = 144
     Top = 211
-    Width = 89
+    Width = 73
     Anchors = [akRight, akBottom]
-    Caption = #1054#1090#1084#1077#1085#1080#1090#1100
+    Caption = #1054#1090#1084#1077#1085#1072
     HotTrack = True
     TabOrder = 0
     Kind = bkCancel
   end
   object applyStock: TRzBitBtn
-    Left = 16
+    Left = 64
     Top = 211
-    Width = 89
+    Width = 73
     Anchors = [akRight, akBottom]
     HotTrack = True
     TabOrder = 1

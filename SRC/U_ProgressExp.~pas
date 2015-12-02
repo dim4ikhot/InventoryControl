@@ -1,0 +1,300 @@
+unit U_ProgressExp;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Clipbrd, Printers, Dialogs, Gauges, StdCtrls, Buttons, U_Types, ExtCtrls,
+  OleServer, Excel2000, U_FrOleEXl, FR_Class, U_DM,
+  ShellAPI{работа с командной строкой}, FR_View, U_main, RzButton, RzRadChk,
+  RzLabel;
+
+
+
+type
+  TF_ProgressExp = class(TForm)
+    Gauge1: TGauge;
+    Message1: TRzLabel;
+    Timer1: TTimer;
+    TimerClose: TTimer;
+    CheckBox1: TRzCheckBox;
+    esBitBtn1: TRzBitBtn;
+    procedure esBitBtn1Click(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure TimerCloseTimer(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    frOLEExcelExportMy: TMyfrOleExl;
+  public
+    WasCancel: BOOL;
+    procedure Timer1Timer_Silent(Sender: TObject);
+  end;
+
+
+var
+  F_ProgressExp: TF_ProgressExp;
+
+implementation
+
+uses U_FR, U_MessageCP;
+
+{$R *.dfm}
+
+procedure TF_ProgressExp.esBitBtn1Click(Sender: TObject);
+begin
+  WasCancel := True;
+end;
+
+procedure TF_ProgressExp.Timer1Timer(Sender: TObject);
+var
+  i: integer;
+  ExportStream:  TFileStream;
+  StroikaName, ExportDir: string;
+  b: boolean;
+  Year, Month, Day: Word;
+begin
+  Timer1.Enabled := False;
+
+  esBitBtn1.Caption := 'Отмена';//GetLStr('Отмена', 'Відмінити');
+  CheckBox1.Caption := 'Запустить Excel после передачи данных';//GetLStr('Запустить Excel после передачи данных','Запустити Excel після передачі даних');
+
+//  Message1.Visible := False;
+  esBitBtn1.Visible := False;
+  Gauge1.Progress := 0;
+  CheckBox1.Visible := False;
+  Gauge1.Visible := False;
+  WasCancel := False;
+
+  ExportDir := ExtractFileDir(Application.ExeName) + '\Reports';
+
+  with F_FR.SaveDialog1 do
+  begin
+    InitialDir := ExportDir; //GetEXEDir + '\Save' + ...;
+    Filter := 'Документы Excel (*.xls)|*.xls';
+    FilterIndex := 1;
+    FileName := Copy(F_FR.Caption, 0, pos(' - Документ №', F_FR.Caption));;
+
+
+    DecodeDate(Date, Year, Month, Day);
+    if (Month < 10) and (Day < 10) then
+      FileName := FileName + ' (' + FloatToStr(Year) + '_0' + FloatToStr(Month) + '_0' + FloatToStr(Day) + ')'
+    else
+    if (Month < 10) then
+      FileName := FileName + ' (' + FloatToStr(Year) + '_0' + FloatToStr(Month) + '_' + FloatToStr(Day) + ')'
+    else
+    if (Day < 10) then
+      FileName := FileName + ' (' + FloatToStr(Year) + '_' + FloatToStr(Month) + '_0' + FloatToStr(Day) + ')'
+    else
+      FileName := FileName + ' (' + FloatToStr(Year) + '_' + FloatToStr(Month) + '_' + FloatToStr(Day) + ')';
+
+    FileName := ClearStrFromWrongSymbol(FileName);
+
+    if Execute then
+    begin
+
+      if FileExists(F_FR.SaveDialog1.FileName) then
+      begin
+        if ShowMessagerCP('Файл уже существует.','Файл уже существует.'+ #13#10 +'Сохранить под этим же именем?', mtConfirmation, [mbOK,mbCancel]) = mrOk then
+        begin
+          try
+            ExportStream := TFileStream.Create(F_FR.SaveDialog1.FileName, fmCreate);
+          except
+            Timer1.Enabled := True;
+            Exit;
+          end;
+          ExportStream.Free;
+        end
+        else
+        begin
+          Timer1.Enabled := True;
+          Exit;
+        end;
+      end;
+
+      Gauge1.Visible := False;
+      esBitBtn1.Visible := False;
+      Message1.Caption := 'Подготовка к передаче данных...';
+      Message1.Visible := True;
+      CheckBox1.Visible := true;
+      F_ProgressExp.Caption := 'Загрузка объектов...';
+
+      F_ProgressExp.Repaint;
+
+      F_ProgressExp.Position := poScreenCenter;
+
+      if NOT Assigned(frOLEExcelExportMy) then
+      begin
+        frOLEExcelExportMy := TMyfrOleExl.Create(F_ProgressExp);
+      end;
+
+      frOLEExcelExportMy.ShowDialog := False;
+      frOLEExcelExportMy.CellsAlign := True;
+      frOLEExcelExportMy.CellsBorders := True;
+      frOLEExcelExportMy.CellsFillColor := False;
+      frOLEExcelExportMy.CellsFontColor := False;
+      frOLEExcelExportMy.CellsFontName := True;
+      frOLEExcelExportMy.CellsFontSize := True;
+      frOLEExcelExportMy.CellsFontStyle := True;
+      frOLEExcelExportMy.CellsMerged := True;
+      frOLEExcelExportMy.CellsWrapWords := True;
+      frOLEExcelExportMy.Default := True;
+      frOLEExcelExportMy.ExportPictures := False;
+      frOLEExcelExportMy.LeftMargin := 2;
+      frOLEExcelExportMy.TopMargin := 2;
+      frOLEExcelExportMy.OpenExcelAfterExport := False;
+      frOLEExcelExportMy.PageBreaks := True;
+
+      frOLEExcelExportMy.ShowAbortButton := true;
+      try
+        Screen.Cursor := crHourGlass;
+        try
+          F_FR.frReport1.ExportTo(frOLEExcelExportMy, F_FR.SaveDialog1.FileName);
+        finally
+          FreeAndNil(frOLEExcelExportMy);
+          Screen.Cursor := crDefault;
+        end;
+
+      if NOT WasCancel then
+      begin
+        Sleep(500);
+        if FileExists(F_FR.SaveDialog1.FileName) then
+        begin
+          if CheckBox1.Checked then
+          begin
+            ShellExecute(0, nil, PChar(F_FR.SaveDialog1.FileName), nil, nil, SW_MAXIMIZE);
+            Sleep(200);
+          end;
+        end;
+      end
+      else
+      begin
+        if FileExists(F_FR.SaveDialog1.FileName) then
+          try
+            DeleteFile(F_FR.SaveDialog1.FileName);
+          except
+          end;
+      end;
+
+      except
+        F_FR.frPreview1.Connect(CurReport);
+      end;
+
+    end; // end of Execute
+  end; // end of SaveDialog
+
+  TimerClose.Enabled := true;
+end;
+
+procedure TF_ProgressExp.Timer1Timer_Silent(Sender: TObject);
+var
+  iFileNameCounter: integer;
+  ExportDir, ExportFileNameSuffix, ExportFileName, ExportFileNameShort: string;
+  b: boolean;
+  Year, Month, Day: Word;
+begin
+  Timer1.Enabled := False;
+
+  esBitBtn1.Caption := 'Отмена';
+  CheckBox1.Caption := 'Запустить Excel после передачи данных';
+
+  esBitBtn1.Visible := False;
+  Gauge1.Progress := 0;
+  CheckBox1.Visible := False;
+  Gauge1.Visible := False;
+  WasCancel := False;
+
+  ExportDir := ExtractFileDir(Application.ExeName) + '\Reports';
+
+  ExportFileName := Copy(F_FR.Caption, 0, pos(' - Документ №', F_FR.Caption));
+
+  DecodeDate(Date, Year, Month, Day);
+  if (Month < 10) and (Day < 10) then
+    ExportFileName := ExportFileName + ' (' + FloatToStr(Year) + '_0' + FloatToStr(Month) + '_0' + FloatToStr(Day) + ')'
+  else
+  if (Month < 10) then
+    ExportFileName := ExportFileName + ' (' + FloatToStr(Year) + '_0' + FloatToStr(Month) + '_' + FloatToStr(Day) + ')'
+  else
+  if (Day < 10) then
+    ExportFileName := ExportFileName + ' (' + FloatToStr(Year) + '_' + FloatToStr(Month) + '_0' + FloatToStr(Day) + ')'
+  else
+    ExportFileName := ExportFileName + ' (' + FloatToStr(Year) + '_' + FloatToStr(Month) + '_' + FloatToStr(Day) + ')';
+
+  ExportFileName := ClearStrFromWrongSymbol(ExportFileName);
+
+  iFileNameCounter := 1;
+  ExportFileNameSuffix := '';
+  while FileExists(IncludeTrailingPathDelimiter(ExportDir) + ExportFileName + ExportFileNameSuffix + '.xls') do
+  begin
+    ExportFileNameSuffix := ' (' + IntToStr(iFileNameCounter) + ')';
+    Inc(iFileNameCounter);
+  end;
+  ExportFileNameShort := ExportFileName + ExportFileNameSuffix + '.xls';
+  ExportFileName := IncludeTrailingPathDelimiter(ExportDir) + ExportFileName + ExportFileNameSuffix + '.xls';
+
+
+  Gauge1.Visible := False;
+  esBitBtn1.Visible := False;
+  Message1.Caption := 'Подготовка к передаче данных...';
+  Message1.Visible := True;
+  CheckBox1.Visible := {true} false;
+  F_ProgressExp.Caption := 'Обработка отчета "' + ExportFileNameShort + '"...';
+
+  F_ProgressExp.Repaint;
+
+  if not Assigned(frOLEExcelExportMy) then
+    frOLEExcelExportMy := TMyfrOleExl.Create(F_ProgressExp);
+  try
+    frOLEExcelExportMy.ShowDialog := False;
+    frOLEExcelExportMy.CellsAlign := True;
+    frOLEExcelExportMy.CellsBorders := True;
+    frOLEExcelExportMy.CellsFillColor := False;
+    frOLEExcelExportMy.CellsFontColor := False;
+    frOLEExcelExportMy.CellsFontName := True;
+    frOLEExcelExportMy.CellsFontSize := True;
+    frOLEExcelExportMy.CellsFontStyle := True;
+    frOLEExcelExportMy.CellsMerged := True;
+    frOLEExcelExportMy.CellsWrapWords := True;
+    frOLEExcelExportMy.Default := True;
+    frOLEExcelExportMy.ExportPictures := False;
+    frOLEExcelExportMy.LeftMargin := 2;
+    frOLEExcelExportMy.TopMargin := 2;
+    frOLEExcelExportMy.OpenExcelAfterExport := False;
+    frOLEExcelExportMy.PageBreaks := True;
+    frOLEExcelExportMy.ShowAbortButton := false;
+
+    try
+      F_FR.frReport1.ExportTo(frOLEExcelExportMy, ExportFileName);
+    except
+      F_fr.frPreview1.Connect(CurReport);
+    end;
+
+    if FileExists(ExportFileName) then
+    begin
+      if CheckBox1.Checked then
+      begin
+        ShellExecute(0, nil, PChar(ExportFileName), nil, nil, SW_MAXIMIZE);
+        Sleep(200);
+      end;
+    end;
+  finally
+      FreeAndNil(frOLEExcelExportMy);
+  end;
+
+  TimerClose.Enabled := true;
+end;
+
+procedure TF_ProgressExp.TimerCloseTimer(Sender: TObject);
+begin
+  TimerClose.Enabled := false;
+  F_ProgressExp.Position := poDesigned;
+  F_ProgressExp.Top := 2000;
+  Close;
+end;
+
+procedure TF_ProgressExp.FormCreate(Sender: TObject);
+begin
+  Timer1.Enabled := true;
+end;
+
+
+end.

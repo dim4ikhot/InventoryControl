@@ -23,16 +23,13 @@ type
     ProductPrice: TRzSpinEdit;
     ProductTotalPrice: TRzEdit;
     RzLabel6: TRzLabel;
-    addProduct: TRzBitBtn;
     cancelProduct: TRzBitBtn;
-    GridNewProducts: TDBGridEh;
     RzGroupBox1: TRzGroupBox;
     CBAllStocks: TRzComboBox;
     RzLabel7: TRzLabel;
-    AddToMemTable: TRzBitBtn;
-    InvoiceBtn: TRzBitBtn;
     RzLabel8: TRzLabel;
     CBAllProviders: TRzComboBox;
+    AddToMemTable: TRzBitBtn;
     procedure AddToMemTableClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ProductCountChange(Sender: TObject);
