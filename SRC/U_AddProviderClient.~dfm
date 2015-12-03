@@ -86,15 +86,18 @@ object F_AddClientProvider: TF_AddClientProvider
     TabOrder = 2
   end
   object RzBitBtn1: TRzBitBtn
-    Left = 40
+    Left = 8
     Top = 136
+    Width = 89
     HotTrack = True
     TabOrder = 3
+    OnClick = RzBitBtn1Click
     Kind = bkOK
   end
   object RzBitBtn2: TRzBitBtn
-    Left = 120
+    Left = 104
     Top = 136
+    Width = 89
     Caption = #1054#1090#1084#1077#1085#1072
     HotTrack = True
     TabOrder = 4

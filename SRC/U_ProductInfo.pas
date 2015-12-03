@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh,
   GridsEh, DBAxisGridsEh, DBGridEh, RzButton, ExtCtrls, RzPanel, StdCtrls,
-  RzLabel, Mask, RzEdit;
+  RzLabel, Mask, RzEdit,U_DM, siComp, siLngLnk;
 
 type
   TF_ProductInfo = class(TForm)
@@ -31,6 +31,7 @@ type
     InfoProductOut: TDBGridEh;
     infoProductCount: TRzEdit;
     infoProductPrice: TRzEdit;
+    LangInfo: TsiLangLinked;
   private
     { Private declarations }
   public

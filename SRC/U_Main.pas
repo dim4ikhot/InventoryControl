@@ -8,7 +8,7 @@ uses
   U_NewProduct, DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls,
   DynVarsEh, Menus, GridsEh, DBAxisGridsEh, DBGridEh, StdCtrls, RzCmboBx,
   RzLabel, U_AddProviderClient, U_ProductInfo, U_DM, U_BaseConnection,
-  RzPrgres, U_about, Mask, RzEdit, U_FR;
+  RzPrgres, U_about, Mask, RzEdit, U_FR, siComp, siLngLnk, U_MessageCP;
 
 type
   TF_Main = class(TForm)
@@ -16,21 +16,11 @@ type
     PCMainTabs: TRzPageControl;
     TabStock: TRzTabSheet;
     TabProducts: TRzTabSheet;
-    RzSplitter1: TRzSplitter;
-    RzSplitter2: TRzSplitter;
     ProjIcon: TImageList;
-    addProduct: TRzBitBtn;
-    delProduct: TRzBitBtn;
-    addStock: TRzBitBtn;
-    removeStock: TRzBitBtn;
-    DBGridEh1: TDBGridEh;
     MainMenu: TMainMenu;
     FileItem: TMenuItem;
     aboutItem: TMenuItem;
     ExitItem: TMenuItem;
-    GridProducts: TDBGridEh;
-    stockFilter: TRzComboBox;
-    RzLabel1: TRzLabel;
     TabClientsProviders: TRzTabSheet;
     RzSplitter3: TRzSplitter;
     RzToolbar1: TRzToolbar;
@@ -41,9 +31,6 @@ type
     RzSpacer2: TRzSpacer;
     RzSpacer3: TRzSpacer;
     RzSpacer4: TRzSpacer;
-    CheckingAccaunt: TRzBitBtn;
-    InvoiceOut: TRzBitBtn;
-    MovoeToOtherStock: TRzBitBtn;
     Option: TMenuItem;
     BaseConnection: TMenuItem;
     AddNewProvider: TRzBitBtn;
@@ -52,10 +39,27 @@ type
     deleteClient: TRzBitBtn;
     ProgressAllOperations: TRzProgressBar;
     RzLabel2: TRzLabel;
+    RzSizePanel1: TRzSizePanel;
     RzLabel3: TRzLabel;
     RzLabel4: TRzLabel;
-    RzEdit1: TRzEdit;
+    addProduct: TRzBitBtn;
+    CheckingAccaunt: TRzBitBtn;
+    delProduct: TRzBitBtn;
+    InvoiceOut: TRzBitBtn;
     InvoiceBtn: TRzBitBtn;
+    MovoeToOtherStock: TRzBitBtn;
+    RzEdit1: TRzEdit;
+    stockFilter: TRzComboBox;
+    GridProducts: TDBGridEh;
+    GBReports: TRzGroupBox;
+    RzSizePanel2: TRzSizePanel;
+    addStock: TRzBitBtn;
+    removeStock: TRzBitBtn;
+    DBGridEh1: TDBGridEh;
+    LangMain: TsiLangLinked;
+    ProgLang: TMenuItem;
+    RussianLang: TMenuItem;
+    UkraianianLang: TMenuItem;
     procedure addStockClick(Sender: TObject);
     procedure removeStockClick(Sender: TObject);
     procedure delProductClick(Sender: TObject);
@@ -81,6 +85,10 @@ type
       DataCol: Integer; Column: TColumnEh; State: TGridDrawState);
     procedure aboutItemClick(Sender: TObject);
     procedure InvoiceBtnClick(Sender: TObject);
+    procedure ExitItemClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure RussianLangClick(Sender: TObject);
+    procedure UkraianianLangClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -121,7 +129,8 @@ end;
 
 procedure removeStockProc;
 begin
-  if MessageBox(F_Main.Handle,'Вы действительно желаете удалить склад?', 'Удаление...', MB_YESNO) = 6 then
+//  if MessageBox(F_Main.Handle,'Вы действительно желаете удалить склад?', 'Удаление...', MB_YESNO) = 6 then
+  if ShowMessagerCP( F_Main.LangMain.gettext('Deleting'), F_Main.LangMain.gettext('DeletingStock'),mtConfirmation,[mbYes, mbNo]) = 6 then
   begin
 
   end;
@@ -134,7 +143,8 @@ end;
 
 procedure removeProductProc;
 begin
-  if MessageBox(F_Main.Handle,'Вы действительно желаете удалить товар?', 'Удаление...', MB_YESNO) = 6 then
+  //if MessageBox(F_Main.Handle,'Вы действительно желаете удалить товар?', 'Удаление...', MB_YESNO) = 6 then
+  if ShowMessagerCP( F_Main.LangMain.gettext('Deleting'), F_Main.LangMain.gettext('DeletingProduct'),mtConfirmation,[mbYes, mbNo]) = 6 then
   begin
 
   end;
@@ -213,7 +223,7 @@ end;
 
 procedure removeProvider;
 begin
-  if MessageBox(F_Main.Handle,'Вы действительно желаете удалить поставщика?', 'Удаление...', MB_YESNO) = 6 then
+  if ShowMessagerCP( F_Main.LangMain.gettext('Deleting'), F_Main.LangMain.gettext('DeletingProvidr'),mtConfirmation,[mbYes, mbNo]) = 6 then
   begin
 
   end;
@@ -221,7 +231,8 @@ end;
 
 procedure removeNewClient;
 begin
-  if MessageBox(F_Main.Handle,'Вы действительно желаете удалить клиента?', 'Удаление...', MB_YESNO) = 6 then
+//  if MessageBox(F_Main.Handle,'Вы действительно желаете удалить клиента?', 'Удаление...', MB_YESNO) = 6 then
+  if ShowMessagerCP( F_Main.LangMain.gettext('Deleting'), F_Main.LangMain.gettext('DeletingClient'),mtConfirmation,[mbYes, mbNo]) = 6 then
   begin
 
   end;
@@ -340,6 +351,28 @@ begin
     end;
   except
   end;
+end;
+
+procedure TF_Main.ExitItemClick(Sender: TObject);
+begin
+  close;
+end;
+
+procedure TF_Main.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+//  if MessageBox(Self.Handle,'Закрыть программу?','Закрыть...', MB_YESNO) = mrNo then
+  if ShowMessagerCP(LangMain.GetText('ClosintProg'), LangMain.GetText('ExitProgram'),mtConfirmation,[mbYes, mbNo]) = mrNo then
+    Action := caNone;
+end;
+
+procedure TF_Main.RussianLangClick(Sender: TObject);
+begin
+  DM.ProgramLangs.ActiveLanguage := 1;
+end;
+
+procedure TF_Main.UkraianianLangClick(Sender: TObject);
+begin
+    DM.ProgramLangs.ActiveLanguage := 2;
 end;
 
 end.

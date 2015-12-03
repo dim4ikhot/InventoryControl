@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, Mask, RzEdit, RzLabel, RzButton;
+  Dialogs, StdCtrls, Mask, RzEdit, RzLabel, RzButton,U_DM, siComp, siLngLnk;
 
 type
   TaddNewStock = class(TForm)
@@ -20,6 +20,8 @@ type
     RzEdit3: TRzEdit;
     RzEdit4: TRzEdit;
     RzEdit5: TRzEdit;
+    LangNewStock: TsiLangLinked;
+    procedure applyStockClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -32,5 +34,13 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TaddNewStock.applyStockClick(Sender: TObject);
+begin
+  DM.tableStoks.Insert;
+  DM.tableStoks.Edit;
+  //fill need fields
+  DM.tableStoks.Post;
+end;
 
 end.

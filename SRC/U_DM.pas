@@ -4,7 +4,7 @@ interface
 
 uses
   SysUtils, Classes, DB, FIBDatabase, pFIBDatabase, FIBDataSet,
-  pFIBDataSet, kbmMemTable, pFIBQuery;
+  pFIBDataSet, kbmMemTable, pFIBQuery, siComp;
 
 type
   TDM = class(TDataModule)
@@ -36,6 +36,7 @@ type
     TrmainBase: TpFIBTransaction;
     mtAddProductsproductStock: TIntegerField;
     mtAddProductsproductProvider: TIntegerField;
+    ProgramLangs: TsiLangDispatcher;
   private
     { Private declarations }
   public

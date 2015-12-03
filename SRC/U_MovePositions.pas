@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh,
-  RzButton, GridsEh, DBAxisGridsEh, DBGridEh, U_Main;
+  RzButton, GridsEh, DBAxisGridsEh, DBGridEh, U_Main, U_DM, siComp,
+  siLngLnk;
 
 type
   TF_MovePosition = class(TForm)
@@ -13,6 +14,7 @@ type
     CancelMove: TRzBitBtn;
     ApplyMove: TRzBitBtn;
     RzBitBtn1: TRzBitBtn;
+    LangMove: TsiLangLinked;
     procedure ApplyMoveClick(Sender: TObject);
   private
     { Private declarations }

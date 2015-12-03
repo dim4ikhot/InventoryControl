@@ -16,7 +16,8 @@ uses
 
   Menus, FIBQuery, DateUtils, U_Common, kbmMemTable, pFIBQuery,
   Grids, DBGrids, RzDBGrid, Math, {U_ProgressExp,}
-  frxClass, frxDBSet, frxDesgn,frxRich, frxPreview, frxExportXLS;
+  frxClass, frxDBSet, frxDesgn,frxRich, frxPreview, frxExportXLS, siComp,
+  siLngLnk;
 
 const
   msDemo: String = 'В демо версии эта функция недоступна!';
@@ -150,6 +151,7 @@ type
     frxDesigner: TfrxDesigner;
     frxDBDataset1: TfrxDBDataset;
     frxXLSExport: TfrxXLSExport;
+    LangReport: TsiLangLinked;
     procedure btPrintClick(Sender: TObject);
     procedure tbZoomChange(Sender: TObject);
     procedure tbZoomKeyDown(Sender: TObject; var Key: Word;
@@ -641,23 +643,23 @@ end;
 
 procedure TF_FR.btZoom100Click(Sender: TObject);
 begin
-  {frxPreview1.Zoom := 100;
-  tbZoom.Position := Round(frxPreview1.Zoom); }
   frxPreview1.Zoom := 1;
+  tbZoom.Position := Round(frxPreview1.Zoom) * 100;
+
 end;
 
 procedure TF_FR.RzToolButton3Click(Sender: TObject);
 begin
 //  frxPreview1.OnePage;
   frxPreview1.ZoomMode := zmWholePage;
-  //tbZoom.Position := Round(frxPreview1.Zoom);
+  tbZoom.Position := Round(frxPreview1.Zoom)*100;
 end;
 
 procedure TF_FR.RzToolButton4Click(Sender: TObject);
 begin
 //  frxPreview1.pageWidth;
   frxPreview1.ZoomMode := zmPageWidth;
- // tbZoom.Position := Round(frxPreview1.Zoom);
+  tbZoom.Position := Round(frxPreview1.Zoom)*100;
 end;
 
 procedure TF_FR.RzToolButton5Click(Sender: TObject);

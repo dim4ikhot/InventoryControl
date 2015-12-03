@@ -1,14 +1,14 @@
 object F_Main: TF_Main
-  Left = 271
-  Top = 117
-  Width = 1042
-  Height = 593
+  Left = 265
+  Top = 113
+  Width = 1084
+  Height = 601
   Caption = #1057#1082#1083#1072#1076#1089#1082#1086#1081' '#1091#1095#1077#1090
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'MS Sans Serif'
+  Font.Height = -12
+  Font.Name = 'Times New Roman'
   Font.Style = []
   Icon.Data = {
     0000010001001010000001002000680400001600000028000000100000002000
@@ -51,13 +51,15 @@ object F_Main: TF_Main
   Menu = MainMenu
   OldCreateOrder = False
   Position = poScreenCenter
+  WindowState = wsMaximized
+  OnClose = FormClose
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 15
   object RzStatusBar1: TRzStatusBar
     Left = 0
-    Top = 520
-    Width = 1030
+    Top = 528
+    Width = 1072
     Height = 19
     BorderInner = fsNone
     BorderOuter = fsNone
@@ -65,7 +67,7 @@ object F_Main: TF_Main
     BorderWidth = 0
     TabOrder = 0
     DesignSize = (
-      1030
+      1072
       19)
     object ProgressAllOperations: TRzProgressBar
       Left = 96
@@ -82,7 +84,7 @@ object F_Main: TF_Main
     object RzLabel2: TRzLabel
       Left = 0
       Top = 2
-      Width = 96
+      Width = 138
       Height = 15
       Anchors = [akLeft, akRight, akBottom]
       Caption = #1061#1086#1076' '#1074#1099#1087#1086#1083#1085#1077#1085#1080#1103':'
@@ -97,124 +99,35 @@ object F_Main: TF_Main
   object PCMainTabs: TRzPageControl
     Left = 0
     Top = 0
-    Width = 1030
-    Height = 520
-    ActivePage = TabProducts
+    Width = 1072
+    Height = 528
+    ActivePage = TabStock
     ActivePageDefault = TabProducts
     Align = alClient
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 1
     TabOrientation = toBottom
     TabStyle = tsCutCorner
-    FixedDimension = 20
+    FixedDimension = 22
     object TabStock: TRzTabSheet
       Caption = #1057#1082#1083#1072#1076
-      object RzSplitter2: TRzSplitter
-        Left = 0
+      object RzSizePanel2: TRzSizePanel
+        Left = 917
         Top = 0
-        Width = 1028
-        Height = 498
-        FixedPane = fpLowerRight
-        Position = 875
-        Percent = 85
+        Width = 153
+        Height = 504
+        Align = alRight
+        BorderOuter = fsFlatRounded
+        HotSpotIgnoreMargins = True
         HotSpotVisible = True
-        HotSpotDirection = hsdMax
-        SplitterWidth = 7
-        Align = alClient
-        ParentShowHint = False
-        ShowHint = True
+        SizeBarWidth = 7
         TabOrder = 0
-        BarSize = (
-          875
-          0
-          882
-          498)
-        UpperLeftControls = (
-          DBGridEh1)
-        LowerRightControls = (
-          addStock
-          removeStock)
-        object DBGridEh1: TDBGridEh
-          Left = 0
-          Top = 0
-          Width = 875
-          Height = 498
-          Align = alClient
-          AutoFitColWidths = True
-          DataSource = DM.SourceStocks
-          DynProps = <>
-          Flat = True
-          IndicatorOptions = [gioShowRowIndicatorEh]
-          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
-          TabOrder = 0
-          VertScrollBar.VisibleMode = sbAlwaysShowEh
-          OnDrawColumnCell = DBGridEh1DrawColumnCell
-          Columns = <
-            item
-              DynProps = <>
-              EditButtons = <>
-              Footers = <>
-              Title.Alignment = taCenter
-              Title.Caption = #8470
-              Width = 50
-            end
-            item
-              DynProps = <>
-              EditButtons = <>
-              Footers = <>
-              Title.Alignment = taCenter
-              Title.Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
-              Width = 229
-            end
-            item
-              DynProps = <>
-              EditButtons = <>
-              Footers = <>
-              Title.Alignment = taCenter
-              Title.Caption = #1050#1086#1076' '#1045#1043#1056#1055#1054
-              Width = 103
-            end
-            item
-              DynProps = <>
-              EditButtons = <>
-              Footers = <>
-              Title.Alignment = taCenter
-              Title.Caption = #1056#1072#1089#1095#1077#1090#1085#1099#1081' '#1089#1095#1077#1090
-              Width = 119
-            end
-            item
-              DynProps = <>
-              EditButtons = <>
-              Footers = <>
-              Title.Alignment = taCenter
-              Title.Caption = #1041#1072#1085#1082
-              Width = 124
-            end
-            item
-              DynProps = <>
-              EditButtons = <>
-              Footers = <>
-              Title.Alignment = taCenter
-              Title.Caption = #8470' '#1076#1086#1074#1077#1088#1077#1085#1085#1086#1089#1090#1080
-              Width = 120
-            end
-            item
-              DynProps = <>
-              EditButtons = <>
-              Footers = <>
-              Title.Alignment = taCenter
-              Title.Caption = #1044#1074#1077#1088#1077#1085#1085#1086#1077' '#1083#1080#1094#1086
-              Width = 140
-            end>
-          object RowDetailData: TRowDetailPanelControlEh
-          end
-        end
         object addStock: TRzBitBtn
-          Left = 8
+          Left = 16
           Top = 8
           Width = 129
           Hint = #1044#1086#1073#1072#1074#1080#1090#1100' '#1085#1086#1074#1099#1081' '#1089#1082#1083#1072#1076
-          Caption = #1044#1086#1073#1072#1074#1080#1090#1100'  Ins'
+          Caption = #1044#1086#1073#1072#1074#1080#1090#1100' - Ins'
           HotTrack = True
           ParentShowHint = False
           ShowHint = True
@@ -224,11 +137,11 @@ object F_Main: TF_Main
           Images = ProjIcon
         end
         object removeStock: TRzBitBtn
-          Left = 8
+          Left = 16
           Top = 40
           Width = 129
           Hint = #1059#1076#1072#1083#1080#1090#1100' '#1090#1077#1082#1091#1097#1080#1081' '#1089#1082#1083#1072#1076
-          Caption = #1059#1076#1072#1083#1080#1090#1100'  Del'
+          Caption = #1059#1076#1072#1083#1080#1090#1100' - Del'
           HotTrack = True
           ParentShowHint = False
           ShowHint = True
@@ -238,154 +151,100 @@ object F_Main: TF_Main
           Images = ProjIcon
         end
       end
+      object DBGridEh1: TDBGridEh
+        Left = 0
+        Top = 0
+        Width = 917
+        Height = 504
+        Align = alClient
+        AutoFitColWidths = True
+        DataSource = DM.SourceStocks
+        DynProps = <>
+        Flat = True
+        IndicatorOptions = [gioShowRowIndicatorEh]
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
+        TabOrder = 1
+        VertScrollBar.VisibleMode = sbAlwaysShowEh
+        OnDrawColumnCell = DBGridEh1DrawColumnCell
+        Columns = <
+          item
+            DynProps = <>
+            EditButtons = <>
+            Footers = <>
+            Title.Alignment = taCenter
+            Title.Caption = #8470
+            Width = 50
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            Footers = <>
+            Title.Alignment = taCenter
+            Title.Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
+            Width = 229
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            Footers = <>
+            Title.Alignment = taCenter
+            Title.Caption = #1050#1086#1076' '#1045#1043#1056#1055#1054
+            Width = 103
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            Footers = <>
+            Title.Alignment = taCenter
+            Title.Caption = #1056#1072#1089#1095#1077#1090#1085#1099#1081' '#1089#1095#1077#1090
+            Width = 119
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            Footers = <>
+            Title.Alignment = taCenter
+            Title.Caption = #1041#1072#1085#1082
+            Width = 124
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            Footers = <>
+            Title.Alignment = taCenter
+            Title.Caption = #8470' '#1076#1086#1074#1077#1088#1077#1085#1085#1086#1089#1090#1080
+            Width = 120
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            Footers = <>
+            Title.Alignment = taCenter
+            Title.Caption = #1044#1074#1077#1088#1077#1085#1085#1086#1077' '#1083#1080#1094#1086
+            Width = 140
+          end>
+        object RowDetailData: TRowDetailPanelControlEh
+        end
+      end
     end
     object TabProducts: TRzTabSheet
       Caption = #1057#1087#1080#1089#1086#1082' '#1090#1086#1074#1072#1088#1086#1074
-      object RzSplitter1: TRzSplitter
-        Left = 0
+      object RzSizePanel1: TRzSizePanel
+        Left = 917
         Top = 0
-        Width = 1028
-        Height = 498
-        FixedPane = fpLowerRight
-        Position = 871
-        Percent = 85
-        RealTimeDrag = True
+        Width = 153
+        Height = 504
+        Align = alRight
+        BorderOuter = fsFlatRounded
+        HotSpotIgnoreMargins = True
         HotSpotVisible = True
-        HotSpotDirection = hsdMax
-        SplitterWidth = 7
-        Align = alClient
-        ParentShowHint = False
-        ShowHint = True
+        SizeBarWidth = 7
         TabOrder = 0
-        BarSize = (
-          871
-          0
-          878
-          498)
-        UpperLeftControls = (
-          GridProducts)
-        LowerRightControls = (
-          RzLabel1
-          RzLabel3
-          RzLabel4
-          addProduct
-          delProduct
-          stockFilter
-          CheckingAccaunt
-          InvoiceOut
-          MovoeToOtherStock
-          RzEdit1
-          InvoiceBtn)
-        object GridProducts: TDBGridEh
-          Left = 0
-          Top = 0
-          Width = 871
-          Height = 498
-          Align = alClient
-          AutoFitColWidths = True
-          DataSource = DM.SourceProducts
-          DynProps = <>
-          Flat = True
-          FrozenCols = 1
-          IndicatorOptions = [gioShowRowIndicatorEh]
-          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgMultiSelect]
-          TabOrder = 0
-          VertScrollBar.VisibleMode = sbAlwaysShowEh
-          OnDblClick = GridProductsDblClick
-          OnDrawColumnCell = GridProductsDrawColumnCell
-          Columns = <
-            item
-              DynProps = <>
-              EditButtons = <>
-              Footers = <>
-              Title.Alignment = taCenter
-              Title.Caption = #8470
-              Width = 50
-            end
-            item
-              DynProps = <>
-              EditButtons = <>
-              Footers = <>
-              Title.Alignment = taCenter
-              Title.Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
-              Width = 227
-            end
-            item
-              DynProps = <>
-              EditButtons = <>
-              Footers = <>
-              Title.Alignment = taCenter
-              Title.Caption = #1050#1086#1076' '#1090#1086#1074#1072#1088#1072
-              Width = 71
-            end
-            item
-              DynProps = <>
-              EditButtons = <>
-              Footers = <>
-              Title.Alignment = taCenter
-              Title.Caption = #1050#1086#1083#1080#1095#1077#1089#1090#1074#1086
-              Width = 71
-            end
-            item
-              DynProps = <>
-              EditButtons = <>
-              Footers = <>
-              Title.Alignment = taCenter
-              Title.Caption = #1045#1076'. '#1080#1079#1084'.'
-              Width = 80
-            end
-            item
-              DynProps = <>
-              EditButtons = <>
-              Footers = <>
-              Title.Alignment = taCenter
-              Title.Caption = #1057#1090#1086#1080#1084#1086#1089#1090#1100
-              Width = 81
-            end
-            item
-              DynProps = <>
-              EditButtons = <>
-              Footers = <>
-              Title.Alignment = taCenter
-              Title.Caption = #1054#1073#1097#1072#1103' '#1089#1090#1086#1080#1084#1086#1089#1090#1100
-              Width = 98
-            end
-            item
-              DynProps = <>
-              EditButtons = <>
-              Footers = <>
-              Title.Alignment = taCenter
-              Title.Caption = #1057#1082#1083#1072#1076
-              Width = 132
-            end
-            item
-              DynProps = <>
-              EditButtons = <>
-              Footers = <>
-              Title.Alignment = taCenter
-              Title.Caption = #1054#1089#1090#1072#1090#1086#1082
-              Width = 74
-            end>
-          object RowDetailData: TRowDetailPanelControlEh
-          end
-        end
-        object RzLabel1: TRzLabel
-          Left = -3500
-          Top = 104
-          Width = 39
-          Height = 15
-          Anchors = [akTop, akRight]
-          Caption = #1057#1082#1083#1072#1076':'
-          Font.Charset = RUSSIAN_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -12
-          Font.Name = 'Times New Roman'
-          Font.Style = [fsBold]
-          ParentFont = False
-          Transparent = True
-        end
+        DesignSize = (
+          153
+          504)
         object RzLabel3: TRzLabel
-          Left = 12
+          Left = 16
           Top = 120
           Width = 103
           Height = 15
@@ -399,7 +258,7 @@ object F_Main: TF_Main
           Transparent = True
         end
         object RzLabel4: TRzLabel
-          Left = 12
+          Left = 16
           Top = 168
           Width = 38
           Height = 15
@@ -413,7 +272,7 @@ object F_Main: TF_Main
           Transparent = True
         end
         object addProduct: TRzBitBtn
-          Left = 12
+          Left = 16
           Top = 8
           Width = 129
           Hint = #1044#1086#1073#1072#1074#1080#1090#1100' '#1085#1086#1074#1099#1081' '#1090#1086#1074#1072#1088
@@ -428,7 +287,7 @@ object F_Main: TF_Main
           Images = ProjIcon
         end
         object delProduct: TRzBitBtn
-          Left = 12
+          Left = 16
           Top = 72
           Width = 129
           Hint = #1059#1076#1072#1083#1080#1090#1100' '#1090#1077#1082#1091#1097#1080#1081' '#1090#1086#1074#1072#1088
@@ -442,8 +301,35 @@ object F_Main: TF_Main
           ImageIndex = 1
           Images = ProjIcon
         end
+        object MovoeToOtherStock: TRzBitBtn
+          Left = 16
+          Top = 40
+          Width = 129
+          Anchors = [akTop, akRight]
+          Caption = #1055#1077#1088#1077#1084#1077#1089#1090#1080#1090#1100
+          HotTrack = True
+          TabOrder = 2
+          OnClick = MovoeToOtherStockClick
+          ImageIndex = 3
+          Images = ProjIcon
+        end
+        object RzEdit1: TRzEdit
+          Left = 16
+          Top = 184
+          Width = 129
+          Height = 23
+          Font.Charset = RUSSIAN_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -12
+          Font.Name = 'Times New Roman'
+          Font.Style = [fsBold]
+          FrameHotTrack = True
+          FrameVisible = True
+          ParentFont = False
+          TabOrder = 3
+        end
         object stockFilter: TRzComboBox
-          Left = 12
+          Left = 16
           Top = 136
           Width = 129
           Height = 23
@@ -460,80 +346,183 @@ object F_Main: TF_Main
           ItemHeight = 15
           ParentCtl3D = False
           ParentFont = False
-          TabOrder = 2
+          TabOrder = 4
           Text = #1042#1089#1077
           Items.Strings = (
             #1042#1089#1077)
           ItemIndex = 0
         end
-        object CheckingAccaunt: TRzBitBtn
-          Left = 12
-          Top = 456
-          Width = 129
-          Hint = #1057#1092#1086#1088#1084#1080#1088#1086#1074#1072#1090#1100' '#1088#1072#1089#1095#1077#1090#1085#1099#1081' '#1089#1095#1077#1090
-          Anchors = [akRight, akBottom]
-          Caption = #1056#1072#1089#1095#1077#1090#1085#1099#1081' '#1089#1095#1077#1090
-          HotTrack = True
-          ParentShowHint = False
-          ShowHint = True
-          TabOrder = 3
-          ImageIndex = 2
-          Images = ProjIcon
-        end
-        object InvoiceOut: TRzBitBtn
-          Left = 12
-          Top = 416
-          Width = 129
-          Height = 33
-          Hint = #1057#1092#1086#1088#1084#1080#1088#1086#1074#1072#1090#1100' '#1088#1072#1089#1093#1086#1076#1085#1091#1102' '#1085#1072#1082#1083#1072#1076#1085#1091#1102
-          Anchors = [akRight, akBottom]
-          Caption = #1056#1072#1089#1093#1086#1076#1085#1072#1103' '#1085#1072#1082#1083#1072#1076#1085#1072#1103
-          HotTrack = True
-          ParentShowHint = False
-          ShowHint = True
-          TabOrder = 4
-          ImageIndex = 2
-          Images = ProjIcon
-        end
-        object MovoeToOtherStock: TRzBitBtn
-          Left = 12
-          Top = 40
-          Width = 129
-          Anchors = [akTop, akRight]
-          Caption = #1055#1077#1088#1077#1084#1077#1089#1090#1080#1090#1100
-          HotTrack = True
-          TabOrder = 5
-          OnClick = MovoeToOtherStockClick
-          ImageIndex = 3
-          Images = ProjIcon
-        end
-        object RzEdit1: TRzEdit
-          Left = 12
-          Top = 184
-          Width = 129
-          Height = 23
+        object GBReports: TRzGroupBox
+          Left = 10
+          Top = 350
+          Width = 141
+          Height = 152
+          Align = alBottom
+          Caption = #1054#1090#1095#1077#1090#1099':'
           Font.Charset = RUSSIAN_CHARSET
           Font.Color = clWindowText
           Font.Height = -12
           Font.Name = 'Times New Roman'
           Font.Style = [fsBold]
-          FrameHotTrack = True
-          FrameVisible = True
           ParentFont = False
-          TabOrder = 6
+          TabOrder = 5
+          DesignSize = (
+            141
+            152)
+          object InvoiceBtn: TRzBitBtn
+            Left = 6
+            Top = 71
+            Width = 129
+            Height = 33
+            Hint = #1057#1092#1086#1088#1084#1080#1088#1086#1074#1072#1090#1100' '#1087#1088#1080#1093#1086#1076#1085#1091#1102' '#1085#1072#1082#1083#1072#1076#1085#1091#1102
+            Anchors = [akRight, akBottom]
+            Caption = #1055#1088#1080#1093#1086#1076#1085#1072#1103' '#1085#1072#1082#1083#1072#1076#1085#1072#1103
+            Font.Charset = RUSSIAN_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Times New Roman'
+            Font.Style = []
+            HotTrack = True
+            ParentFont = False
+            TabOrder = 0
+            OnClick = InvoiceBtnClick
+            ImageIndex = 2
+            Images = ProjIcon
+          end
+          object CheckingAccaunt: TRzBitBtn
+            Left = 6
+            Top = 111
+            Width = 129
+            Hint = #1057#1092#1086#1088#1084#1080#1088#1086#1074#1072#1090#1100' '#1088#1072#1089#1095#1077#1090#1085#1099#1081' '#1089#1095#1077#1090
+            Anchors = [akRight, akBottom]
+            Caption = #1056#1072#1089#1095#1077#1090#1085#1099#1081' '#1089#1095#1077#1090
+            Font.Charset = RUSSIAN_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Times New Roman'
+            Font.Style = []
+            HotTrack = True
+            ParentFont = False
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 1
+            ImageIndex = 2
+            Images = ProjIcon
+          end
+          object InvoiceOut: TRzBitBtn
+            Left = 6
+            Top = 31
+            Width = 129
+            Height = 33
+            Hint = #1057#1092#1086#1088#1084#1080#1088#1086#1074#1072#1090#1100' '#1088#1072#1089#1093#1086#1076#1085#1091#1102' '#1085#1072#1082#1083#1072#1076#1085#1091#1102
+            Anchors = [akRight, akBottom]
+            Caption = #1056#1072#1089#1093#1086#1076#1085#1072#1103' '#1085#1072#1082#1083#1072#1076#1085#1072#1103
+            Font.Charset = RUSSIAN_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Times New Roman'
+            Font.Style = []
+            HotTrack = True
+            ParentFont = False
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 2
+            ImageIndex = 2
+            Images = ProjIcon
+          end
         end
-        object InvoiceBtn: TRzBitBtn
-          Left = 12
-          Top = 376
-          Width = 129
-          Height = 33
-          Hint = #1053#1072#1082#1083#1072#1076#1085#1072#1103' '#1087#1086' '#1087#1086#1089#1090#1091#1087#1083#1077#1085#1085#1099#1084' '#1090#1086#1074#1072#1088#1072#1084
-          Caption = #1055#1088#1080#1093#1086#1076#1085#1072#1103' '#1085#1072#1082#1083#1072#1076#1085#1072#1103
-          HotTrack = True
-          TabOrder = 7
-          OnClick = InvoiceBtnClick
-          ImageIndex = 2
-          Images = ProjIcon
+      end
+      object GridProducts: TDBGridEh
+        Left = 0
+        Top = 0
+        Width = 917
+        Height = 504
+        Align = alClient
+        AutoFitColWidths = True
+        DataSource = DM.SourceProducts
+        DynProps = <>
+        Flat = True
+        FrozenCols = 1
+        IndicatorOptions = [gioShowRowIndicatorEh]
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgMultiSelect]
+        TabOrder = 1
+        VertScrollBar.VisibleMode = sbAlwaysShowEh
+        OnDblClick = GridProductsDblClick
+        OnDrawColumnCell = GridProductsDrawColumnCell
+        Columns = <
+          item
+            DynProps = <>
+            EditButtons = <>
+            Footers = <>
+            Title.Alignment = taCenter
+            Title.Caption = #8470
+            Width = 50
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            Footers = <>
+            Title.Alignment = taCenter
+            Title.Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
+            Width = 227
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            Footers = <>
+            Title.Alignment = taCenter
+            Title.Caption = #1050#1086#1076' '#1090#1086#1074#1072#1088#1072
+            Width = 71
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            Footers = <>
+            Title.Alignment = taCenter
+            Title.Caption = #1050#1086#1083#1080#1095#1077#1089#1090#1074#1086
+            Width = 71
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            Footers = <>
+            Title.Alignment = taCenter
+            Title.Caption = #1045#1076'. '#1080#1079#1084'.'
+            Width = 80
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            Footers = <>
+            Title.Alignment = taCenter
+            Title.Caption = #1057#1090#1086#1080#1084#1086#1089#1090#1100
+            Width = 81
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            Footers = <>
+            Title.Alignment = taCenter
+            Title.Caption = #1054#1073#1097#1072#1103' '#1089#1090#1086#1080#1084#1086#1089#1090#1100
+            Width = 98
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            Footers = <>
+            Title.Alignment = taCenter
+            Title.Caption = #1057#1082#1083#1072#1076
+            Width = 132
+          end
+          item
+            DynProps = <>
+            EditButtons = <>
+            Footers = <>
+            Title.Alignment = taCenter
+            Title.Caption = #1054#1089#1090#1072#1090#1086#1082
+            Width = 74
+          end>
+        object RowDetailData: TRowDetailPanelControlEh
         end
       end
     end
@@ -542,9 +531,9 @@ object F_Main: TF_Main
       object RzSplitter3: TRzSplitter
         Left = 0
         Top = 0
-        Width = 1028
-        Height = 498
-        Position = 594
+        Width = 1070
+        Height = 504
+        Position = 619
         Percent = 58
         UsePercent = True
         SplitterStyle = ssBump
@@ -552,10 +541,10 @@ object F_Main: TF_Main
         Align = alClient
         TabOrder = 0
         BarSize = (
-          594
+          619
           0
-          601
-          498)
+          626
+          504)
         UpperLeftControls = (
           RzToolbar1
           GridProviders)
@@ -564,13 +553,14 @@ object F_Main: TF_Main
           GridClients)
         object RzToolbar1: TRzToolbar
           Left = 0
-          Top = 0
-          Width = 594
+          Top = 475
+          Width = 619
           Height = 29
+          Align = alBottom
           Images = ProjIcon
           BorderInner = fsNone
           BorderOuter = fsGroove
-          BorderSides = [sdTop]
+          BorderSides = [sdBottom]
           BorderWidth = 0
           TabOrder = 0
           ToolbarControls = (
@@ -616,9 +606,9 @@ object F_Main: TF_Main
         end
         object GridProviders: TDBGridEh
           Left = 0
-          Top = 29
-          Width = 594
-          Height = 469
+          Top = 0
+          Width = 619
+          Height = 475
           Align = alClient
           AutoFitColWidths = True
           DataSource = DM.SourceProviders
@@ -668,13 +658,14 @@ object F_Main: TF_Main
         end
         object RzToolbar2: TRzToolbar
           Left = 0
-          Top = 0
-          Width = 427
+          Top = 475
+          Width = 444
           Height = 29
+          Align = alBottom
           Images = ProjIcon
           BorderInner = fsNone
           BorderOuter = fsGroove
-          BorderSides = [sdTop]
+          BorderSides = [sdBottom]
           BorderWidth = 0
           TabOrder = 0
           ToolbarControls = (
@@ -720,9 +711,9 @@ object F_Main: TF_Main
         end
         object GridClients: TDBGridEh
           Left = 0
-          Top = 29
-          Width = 427
-          Height = 469
+          Top = 0
+          Width = 444
+          Height = 475
           Align = alClient
           AutoFitColWidths = True
           DataSource = DM.SourceStocks
@@ -770,7 +761,7 @@ object F_Main: TF_Main
     Left = 25
     Top = 254
     Bitmap = {
-      494C010106000900040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010108000900040010001000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -904,131 +895,131 @@ object F_Main: TF_Main
       0000000000000000000000000000000000000000000002F10D1605DB213907C0
       396208A74D8808935CA4125D90FC0B6284ED06F902097A912BB7A06036FA03FA
       01060000000000000000000000000000000007F9070D1CEA1C311AEA1A2F03FB
-      0307000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000000000999999FF717171FF545454FF5151
+      0307000000000000000000000000000000000000F5FF0000F3FF0000F1FF0000
+      EFFF0000EDFF0000EDFF0000EBFF0000E9FF0000E7FF0000E5FF0000E3FF0000
+      E1FF0000DFFF0000DDFF0000DDFF0000DDFF00D9F5FF00D7F3FF00D3F1FF00D1
+      EFFF00CDEDFF00CBEDFF00C7EBFF00C5E9FF00C3E7FF00BFE5FF00BFE3FF00BB
+      E1FF00B9DFFF00B7DDFF00B5DDFF00B5DDFF999999FF717171FF545454FF5151
       51FF4F4F4FFF4C4C4CFF4A4A4AFF474747FF454545FF25679DFF3274A8FF3D7C
       AFFF4784B5FF4E8ABAFF3E7EADFF0B6483EA85A035B7BF875CFFB97E56FFA365
       38FA48B218743EC11E656EA957B3949888F2A19F9FFFABABABFFA7A7A7FF9595
-      95FF7F977FE74ABF4A8A0BF40B16000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000585858FFA2A2
+      95FF7F977FE74ABF4A8A0BF40B16000000000000F7FF6261FBFF5D5DFAFF5858
+      F9FF5554F9FF5050F8FF4B4BF7FF4646F7FF4242F6FF3D3DF5FF3939F4FF3535
+      F3FF3232F2FF2F2FF2FF2C2CF2FF0000DDFF00DBF7FF62FBFBFF5DFAFAFF58F9
+      F9FF55F9F9FF50F8F8FF4BF7F7FF46F7F7FF42F6F6FF3DF5F5FF39F4F4FF35F3
+      F3FF32F2F2FF2FF2F2FF2CF2F2FF00B5DDFF0000000000000000585858FFA2A2
       A2FFA2A2A2FFA3A3A3FFA4A4A4FFA4A4A4FFA5A5A5FF2F6FA5FF78ABD2FF78AB
       D3FF73A7D1FF69A0CDFF407FAEFF0D6685EAC08A58FAC69268FFCDA280FFC596
       70FFB67B53FFAB6A46FFA35E3DFF9C5235FFA76B59FFF1EFEEFFF4F4F4FFEFEF
-      EFFFE2E2E2FFBABABAFF7D957DE71BE51B350000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000000000000000005C5C5CFFA0A0
+      EFFFE2E2E2FFBABABAFF7D957DE71BE51B350000F7FF6261FBFF5D5DFAFF5858
+      F9FF5554F9FF5050F8FF4B4BF7FF4646F7FF4242F6FF3D3DF5FF3939F4FF3535
+      F3FF3232F2FF2F2FF2FF2C2CF2FF0000DDFF00DBF7FF62FBFBFF5DFAFAFF58F9
+      F9FF55F9F9FF50F8F8FF4BF7F7FF46F7F7FF42F6F6FF3DF5F5FF39F4F4FF35F3
+      F3FF32F2F2FF2FF2F2FF2CF2F2FF00B5DDFF00000000000000005C5C5CFFA0A0
       A0FF3C7340FFA2A2A2FFA3A3A3FFA3A3A3FFA4A4A4FF3674AAFF7DAFD4FF5B9A
       C9FF5495C7FF5896C8FF4180AEFF116987EA04FC0206C28E5EFAD1A683FFCC9F
       7BFFCB9E7BFFC79974FFC3926CFFBE8D65FFA86945FFBA978BFFD6D6D6FFC0C0
-      C0FFC9C9C9FFE6E6E6FFC4C4C4FF7F947FEA0000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000606060FF3A77
+      C0FFC9C9C9FFE6E6E6FFC4C4C4FF7F947FEA0000F9FF6666FCFF4444FAFF3F3F
+      FAFF3A3AF9FF3434F8FF2E2EF7FF2929F6FF2323F5FF1E1EF4FF1919F3FF1313
+      F2FF0E0FF1FF0B0BF1FF2F2FF2FF0000DFFF00DDF9FF66FCFCFF44FAFAFF3FFA
+      FAFF3AF9F9FF34F8F8FF2EF7F7FF29F6F6FF23F5F5FF1EF4F4FF19F3F3FF13F2
+      F2FF0EF1F1FF0BF1F1FF2FF2F2FF00B7DFFF0000000000000000606060FF3A77
       3FFF3D7641FFA1A1A1FFA2A2A2FFA2A2A2FFA3A3A3FF3D79B0FF82B3D7FF629F
       CCFF5A9AC9FF5E9BCAFF4381AFFF166D8BEA000000005DD03274D0A17CFFD7AE
       8FFFC9976FFFC38F66FFBD885CFFC08C64FFBC8861FF85543FFFD3D1D0FFBFBF
-      BFFFB0B0B0FFB3B3B3FFDEDEDEFF849984EA0000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000000000000000000000000039763EFF4D95
+      BFFFB0B0B0FFB3B3B3FFDEDEDEFF849984EA0000B3FF8C6ADCFF7249D3FF6E45
+      D1FF6A3FD0FF663ACEFF6134CCFF5D2FCAFF582AC8FF5324C6FF4F1FC4FF4B19
+      C2FF4614BFFF4310BDFF5E32C8FF00007BFF00DFFBFF6AFCFCFF49FBFBFF45FB
+      FBFF3FFAFAFF3AF9F9FF34F8F8FF2FF7F7FF2AF6F6FF24F5F5FF1FF4F4FF19F3
+      F3FF14F2F2FF10F2F2FF32F3F3FF00BBDFFF000000000000000039763EFF4D95
       54FF499150FF286E2DFF266A2AFF236627FF216325FF457EB4FF88B7D9FF67A3
       CFFF619ECCFF639FCCFF4583B1FF1C708FEA0000000041E3264ED7A682FFDCB6
       99FFD0A17DFFCB9A73FFCFA482FFC79974FF896C58FF878787FF828282FFC0C0
-      C0FFB3B3B3FFB7B7B7FFE0E0E0FF899E89EA0000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000000000000000002E9734D4569D5DFF80C6
+      C0FFB3B3B3FFB7B7B7FFE0E0E0FF899E89EA0000B3FF8C6ADCFF7249D3FF6E45
+      D1FF6A3FD0FF663ACEFF6134CCFF5D2FCAFF582AC8FF5324C6FF4F1FC4FF4B19
+      C2FF4614BFFF4310BDFF5E32C8FF00007BFF00DFFBFF6AFCFCFF49FBFBFF45FB
+      FBFF3FFAFAFF3AF9F9FF34F8F8FF2FF7F7FF2AF6F6FF24F5F5FF1FF4F4FF19F3
+      F3FF14F2F2FF10F2F2FF32F3F3FF00BBDFFF000000002E9734D4569D5DFF80C6
       88FF7BC383FF77C17FFF72BE79FF6FBC75FF246728FF4C84BAFF8DBBDBFF6EA8
       D1FF66A6D1FF5FB4DFFF4785B1FF217593EA0000000032EC1F39DDAE8CFFE2BE
       A4FFD8AB89FFD9B394FFCF9F7AFFA47A5BFF939393FFA9A9A9FF696969FFC3C3
-      C3FFB8B8B8FFBBBBBBFFE1E1E1FF8EA38EEA0000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000000027B52CA15EA566FF8BCC94FF7DC5
+      C3FFB8B8B8FFBBBBBBFFE1E1E1FF8EA38EEAFD0000FFFD6F6FFFFC4F4FFFFB4A
+      49FFFB4545FFFA4040FFF93B3BFFF83535FFF72F2FFFF62A2AFFF52424FFF41F
+      1FFFF31919FFF21414FFF43636FFE30000FF00E1FDFF6FFDFDFF4FFCFCFF49FC
+      FBFF45FBFBFF40FAFAFF3AF9F9FF35F8F8FF2FF7F7FF2AF6F6FF24F5F5FF1FF4
+      F4FF19F3F3FF14F2F2FF36F4F4FF00BBE3FF27B52CA15EA566FF8BCC94FF7DC5
       86FF73C07CFF6EBD77FF69BB71FF75BF7CFF276C2CFF5489BFFF94BFDDFF75AD
       D4FF63B8E1FF4BD4FFFF428BB8FF287998EA000000001BF6111EE3B493FFE8C6
       ADFFE3C0A6FFDBB08FFFB58F74FFD9CBC1FF9A9A9AFF7A7A7AFFDCDCDCFFC9C9
-      C9FFBDBDBDFFBFBFBFFFE2E2E2FF90A590EA0000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000033A03AD25FA667FF8DCD
+      C9FFBDBDBDFFBFBFBFFFE2E2E2FF90A590EAFD0000FFFE7272FFFD5353FFFC4F
+      4FFFFC4A4BFFFB4646FFFA4040FFF93B3BFFF83636FFF73030FFF62B2AFFF525
+      25FFF41F1FFFF31A1AFFF53B3BFFE50000FFC79100FFE7D08AFFE0C470FFDFC2
+      6DFFDDC069FFDDBE64FFDBBC60FFD9BA5BFFD8B856FFD6B551FFD4B34DFFD2B0
+      48FFD1AE43FFCFAB3EFFD5B75BFF994F00FF0000000033A03AD25FA667FF8DCD
       96FF89CB92FF84C88DFF80C688FF7BC383FF2A7030FF5A8EC4FF98C3E0FF7CB3
       D7FF74AFD6FF5EC4EDFF4B88B3FF2F7E9CEA0000000003FE0204C5C485DAE8C0
       A3FFE5BFA3FFB69E8CFFAEAEAEFFA8A8A8FFE1E1E1FFE5E5E5FFE1E1E1FFCDCD
-      CDFFC2C2C2FFC2C2C2FFE3E3E3FF92A792EA0000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000000000000000000000000000000000000047894FFF60A7
+      CDFFC2C2C2FFC2C2C2FFE3E3E3FF92A792EAFD0000FFFE7272FFFD5353FFFC4F
+      4FFFFC4A4BFFFB4646FFFA4040FFF93B3BFFF83636FFF73030FFF62B2AFFF525
+      25FFF41F1FFFF31A1AFFF53B3BFFE50000FFC79100FFE7D08AFFE0C470FFDFC2
+      6DFFDDC069FFDDBE64FFDBBC60FFD9BA5BFFD8B856FFD6B551FFD4B34DFFD2B0
+      48FFD1AE43FFCFAB3EFFD5B75BFF994F00FF000000000000000047894FFF60A7
       69FF5DA465FF37823EFF347E3BFF317937FF2E7534FF6092C9FF9EC7E2FF83B8
       DAFF7DB4D7FF7EB3D7FF4F89B4FF3684A2EA000000000000000008FC0509A0D2
       6DAFCCAF9AFEB7B7B7FFBCBCBCFFABABABFFD6D6D6FFD5D5D5FFD1D1D1FFC3C3
-      C3FFBCBCBCFFC0C0C0FFE5E5E5FF95AA95EA0000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000777777FF4D90
+      C3FFBCBCBCFFC0C0C0FFE5E5E5FF95AA95EAFD0000FFFE7676FFFE5858FFFD54
+      54FFFD4F50FFFC4B4BFFFB4646FFFA4141FFF93B3BFFF83636FFF73030FFF62B
+      2BFFF52525FFF42020FFF53F3FFFE70000FFFD7D00FFFEC776FFFEBB58FFFDB9
+      54FFFDB650FFFCB54BFFFBB246FFFAAF41FFF9AD3BFFF8AA36FFF7A730FFF6A4
+      2BFFF5A125FFF49F20FFF5AD3FFFE73500FF0000000000000000777777FF4D90
       54FF3D8A45FF9B9B9BFF9C9C9CFF9D9D9DFF9D9D9DFF6696CCFFA2CBE3FF89BD
       DCFF83B9DAFF84B9DAFF518BB5FF3D88A7EA0000000000000000000000000000
       0000AFBDA6ECC1C1C1FFB6B6B6FFEFEFEFFFF6F6F6FFFBFBFBFFFAFAFAFFF0F0
-      F0FFDEDEDEFFC3C3C3FFE6E6E6FF97AC97EA0000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000000000000000007A7A7AFF9899
+      F0FFDEDEDEFFC3C3C3FFE6E6E6FF97AC97EAFF4949FFFEB1B1FFFEA0A0FFFE9E
+      9EFFFD9B9BFFFD9898FFFC9696FFFB9393FFFA8F8FFFF98C8CFFF88888FFF785
+      85FFF68181FFF57D7DFFF68F8FFFE70000FFFF8300FFFEC879FFFEBD5CFFFEBC
+      58FFFDBA54FFFDB751FFFCB64BFFFBB347FFFAB042FFF9AE3CFFF8AB37FFF7A8
+      31FFF6A52BFFF5A226FFF6AF44FFE74500FF00000000000000007A7A7AFF9899
       98FF529159FF9A9A9AFF9B9B9BFF9C9C9CFF9C9C9CFF6C9AD0FFA7CEE5FF8FC1
       DFFF89BDDCFF8BBDDCFF538DB6FF448EACEA0000000000000000000000000000
       0000A9BEA9EAF8F8F8FFFEFEFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-      FFFFFFFFFFFFFBFBFBFFEAEAEAFF99AE99EA0000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000000000000000000000007D7D7DFF9999
+      FFFFFFFFFFFFFBFBFBFFEAEAEAFF99AE99EAFF4949FFFEB1B1FFFEA0A0FFFE9E
+      9EFFFD9B9BFFFD9898FFFC9696FFFB9393FFFA8F8FFFF98C8CFFF88888FFF785
+      85FFF68181FFF57D7DFFF68F8FFFE70000FFFF8300FFFEC879FFFEBD5CFFFEBC
+      58FFFDBA54FFFDB751FFFCB64BFFFBB347FFFAB042FFF9AE3CFFF8AB37FFF7A8
+      31FFF6A52BFFF5A226FFF6AF44FFE74500FF00000000000000007D7D7DFF9999
       99FF999999FF9A9A9AFF9A9A9AFF9B9B9BFF9B9B9BFF6F9DD3FFAAD1E7FFABD1
       E7FF98C7E1FF91C2DEFF568FB7FF4B92B1EA0000000000000000000000000000
       00008BCB8BBFE1E1E1FFFEFEFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-      FFFFFFFFFFFFFBFBFBFFCFCFCFFF6AC86AA10000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000808080FF7E7E
+      FFFFFFFFFFFFFBFBFBFFCFCFCFFF6AC86AA1FFF5F5FFFFFFFFFFFEFEFEFFFEFE
+      FEFFFEFEFEFFFDFDFDFFFDFDFDFFFCFCFCFFFBFBFBFFFAFAFAFFF9F9F9FFF8F8
+      F8FFF7F7F7FFF6F6F6FFF7F7F7FFE9DDDDFFFF8500FFFFCA7BFFFEBF5FFFFEBE
+      5CFFFEBC59FFFDBA54FFFDB751FFFCB64CFFFBB347FFFAB142FFF9AE3DFFF8AB
+      37FFF7A931FFF6A62CFFF7B249FFE94500FF0000000000000000808080FF7E7E
       7EFF7C7C7CFF7A7A7AFF777777FF757575FF727272FF719ED4FF6F9ED6FF87B2
       DCFFABD3E8FFA9D0E6FF5890B8FF5197B5EA0000000000000000000000000000
       00001EF31E2A99C799D1D0D0D0FFE8E8E8FFF3F3F3FFFDFDFDFFFCFCFCFFEDED
-      EDFFE0E0E0FFC2C2C2FF84C084C312F6121B0000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      EDFFE0E0E0FFC2C2C2FF84C084C312F6121BFFF5F5FFFFFFFFFFFFFFFFFFFEFE
+      FEFFFEFEFEFFFEFEFEFFFEFDFDFFFDFDFDFFFCFCFCFFFCFCFCFFFBFBFBFFFAFA
+      FAFFF9F9F9FFF8F8F8FFF7F7F7FFEBDFDFFFFF8300FFFFCA7BFFFFCA7BFFFEC9
+      79FFFEC877FFFEC774FFFEC570FFFDC36DFFFCC269FFFCC065FFFBBE61FFFABB
+      5CFFF9B958FFF8B753FFF7B44EFFEB4D00FF0000000000000000000000000000
       00000000000000000000000000000000000000000000000000000000000060AB
       B7DB6D9CD4FF85B1DAFF5A91B9FF589BBAEA0000000000000000000000000000
       00000000000005FD05073EE83E557ECF7EAE9AC39AD6B4B8B4FBB1B7B1F990C2
-      90CD76CC76A930E9304602FE0203000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      90CD76CC76A930E9304602FE020300000000FFF5F5FFFFFFFFFFFFFFFFFFFEFE
+      FEFFFEFEFEFFFEFEFEFFFEFDFDFFFDFDFDFFFCFCFCFFFCFCFCFFFBFBFBFFFAFA
+      FAFFF9F9F9FFF8F8F8FFF7F7F7FFEBDFDFFFFF8300FFFFCA7BFFFFCA7BFFFEC9
+      79FFFEC877FFFEC774FFFEC570FFFDC36DFFFCC269FFFCC065FFFBBE61FFFABB
+      5CFFF9B958FFF8B753FFF7B44EFFEB4D00FF0000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000003AC97189689BCEFB5F9DC1EE0000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000FFF5F5FFFFF5F5FFFFF5F5FFFFF5
+      F5FFFDF5F5FFFDF3F3FFFDF3F3FFFDF1F1FFFBEFEFFFF9EFEFFFF7EDEDFFF5EB
+      EBFFF3E9E9FFF1E7E7FFEFE5E5FFEFE3E1FFFF8500FFFF8500FFFF8500FFFF85
+      00FFFD8300FFFD7F00FFFD7D00FFFD7900FFFB7500FFF97100FFF76D00FFF567
+      00FFF36300FFF15D00FFEF5700FFEF5700FF0000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1170,8 +1161,7 @@ object F_Main: TF_Main
       FC3FFFFFC001FFFFFC3FFFFFC001FFFFFC3FFFFFC001FF00FC3FFFFFC0013F00
       FC3F8001C0010F8080018001C001020080018001C001000080018001C0018000
       80018001C001C000FC3FFFFFC001E01CFC3FFFFFC001FFFFFC3FFFFFC001FFFF
-      FC3FFFFFC003FFFFFC3FFFFFC00FFFFF00000000000000000000000000000000
-      000000000000}
+      FC3FFFFFC003FFFFFC3FFFFFC00FFFFF}
   end
   object MainMenu: TMainMenu
     Images = ProjIcon
@@ -1182,6 +1172,7 @@ object F_Main: TF_Main
       object ExitItem: TMenuItem
         Caption = #1042#1099#1093#1086#1076
         ImageIndex = 4
+        OnClick = ExitItemClick
       end
     end
     object Option: TMenuItem
@@ -1191,10 +1182,203 @@ object F_Main: TF_Main
         ImageIndex = 5
         OnClick = BaseConnectionClick
       end
+      object ProgLang: TMenuItem
+        Caption = #1071#1079#1099#1082' '#1080#1085#1090#1077#1088#1092#1077#1081#1089#1072
+        object RussianLang: TMenuItem
+          Caption = #1056#1091#1089#1089#1082#1080#1081
+          ImageIndex = 6
+          OnClick = RussianLangClick
+        end
+        object UkraianianLang: TMenuItem
+          Caption = #1059#1082#1088#1072#1080#1085#1089#1082#1080#1081
+          ImageIndex = 7
+          OnClick = UkraianianLangClick
+        end
+      end
     end
     object aboutItem: TMenuItem
       Caption = #1054' '#1087#1088#1086#1075#1088#1072#1084#1084#1077
       OnClick = aboutItemClick
     end
+  end
+  object LangMain: TsiLangLinked
+    Version = '6.5.4.5'
+    StringsTypes.Strings = (
+      'TIB_STRINGLIST'
+      'TSTRINGLIST')
+    NumOfLanguages = 2
+    LangDispatcher = DM.ProgramLangs
+    LangDelim = 1
+    LangNames.Strings = (
+      'RUS'
+      'UKR')
+    Language = 'RUS'
+    ExcludedProperties.Strings = (
+      'Category'
+      'SecondaryShortCuts'
+      'HelpKeyword'
+      'InitialDir'
+      'HelpKeyword'
+      'ActivePage'
+      'ImeName'
+      'DefaultExt'
+      'FileName'
+      'FieldName'
+      'PickList'
+      'DisplayFormat'
+      'EditMask'
+      'KeyList'
+      'LookupDisplayFields'
+      'DropDownSpecRow'
+      'TableName'
+      'DatabaseName'
+      'IndexName'
+      'MasterFields'
+      'SQL'
+      'DeleteSQL'
+      'UpdateSQL'
+      'ModifySQL'
+      'KeyFields'
+      'LookupKeyFields'
+      'LookupResultField'
+      'DataField'
+      'KeyField'
+      'ListField')
+    Left = 129
+    Top = 257
+    TranslationData = {
+      737443617074696F6E730D0A54465F4D61696E01D1EAEBE0E4F1EAEEE920F3F7
+      E5F201D1EAEBE0E4F1FCEAE8E920EEE1EBB3EA010D0A527A4C6162656C3201D5
+      EEE420E2FBEFEEEBEDE5EDE8FF3A01D5B3E420E2E8EAEEEDE0EDEDFF3A010D0A
+      54616253746F636B01D1EAEBE0E401D1EAEBE0E4010D0A54616250726F647563
+      747301D1EFE8F1EEEA20F2EEE2E0F0EEE201D1EFE8F1EEEA20F2EEE2E0F0B3E2
+      010D0A546162436C69656E747350726F76696465727301D1EFE8F1EEEA20EFEE
+      F1F2E0E2F9E8EAEEE22FEAEBE8E5EDF2EEE201D1EFE8F1EEEA20EFEEF1F2E0F7
+      E0EBFCEDE8EAB3E22FEAEBB3BAEDF2B3E2010D0A46696C654974656D01D4E0E9
+      EB01D4E0E9EB010D0A457869744974656D01C2FBF5EEE401C2E8F5B3E4010D0A
+      4F7074696F6E01CFE0F0E0ECE5F2F0FB01CFE0F0E0ECE5F2F0E8010D0A426173
+      65436F6E6E656374696F6E01CFF3F2FC20EA20E1E0E7E501D8EBFFF520E4EE20
+      E1E0E7E8010D0A61626F75744974656D01CE20EFF0EEE3F0E0ECECE501CFF0EE
+      20EFF0EEE3F0E0ECF3010D0A527A4C6162656C3301D4E8EBFCF2F020EFEE20F1
+      EAEBE0E4F33A01D4B3EBFCF2F020EFEE20F1EAEBE0E4F33A010D0A527A4C6162
+      656C3401CFEEE8F1EA3A01CFEEF8F3EA3A010D0A61646450726F6475637401C4
+      EEE1E0E2E8F2FC202D20496E7301C4EEE4E0F2E8202D20496E73010D0A436865
+      636B696E6741636361756E7401D0E0F1F7E5F2EDFBE920F1F7E5F201D0EEE7F0
+      E0F5F3EDEAEEE2E8E920F0E0F5F3EDEEEA010D0A64656C50726F6475637401D3
+      E4E0EBE8F2FC202D2044656C01C2E8E4E0EBE8F2E8202D2044656C010D0A496E
+      766F6963654F757401D0E0F1F5EEE4EDE0FF20EDE0EAEBE0E4EDE0FF01C2E8E4
+      E0F2EAEEE2E020EDE0EAEBE0E4EDE0010D0A496E766F69636542746E01CFF0E8
+      F5EEE4EDE0FF20EDE0EAEBE0E4EDE0FF01CFF0E8E1F3F2EAEEE2E020EDE0EAEB
+      E0E4EDE0010D0A4D6F766F65546F4F7468657253746F636B01CFE5F0E5ECE5F1
+      F2E8F2FC01CFE5F0E5ECB3F1F2E8F2E8010D0A47425265706F72747301CEF2F7
+      E5F2FB3A01C7E2B3F2E83A010D0A61646453746F636B01C4EEE1E0E2E8F2FC20
+      2D20496E7301C4EEE4E0F2E8202D20496E73010D0A72656D6F766553746F636B
+      01D3E4E0EBE8F2FC202D2044656C01C2E8E4E0EBE8F2E8202D2044656C010D0A
+      50726F674C616E6701DFE7FBEA20E8EDF2E5F0F4E5E9F1E001CCEEE2E020B3ED
+      F2E5F0F4E5E9F1F3010D0A5275737369616E4C616E6701D0F3F1F1EAE8E901D0
+      EEF1B3E9F1FCEAE0010D0A556B726169616E69616E4C616E6701D3EAF0E0E8ED
+      F1EAE8E901D3EAF0E0BFEDF1FCEAE0010D0A737448696E74730D0A4164644E65
+      7750726F766964657201C4EEE1E0E2E8F2FC20EFEEF1F2E0E2F9E8EAE001C4EE
+      E4E0F2E820EFEEF1F2E0F7E0EBFCEDE8EAE0010D0A64656C65746550726F7669
+      64657201D3E4E0EBE8F2FC20EFEEF1F2E0E2F9E8EAE001C2E8E4E0EBE8F2E820
+      EFEEF1F2E0F7E0EBFCEDE8EAE0010D0A616464436C69656E7401C4EEE1E0E2E8
+      F2FC20EAEBE8E5EDF2E001C4EEE4E0F2E820EAEBB3BAEDF2E0010D0A64656C65
+      7465436C69656E7401D3E4E0EBE8F2FC20EAEBE8E5EDF2E001C2E8E4E0EBE8F2
+      E820EAEBB3BAEDF2E0010D0A61646450726F6475637401C4EEE1E0E2E8F2FC20
+      EDEEE2FBE920F2EEE2E0F001C4EEE4E0F2E820EDEEE2E8E920F2EEE2E0F0010D
+      0A436865636B696E6741636361756E7401D1F4EEF0ECE8F0EEE2E0F2FC20F0E0
+      F1F7E5F2EDFBE920F1F7E5F201D1F4EEF0ECF3E2E0F2E820F0EEE7F0E0F5F3ED
+      EAEEE2E8E920F0E0F5F3EDEEEA010D0A64656C50726F6475637401D3E4E0EBE8
+      F2FC20F2E5EAF3F9E8E920F2EEE2E0F001C2E8E4E0EBE8F2E820EFEEF2EEF7ED
+      E8E920F2EEE2E0F0010D0A496E766F6963654F757401D1F4EEF0ECE8F0EEE2E0
+      F2FC20F0E0F1F5EEE4EDF3FE20EDE0EAEBE0E4EDF3FE01D1F4EEF0ECF3E2E0F2
+      E820E2E8E4E0F2EAEEE2F320EDE0EAEBE0E4EDF3010D0A496E766F6963654274
+      6E01D1F4EEF0ECE8F0EEE2E0F2FC20EFF0E8F5EEE4EDF3FE20EDE0EAEBE0E4ED
+      F3FE01D1F4EEF0ECF3E2E0F2E820EFF0E8E1F3F2EAEEE2F320EDE0EAEBE0E4ED
+      F3010D0A61646453746F636B01C4EEE1E0E2E8F2FC20EDEEE2FBE920F1EAEBE0
+      E401C4EEE4E0F2E820EDEEE2E8E920F1EAEBE0E4010D0A72656D6F766553746F
+      636B01D3E4E0EBE8F2FC20F2E5EAF3F9E8E920F1EAEBE0E401C2E8E4E0EBE8F2
+      E820EFEEF2EEF7EDE8E920F1EAEBE0E4010D0A7374446973706C61794C616265
+      6C730D0A7374466F6E74730D0A54465F4D61696E0154696D6573204E65772052
+      6F6D616E01010D0A527A4C6162656C320154696D6573204E657720526F6D616E
+      01010D0A527A4C6162656C330154696D6573204E657720526F6D616E01010D0A
+      527A4C6162656C340154696D6573204E657720526F6D616E01010D0A43686563
+      6B696E6741636361756E740154696D6573204E657720526F6D616E01010D0A49
+      6E766F6963654F75740154696D6573204E657720526F6D616E01010D0A496E76
+      6F69636542746E0154696D6573204E657720526F6D616E01010D0A527A456469
+      74310154696D6573204E657720526F6D616E01010D0A73746F636B46696C7465
+      720154696D6573204E657720526F6D616E01010D0A47425265706F7274730154
+      696D6573204E657720526F6D616E01010D0A73744D756C74694C696E65730D0A
+      73746F636B46696C7465722E4974656D7301C2F1E501C2F1B3010D0A73745374
+      72696E67730D0A44656C6574696E6701D3E4E0EBE5EDE8E52E2E2E01C2E8E4E0
+      EBE5EDEDFF010D0A44656C6574696E6750726F6475637401C2FB20E4E5E9F1F2
+      E2E8F2E5EBFCEDEE20E6E5EBE0E5F2E520F3E4E0EBE8F2FC20F2EEE2E0F03F01
+      C2E820E4B3E9F1EDEE20E1E0E6E0BAF2E520E2E8E4E0EBE8F2E820F2EEE2E0F0
+      3F010D0A44656C6574696E6753746F636B01C2FB20E4E5E9F1F2E2E8F2E5EBFC
+      EDEE20E6E5EBE0E5F2E520F3E4E0EBE8F2FC20F1EAEBE0E43F01C2E820E4B3E9
+      F1EDEE20E1E0E6E0BAF2E520E2E8E4E0EBE8F2E820F1EAEBE0E43F010D0A4465
+      6C6574696E6750726F7669647201C2FB20E4E5E9F1F2E2E8F2E5EBFCEDEE20E6
+      E5EBE0E5F2E520F3E4E0EBE8F2FC20EFEEF1F2E0E2F9E8EAE03F01C2E820E4B3
+      E9F1EDEE20E1E0E6E0BAF2E520E2E8E4E0EBE8F2E820EFEEF1F2E0F7E0EBFCED
+      E8EAE03F010D0A44656C6574696E67436C69656E7401C2FB20E4E5E9F1F2E2E8
+      F2E5EBFCEDEE20E6E5EBE0E5F2E520F3E4E0EBE8F2FC20EAEBE8E5EDF2E03F01
+      C2E820E4B3E9F1EDEE20E1E0E6E0BAF2E520E2E8E4E0EBE8F2E820EAEBB3BAED
+      F2E03F010D0A436C6F73696E7450726F6701C7E0EAF0FBF2E8E52E2E2E01C7E0
+      EAF0E8F2F2FF2E2E2E010D0A4578697450726F6772616D01C7E0E2E5F0F8E8F2
+      FC20F0E0E1EEF2F320EFF0EEE3F0E0ECECFB3F01C7E0E2E5F0F8E8F2E820F0EE
+      E1EEF2F320EFF0EEE3F0E0ECE83F010D0A73744F74686572537472696E67730D
+      0A73746F636B46696C7465722E5465787401C2F1E501C2F1B3010D0A7374436F
+      6C6C656374696F6E730D0A4772696450726F7669646572732E436F6C756D6E73
+      5B305D2E5469746C652E43617074696F6E01B901010D0A4772696450726F7669
+      646572732E436F6C756D6E735B315D2E5469746C652E43617074696F6E01CDE0
+      E8ECE5EDEEE2E0EDE8E501CDE0E9ECE5EDF3E2E0EDEDFF010D0A477269645072
+      6F7669646572732E436F6C756D6E735B325D2E5469746C652E43617074696F6E
+      01C0E4F0E5F1F101C0E4F0E5F1E0010D0A4772696450726F7669646572732E43
+      6F6C756D6E735B335D2E5469746C652E43617074696F6E01B920F2E5EBE5F4EE
+      EDE001B920F2E5EBE5F4EEEDF3010D0A47726964436C69656E74732E436F6C75
+      6D6E735B305D2E5469746C652E43617074696F6E01B901010D0A47726964436C
+      69656E74732E436F6C756D6E735B315D2E5469746C652E43617074696F6E01CD
+      E0E8ECE5EDEEE2E0EDE8E501CDE0E9ECE5EDF3E2E0EDEDFF010D0A4772696443
+      6C69656E74732E436F6C756D6E735B325D2E5469746C652E43617074696F6E01
+      B920F2E5EBE5F4EEEDE001B920F2E5EBE5F4EEEDF3010D0A4772696450726F64
+      756374732E436F6C756D6E735B305D2E5469746C652E43617074696F6E01B901
+      010D0A4772696450726F64756374732E436F6C756D6E735B315D2E5469746C65
+      2E43617074696F6E01CDE0E8ECE5EDEEE2E0EDE8E501CDE0E9ECE5EDF3E2E0ED
+      EDFF010D0A4772696450726F64756374732E436F6C756D6E735B325D2E546974
+      6C652E43617074696F6E01CAEEE420F2EEE2E0F0E001CAEEE420F2EEE2E0F0F3
+      010D0A4772696450726F64756374732E436F6C756D6E735B335D2E5469746C65
+      2E43617074696F6E01CAEEEBE8F7E5F1F2E2EE01CAB3EBFCEAB3F1F2FC010D0A
+      4772696450726F64756374732E436F6C756D6E735B345D2E5469746C652E4361
+      7074696F6E01C5E42E20E8E7EC2E01CEE42E20E2E8EC2E010D0A477269645072
+      6F64756374732E436F6C756D6E735B355D2E5469746C652E43617074696F6E01
+      D1F2EEE8ECEEF1F2FC01C2E0F0F2B3F1F2FC010D0A4772696450726F64756374
+      732E436F6C756D6E735B365D2E5469746C652E43617074696F6E01CEE1F9E0FF
+      20F1F2EEE8ECEEF1F2FC01C7E0E3E0EBFCEDE020E2E0F0F2B3F1F2FC010D0A47
+      72696450726F64756374732E436F6C756D6E735B375D2E5469746C652E436170
+      74696F6E01D1EAEBE0E401D1EAEBE0E4010D0A4772696450726F64756374732E
+      436F6C756D6E735B385D2E5469746C652E43617074696F6E01CEF1F2E0F2EEEA
+      01C7E0EBE8F8EEEA010D0A4442477269644568312E436F6C756D6E735B305D2E
+      5469746C652E43617074696F6E01B901010D0A4442477269644568312E436F6C
+      756D6E735B315D2E5469746C652E43617074696F6E01CDE0E8ECE5EDEEE2E0ED
+      E8E501CDE0E9ECE5EDF3E2E0EDEDFF010D0A4442477269644568312E436F6C75
+      6D6E735B325D2E5469746C652E43617074696F6E01CAEEE420C5C3D0CFCE01CA
+      EEE420AAC4D0CFCE010D0A4442477269644568312E436F6C756D6E735B335D2E
+      5469746C652E43617074696F6E01D0E0F1F7E5F2EDFBE920F1F7E5F201D0EEE7
+      F0E0F5F3EDEAEEE2E8E920F0E0F5F3EDEEEA010D0A4442477269644568312E43
+      6F6C756D6E735B345D2E5469746C652E43617074696F6E01C1E0EDEA01C1E0ED
+      EA010D0A4442477269644568312E436F6C756D6E735B355D2E5469746C652E43
+      617074696F6E01B920E4EEE2E5F0E5EDEDEEF1F2E801B920E4EEF0F3F7E5EDED
+      FF010D0A4442477269644568312E436F6C756D6E735B365D2E5469746C652E43
+      617074696F6E01C4E2E5F0E5EDEDEEE520EBE8F6EE01C4EEF0F3F7E5EDE520EB
+      E8F6E5010D0A737443686172536574730D0A54465F4D61696E0144454641554C
+      545F4348415253455401010D0A527A4C6162656C32015255535349414E5F4348
+      415253455401010D0A527A4C6162656C33015255535349414E5F434841525345
+      5401010D0A527A4C6162656C34015255535349414E5F4348415253455401010D
+      0A436865636B696E6741636361756E74015255535349414E5F43484152534554
+      01010D0A496E766F6963654F7574015255535349414E5F434841525345540101
+      0D0A496E766F69636542746E015255535349414E5F4348415253455401010D0A
+      527A4564697431015255535349414E5F4348415253455401010D0A73746F636B
+      46696C746572015255535349414E5F4348415253455401010D0A47425265706F
+      727473015255535349414E5F4348415253455401010D0A}
   end
 end

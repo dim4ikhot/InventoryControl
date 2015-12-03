@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, RzButton, ExtCtrls, RzPanel, StdCtrls, RzLabel;
+  Dialogs, RzButton, ExtCtrls, RzPanel, StdCtrls, RzLabel, U_DM, siComp,
+  siLngLnk;
 
 type
   TF_About = class(TForm)
@@ -14,6 +15,7 @@ type
     RzLabel4: TRzLabel;
     RzPanel1: TRzPanel;
     RzBitBtn1: TRzBitBtn;
+    LangAbout: TsiLangLinked;
   private
     { Private declarations }
   public

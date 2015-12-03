@@ -1591,7 +1591,7 @@ object F_FR: TF_FR
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 42338.968757442100000000
-    ReportOptions.LastChange = 42340.917914479160000000
+    ReportOptions.LastChange = 42340.918702060180000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -1691,12 +1691,6 @@ object F_FR: TF_FR
           Font.Name = 'Arial'
           Font.Style = []
           HAlign = haCenter
-          Highlight.Font.Charset = DEFAULT_CHARSET
-          Highlight.Font.Color = clRed
-          Highlight.Font.Height = -11
-          Highlight.Font.Name = 'Arial'
-          Highlight.Font.Style = []
-          Highlight.Condition = '<Date>'
           Memo.UTF8 = (
             '[Date]')
           ParentFont = False

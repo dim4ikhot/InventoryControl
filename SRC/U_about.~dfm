@@ -35,7 +35,7 @@ object F_About: TF_About
   end
   object RzLabel2: TRzLabel
     Left = 64
-    Top = 85
+    Top = 101
     Width = 158
     Height = 15
     Anchors = [akLeft, akRight, akBottom]

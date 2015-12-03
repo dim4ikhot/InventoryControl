@@ -7,7 +7,7 @@ uses
   Dialogs, RzButton, RzSpnEdt, StdCtrls, Mask, RzEdit, RzLabel,
   DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh, RzCmboBx,
   ExtCtrls, RzPanel, GridsEh, DBAxisGridsEh, DBGridEh, U_DM, U_Common,
-  pFibQuery;
+  pFibQuery, siComp, siLngLnk;
 
 type
   TF_NewProduct = class(TForm)
@@ -30,6 +30,7 @@ type
     RzLabel8: TRzLabel;
     CBAllProviders: TRzComboBox;
     AddToMemTable: TRzBitBtn;
+    LangNewProduct: TsiLangLinked;
     procedure AddToMemTableClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ProductCountChange(Sender: TObject);
@@ -70,9 +71,9 @@ begin
   if not DM.mtAddProducts.Active then
     DM.mtAddProducts.Active := true;
   try
-    DM.mtAddProducts.Insert;
-    DM.mtAddProducts.Edit;
-    DM.mtAddProductsproductName.AsString := ProductName.Text;
+    DM.tableProducts.Insert;
+    DM.tableProducts.Edit;
+    {DM.mtAddProductsproductName.AsString := ProductName.Text;
     DM.mtAddProductsproductCode.AsString := ProductCode.Text;
     DM.mtAddProductsproductCount.AsFloat := ProductCount.Value;
     DM.mtAddProductsproductMeasured.AsString := ProductMeasured.Text;
@@ -81,8 +82,8 @@ begin
     if CBAllStocks.Text <> '' then
       DM.mtAddProductsproductStock.AsInteger := StrToIntDef(stocksList.Values[CBAllStocks.Text],0);
     if CBAllProviders.Text <> '' then
-    DM.mtAddProductsproductProvider.AsInteger := StrToIntDef(ProvidersList.Values[CBAllProviders.Text],0);
-    DM.mtAddProducts.Post;
+    DM.mtAddProductsproductProvider.AsInteger := StrToIntDef(ProvidersList.Values[CBAllProviders.Text],0);  }
+    DM.tableProducts.Post;
   except
   end;
 end;

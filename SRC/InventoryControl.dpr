@@ -14,7 +14,8 @@ uses
   U_BaseUpdate in 'U_BaseUpdate.pas',
   U_about in 'U_about.pas' {F_About},
   U_FR in 'U_FR.pas' {F_FR},
-  XLSFile in 'XLSFile.pas';
+  XLSFile in 'XLSFile.pas',
+  U_MessageCP in 'U_MessageCP.pas' {F_MessageCP};
 
 {$R *.res}
 

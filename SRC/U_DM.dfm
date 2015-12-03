@@ -218,4 +218,14 @@ object DM: TDM
     Left = 96
     Top = 8
   end
+  object ProgramLangs: TsiLangDispatcher
+    ActiveLanguage = 1
+    NumOfLanguages = 2
+    LangNames.Strings = (
+      'RUS'
+      'UKR')
+    Language = 'RUS'
+    Left = 32
+    Top = 360
+  end
 end

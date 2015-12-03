@@ -14,14 +14,15 @@ uses
   U_BaseUpdate in 'U_BaseUpdate.pas',
   U_about in 'U_about.pas' {F_About},
   U_FR in 'U_FR.pas' {F_FR},
-  XLSFile in 'XLSFile.pas';
+  XLSFile in 'XLSFile.pas',
+  U_MessageCP in 'U_MessageCP.pas' {F_MessageCP};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.CreateForm(TDM, DM);
-  Application.CreateForm(TF_FR, F_FR);
+  Application.CreateForm(TF_MessageCP, F_MessageCP);
   Application.Title := 'Складской учет';
   Application.CreateForm(TF_Main, F_Main);
   Application.Run;

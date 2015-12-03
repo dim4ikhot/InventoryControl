@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, RzLabel, Mask, RzEdit, RzRadChk, ExtCtrls, RzPanel,
-  RzButton, RzShellDialogs, ShlObj, ShellAPI, ActiveX, U_Common;
+  RzButton, RzShellDialogs, ShlObj, ShellAPI, ActiveX, U_Common,U_DM,
+  siComp, siLngLnk;
 
 type
   TShareInfo2 = packed record
@@ -66,6 +67,7 @@ type
     FDHost: TRzSelectFolderDialog;
     rbLocalConection: TRzRadioButton;
     rbRemoteConnection: TRzRadioButton;
+    LangConnect: TsiLangLinked;
     procedure BrowseServerClick(Sender: TObject);
     procedure ServerBasePathClick(Sender: TObject);
     procedure BrowsePathToBaseClick(Sender: TObject);

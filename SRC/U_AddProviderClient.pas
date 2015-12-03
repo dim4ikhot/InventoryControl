@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, RzButton, StdCtrls, Mask, RzEdit, RzLabel;
+  Dialogs, RzButton, StdCtrls, Mask, RzEdit, RzLabel, U_DM, siComp,
+  siLngLnk;
 
 type
   TF_AddClientProvider = class(TForm)
@@ -16,6 +17,8 @@ type
     ProviderClientPhone: TRzEdit;
     RzBitBtn1: TRzBitBtn;
     RzBitBtn2: TRzBitBtn;
+    LangClientProv: TsiLangLinked;
+    procedure RzBitBtn1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -29,5 +32,23 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TF_AddClientProvider.RzBitBtn1Click(Sender: TObject);
+begin
+  if F_AddProvider <> nil then
+  begin
+    DM.tableProviders.Insert;
+    DM.tableProviders.Edit;
+
+    DM.tableProviders.Post;
+  end
+  else
+  begin
+    DM.tableClients.Insert;
+    DM.tableClients.Edit;
+
+    DM.tableClients.Post;
+  end;
+end;
 
 end.

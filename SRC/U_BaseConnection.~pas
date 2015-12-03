@@ -52,8 +52,8 @@ type
     CancelConnect: TRzBitBtn;
     RzGroupBox1: TRzGroupBox;
     doNotAskAnyMore: TRzCheckBox;
-    RzGroupBox2: TRzGroupBox;
-    RzGroupBox3: TRzGroupBox;
+    gbLocalConnection: TRzGroupBox;
+    gbRemoteConnection: TRzGroupBox;
     localBasePath: TRzEdit;
     BrowsePathToBase: TRzButton;
     EditServerNAme: TRzEdit;
@@ -64,9 +64,13 @@ type
     BrowseServer: TRzButton;
     ODLocal: TRzOpenDialog;
     FDHost: TRzSelectFolderDialog;
+    rbLocalConection: TRzRadioButton;
+    rbRemoteConnection: TRzRadioButton;
     procedure BrowseServerClick(Sender: TObject);
     procedure ServerBasePathClick(Sender: TObject);
     procedure BrowsePathToBaseClick(Sender: TObject);
+    procedure rbRemoteConnectionClick(Sender: TObject);
+    procedure rbLocalConectionClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -460,6 +464,18 @@ begin
   begin
     localBasePath.Text := ODLocal.FileName;
   end;
+end;
+
+procedure TF_BaseConnection.rbRemoteConnectionClick(Sender: TObject);
+begin
+  gbRemoteConnection.Enabled := True;
+  gbLocalConnection.Enabled := False;
+end;
+
+procedure TF_BaseConnection.rbLocalConectionClick(Sender: TObject);
+begin
+  gbRemoteConnection.Enabled := False;
+  gbLocalConnection.Enabled := True;
 end;
 
 end.
