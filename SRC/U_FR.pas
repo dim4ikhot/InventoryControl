@@ -652,14 +652,14 @@ procedure TF_FR.RzToolButton3Click(Sender: TObject);
 begin
 //  frxPreview1.OnePage;
   frxPreview1.ZoomMode := zmWholePage;
-  tbZoom.Position := Round(frxPreview1.Zoom)*100;
+  tbZoom.Position := Round(frxPreview1.Zoom*100);
 end;
 
 procedure TF_FR.RzToolButton4Click(Sender: TObject);
 begin
 //  frxPreview1.pageWidth;
   frxPreview1.ZoomMode := zmPageWidth;
-  tbZoom.Position := Round(frxPreview1.Zoom)*100;
+  tbZoom.Position := Round(frxPreview1.Zoom*100);
 end;
 
 procedure TF_FR.RzToolButton5Click(Sender: TObject);

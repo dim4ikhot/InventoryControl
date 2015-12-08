@@ -39,14 +39,17 @@ begin
   begin
     DM.tableProviders.Insert;
     DM.tableProviders.Edit;
-
+    DM.tableProvidersNAME.AsString := ProviderClientName.Text;
+    DM.tableProvidersADDR1.AsString := ProviderClientAdress.Text;
+    DM.tableProvidersPHONE.AsString := ProviderClientPhone.Text;
     DM.tableProviders.Post;
   end
   else
   begin
     DM.tableClients.Insert;
     DM.tableClients.Edit;
-
+    DM.tableClientsNAME.AsString := ProviderClientName.Text;
+    DM.tableClientsPHONE.AsString := ProviderClientPhone.Text;
     DM.tableClients.Post;
   end;
 end;

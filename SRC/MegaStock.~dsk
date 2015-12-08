@@ -1,0 +1,383 @@
+[Closed Files]
+File_0=SourceModule,'c:\program files\borland\delphi7\source\rtl\Sys\sysutils.pas',0,1,16257,1,16268,0,0
+File_1=SourceModule,'D:\PROJECTS\Складской учет\SRC\XLSFile.pas',0,1,262,5,283,0,0
+File_2=SourceModule,'C:\Program Files\FastReports\FastReport 4\Source\frxClass.pas',0,1,107,54,118,0,0
+File_3=SourceModule,'c:\program files\borland\delphi7\source\vcl\Forms.pas',0,1,320,19,333,0,0
+File_4=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_BaseUpdate.pas',0,1,1,1,1,0,0
+File_5=SourceModule,'C:\Program Files\FastReports\FastReport 4\Source\frxPreview.pas',0,1,184,30,195,0,0
+File_6=SourceModule,'D:\PROJECTS\Components\INSTALL_FOR_DXE-2015-11-25\INSTALL_FOR_DXE\FIB_6.9.9\fibplus_6_9_9_D5-2007\sources\fib.pas',0,1,427,1,440,0,0
+File_7=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_FrOleEXl.pas',0,1,10,50,17,0,0
+File_8=SourceModule,'D:\PROJECTS\Components\FastReport2_5\FR_Class.pas',0,1,1,12,15,0,0
+File_9=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_ProgressExp.pas',0,1,3,12,10,1,0
+
+[Modules]
+Module0=D:\PROJECTS\Складской учет\SRC\U_Main.pas
+Module1=D:\PROJECTS\Складской учет\SRC\U_Splash.pas
+Module2=D:\PROJECTS\Складской учет\SRC\U_DM.pas
+Module3=D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas
+Module4=D:\PROJECTS\Складской учет\SRC\U_FR.pas
+Module5=D:\PROJECTS\Складской учет\SRC\U_NewStock.pas
+Module6=D:\PROJECTS\Складской учет\SRC\U_MessageCP.pas
+Module7=D:\PROJECTS\Складской учет\SRC\U_MovePositions.pas
+Module8=D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas
+Module9=D:\PROJECTS\Складской учет\SRC\U_about.pas
+Module10=D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas
+Module11=D:\PROJECTS\Складской учет\SRC\U_BaseConnection.pas
+Module12=D:\PROJECTS\Складской учет\SRC\MegaStock.dpr
+Module13=D:\PROJECTS\Складской учет\SRC\U_Common.pas
+Count=14
+EditWindowCount=1
+
+[D:\PROJECTS\Складской учет\SRC\U_Main.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_Splash.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_DM.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_FR.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_NewStock.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_MessageCP.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_MovePositions.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_about.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_BaseConnection.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\MegaStock.dpr]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_Common.pas]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[C:\Program Files\Borland\Delphi7\Bin\ProjectGroup1.bpg]
+FormState=0
+FormOnTop=0
+
+[EditWindow0]
+ViewCount=14
+CurrentView=2
+View0=0
+View1=1
+View2=2
+View3=3
+View4=4
+View5=5
+View6=6
+View7=7
+View8=8
+View9=9
+View10=10
+View11=11
+View12=12
+View13=13
+CodeExplorer=CodeExplorer@EditWindow0
+MessageView=MessageView@EditWindow0
+Create=1
+Visible=1
+State=0
+Left=238
+Top=118
+Width=1126
+Height=620
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=1114
+ClientHeight=586
+LeftPanelSize=140
+LeftPanelClients=CodeExplorer@EditWindow0
+LeftPanelData=000004000000000000000000000000000000000000000000000100000000000000000C000000436F64654578706C6F726572FFFFFFFF
+RightPanelSize=0
+BottomPanelSize=0
+BottomPanelClients=MessageView@EditWindow0
+BottomPanelData=00000400010000000B0000004D657373616765566965775A040000000000000255000000000000000100000000000000000000000001000000005A0400000000000001000000005A0400000B0000004D65737361676556696577FFFFFFFF
+
+[View0]
+Module=D:\PROJECTS\Складской учет\SRC\U_MovePositions.pas
+CursorX=11
+CursorY=9
+TopLine=1
+LeftCol=1
+
+[View1]
+Module=D:\PROJECTS\Складской учет\SRC\MegaStock.dpr
+CursorX=16
+CursorY=31
+TopLine=22
+LeftCol=1
+
+[View2]
+Module=D:\PROJECTS\Складской учет\SRC\U_Main.pas
+CursorX=13
+CursorY=406
+TopLine=397
+LeftCol=1
+
+[View3]
+Module=D:\PROJECTS\Складской учет\SRC\U_Splash.pas
+CursorX=1
+CursorY=1
+TopLine=1
+LeftCol=1
+
+[View4]
+Module=D:\PROJECTS\Складской учет\SRC\U_MessageCP.pas
+CursorX=28
+CursorY=141
+TopLine=123
+LeftCol=1
+
+[View5]
+Module=D:\PROJECTS\Складской учет\SRC\U_BaseConnection.pas
+CursorX=19
+CursorY=9
+TopLine=1
+LeftCol=1
+
+[View6]
+Module=D:\PROJECTS\Складской учет\SRC\U_Common.pas
+CursorX=8
+CursorY=28
+TopLine=12
+LeftCol=1
+
+[View7]
+Module=D:\PROJECTS\Складской учет\SRC\U_DM.pas
+CursorX=29
+CursorY=7
+TopLine=1
+LeftCol=1
+
+[View8]
+Module=D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas
+CursorX=47
+CursorY=9
+TopLine=4
+LeftCol=1
+
+[View9]
+Module=D:\PROJECTS\Складской учет\SRC\U_about.pas
+CursorX=11
+CursorY=8
+TopLine=1
+LeftCol=1
+
+[View10]
+Module=D:\PROJECTS\Складской учет\SRC\U_FR.pas
+CursorX=1
+CursorY=661
+TopLine=643
+LeftCol=1
+
+[View11]
+Module=D:\PROJECTS\Складской учет\SRC\U_NewStock.pas
+CursorX=1
+CursorY=41
+TopLine=30
+LeftCol=1
+
+[View12]
+Module=D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas
+CursorX=5
+CursorY=49
+TopLine=31
+LeftCol=1
+
+[View13]
+Module=D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas
+CursorX=21
+CursorY=86
+TopLine=63
+LeftCol=1
+
+[Watches]
+Count=0
+
+[Breakpoints]
+Count=0
+
+[AddressBreakpoints]
+Count=0
+
+[Main Window]
+Create=1
+Visible=1
+State=0
+Left=239
+Top=0
+Width=1127
+Height=118
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=1115
+ClientHeight=84
+
+[ProjectManager]
+Create=1
+Visible=0
+State=0
+Left=369
+Top=372
+Width=446
+Height=313
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=434
+ClientHeight=283
+TBDockHeight=313
+LRDockWidth=446
+Dockable=1
+
+[AlignmentPalette]
+Create=1
+Visible=0
+State=0
+Left=200
+Top=124
+Width=156
+Height=84
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=150
+ClientHeight=60
+
+[PropertyInspector]
+Create=1
+Visible=1
+State=0
+Left=0
+Top=0
+Width=220
+Height=679
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=220
+ClientHeight=679
+TBDockHeight=359
+LRDockWidth=190
+Dockable=1
+SplitPos=85
+ArrangeBy=Name
+SelectedItem=ClientHeight
+ExpandedItems=AutoUpdateOptions,Title
+HiddenCategories=
+
+[ObjectTree]
+Create=1
+Visible=1
+State=0
+Left=0
+Top=0
+Width=220
+Height=679
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=220
+ClientHeight=679
+TBDockHeight=240
+LRDockWidth=190
+Dockable=1
+
+[CodeExplorer@EditWindow0]
+Create=1
+Visible=1
+State=0
+Left=0
+Top=12
+Width=140
+Height=574
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=140
+ClientHeight=574
+TBDockHeight=305
+LRDockWidth=140
+Dockable=1
+
+[MessageView@EditWindow0]
+Create=1
+Visible=0
+State=0
+Left=12
+Top=0
+Width=1102
+Height=85
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=1102
+ClientHeight=85
+TBDockHeight=85
+LRDockWidth=443
+Dockable=1
+
+[DockHosts]
+DockHostCount=1
+
+[DockSite0]
+DockSiteType=1
+Create=1
+Visible=1
+State=0
+Left=-1
+Top=0
+Width=240
+Height=738
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=228
+ClientHeight=708
+TBDockHeight=240
+LRDockWidth=198
+Dockable=1
+TabPosition=0
+ActiveTab=Object Inspector
+TabDockClients=ObjectTree,PropertyInspector
+

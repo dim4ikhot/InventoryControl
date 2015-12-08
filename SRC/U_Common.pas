@@ -10,9 +10,23 @@ uses
   procedure ExtractServerName(const AFileName: String; var AServerName, ALocalPath: String);
   function GetCharCountFromStr(AChar: Char; AStr: String): Integer;
   function RoundX(Num: Extended; Dig: integer): Extended;
+  procedure createIniFile;
+  procedure destroyIniFile;
 
 
+var
+  Inif: TIniFile;
 implementation
+
+procedure createIniFile;
+begin
+  Inif := TIniFile.Create(ExtractFilePath(Application.ExeName) + '\settings.ini');
+end;
+
+procedure destroyIniFile;
+begin
+  FreeAndNil(Inif);
+end;
 
 {===================  Отделяем имя сервера от пути к базе  ====================}
 function GetCharCountFromStr(AChar: Char; AStr: String): Integer;

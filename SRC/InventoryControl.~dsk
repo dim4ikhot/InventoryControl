@@ -11,13 +11,13 @@ File_8=SourceModule,'c:\program files\borland\delphi7\source\rtl\Sys\system.pas'
 File_9=SourceModule,'D:\ПРОЕКТЫ\Регистрация\U_Registration.pas',0,1,1,1,1,0,1
 
 [Modules]
-Module0=D:\PROJECTS\Складской учет\SRC\U_FR.pas
-Module1=C:\Program Files\FastReports\FastReport 4\Source\frxClass.pas
+Module0=D:\PROJECTS\Складской учет\SRC\U_Main.pas
+Module1=D:\PROJECTS\Складской учет\SRC\U_about.pas
 Module2=D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas
-Module3=D:\PROJECTS\Складской учет\SRC\U_about.pas
-Module4=D:\PROJECTS\Складской учет\SRC\U_Main.pas
-Module5=D:\PROJECTS\Складской учет\SRC\XLSFile.pas
-Module6=D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas
+Module3=D:\PROJECTS\Складской учет\SRC\U_FR.pas
+Module4=D:\PROJECTS\Складской учет\SRC\XLSFile.pas
+Module5=D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas
+Module6=C:\Program Files\FastReports\FastReport 4\Source\frxClass.pas
 Module7=D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas
 Module8=D:\PROJECTS\Складской учет\SRC\U_DM.pas
 Module9=D:\PROJECTS\Складской учет\SRC\U_Common.pas
@@ -28,17 +28,7 @@ Module13=D:\PROJECTS\Складской учет\SRC\InventoryControl.dpr
 Count=14
 EditWindowCount=1
 
-[D:\PROJECTS\Складской учет\SRC\U_FR.pas]
-ModuleType=SourceModule
-FormState=1
-FormOnTop=0
-
-[C:\Program Files\FastReports\FastReport 4\Source\frxClass.pas]
-ModuleType=SourceModule
-FormState=0
-FormOnTop=0
-
-[D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas]
+[D:\PROJECTS\Складской учет\SRC\U_Main.pas]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=0
@@ -48,7 +38,12 @@ ModuleType=SourceModule
 FormState=1
 FormOnTop=0
 
-[D:\PROJECTS\Складской учет\SRC\U_Main.pas]
+[D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_FR.pas]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=0
@@ -59,6 +54,11 @@ FormState=0
 FormOnTop=0
 
 [D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[C:\Program Files\FastReports\FastReport 4\Source\frxClass.pas]
 ModuleType=SourceModule
 FormState=0
 FormOnTop=0
@@ -98,13 +98,13 @@ ModuleType=SourceModule
 FormState=0
 FormOnTop=0
 
-[C:\Program Files\FastReports\FastReport 4\Demos\EmbedDesigner\ProjectGroup1.bpg]
+[C:\Program Files\Borland\Delphi7\Bin\ProjectGroup1.bpg]
 FormState=0
 FormOnTop=0
 
 [EditWindow0]
 ViewCount=14
-CurrentView=9
+CurrentView=1
 View0=0
 View1=1
 View2=2
@@ -138,7 +138,7 @@ LeftPanelData=000004000000000000000000000000000000000000000000000100000000000000
 RightPanelSize=0
 BottomPanelSize=0
 BottomPanelClients=MessageView@EditWindow0
-BottomPanelData=00000400010000000B0000004D657373616765566965775A040000000000000255000000000000000100000000000000000000000001000000005A0400000000000001000000005A0400000B0000004D65737361676556696577FFFFFFFF
+BottomPanelData=00000400010000000B0000004D657373616765566965775A040000000000000255000000000000000100000000000000000000000001000000005A04000000000000FFFFFFFF
 
 [View0]
 Module=D:\PROJECTS\Складской учет\SRC\InventoryControl.dpr
@@ -306,7 +306,7 @@ LRDockWidth=190
 Dockable=1
 SplitPos=85
 ArrangeBy=Name
-SelectedItem=DataSet
+SelectedItem=Caption
 ExpandedItems=Title
 HiddenCategories=
 
