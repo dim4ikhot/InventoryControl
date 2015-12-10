@@ -140,7 +140,6 @@ begin
 //  if MessageBox(F_Main.Handle,'Вы действительно желаете удалить склад?', 'Удаление...', MB_YESNO) = 6 then
   if ShowMessagerCP( F_Main.LangMain.gettext('Deleting'), F_Main.LangMain.gettext('DeletingStock'),mtConfirmation,[mbYes, mbNo]) = 6 then
   begin
-
   end;
 end;
 
@@ -154,7 +153,8 @@ begin
   //if MessageBox(F_Main.Handle,'Вы действительно желаете удалить товар?', 'Удаление...', MB_YESNO) = 6 then
   if ShowMessagerCP( F_Main.LangMain.gettext('Deleting'), F_Main.LangMain.gettext('DeletingProduct'),mtConfirmation,[mbYes, mbNo]) = 6 then
   begin
-
+    DM.tableProducts.Delete;
+    DM.tableProducts.Transaction.CommitRetaining;
   end;
 end;
 
@@ -176,7 +176,18 @@ end;
 procedure TF_Main.addProductClick(Sender: TObject);
 begin
   if DM.tableStoks.RecordCount > 0 then
-    addProductProc
+  begin
+    if DM.tableProviders.RecordCount > 0 then
+      addProductProc
+    else
+    begin
+      if ShowMessagerCP( F_Main.LangMain.gettext('Warning'), F_Main.LangMain.gettext('HaveNoAnyProviders'),mtWarning,[mbYes, mbNo]) = 6 then
+      begin
+        PCMainTabs.ActivePageIndex := 2;
+        AddProvider;
+      end;
+    end;
+  end
   else
   begin
     if ShowMessagerCP( F_Main.LangMain.gettext('Warning'), F_Main.LangMain.gettext('HaveNoStocks'),mtWarning,[mbYes, mbNo]) = 6 then
@@ -230,6 +241,8 @@ begin
     Application.CreateForm(TF_AddClientProvider, F_AddClient);
     F_AddClient.ProviderClientAdress.Visible := False;
     F_AddClient.RzLabel2.Visible := False;
+    F_AddClient.RzLabel5.Top := F_AddClient.RzLabel3.Top;
+    F_AddClient.ProviderClientBank.Top := F_AddClient.ProviderClientPhone.Top;
     F_AddClient.ProviderClientPhone.Top := F_AddClient.ProviderClientAdress.Top;
     F_AddClient.RzLabel3.Top := F_AddClient.RzLabel2.Top;
     F_AddClient.ShowModal;
@@ -242,7 +255,7 @@ procedure removeProvider;
 begin
   if ShowMessagerCP( F_Main.LangMain.gettext('Deleting'), F_Main.LangMain.gettext('DeletingProvidr'),mtConfirmation,[mbYes, mbNo]) = 6 then
   begin
-
+    DM.tableProviders.Delete;
   end;
 end;
 
@@ -251,7 +264,7 @@ begin
 //  if MessageBox(F_Main.Handle,'Вы действительно желаете удалить клиента?', 'Удаление...', MB_YESNO) = 6 then
   if ShowMessagerCP( F_Main.LangMain.gettext('Deleting'), F_Main.LangMain.gettext('DeletingClient'),mtConfirmation,[mbYes, mbNo]) = 6 then
   begin
-
+    DM.tableClients.Delete;
   end;
 end;
 
@@ -402,6 +415,12 @@ procedure TF_Main.FormCreate(Sender: TObject);
 begin
   createIniFile;
   DM.ProgramLangs.ActiveLanguage := Inif.ReadInteger('ProgramSettings', 'Language',1);
+  dm.tableStoks.First;
+  while not dm.tableStoks.Eof do
+  begin
+    stockFilter.AddItemValue(dm.tableStoksNAME.AsString, dm.tableStoksID.AsString);
+    dm.tableStoks.Next;
+  end;
 end;
 
 procedure TF_Main.FormDestroy(Sender: TObject);
@@ -413,7 +432,8 @@ procedure TF_Main.BtnStartStockClick(Sender: TObject);
 begin
   if ShowMessagerCP(LangMain.GetText('Attention'),LangMain.GetText('AttentionCapt'),mtWarning,[mbYes,mbNo]) = 6 then
   begin
-  
+    DM.tableStoksSTARTED.AsInteger := 1;
+    BtnStartStock.Visible := False;
   end;
 end;
 

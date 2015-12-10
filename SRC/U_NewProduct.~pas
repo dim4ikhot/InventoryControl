@@ -7,7 +7,7 @@ uses
   Dialogs, RzButton, RzSpnEdt, StdCtrls, Mask, RzEdit, RzLabel,
   DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh, RzCmboBx,
   ExtCtrls, RzPanel, GridsEh, DBAxisGridsEh, DBGridEh, U_DM, U_Common,
-  pFibQuery;
+  pFibQuery, siComp, siLngLnk;
 
 type
   TF_NewProduct = class(TForm)
@@ -30,6 +30,9 @@ type
     RzLabel8: TRzLabel;
     CBAllProviders: TRzComboBox;
     AddToMemTable: TRzBitBtn;
+    LangNewProduct: TsiLangLinked;
+    RzLabel9: TRzLabel;
+    invoiceNumber: TRzEdit;
     procedure AddToMemTableClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ProductCountChange(Sender: TObject);
@@ -54,7 +57,7 @@ var
 
 implementation
 
-uses U_Main;
+uses U_Main, U_MessageCP;
 
 {$R *.dfm}
 
@@ -67,22 +70,37 @@ end;
 
 procedure TF_NewProduct.AddToMemTableClick(Sender: TObject);
 begin
-  if not DM.mtAddProducts.Active then
-    DM.mtAddProducts.Active := true;
   try
-    DM.tableProducts.Insert;
-    DM.tableProducts.Edit;
-    {DM.mtAddProductsproductName.AsString := ProductName.Text;
-    DM.mtAddProductsproductCode.AsString := ProductCode.Text;
-    DM.mtAddProductsproductCount.AsFloat := ProductCount.Value;
-    DM.mtAddProductsproductMeasured.AsString := ProductMeasured.Text;
-    DM.mtAddProductsproductPrice.AsFloat := ProductPrice.Value;
-    DM.mtAddProductsproductTotalPrice.AsFloat := StrToFloatDef(ProductTotalPrice.Text,0);
-    if CBAllStocks.Text <> '' then
-      DM.mtAddProductsproductStock.AsInteger := StrToIntDef(stocksList.Values[CBAllStocks.Text],0);
-    if CBAllProviders.Text <> '' then
-    DM.mtAddProductsproductProvider.AsInteger := StrToIntDef(ProvidersList.Values[CBAllProviders.Text],0);  }
-    DM.tableProducts.Post;
+    if (CBAllStocks.Text <> '')and(CBAllProviders.Text <> '')and(ProductName.Text <> '')
+        and (ProductMeasured.Text <> '')and(ProductCode.Text <> '')and
+        (ProductCount.Value <> 0)and(ProductPrice.Value <> 0) then
+    begin
+      DM.tableProducts.Insert;
+      DM.tableProducts.Edit;
+      DM.tableProductsSTOCK_ID.AsInteger := StrToIntDef(CBAllStocks.Values[CBAllStocks.ItemIndex],0);
+      DM.tableProductsMEASURE.AsString := ProductMeasured.Text;
+      DM.tableProductsKOLVO.AsFloat := ProductCount.Value;
+      DM.tableProductsPRICE.AsFloat := ProductPrice.Value;
+      DM.tableProductsKOD.AsInteger := StrToIntDef(ProductCode.Text,0);
+      DM.tableProductsTOTALPRICE.AsFloat := StrToIntDef(ProductTotalPrice.Text,0);
+      DM.tableProducts.Post;
+
+      DM.tableInvoiceIn.Insert;
+      DM.tableInvoiceIn.Edit;
+      DM.tableInvoiceInMEASURE.AsString := ProductMeasured.Text;
+      DM.tableInvoiceInKOLVO.AsFloat := ProductCount.Value;
+      DM.tableInvoiceInPRICE.AsFloat := ProductPrice.Value;
+      DM.tableInvoiceInKOD.AsInteger := StrToIntDef(ProductCode.Text,0);
+      DM.tableInvoiceInTOTALPRICE.AsFloat := StrToIntDef(ProductTotalPrice.Text,0);
+      DM.tableInvoiceInDATEIN.AsDateTime := Now;
+      DM.tableInvoiceInEMPLOEE_ID.AsInteger := 0;
+      DM.tableInvoiceInPROVIDER_ID.AsInteger := StrToIntDef(CBAllProviders.Values[CBAllProviders.itemIndex],0);
+      DM.tableInvoiceIn.Post;
+    end
+    else
+    begin
+      ShowMessagerCP(LangNewProduct.GetText('EmptyFieldCapt'),LangNewProduct.GetText('EmptyField'),mtWarning,[mbOK]);
+    end;
   except
   end;
 end;
@@ -123,6 +141,22 @@ procedure TF_NewProduct.FormCreate(Sender: TObject);
 begin
   stocksList := TStringList.Create;
   ProvidersList := TStringList.Create;
+
+  dm.tableStoks.First;
+  while not dm.tableStoks.Eof do
+  begin
+    CBAllStocks.AddItemValue(dm.tableStoksNAME.AsString, dm.tableStoksID.AsString);
+    stocksList.Add(dm.tableStoksID.AsString);
+    dm.tableStoks.Next;
+  end;
+
+  dm.tableProviders.First;
+  while not dm.tableProviders.Eof do
+  begin
+    CBAllProviders.AddItemValue(dm.tableProvidersNAME.AsString, dm.tableProvidersID.AsString);
+    ProvidersList.Add(dm.tableProvidersID.AsString);
+    dm.tableProviders.Next;
+  end;
 end;
 
 procedure TF_NewProduct.ProductCountChange(Sender: TObject);

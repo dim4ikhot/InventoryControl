@@ -42,6 +42,7 @@ begin
   DM.tableStoksPHONE.AsString := StockPhone.Text;
   DM.tableStoksADDR1.AsString := StockAddr.Text;
   DM.tableStoksNDS.AsFloat := StockNds.Value;
+  DM.tableStoksSTARTED.AsInteger := 0;
   DM.tableStoks.Post;
 end;
 

@@ -13,6 +13,8 @@ object F_BaseConnection: TF_BaseConnection
   Font.Style = []
   OldCreateOrder = False
   Position = poOwnerFormCenter
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
   DesignSize = (
     497
     291)
@@ -24,6 +26,7 @@ object F_BaseConnection: TF_BaseConnection
     Anchors = [akRight, akBottom]
     HotTrack = True
     TabOrder = 0
+    OnClick = SetConnectionClick
     Kind = bkOK
   end
   object CancelConnect: TRzBitBtn
@@ -33,6 +36,7 @@ object F_BaseConnection: TF_BaseConnection
     Caption = #1054#1090#1084#1077#1085#1072
     HotTrack = True
     TabOrder = 1
+    OnClick = CancelConnectClick
     Kind = bkCancel
   end
   object RzGroupBox1: TRzGroupBox

@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, RzLabel, Mask, RzEdit, RzRadChk, ExtCtrls, RzPanel,
   RzButton, RzShellDialogs, ShlObj, ShellAPI, ActiveX, U_Common,U_DM,
-  siComp, siLngLnk;
+  siComp, siLngLnk, IniFiles;
 
 type
   TShareInfo2 = packed record
@@ -73,6 +73,10 @@ type
     procedure BrowsePathToBaseClick(Sender: TObject);
     procedure rbRemoteConnectionClick(Sender: TObject);
     procedure rbLocalConectionClick(Sender: TObject);
+    procedure CancelConnectClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure SetConnectionClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -81,7 +85,8 @@ type
 
 var
   F_BaseConnection: TF_BaseConnection;
-
+  ini: TIniFile;
+  BasePath, ServerName:string;
 implementation
 
 {$R *.dfm}
@@ -478,6 +483,57 @@ procedure TF_BaseConnection.rbLocalConectionClick(Sender: TObject);
 begin
   gbRemoteConnection.Enabled := False;
   gbLocalConnection.Enabled := True;
+end;
+
+procedure TF_BaseConnection.CancelConnectClick(Sender: TObject);
+begin
+  BasePath := ini.ReadString('ProgramSettings','BasePath','');
+  if (BasePath = '') then
+    ExitProcess(1);
+end;
+
+procedure TF_BaseConnection.FormCreate(Sender: TObject);
+var
+   showformConn: Boolean;
+begin
+  ini := TIniFile.Create(ExtractFilePath(Application.ExeName) + '\settings.ini');
+  showformConn := Ini.ReadBool('ProgramSettings','ShowFormConnection',True);
+  doNotAskAnyMore.Checked := not showformConn;
+  ServerName := ini.ReadString('ProgramSettings','ServerName','');
+  if (ServerName = '') then
+  begin
+    rbLocalConection.Checked := True;
+    localBasePath.Text := ini.ReadString('ProgramSettings','BasePath','');
+  end
+  else
+  begin
+    rbRemoteConnection.Checked := True;
+    EditServerNAme.Text := ServerName;
+    remoteBasePath.Text := ini.ReadString('ProgramSettings','BasePath','');
+  end;
+
+end;
+
+procedure TF_BaseConnection.FormDestroy(Sender: TObject);
+begin
+  FreeAndNil(ini);
+end;
+
+procedure TF_BaseConnection.SetConnectionClick(Sender: TObject);
+begin
+  if rbLocalConection.Checked then
+  begin
+    BasePath := localBasePath.Text;
+    ServerName := '';
+  end
+  else
+  begin
+    BasePath := remoteBasePath.Text;
+    ServerName := EditServerNAme.Text;
+  end;
+  ini.WriteString('ProgramSettings','BasePath',BasePath);
+  ini.WriteString('ProgramSettings','ServerName',ServerName);
+  Ini.WriteBool('ProgramSettings','ShowFormConnection',doNotAskAnyMore.Checked);
 end;
 
 end.

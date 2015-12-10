@@ -1,10 +1,10 @@
 object DM: TDM
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 426
-  Top = 172
-  Height = 449
-  Width = 761
+  Left = 290
+  Top = 134
+  Height = 567
+  Width = 1038
   object SourceStocks: TDataSource
     DataSet = tableStoks
     Left = 96
@@ -77,8 +77,8 @@ object DM: TDM
     SortID = 0
     SubLanguageID = 1
     LocaleID = 1024
-    Left = 176
-    Top = 368
+    Left = 24
+    Top = 408
     object mtAddProductsproductName: TStringField
       FieldName = 'productName'
       Size = 1000
@@ -118,7 +118,7 @@ object DM: TDM
     SQLDialect = 3
     Timeout = 0
     DesignDBOptions = []
-    LibraryName = 'D:\PROJECTS\'#1057#1082#1083#1072#1076#1089#1082#1086#1081' '#1091#1095#1077#1090'\fbembed.dll'
+    LibraryName = 'D:\PROJECTS\'#1057#1082#1083#1072#1076#1089#1082#1086#1081' '#1091#1095#1077#1090'\GDS32.dll'
     WaitForRestoreConnect = 0
     Left = 24
     Top = 8
@@ -178,6 +178,7 @@ object DM: TDM
     AutoUpdateOptions.AutoReWriteSqls = True
     AutoUpdateOptions.GeneratorName = 'GEN_STOCK_ID'
     AutoUpdateOptions.WhenGetGenID = wgOnNewRecord
+    AfterScroll = tableStoksAfterScroll
     Transaction = TRStoks
     Database = mainBase
     UpdateTransaction = TrStoksUPD
@@ -217,11 +218,12 @@ object DM: TDM
       '    MEASURE = ?MEASURED,'
       '    KOLVO = ?KOLVO,'
       '    PRICE = ?PRICE,'
-      '    KOD = ?KOD'
+      '    KOD = ?KOD,'
+      '    TOTALPRICE = ?TOTALPRICE'
       'WHERE'
       '    ID = ?OLD_ID')
     DeleteSQL.Strings = (
-      'DELETE FROM PRODUCTS WHERE ID = ?ODL_ID')
+      'delete from Products where id = ?old_id')
     InsertSQL.Strings = (
       'INSERT INTO PRODUCTS('
       '    ID,'
@@ -231,7 +233,8 @@ object DM: TDM
       '    MEASURE,'
       '    KOLVO,'
       '    PRICE,'
-      '    KOD'
+      '    KOD,'
+      '    TOTALPRICE'
       ')'
       'VALUES('
       '    ?ID,'
@@ -241,7 +244,8 @@ object DM: TDM
       '    ?MEASURE,'
       '    ?KOLVO,'
       '    ?PRICE,'
-      '    ?KOD '
+      '    ?KOD,'
+      '    ?TOTALPRICE '
       ')')
     RefreshSQL.Strings = (
       'SELECT'
@@ -252,7 +256,8 @@ object DM: TDM
       '    MEASURE,'
       '    KOLVO,'
       '    PRICE,'
-      '    KOD'
+      '    KOD,'
+      '    TOTALPRICE'
       'FROM'
       '    PRODUCTS '
       'WHERE'
@@ -266,7 +271,8 @@ object DM: TDM
       '    MEASURE,'
       '    KOLVO,'
       '    PRICE,'
-      '    KOD'
+      '    KOD,'
+      '    TOTALPRICE'
       'FROM'
       '    PRODUCTS ')
     AutoUpdateOptions.UpdateTableName = 'PRODUCTS'
@@ -305,6 +311,9 @@ object DM: TDM
     end
     object tableProductsKOD: TFIBIntegerField
       FieldName = 'KOD'
+    end
+    object tableProductsTOTALPRICE: TFIBFloatField
+      FieldName = 'TOTALPRICE'
     end
   end
   object tableClients: TpFIBDataSet
@@ -670,8 +679,8 @@ object DM: TDM
   end
   object SourceAddProducts: TDataSource
     DataSet = mtAddProducts
-    Left = 248
-    Top = 368
+    Left = 112
+    Top = 408
   end
   object TrmainBase: TpFIBTransaction
     DefaultDatabase = mainBase
@@ -701,7 +710,8 @@ object DM: TDM
       '    KOD = ?KOD,'
       '    EMPLOEE_ID = ?EMPLOEE_ID,'
       '    PRICE = ?PRICE,'
-      '    NUMBER = ?NUMBER'
+      '    NUMBER = ?NUMBER,'
+      '    TOTALPRICE = ?TOTALPRICE'
       'WHERE'
       '    ID = ?OLD_ID')
     DeleteSQL.Strings = (
@@ -718,7 +728,8 @@ object DM: TDM
       '    KOD,'
       '    EMPLOEE_ID,'
       '    PRICE,'
-      '    NUMBER'
+      '    NUMBER,'
+      '    TOTALPRICE'
       ')'
       'VALUES('
       '    ?ID,'
@@ -731,7 +742,8 @@ object DM: TDM
       '    ?KOD,'
       '    ?EMPLOEE_ID,'
       '    ?PRICE,'
-      '    ?NUMBER'
+      '    ?NUMBER,'
+      '    ?TOTALPRICE'
       ')')
     RefreshSQL.Strings = (
       'SELECT'
@@ -745,7 +757,8 @@ object DM: TDM
       '    KOD,'
       '    EMPLOEE_ID,'
       '    PRICE,'
-      '    NUMBER'
+      '    NUMBER,'
+      '    TOTALPRICE'
       'FROM'
       '    DELIVERYIN '
       'WHERE '
@@ -762,7 +775,8 @@ object DM: TDM
       '    KOD,'
       '    EMPLOEE_ID,'
       '    PRICE,'
-      '    NUMBER'
+      '    NUMBER,'
+      '    TOTALPRICE'
       'FROM'
       '    DELIVERYIN ')
     AutoUpdateOptions.UpdateTableName = 'DELIVERYIN'
@@ -810,6 +824,9 @@ object DM: TDM
     end
     object tableInvoiceInNUMBER: TFIBIntegerField
       FieldName = 'NUMBER'
+    end
+    object tableInvoiceInTOTALPRICE: TFIBFloatField
+      FieldName = 'TOTALPRICE'
     end
   end
   object tableInvoiceOut: TpFIBDataSet
@@ -893,5 +910,91 @@ object DM: TDM
     DataSet = tableInvoiceOut
     Left = 96
     Top = 296
+  end
+  object TrEmploee: TpFIBTransaction
+    DefaultDatabase = mainBase
+    TimeoutAction = TARollback
+    Left = 168
+    Top = 344
+  end
+  object TrEmploeeUpd: TpFIBTransaction
+    DefaultDatabase = mainBase
+    TimeoutAction = TARollback
+    Left = 240
+    Top = 344
+  end
+  object SourceEmploee: TDataSource
+    Left = 96
+    Top = 344
+  end
+  object tableEmploee: TpFIBDataSet
+    UpdateSQL.Strings = (
+      'UPDATE EMPLOYEE SET'
+      '    NAME = ?NAME,'
+      '    TELEPHONE = ?TELEPHONE,'
+      '    POSHTA = ?POSHTA'
+      'WHERE'
+      '    ID = ?OLD_ID')
+    DeleteSQL.Strings = (
+      'DELETE FROM EMPLOYEE WHERE ID = ?OLD_ID')
+    InsertSQL.Strings = (
+      'INSERT INTO EMPLOYEE('
+      '    ID,'
+      '    NAME,'
+      '    TELEPHONE,'
+      '    POSHTA'
+      ')'
+      'VALUES('
+      '    ?ID,'
+      '    ?NAME,'
+      '    ?TELEPHONE,'
+      '    ?POSHTA'
+      ')')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '    ID,'
+      '    NAME,'
+      '    TELEPHONE,'
+      '    POSHTA'
+      'FROM'
+      '    EMPLOYEE '
+      'WHERE'
+      '    ID = ?OLD_ID')
+    SelectSQL.Strings = (
+      'SELECT'
+      '    ID,'
+      '    NAME,'
+      '    TELEPHONE,'
+      '    POSHTA'
+      'FROM'
+      '    EMPLOYEE ')
+    AutoUpdateOptions.UpdateTableName = 'EMPLOYEE'
+    AutoUpdateOptions.KeyFields = 'ID'
+    AutoUpdateOptions.AutoReWriteSqls = True
+    AutoUpdateOptions.GeneratorName = 'GEN_EMPLOYEE_ID'
+    AutoUpdateOptions.WhenGetGenID = wgOnNewRecord
+    Transaction = TrEmploee
+    Database = mainBase
+    UpdateTransaction = TrEmploeeUpd
+    AutoCommit = True
+    Left = 24
+    Top = 344
+    object tableEmploeeID: TFIBIntegerField
+      FieldName = 'ID'
+    end
+    object tableEmploeeNAME: TFIBStringField
+      FieldName = 'NAME'
+      Size = 100
+      EmptyStrToNull = True
+    end
+    object tableEmploeeTELEPHONE: TFIBStringField
+      FieldName = 'TELEPHONE'
+      EmptyStrToNull = True
+    end
+    object tableEmploeePOSHTA: TFIBStringField
+      FieldName = 'POSHTA'
+      Size = 50
+      EmptyStrToNull = True
+    end
   end
 end

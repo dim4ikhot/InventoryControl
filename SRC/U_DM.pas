@@ -99,22 +99,34 @@ type
     tableInvoiceOutCUSTOMER_ID: TFIBIntegerField;
     tableStoksNDS: TFIBFloatField;
     tableStoksSTARTED: TFIBSmallIntField;
+    tableProductsTOTALPRICE: TFIBFloatField;
+    tableInvoiceInTOTALPRICE: TFIBFloatField;
+    TrEmploee: TpFIBTransaction;
+    TrEmploeeUpd: TpFIBTransaction;
+    SourceEmploee: TDataSource;
+    tableEmploee: TpFIBDataSet;
+    tableEmploeeID: TFIBIntegerField;
+    tableEmploeeNAME: TFIBStringField;
+    tableEmploeeTELEPHONE: TFIBStringField;
+    tableEmploeePOSHTA: TFIBStringField;
     procedure DataModuleCreate(Sender: TObject);
+    procedure tableStoksAfterScroll(DataSet: TDataSet);
   private
     { Private declarations }
   public
     function CreateFIBQuery: TpFIBQuery;
     procedure DestroyFIBQuery(var AQuery: TpFIBQuery);
     function CheckForBasePath:Boolean;
+    function ConnectToBase(basePath: String): Boolean;
     { Public declarations }
   end;
 
 var
   DM: TDM;
-
+  BasePath, ServerName:string;
 implementation
 
-uses U_BaseConnection;
+uses U_BaseConnection,U_MessageCP,U_Common,U_Main;
 
 {$R *.dfm}
 function TDM.CreateFIBQuery: TpFIBQuery;                                  // Создаем временный Query.
@@ -136,14 +148,10 @@ begin
   FreeAndNil(AQuery);
 end;
 
-
-
-
 function TDM.CheckForBasePath: Boolean;
 var
    ini: TIniFile;
    showformConn: Boolean;
-   BasePath, ServerName:string;
 begin
   ini := TIniFile.Create(ExtractFilePath(Application.ExeName) + '\settings.ini');
   showformConn := Ini.ReadBool('ProgramSettings','ShowFormConnection',True);
@@ -165,7 +173,73 @@ begin
     finally
       FreeAndNil(F_BaseConnection);
     end;
+  end
+  else
+  begin
+    //Base connect
+    MainBase.LibraryName := ExtractFilePath(Application.ExeName) + 'Gds32.dll';
+    ConnectToBase(ServerName +':'+BasePath);
   end;
+end;
+
+function TDM.ConnectToBase(basePath: String): Boolean;
+var
+  Server, Local: String;
+begin
+  MainBase.Connected := False;
+  Result := MainBase.Connected;
+  ExtractServerName(basePath, Server, Local);                                  // Делим строку на имя серва и путь к базе.
+  if trim(Server) <> '' then                                                   // Если удаленно тогда дописывать ":"
+    Server := Server + ':';
+  MainBase.DBName := Server + Local;                                           // Указываем имя к базе.
+  try
+    MainBase.Connected := True;
+    TrmainBase.Active := True;
+
+    //Table Stock
+    tableStoks.Active := True;
+    TRStoks.Active := True;
+    TrStoksUPD.Active := True;
+
+    //table Products
+    tableProducts.Active := True;
+    TrProducts.Active := True;
+    TrProductsUpd.Active := True;
+
+    //table Cliesnts
+    tableClients.Active := true;
+    TrClients.Active := true;
+    TrClientsUpd.Active := True;
+
+    //table Providers
+    tableProviders.Active := True;
+    TrProviders.Active := True;
+    TrProvidersUpd.Active:= True;
+
+    //table invoice in
+    tableInvoiceIn.Active := True;
+    trInvoiceIn.Active := True;
+    trInvoiceInWS.Active := True;
+
+    //table invoice out
+    tableInvoiceOut.Active := True;
+    trInvoiceOut.Active := True;
+    trInvoiceOutWS.Active := True;
+
+    //table emploee
+    tableEmploee.Active := True;
+    TrEmploee.Active := True;
+    TrEmploeeUpd.Active := True;
+    
+  except
+    ShowMessagerCP('','',mtError,[mbYes,mbNo]);
+  end;
+end;
+
+procedure TDM.tableStoksAfterScroll(DataSet: TDataSet);
+begin
+  if Assigned(F_main) then
+    F_main.BtnStartStock.Visible := DataSet.FieldByName('STARTED').AsInteger = 0;
 end;
 
 end.

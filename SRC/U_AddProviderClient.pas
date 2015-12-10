@@ -18,7 +18,12 @@ type
     RzBitBtn1: TRzBitBtn;
     RzBitBtn2: TRzBitBtn;
     LangClientProv: TsiLangLinked;
+    RzLabel4: TRzLabel;
+    ProviderClientEDRPOU: TRzEdit;
+    ProviderClientBank: TRzEdit;
+    RzLabel5: TRzLabel;
     procedure RzBitBtn1Click(Sender: TObject);
+    procedure ProviderClientEDRPOUKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -42,6 +47,8 @@ begin
     DM.tableProvidersNAME.AsString := ProviderClientName.Text;
     DM.tableProvidersADDR1.AsString := ProviderClientAdress.Text;
     DM.tableProvidersPHONE.AsString := ProviderClientPhone.Text;
+    DM.tableProvidersEDRPOU.AsString := ProviderClientEDRPOU.Text;
+    DM.tableProvidersACCBANK.AsString := ProviderClientBank.Text;
     DM.tableProviders.Post;
   end
   else
@@ -50,8 +57,16 @@ begin
     DM.tableClients.Edit;
     DM.tableClientsNAME.AsString := ProviderClientName.Text;
     DM.tableClientsPHONE.AsString := ProviderClientPhone.Text;
+    DM.tableClientsACCBANK.AsString := ProviderClientBank.Text;
     DM.tableClients.Post;
   end;
+end;
+
+procedure TF_AddClientProvider.ProviderClientEDRPOUKeyPress(
+  Sender: TObject; var Key: Char);
+begin
+  if (not (key in ['0'..'9',#8]))or(Length(ProviderClientEDRPOU.Text)>7) then
+    Key := #0;
 end;
 
 end.
