@@ -33,6 +33,8 @@ type
     LangNewProduct: TsiLangLinked;
     RzLabel9: TRzLabel;
     invoiceNumber: TRzEdit;
+    RzLabel10: TRzLabel;
+    CBAllEmploees: TRzComboBox;
     procedure AddToMemTableClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ProductCountChange(Sender: TObject);
@@ -44,6 +46,10 @@ type
     procedure GridNewProductsDrawColumnCell(Sender: TObject;
       const Rect: TRect; DataCol: Integer; Column: TColumnEh;
       State: TGridDrawState);
+    procedure CBAllProvidersChange(Sender: TObject);
+    procedure CBAllEmploeesChange(Sender: TObject);
+    procedure invoiceNumberKeyPress(Sender: TObject; var Key: Char);
+    procedure ProductCodeKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -57,7 +63,7 @@ var
 
 implementation
 
-uses U_Main, U_MessageCP;
+uses U_Main, U_MessageCP, U_Emploee;
 
 {$R *.dfm}
 
@@ -75,27 +81,47 @@ begin
         and (ProductMeasured.Text <> '')and(ProductCode.Text <> '')and
         (ProductCount.Value <> 0)and(ProductPrice.Value <> 0) then
     begin
-      DM.tableProducts.Insert;
-      DM.tableProducts.Edit;
-      DM.tableProductsSTOCK_ID.AsInteger := StrToIntDef(CBAllStocks.Values[CBAllStocks.ItemIndex],0);
-      DM.tableProductsMEASURE.AsString := ProductMeasured.Text;
-      DM.tableProductsKOLVO.AsFloat := ProductCount.Value;
-      DM.tableProductsPRICE.AsFloat := ProductPrice.Value;
-      DM.tableProductsKOD.AsInteger := StrToIntDef(ProductCode.Text,0);
-      DM.tableProductsTOTALPRICE.AsFloat := StrToIntDef(ProductTotalPrice.Text,0);
-      DM.tableProducts.Post;
+      try
+        DM.tableProducts.Insert;
+        DM.tableProducts.Edit;
+        DM.tableProductsSTOCK_ID.AsInteger := StrToIntDef(CBAllStocks.Values[CBAllStocks.ItemIndex-1],0);
+        DM.tableProductsMEASURE.AsString := ProductMeasured.Text;
+        DM.tableProductsKOLVO.AsInteger := ProductCount.IntValue;
+        DM.tableProductsPRICE.AsFloat := ProductPrice.Value;
+        DM.tableProductsNAME.AsString := ProductName.Text;
+        DM.tableProductsKOD.AsString := ProductCode.Text;
+        DM.tableProductsTOTALPRICE.AsFloat := StrToIntDef(ProductTotalPrice.Text,0);
+        DM.tableProductsREST_COUNT.AsInteger := ProductCount.IntValue;
+        DM.tableProducts.Post;
 
-      DM.tableInvoiceIn.Insert;
-      DM.tableInvoiceIn.Edit;
-      DM.tableInvoiceInMEASURE.AsString := ProductMeasured.Text;
-      DM.tableInvoiceInKOLVO.AsFloat := ProductCount.Value;
-      DM.tableInvoiceInPRICE.AsFloat := ProductPrice.Value;
-      DM.tableInvoiceInKOD.AsInteger := StrToIntDef(ProductCode.Text,0);
-      DM.tableInvoiceInTOTALPRICE.AsFloat := StrToIntDef(ProductTotalPrice.Text,0);
-      DM.tableInvoiceInDATEIN.AsDateTime := Now;
-      DM.tableInvoiceInEMPLOEE_ID.AsInteger := 0;
-      DM.tableInvoiceInPROVIDER_ID.AsInteger := StrToIntDef(CBAllProviders.Values[CBAllProviders.itemIndex],0);
-      DM.tableInvoiceIn.Post;
+        DM.tableInvoiceIn.Insert;
+        DM.tableInvoiceIn.Edit;
+        DM.tableInvoiceInMEASURE.AsString := ProductMeasured.Text;
+        DM.tableInvoiceInKOLVO.AsFloat := ProductCount.Value;
+        DM.tableInvoiceInPRICE.AsFloat := ProductPrice.Value;
+        DM.tableInvoiceInKOD.AsString := ProductCode.Text;
+        DM.tableInvoiceInTOTALPRICE.AsFloat := StrToIntDef(ProductTotalPrice.Text,0);
+        DM.tableInvoiceInNAME.AsString := ProductName.Text;
+        DM.tableInvoiceInDATEIN.AsDateTime := Now;
+        DM.tableInvoiceInEMPLOEE_ID.AsInteger := StrToIntDef(CBAllEmploees.Values[CBAllEmploees.itemIndex-1],0);
+        DM.tableInvoiceInPROVIDER_ID.AsInteger := StrToIntDef(CBAllProviders.Values[CBAllProviders.itemIndex-1],0);
+        DM.tableInvoiceInNUMBER.AsInteger := StrToIntDef(invoiceNumber.Text,0);
+        DM.tableInvoiceIn.Post;
+
+
+        ProductName.Text := '';
+        ProductCode.Text := '';
+        ProductMeasured.Text := '';
+        ProductCount.IntValue := 0;
+        ProductPrice.Value := 0;
+        ProductTotalPrice.Text := '';
+        invoiceNumber.Text := '';
+        CBAllProviders.ItemIndex := -1;
+        CBAllEmploees.ItemIndex := -1;
+        CBAllStocks.ItemIndex := -1;
+      except
+        ShowMessagerCP(LangNewProduct.GetText('EmptyFieldCapt'),LangNewProduct.GetText('EmptyField'),mtError,[mbOK]);
+      end
     end
     else
     begin
@@ -157,6 +183,14 @@ begin
     ProvidersList.Add(dm.tableProvidersID.AsString);
     dm.tableProviders.Next;
   end;
+
+  dm.tableEmploee.First;
+  while not dm.tableEmploee.Eof do
+  begin
+    CBAllEmploees.AddItemValue(dm.tableEmploeeNAME.AsString, dm.tableEmploeeID.AsString);
+    dm.tableEmploee.Next;
+  end;
+
 end;
 
 procedure TF_NewProduct.ProductCountChange(Sender: TObject);
@@ -189,6 +223,43 @@ begin
     if Column.Index = 0 then                                                   // Ха- ха - ха БЛА!!!
       TDBGridEh(Sender).Canvas.TextOut(Rect.Left + 5, Rect.Top,
           IntToStr(TDBGridEh(Sender).DataSource.DataSet.RecNo));               // Вместо ID пишем порядковый номер в гриде.
+end;
+
+procedure TF_NewProduct.CBAllProvidersChange(Sender: TObject);
+begin
+  if (Pos('Добавить...',CBAllProviders.Text)<> 0)or(Pos('Додати...',CBAllProviders.Text) <> 0) then
+  begin
+    addProvider;
+    CBAllProviders.AddItemValue(dm.tableProvidersNAME.AsString, dm.tableProvidersID.AsString);
+  end;
+end;
+
+procedure TF_NewProduct.CBAllEmploeesChange(Sender: TObject);
+begin
+  if (Pos('Добавить...',CBAllEmploees.Text)<> 0)or(Pos('Додати...',CBAllEmploees.Text)<>0) then
+  begin
+    try
+      Application.CreateForm(TF_Emploee, F_Emploee);
+      F_Emploee.ShowModal;
+    finally
+      FreeAndNil(F_Emploee);
+      CBAllEmploees.AddItemValue(dm.tableEmploeeNAME.AsString, dm.tableEmploeeID.AsString);
+    end;
+  end;
+end;
+
+procedure TF_NewProduct.invoiceNumberKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  if (not (key in ['0'..'9',#8]))then
+    Key := #0;
+end;
+
+procedure TF_NewProduct.ProductCodeKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  if (not (key in ['0'..'9',#8]))then
+    Key := #0;
 end;
 
 end.

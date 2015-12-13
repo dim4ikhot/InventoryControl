@@ -1,7 +1,8 @@
 program MegaStock;
 
 uses
-  Forms, SysUtils,
+  Forms,
+  SysUtils,
   U_Main in 'U_Main.pas' {F_Main},
   U_NewStock in 'U_NewStock.pas' {addNewStock},
   U_NewProduct in 'U_NewProduct.pas' {F_NewProduct},
@@ -16,7 +17,9 @@ uses
   U_FR in 'U_FR.pas' {F_FR},
   XLSFile in 'XLSFile.pas',
   U_MessageCP in 'U_MessageCP.pas' {F_MessageCP},
-  U_Splash in 'U_Splash.pas' {F_Splash};
+  U_Splash in 'U_Splash.pas' {F_Splash},
+  U_Emploee in 'U_Emploee.pas' {F_Emploee},
+  U_SettingsInvoice in 'U_SettingsInvoice.pas' {F_PrepareInvoice};
 
 {$R *.res}
 var i: Integer = 0;

@@ -9,7 +9,7 @@ uses
   DynVarsEh, Menus, GridsEh, DBAxisGridsEh, DBGridEh, StdCtrls, RzCmboBx,
   RzLabel, U_AddProviderClient, U_ProductInfo, U_DM, U_BaseConnection,
   RzPrgres, U_about, Mask, RzEdit, U_FR, siComp, siLngLnk, U_MessageCP,
-  U_Common;
+  U_Common, U_Emploee, RzRadGrp;
 
 type
   TF_Main = class(TForm)
@@ -25,31 +25,24 @@ type
     TabClientsProviders: TRzTabSheet;
     RzSplitter3: TRzSplitter;
     RzToolbar1: TRzToolbar;
-    RzToolbar2: TRzToolbar;
     GridProviders: TDBGridEh;
-    GridClients: TDBGridEh;
     RzSpacer1: TRzSpacer;
     RzSpacer2: TRzSpacer;
-    RzSpacer3: TRzSpacer;
-    RzSpacer4: TRzSpacer;
     Option: TMenuItem;
     BaseConnection: TMenuItem;
     AddNewProvider: TRzBitBtn;
     deleteProvider: TRzBitBtn;
-    addClient: TRzBitBtn;
-    deleteClient: TRzBitBtn;
     ProgressAllOperations: TRzProgressBar;
     RzLabel2: TRzLabel;
     RzSizePanel1: TRzSizePanel;
     RzLabel3: TRzLabel;
-    RzLabel4: TRzLabel;
     addProduct: TRzBitBtn;
     CheckingAccaunt: TRzBitBtn;
     delProduct: TRzBitBtn;
     InvoiceOut: TRzBitBtn;
     InvoiceBtn: TRzBitBtn;
     MovoeToOtherStock: TRzBitBtn;
-    RzEdit1: TRzEdit;
+    NameFilter: TRzEdit;
     stockFilter: TRzComboBox;
     GridProducts: TDBGridEh;
     GBReports: TRzGroupBox;
@@ -62,9 +55,24 @@ type
     RussianLang: TMenuItem;
     UkraianianLang: TMenuItem;
     RzPanel1: TRzPanel;
-    RzPanel2: TRzPanel;
     BtnStartStock: TRzBitBtn;
     RzPanel3: TRzPanel;
+    ListEmploeeCustomers: TRzSplitter;
+    RzPanel2: TRzPanel;
+    GridClients: TDBGridEh;
+    RzPanel4: TRzPanel;
+    GridEmploee: TDBGridEh;
+    RzToolbar2: TRzToolbar;
+    RzSpacer3: TRzSpacer;
+    RzSpacer4: TRzSpacer;
+    addClient: TRzBitBtn;
+    deleteClient: TRzBitBtn;
+    RzToolbar3: TRzToolbar;
+    AddEmpoee: TRzBitBtn;
+    RemoveEmploee: TRzBitBtn;
+    RzSpacer5: TRzSpacer;
+    RzSpacer6: TRzSpacer;
+    FindingBy: TRzRadioGroup;
     procedure addStockClick(Sender: TObject);
     procedure removeStockClick(Sender: TObject);
     procedure delProductClick(Sender: TObject);
@@ -97,6 +105,10 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure BtnStartStockClick(Sender: TObject);
+    procedure AddEmpoeeClick(Sender: TObject);
+    procedure PCMainTabsChange(Sender: TObject);
+    procedure stockFilterChange(Sender: TObject);
+    procedure NameFilterChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -116,7 +128,7 @@ var
 
 implementation
 
-uses U_MovePositions;
+uses U_MovePositions, U_SettingsInvoice;
 
 {$R *.dfm}
 
@@ -154,6 +166,7 @@ begin
   if ShowMessagerCP( F_Main.LangMain.gettext('Deleting'), F_Main.LangMain.gettext('DeletingProduct'),mtConfirmation,[mbYes, mbNo]) = 6 then
   begin
     DM.tableProducts.Delete;
+    DM.tableProducts.Transaction.CommitRetaining;
   end;
 end;
 
@@ -370,15 +383,10 @@ end;
 procedure TF_Main.InvoiceBtnClick(Sender: TObject);
 begin
   try
-    try
-      Vedomost := TVedomost.Create;
-      Vedomost.ShowReport;
-     { Application.CreateForm(TF_FR, F_FR);
-      F_FR.ShowModal; }
-    finally
-      FreeAndNil(Vedomost);
-    end;
-  except
+    Application.CreateForm(TF_PrepareInvoice, F_PrepareInvoice);
+    F_PrepareInvoice.showModal;
+  finally
+    FreeAndNil(F_PrepareInvoice);
   end;
 end;
 
@@ -418,6 +426,8 @@ begin
   while not dm.tableStoks.Eof do
   begin
     stockFilter.AddItemValue(dm.tableStoksNAME.AsString, dm.tableStoksID.AsString);
+    GridProducts.Columns[7].KeyList.Add(dm.tableStoksID.AsString);
+    GridProducts.Columns[7].PickList.Add(dm.tableStoksNAME.AsString);
     dm.tableStoks.Next;
   end;
 end;
@@ -433,7 +443,50 @@ begin
   begin
     DM.tableStoksSTARTED.AsInteger := 1;
     BtnStartStock.Visible := False;
+    removeStock.Visible := false;
   end;
+end;
+
+procedure TF_Main.AddEmpoeeClick(Sender: TObject);
+begin
+  try
+    Application.CreateForm(TF_Emploee, F_Emploee);
+    F_Emploee.ShowModal;
+  finally
+    FreeAndNil(F_Emploee);
+  end;
+end;
+
+procedure TF_Main.PCMainTabsChange(Sender: TObject);
+begin
+  DM.tableClients.First;
+  DM.tableEmploee.First;
+  DM.tableProviders.First;
+end;
+
+procedure TF_Main.stockFilterChange(Sender: TObject);
+begin
+  if stockFilter.itemIndex > 0 then
+  begin
+    DM.tableProducts.Filtered := True;
+    DM.tableProducts.Filter := 'STOCK_ID = '+''''+ stockFilter.Values[stockFilter.itemIndex-1]+'''';
+  end
+  else
+    DM.tableProducts.Filtered := False;
+end;
+
+procedure TF_Main.NameFilterChange(Sender: TObject);
+begin
+  if NameFilter.Text <> '' then
+  begin
+    DM.tableProducts.Filtered := True;
+    if FindingBy.ItemIndex = 0 then
+      DM.tableProducts.Filter := 'NAME LIKE '+''''+ NameFilter.Text+'%'''
+    else
+      DM.tableProducts.Filter := 'KOD LIKE '+''''+ NameFilter.Text+'%'''
+  end
+  else
+    DM.tableProducts.Filtered := False;
 end;
 
 end.

@@ -42,13 +42,11 @@ type
     tableStoksADDR1: TFIBStringField;
     tableStoksID: TFIBIntegerField;
     tableProductsID: TFIBIntegerField;
-    tableProductsNAME_ID: TFIBIntegerField;
     tableProductsSTOCK_ID: TFIBIntegerField;
     tableProductsARTICUL: TFIBIntegerField;
     tableProductsMEASURE: TFIBStringField;
     tableProductsKOLVO: TFIBIntegerField;
     tableProductsPRICE: TFIBFloatField;
-    tableProductsKOD: TFIBIntegerField;
     tableClientsID: TFIBIntegerField;
     tableClientsNAME: TFIBStringField;
     tableClientsADDR1: TFIBStringField;
@@ -87,11 +85,9 @@ type
     tableInvoiceInID: TFIBIntegerField;
     tableInvoiceInDATEIN: TFIBDateField;
     tableInvoiceInPROVIDER_ID: TFIBIntegerField;
-    tableInvoiceInNAME_ID: TFIBIntegerField;
     tableInvoiceInARTICUL: TFIBIntegerField;
     tableInvoiceInMEASURE: TFIBStringField;
     tableInvoiceInKOLVO: TFIBIntegerField;
-    tableInvoiceInKOD: TFIBIntegerField;
     tableInvoiceInEMPLOEE_ID: TFIBIntegerField;
     tableInvoiceInPRICE: TFIBFloatField;
     tableInvoiceInNUMBER: TFIBIntegerField;
@@ -109,6 +105,11 @@ type
     tableEmploeeNAME: TFIBStringField;
     tableEmploeeTELEPHONE: TFIBStringField;
     tableEmploeePOSHTA: TFIBStringField;
+    tableProductsNAME: TFIBStringField;
+    tableInvoiceInNAME: TFIBStringField;
+    tableProductsREST_COUNT: TFIBIntegerField;
+    tableProductsKOD: TFIBStringField;
+    tableInvoiceInKOD: TFIBStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure tableStoksAfterScroll(DataSet: TDataSet);
   private
@@ -159,7 +160,7 @@ begin
   ServerName := ini.ReadString('ProgramSettings','ServerName','');
   FreeAndNil(ini);
   Result := showformConn;
-  if (not Result )and (BasePath = '') then
+  if ((not Result )and (BasePath = ''))or(not FileExists(BasePath)) then
     Result := True;
 end;
 
@@ -230,7 +231,7 @@ begin
     tableEmploee.Active := True;
     TrEmploee.Active := True;
     TrEmploeeUpd.Active := True;
-    
+
   except
     ShowMessagerCP('','',mtError,[mbYes,mbNo]);
   end;
@@ -239,7 +240,10 @@ end;
 procedure TDM.tableStoksAfterScroll(DataSet: TDataSet);
 begin
   if Assigned(F_main) then
+  begin
     F_main.BtnStartStock.Visible := DataSet.FieldByName('STARTED').AsInteger = 0;
+    F_main.removeStock.Visible := DataSet.FieldByName('STARTED').AsInteger = 0;
+  end;
 end;
 
 end.

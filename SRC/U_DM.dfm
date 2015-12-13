@@ -212,14 +212,15 @@ object DM: TDM
   object tableProducts: TpFIBDataSet
     UpdateSQL.Strings = (
       'UPDATE PRODUCTS set'
-      '    NAME_ID = ?NAME_ID,'
+      '    NAME = ?NAME,'
       '    STOCK_ID = ?STOCK_ID,'
       '    ARTICUL = ?ARTICUL,'
       '    MEASURE = ?MEASURED,'
       '    KOLVO = ?KOLVO,'
       '    PRICE = ?PRICE,'
       '    KOD = ?KOD,'
-      '    TOTALPRICE = ?TOTALPRICE'
+      '    TOTALPRICE = ?TOTALPRICE,'
+      '    REST_COUNT = ?REST_COUNT'
       'WHERE'
       '    ID = ?OLD_ID')
     DeleteSQL.Strings = (
@@ -227,37 +228,40 @@ object DM: TDM
     InsertSQL.Strings = (
       'INSERT INTO PRODUCTS('
       '    ID,'
-      '    NAME_ID,'
+      '    NAME,'
       '    STOCK_ID,'
       '    ARTICUL,'
       '    MEASURE,'
       '    KOLVO,'
       '    PRICE,'
       '    KOD,'
-      '    TOTALPRICE'
+      '    TOTALPRICE,'
+      '    REST_COUNT'
       ')'
       'VALUES('
       '    ?ID,'
-      '    ?NAME_ID,'
+      '    ?NAME,'
       '    ?STOCK_ID,'
       '    ?ARTICUL,'
       '    ?MEASURE,'
       '    ?KOLVO,'
       '    ?PRICE,'
       '    ?KOD,'
-      '    ?TOTALPRICE '
+      '    ?TOTALPRICE,'
+      '    ?REST_COUNT '
       ')')
     RefreshSQL.Strings = (
       'SELECT'
       '    ID,'
-      '    NAME_ID,'
+      '    NAME,'
       '    STOCK_ID,'
       '    ARTICUL,'
       '    MEASURE,'
       '    KOLVO,'
       '    PRICE,'
       '    KOD,'
-      '    TOTALPRICE'
+      '    TOTALPRICE,'
+      '    REST_COUNT'
       'FROM'
       '    PRODUCTS '
       'WHERE'
@@ -265,16 +269,18 @@ object DM: TDM
     SelectSQL.Strings = (
       'SELECT'
       '    ID,'
-      '    NAME_ID,'
+      '    NAME,'
       '    STOCK_ID,'
       '    ARTICUL,'
       '    MEASURE,'
       '    KOLVO,'
       '    PRICE,'
       '    KOD,'
-      '    TOTALPRICE'
+      '    TOTALPRICE,'
+      '    REST_COUNT'
       'FROM'
       '    PRODUCTS ')
+    FilterOptions = [foCaseInsensitive]
     AutoUpdateOptions.UpdateTableName = 'PRODUCTS'
     AutoUpdateOptions.KeyFields = 'ID'
     AutoUpdateOptions.AutoReWriteSqls = True
@@ -284,13 +290,11 @@ object DM: TDM
     Database = mainBase
     UpdateTransaction = TrProductsUpd
     AutoCommit = True
+    Filtered = True
     Left = 24
     Top = 104
     object tableProductsID: TFIBIntegerField
       FieldName = 'ID'
-    end
-    object tableProductsNAME_ID: TFIBIntegerField
-      FieldName = 'NAME_ID'
     end
     object tableProductsSTOCK_ID: TFIBIntegerField
       FieldName = 'STOCK_ID'
@@ -309,11 +313,21 @@ object DM: TDM
     object tableProductsPRICE: TFIBFloatField
       FieldName = 'PRICE'
     end
-    object tableProductsKOD: TFIBIntegerField
-      FieldName = 'KOD'
-    end
     object tableProductsTOTALPRICE: TFIBFloatField
       FieldName = 'TOTALPRICE'
+    end
+    object tableProductsNAME: TFIBStringField
+      FieldName = 'NAME'
+      Size = 1000
+      EmptyStrToNull = True
+    end
+    object tableProductsREST_COUNT: TFIBIntegerField
+      FieldName = 'REST_COUNT'
+    end
+    object tableProductsKOD: TFIBStringField
+      FieldName = 'KOD'
+      Size = 50
+      EmptyStrToNull = True
     end
   end
   object tableClients: TpFIBDataSet
@@ -703,7 +717,7 @@ object DM: TDM
       'UPDATE DELIVERYIN SET    '
       '    DATEIN = ?DATEIN,'
       '    PROVIDER_ID = ?PROVIDER_ID,'
-      '    NAME_ID = ?NAME_ID,'
+      '    NAME = ?NAME,'
       '    ARTICUL = ?ARTICUL,'
       '    MEASURE = ?MEASURE,'
       '    KOLVO = ?KOLVO,'
@@ -721,7 +735,7 @@ object DM: TDM
       '    ID,'
       '    DATEIN,'
       '    PROVIDER_ID,'
-      '    NAME_ID,'
+      '    NAME,'
       '    ARTICUL,'
       '    MEASURE,'
       '    KOLVO,'
@@ -735,7 +749,7 @@ object DM: TDM
       '    ?ID,'
       '    ?DATEIN,'
       '    ?PROVIDER_ID,'
-      '    ?NAME_ID,'
+      '    ?NAME,'
       '    ?ARTICUL,'
       '    ?MEASURE,'
       '    ?KOLVO,'
@@ -750,7 +764,7 @@ object DM: TDM
       '    ID,'
       '    DATEIN,'
       '    PROVIDER_ID,'
-      '    NAME_ID,'
+      '    NAME,'
       '    ARTICUL,'
       '    MEASURE,'
       '    KOLVO,'
@@ -768,7 +782,7 @@ object DM: TDM
       '    ID,'
       '    DATEIN,'
       '    PROVIDER_ID,'
-      '    NAME_ID,'
+      '    NAME,'
       '    ARTICUL,'
       '    MEASURE,'
       '    KOLVO,'
@@ -799,9 +813,6 @@ object DM: TDM
     object tableInvoiceInPROVIDER_ID: TFIBIntegerField
       FieldName = 'PROVIDER_ID'
     end
-    object tableInvoiceInNAME_ID: TFIBIntegerField
-      FieldName = 'NAME_ID'
-    end
     object tableInvoiceInARTICUL: TFIBIntegerField
       FieldName = 'ARTICUL'
     end
@@ -812,9 +823,6 @@ object DM: TDM
     end
     object tableInvoiceInKOLVO: TFIBIntegerField
       FieldName = 'KOLVO'
-    end
-    object tableInvoiceInKOD: TFIBIntegerField
-      FieldName = 'KOD'
     end
     object tableInvoiceInEMPLOEE_ID: TFIBIntegerField
       FieldName = 'EMPLOEE_ID'
@@ -827,6 +835,16 @@ object DM: TDM
     end
     object tableInvoiceInTOTALPRICE: TFIBFloatField
       FieldName = 'TOTALPRICE'
+    end
+    object tableInvoiceInNAME: TFIBStringField
+      FieldName = 'NAME'
+      Size = 1000
+      EmptyStrToNull = True
+    end
+    object tableInvoiceInKOD: TFIBStringField
+      FieldName = 'KOD'
+      Size = 50
+      EmptyStrToNull = True
     end
   end
   object tableInvoiceOut: TpFIBDataSet
@@ -924,6 +942,7 @@ object DM: TDM
     Top = 344
   end
   object SourceEmploee: TDataSource
+    DataSet = tableEmploee
     Left = 96
     Top = 344
   end

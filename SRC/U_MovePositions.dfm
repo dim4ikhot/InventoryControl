@@ -13,6 +13,7 @@ object F_MovePosition: TF_MovePosition
   Font.Style = []
   OldCreateOrder = False
   Position = poOwnerFormCenter
+  OnCreate = FormCreate
   DesignSize = (
     680
     317)
@@ -24,6 +25,7 @@ object F_MovePosition: TF_MovePosition
     Width = 681
     Height = 249
     AutoFitColWidths = True
+    DataSource = SourceMovePositions
     DynProps = <>
     Flat = True
     IndicatorOptions = [gioShowRowIndicatorEh]
@@ -41,6 +43,7 @@ object F_MovePosition: TF_MovePosition
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'moveName'
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1053#1072#1084#1077#1085#1086#1074#1072#1085#1080#1077
@@ -49,6 +52,7 @@ object F_MovePosition: TF_MovePosition
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'moveCount'
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1050#1086#1083'-'#1074#1086
@@ -57,6 +61,7 @@ object F_MovePosition: TF_MovePosition
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'moveMeasured'
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1045#1076'. '#1080#1079#1084'.'
@@ -65,6 +70,7 @@ object F_MovePosition: TF_MovePosition
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'movePrice'
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1057#1090#1086#1080#1084#1086#1089#1090#1100
@@ -73,6 +79,7 @@ object F_MovePosition: TF_MovePosition
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'MoveStock'
         Footers = <>
         PickList.Strings = (
           'gfgf'
@@ -181,5 +188,69 @@ object F_MovePosition: TF_MovePosition
       6E735B355D2E5469746C652E43617074696F6E01D1EAEBE0E401D1EAEBE0E401
       0D0A737443686172536574730D0A54465F4D6F7665506F736974696F6E014445
       4641554C545F4348415253455401010D0A}
+  end
+  object mtMoveProducts: TkbmMemTable
+    DesignActivation = True
+    AttachedAutoRefresh = True
+    AttachMaxCount = 1
+    FieldDefs = <
+      item
+        Name = 'moveName'
+        DataType = ftString
+        Size = 500
+      end
+      item
+        Name = 'moveCount'
+        DataType = ftInteger
+      end
+      item
+        Name = 'moveMeasured'
+        DataType = ftString
+        Size = 100
+      end
+      item
+        Name = 'movePrice'
+        DataType = ftFloat
+      end
+      item
+        Name = 'moveStock'
+        DataType = ftInteger
+      end>
+    IndexDefs = <>
+    SortOptions = []
+    PersistentBackup = False
+    ProgressFlags = [mtpcLoad, mtpcSave, mtpcCopy]
+    LoadedCompletely = False
+    SavedCompletely = False
+    FilterOptions = []
+    Version = '5.00 beta'
+    LanguageID = 0
+    SortID = 0
+    SubLanguageID = 1
+    LocaleID = 1024
+    Left = 304
+    Top = 256
+    object mtMoveProductsmoveName: TStringField
+      FieldName = 'moveName'
+      Size = 500
+    end
+    object mtMoveProductsmoveCount: TIntegerField
+      FieldName = 'moveCount'
+    end
+    object mtMoveProductsmoveMeasured: TStringField
+      FieldName = 'moveMeasured'
+      Size = 100
+    end
+    object mtMoveProductsmovePrice: TFloatField
+      FieldName = 'movePrice'
+    end
+    object mtMoveProductsMoveStock: TIntegerField
+      FieldName = 'MoveStock'
+    end
+  end
+  object SourceMovePositions: TDataSource
+    DataSet = mtMoveProducts
+    Left = 408
+    Top = 256
   end
 end
