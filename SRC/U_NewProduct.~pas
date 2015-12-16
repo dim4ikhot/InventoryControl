@@ -75,53 +75,96 @@ begin
 end;
 
 procedure TF_NewProduct.AddToMemTableClick(Sender: TObject);
+var
+  providerIndex:Integer;
 begin
   try
     if (CBAllStocks.Text <> '')and(CBAllProviders.Text <> '')and(ProductName.Text <> '')
         and (ProductMeasured.Text <> '')and(ProductCode.Text <> '')and
         (ProductCount.Value <> 0)and(ProductPrice.Value <> 0) then
     begin
-      try
-        DM.tableProducts.Insert;
-        DM.tableProducts.Edit;
-        DM.tableProductsSTOCK_ID.AsInteger := StrToIntDef(CBAllStocks.Values[CBAllStocks.ItemIndex-1],0);
-        DM.tableProductsMEASURE.AsString := ProductMeasured.Text;
-        DM.tableProductsKOLVO.AsInteger := ProductCount.IntValue;
-        DM.tableProductsPRICE.AsFloat := ProductPrice.Value;
-        DM.tableProductsNAME.AsString := ProductName.Text;
-        DM.tableProductsKOD.AsInteger := StrToIntDef(ProductCode.Text,0);
-        DM.tableProductsTOTALPRICE.AsFloat := StrToIntDef(ProductTotalPrice.Text,0);
-        DM.tableProductsREST_COUNT.AsInteger := ProductCount.IntValue;
-        DM.tableProducts.Post;
+      if (not (DM.tableProducts.Locate('KOD',ProductCode.Text, [])))or
+      ((DM.tableProducts.Locate('KOD',ProductCode.Text, []))and
+         (DM.tableProductsPRICE.AsFloat <> ProductPrice.Value)) then
+      begin
+        try
+         //TODO: Move This code to afterPrint Invoice In
+          {
+          DM.tableProducts.Insert;
+          DM.tableProducts.Edit;
+          DM.tableProductsSTOCK_ID.AsInteger := StrToIntDef(CBAllStocks.Values[CBAllStocks.ItemIndex-1],0);
+          DM.tableProductsMEASURE.AsString := ProductMeasured.Text;
+          DM.tableProductsKOLVO.AsInteger := ProductCount.IntValue;
+          DM.tableProductsPRICE.AsFloat := ProductPrice.Value;
+          DM.tableProductsNAME.AsString := ProductName.Text;
+          DM.tableProductsKOD.AsString := ProductCode.Text;
+          DM.tableProductsTOTALPRICE.AsFloat := StrToFloatDef(ProductTotalPrice.Text,0);
+          DM.tableProductsREST_COUNT.AsInteger := ProductCount.IntValue;
+          DM.tableProducts.Post;
 
-        DM.tableInvoiceIn.Insert;
-        DM.tableInvoiceIn.Edit;
-        DM.tableInvoiceInMEASURE.AsString := ProductMeasured.Text;
-        DM.tableInvoiceInKOLVO.AsFloat := ProductCount.Value;
-        DM.tableInvoiceInPRICE.AsFloat := ProductPrice.Value;
-        DM.tableInvoiceInKOD.AsInteger := StrToIntDef(ProductCode.Text,0);
-        DM.tableInvoiceInTOTALPRICE.AsFloat := StrToIntDef(ProductTotalPrice.Text,0);
-        DM.tableInvoiceInNAME.AsString := ProductName.Text;
-        DM.tableInvoiceInDATEIN.AsDateTime := Now;
-        DM.tableInvoiceInEMPLOEE_ID.AsInteger := StrToIntDef(CBAllEmploees.Values[CBAllEmploees.itemIndex-1],0);
-        DM.tableInvoiceInPROVIDER_ID.AsInteger := StrToIntDef(CBAllProviders.Values[CBAllProviders.itemIndex-1],0);
-        DM.tableInvoiceInNUMBER.AsInteger := StrToIntDef(invoiceNumber.Text,0);
-        DM.tableInvoiceIn.Post;
+          DM.tableInvoiceIn.Insert;
+          DM.tableInvoiceIn.Edit;
+          DM.tableInvoiceInMEASURE.AsString := ProductMeasured.Text;
+          DM.tableInvoiceInKOLVO.AsFloat := ProductCount.Value;
+          DM.tableInvoiceInPRICE.AsFloat := ProductPrice.Value;
+          DM.tableInvoiceInKOD.AsString := ProductCode.Text;
+          DM.tableInvoiceInTOTALPRICE.AsFloat := StrToFloatDef(ProductTotalPrice.Text,0);
+          DM.tableInvoiceInNAME.AsString := ProductName.Text;
+          DM.tableInvoiceInDATEIN.AsDateTime := Now;
+          DM.tableInvoiceInEMPLOEE_ID.AsInteger := StrToIntDef(CBAllEmploees.Values[CBAllEmploees.itemIndex-1],0);
+          DM.tableInvoiceInPROVIDER_ID.AsInteger := StrToIntDef(CBAllProviders.Values[CBAllProviders.itemIndex-1],0);
+          DM.tableInvoiceInNUMBER.AsInteger := StrToIntDef(invoiceNumber.Text,0);
+          DM.tableInvoiceIn.Post;
+          }
+          if not DM.mtAddProducts.Active then
+            DM.mtAddProducts.Active := True;
 
+          DM.mtAddProducts.Append;
+          dm.mtAddProducts.Edit;
+          dm.mtAddProductsproductMeasured.AsString := ProductMeasured.Text;
+          dm.mtAddProductsproductCount.AsFloat := ProductCount.Value;
+          dm.mtAddProductsproductPrice.AsFloat := ProductPrice.Value;
+          dm.mtAddProductsproductCode.AsString := ProductCode.Text;
+          dm.mtAddProductsproductTotalPrice.AsFloat := StrToFloatDef(ProductTotalPrice.Text,0);
+          dm.mtAddProductsproductName.AsString := ProductName.Text;
+          dm.mtAddProductsproductEmploee.AsInteger := StrToIntDef(CBAllEmploees.Values[CBAllEmploees.itemIndex-1],0);
+          dm.mtAddProductsproductProvider.AsInteger := StrToIntDef(CBAllProviders.Values[CBAllProviders.itemIndex-1],0);
+          dm.mtAddProductsproductStock.AsInteger := StrToIntDef(CBAllStocks.Values[CBAllStocks.ItemIndex-1],0);
+          dm.mtAddProducts.Post;
 
-        ProductName.Text := '';
-        ProductCode.Text := '';
-        ProductMeasured.Text := '';
-        ProductCount.IntValue := 0;
-        ProductPrice.Value := 0;
-        ProductTotalPrice.Text := '';
-        invoiceNumber.Text := '';
-        CBAllProviders.ItemIndex := -1;
-        CBAllEmploees.ItemIndex := -1;
-        CBAllStocks.ItemIndex := -1;
-      except
-        ShowMessagerCP(LangNewProduct.GetText('EmptyFieldCapt'),LangNewProduct.GetText('EmptyField'),mtError,[mbOK]);
+          ProductName.Text := '';
+          ProductCode.Text := '';
+          ProductMeasured.Text := '';
+          ProductCount.IntValue := 0;
+          ProductPrice.Value := 0;
+          ProductTotalPrice.Text := '';
+          invoiceNumber.Text := '';
+          CBAllProviders.ItemIndex := -1;
+          CBAllEmploees.ItemIndex := -1;
+          CBAllStocks.ItemIndex := -1;
+        except
+          ShowMessagerCP(LangNewProduct.GetText('EmptyFieldCapt'),LangNewProduct.GetText('EmptyField'),mtError,[mbOK]);
+        end
       end
+      else
+      begin
+        if ShowMessagerCP(LangNewProduct.GetText('EmptyFieldCapt'),
+                              LangNewProduct.GetText('ProductExists'),mtWarning,[mbYes,mbNo]) = 6 then
+        begin
+          DM.tableProducts.Edit;
+          DM.tableProductsSTOCK_ID.AsInteger := StrToIntDef(CBAllStocks.Values[CBAllStocks.ItemIndex-1],0);
+          DM.tableProductsMEASURE.AsString := ProductMeasured.Text;
+          DM.tableProductsKOLVO.AsInteger := DM.tableProductsKOLVO.AsInteger + ProductCount.IntValue;
+          DM.tableProductsPRICE.AsFloat := ProductPrice.Value;
+          DM.tableProductsNAME.AsString := ProductName.Text;
+          DM.tableProductsKOD.AsString := ProductCode.Text;
+          DM.tableProductsTOTALPRICE.AsFloat := DM.tableProductsTOTALPRICE.AsFloat +
+                                                               StrToIntDef(ProductTotalPrice.Text,0);
+          DM.tableProductsREST_COUNT.AsInteger := DM.tableProductsREST_COUNT.AsInteger +
+                                                                   ProductCount.IntValue;
+          DM.tableProducts.Post;
+        end;
+      end;
     end
     else
     begin
@@ -164,9 +207,13 @@ begin
 end;
 
 procedure TF_NewProduct.FormCreate(Sender: TObject);
+var
+  RememberProvider: Integer;
+  providerItemIndex: Integer;
 begin
   stocksList := TStringList.Create;
   ProvidersList := TStringList.Create;
+  RememberProvider := DM.tableProvidersID.AsInteger;
 
   dm.tableStoks.First;
   while not dm.tableStoks.Eof do
@@ -180,9 +227,14 @@ begin
   while not dm.tableProviders.Eof do
   begin
     CBAllProviders.AddItemValue(dm.tableProvidersNAME.AsString, dm.tableProvidersID.AsString);
+    if dm.tableProvidersID.AsInteger = RememberProvider then
+      providerItemIndex := CBAllProviders.IndexOf(dm.tableProvidersNAME.AsString);
     ProvidersList.Add(dm.tableProvidersID.AsString);
     dm.tableProviders.Next;
   end;
+  CBAllProviders.ItemIndex := providerItemIndex;
+
+
 
   dm.tableEmploee.First;
   while not dm.tableEmploee.Eof do

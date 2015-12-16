@@ -22,6 +22,8 @@ type
     ProviderClientEDRPOU: TRzEdit;
     ProviderClientBank: TRzEdit;
     RzLabel5: TRzLabel;
+    RzLabel6: TRzLabel;
+    ProviderClientAccmun: TRzEdit;
     procedure RzBitBtn1Click(Sender: TObject);
     procedure ProviderClientEDRPOUKeyPress(Sender: TObject; var Key: Char);
   private
@@ -49,6 +51,7 @@ begin
     DM.tableProvidersPHONE.AsString := ProviderClientPhone.Text;
     DM.tableProvidersEDRPOU.AsString := ProviderClientEDRPOU.Text;
     DM.tableProvidersACCBANK.AsString := ProviderClientBank.Text;
+    DM.tableProvidersACCNUMBER.AsString := ProviderClientAccmun.Text;
     DM.tableProviders.Post;
   end
   else
@@ -65,7 +68,7 @@ end;
 procedure TF_AddClientProvider.ProviderClientEDRPOUKeyPress(
   Sender: TObject; var Key: Char);
 begin
-  if (not (key in ['0'..'9',#8]))or(Length(ProviderClientEDRPOU.Text)>7) then
+  if (not (key in ['0'..'9',#8]))or((Length(ProviderClientEDRPOU.Text)>7)and(Key <> #8) ) then
     Key := #0;
 end;
 

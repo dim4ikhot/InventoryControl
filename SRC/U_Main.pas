@@ -34,7 +34,7 @@ type
     deleteProvider: TRzBitBtn;
     ProgressAllOperations: TRzProgressBar;
     RzLabel2: TRzLabel;
-    RzSizePanel1: TRzSizePanel;
+    PanelSettingsProduct: TRzSizePanel;
     RzLabel3: TRzLabel;
     addProduct: TRzBitBtn;
     CheckingAccaunt: TRzBitBtn;
@@ -73,6 +73,15 @@ type
     RzSpacer5: TRzSpacer;
     RzSpacer6: TRzSpacer;
     FindingBy: TRzRadioGroup;
+    PopupMenuOperations: TPopupMenu;
+    PopupMenuStock: TPopupMenu;
+    MoveToStock: TMenuItem;
+    StartStock: TMenuItem;
+    addnewProducts: TMenuItem;
+    ReturnToProvider: TMenuItem;
+    PopupMenuClients: TPopupMenu;
+    invoiceOutClient: TMenuItem;
+    returnProductToStock: TMenuItem;
     procedure addStockClick(Sender: TObject);
     procedure removeStockClick(Sender: TObject);
     procedure delProductClick(Sender: TObject);
@@ -106,9 +115,12 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure BtnStartStockClick(Sender: TObject);
     procedure AddEmpoeeClick(Sender: TObject);
-    procedure PCMainTabsChange(Sender: TObject);
     procedure stockFilterChange(Sender: TObject);
     procedure NameFilterChange(Sender: TObject);
+    procedure PCMainTabsChanging(Sender: TObject; NewIndex: Integer;
+      var AllowChange: Boolean);
+    procedure addnewProductsClick(Sender: TObject);
+    procedure invoiceOutClientClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -128,7 +140,7 @@ var
 
 implementation
 
-uses U_MovePositions, U_SettingsInvoice;
+uses U_MovePositions, U_SettingsInvoice,U_InvoiceIn;
 
 {$R *.dfm}
 
@@ -253,10 +265,16 @@ begin
     Application.CreateForm(TF_AddClientProvider, F_AddClient);
     F_AddClient.ProviderClientAdress.Visible := False;
     F_AddClient.RzLabel2.Visible := False;
-    F_AddClient.RzLabel5.Top := F_AddClient.RzLabel3.Top;
-    F_AddClient.ProviderClientBank.Top := F_AddClient.ProviderClientPhone.Top;
-    F_AddClient.ProviderClientPhone.Top := F_AddClient.ProviderClientAdress.Top;
-    F_AddClient.RzLabel3.Top := F_AddClient.RzLabel2.Top;
+
+    F_AddClient.ProviderClientPhone.Top := F_AddClient.ProviderClientBank.Top;
+    F_AddClient.RzLabel3.Top := F_AddClient.RzLabel5.Top;
+
+    F_AddClient.RzLabel5.Top := F_AddClient.RzLabel2.Top;
+    F_AddClient.RzLabel6.Top := F_AddClient.RzLabel2.Top;
+
+    F_AddClient.ProviderClientBank.Top := F_AddClient.ProviderClientAdress.Top;
+    F_AddClient.ProviderClientAccmun.Top := F_AddClient.ProviderClientAdress.Top;
+    F_AddClient.ClientHeight := 190;
     F_AddClient.ShowModal;
   finally
     FreeAndNil(F_AddClient);
@@ -457,13 +475,6 @@ begin
   end;
 end;
 
-procedure TF_Main.PCMainTabsChange(Sender: TObject);
-begin
-  DM.tableClients.First;
-  DM.tableEmploee.First;
-  DM.tableProviders.First;
-end;
-
 procedure TF_Main.stockFilterChange(Sender: TObject);
 begin
   if stockFilter.itemIndex > 0 then
@@ -487,6 +498,44 @@ begin
   end
   else
     DM.tableProducts.Filtered := False;
+end;
+
+procedure TF_Main.PCMainTabsChanging(Sender: TObject; NewIndex: Integer;
+  var AllowChange: Boolean);
+begin
+  if NewIndex = 2 then
+  begin
+    DM.tableClients.First;
+    DM.tableEmploee.First;
+    DM.tableProviders.First;
+
+    ListEmploeeCustomers.Position := Screen.Width div 2;
+  end;
+end;
+
+procedure TF_Main.addnewProductsClick(Sender: TObject);
+begin
+  try
+    Application.CreateForm(TF_InvoiceIn, F_InvoiceIn);
+    F_InvoiceIn.ShowModal;
+  finally
+    FreeAndNil(F_InvoiceIn);
+  end;
+end;
+
+procedure TF_Main.invoiceOutClientClick(Sender: TObject);
+begin
+  try
+    Application.CreateForm(TF_InvoiceIn, F_InvoiceOut);
+    F_InvoiceOut.GridInvoiceIn.DataSource := DM.SourceInvoiceOutmt;
+    F_InvoiceOut.Caption := LangMain.GetText('InputOutFormCaption');
+    F_InvoiceOut.GridInvoiceIn.Columns[7].Visible := False;
+    F_InvoiceOut.GridInvoiceIn.Columns[8].FieldName := 'productCustomer';
+    F_InvoiceOut.GridInvoiceIn.Columns[8].Visible := True;
+    F_InvoiceOut.ShowModal;
+  finally
+    FreeAndNil(F_InvoiceOut);
+  end;
 end;
 
 end.

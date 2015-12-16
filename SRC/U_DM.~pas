@@ -47,7 +47,6 @@ type
     tableProductsMEASURE: TFIBStringField;
     tableProductsKOLVO: TFIBIntegerField;
     tableProductsPRICE: TFIBFloatField;
-    tableProductsKOD: TFIBIntegerField;
     tableClientsID: TFIBIntegerField;
     tableClientsNAME: TFIBStringField;
     tableClientsADDR1: TFIBStringField;
@@ -89,7 +88,6 @@ type
     tableInvoiceInARTICUL: TFIBIntegerField;
     tableInvoiceInMEASURE: TFIBStringField;
     tableInvoiceInKOLVO: TFIBIntegerField;
-    tableInvoiceInKOD: TFIBIntegerField;
     tableInvoiceInEMPLOEE_ID: TFIBIntegerField;
     tableInvoiceInPRICE: TFIBFloatField;
     tableInvoiceInNUMBER: TFIBIntegerField;
@@ -110,6 +108,20 @@ type
     tableProductsNAME: TFIBStringField;
     tableInvoiceInNAME: TFIBStringField;
     tableProductsREST_COUNT: TFIBIntegerField;
+    tableProductsKOD: TFIBStringField;
+    tableInvoiceInKOD: TFIBStringField;
+    mtAddProductsproductEmploee: TIntegerField;
+    mtInvoiceOut: TkbmMemTable;
+    StringField1: TStringField;
+    StringField2: TStringField;
+    FloatField1: TFloatField;
+    StringField3: TStringField;
+    FloatField2: TFloatField;
+    FloatField3: TFloatField;
+    IntegerField1: TIntegerField;
+    IntegerField3: TIntegerField;
+    SourceInvoiceOutmt: TDataSource;
+    mtInvoiceOutproductCustomer: TIntegerField;
     procedure DataModuleCreate(Sender: TObject);
     procedure tableStoksAfterScroll(DataSet: TDataSet);
   private

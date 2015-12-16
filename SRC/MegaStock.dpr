@@ -19,7 +19,9 @@ uses
   U_MessageCP in 'U_MessageCP.pas' {F_MessageCP},
   U_Splash in 'U_Splash.pas' {F_Splash},
   U_Emploee in 'U_Emploee.pas' {F_Emploee},
-  U_SettingsInvoice in 'U_SettingsInvoice.pas' {F_PrepareInvoice};
+  U_SettingsInvoice in 'U_SettingsInvoice.pas' {F_PrepareInvoice},
+  U_InvoiceIn in 'U_InvoiceIn.pas' {F_InvoiceIn},
+  U_ProductsOut in 'U_ProductsOut.pas' {F_ProductsOut};
 
 {$R *.res}
 var i: Integer = 0;

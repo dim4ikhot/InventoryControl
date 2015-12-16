@@ -22,8 +22,12 @@ type
     mtMoveProductsmoveMeasured: TStringField;
     mtMoveProductsmovePrice: TFloatField;
     mtMoveProductsMoveStock: TIntegerField;
+    mtMoveProductsmoveCode: TStringField;
     procedure ApplyMoveClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure GridMovePositionsDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumnEh;
+      State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -55,19 +59,29 @@ begin
   for i := 0 to F_Main.GridProducts.SelectedRows.Count - 1 do
   begin
     DM.tableProducts.Bookmark := F_Main.GridProducts.SelectedRows[i];
-    mtMoveProducts.Insert;
+    mtMoveProducts.Append;
     mtMoveProducts.Edit;
     mtMoveProductsmoveName.AsString := DM.tableProductsNAME.AsString;
     mtMoveProductsmoveCount.AsInteger := DM.tableProductsKOLVO.AsInteger;
     mtMoveProductsmoveMeasured.AsString := DM.tableProductsMEASURE.AsString;
     mtMoveProductsmovePrice.AsFloat := DM.tableProductsPRICE.AsFloat;
     mtMoveProductsMoveStock.AsInteger := DM.tableProductsSTOCK_ID.AsInteger;
+    mtMoveProductsmoveCode.AsString := DM.tableProductsKOD.AsString;
     mtMoveProducts.post;
     DM.tableStoks.Locate('ID', DM.tableProductsSTOCK_ID.AsInteger, []);
-    GridMovePositions.Columns[5].KeyList.Add(DM.tableStoksID.AsString);
-    GridMovePositions.Columns[5].PickList.Add(DM.tableStoksNAME.AsString);
-
+    GridMovePositions.Columns[6].KeyList.Add(DM.tableProductsSTOCK_ID.AsString);
+    GridMovePositions.Columns[6].PickList.Add(DM.tableStoksNAME.AsString);
   end;
+end;
+
+procedure TF_MovePosition.GridMovePositionsDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumnEh;
+  State: TGridDrawState);
+begin
+  if TDBGridEh(Sender).DataSource.DataSet.RecNo > 0 then
+    if Column.Index = 0 then                                                   // Ха- ха - ха БЛА!!!
+      TDBGridEh(Sender).Canvas.TextOut(Rect.Left + 5, Rect.Top,
+          IntToStr(TDBGridEh(Sender).DataSource.DataSet.RecNo));               // Вместо ID пишем порядковый номер в гриде.
 end;
 
 end.

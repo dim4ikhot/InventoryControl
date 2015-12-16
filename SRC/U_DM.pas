@@ -110,6 +110,18 @@ type
     tableProductsREST_COUNT: TFIBIntegerField;
     tableProductsKOD: TFIBStringField;
     tableInvoiceInKOD: TFIBStringField;
+    mtAddProductsproductEmploee: TIntegerField;
+    mtInvoiceOut: TkbmMemTable;
+    SourceInvoiceOutmt: TDataSource;
+    mtInvoiceOutproductCustomer: TIntegerField;
+    mtInvoiceOutproductName: TStringField;
+    mtInvoiceOutproductCode: TStringField;
+    mtInvoiceOutproductCount: TIntegerField;
+    mtInvoiceOutproductMeasured: TStringField;
+    mtInvoiceOutproductPrice: TFloatField;
+    mtInvoiceOutproductTotalPrice: TFloatField;
+    mtInvoiceOutproductStock: TIntegerField;
+    mtInvoiceOutproductEmploee: TIntegerField;
     procedure DataModuleCreate(Sender: TObject);
     procedure tableStoksAfterScroll(DataSet: TDataSet);
   private

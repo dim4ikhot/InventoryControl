@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, RzLabel, Mask, RzEdit, ExtCtrls, RzPanel, RzRadChk,
-  RzButton, U_FR;
+  RzButton, U_FR, U_DM, siComp, siLngLnk;
 
 type
   TF_PrepareInvoice = class(TForm)
@@ -19,6 +19,7 @@ type
     RzDateTimeEdit2: TRzDateTimeEdit;
     RzLabel1: TRzLabel;
     RzLabel2: TRzLabel;
+    LangReport: TsiLangLinked;
     procedure ByPeriodClick(Sender: TObject);
     procedure RzBitBtn1Click(Sender: TObject);
   private
@@ -31,6 +32,8 @@ var
   F_PrepareInvoice: TF_PrepareInvoice;
 
 implementation
+
+uses U_Main;
 
 {$R *.dfm}
 

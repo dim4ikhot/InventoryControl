@@ -42,7 +42,7 @@ object DM: TDM
       end
       item
         Name = 'productCount'
-        DataType = ftFloat
+        DataType = ftInteger
       end
       item
         Name = 'productMeasured'
@@ -64,6 +64,10 @@ object DM: TDM
       item
         Name = 'productProvider'
         DataType = ftInteger
+      end
+      item
+        Name = 'productEmploee'
+        DataType = ftInteger
       end>
     IndexDefs = <>
     SortOptions = []
@@ -77,7 +81,7 @@ object DM: TDM
     SortID = 0
     SubLanguageID = 1
     LocaleID = 1024
-    Left = 24
+    Left = 32
     Top = 408
     object mtAddProductsproductName: TStringField
       FieldName = 'productName'
@@ -105,6 +109,9 @@ object DM: TDM
     end
     object mtAddProductsproductProvider: TIntegerField
       FieldName = 'productProvider'
+    end
+    object mtAddProductsproductEmploee: TIntegerField
+      FieldName = 'productEmploee'
     end
   end
   object mainBase: TpFIBDatabase
@@ -693,7 +700,7 @@ object DM: TDM
   end
   object SourceAddProducts: TDataSource
     DataSet = mtAddProducts
-    Left = 112
+    Left = 128
     Top = 408
   end
   object TrmainBase: TpFIBTransaction
@@ -1015,5 +1022,99 @@ object DM: TDM
       Size = 50
       EmptyStrToNull = True
     end
+  end
+  object mtInvoiceOut: TkbmMemTable
+    DesignActivation = True
+    AttachedAutoRefresh = True
+    AttachMaxCount = 1
+    FieldDefs = <
+      item
+        Name = 'productName'
+        DataType = ftString
+        Size = 1000
+      end
+      item
+        Name = 'productCode'
+        DataType = ftString
+        Size = 100
+      end
+      item
+        Name = 'productCount'
+        DataType = ftInteger
+      end
+      item
+        Name = 'productMeasured'
+        DataType = ftString
+        Size = 100
+      end
+      item
+        Name = 'productPrice'
+        DataType = ftFloat
+      end
+      item
+        Name = 'productTotalPrice'
+        DataType = ftFloat
+      end
+      item
+        Name = 'productStock'
+        DataType = ftInteger
+      end
+      item
+        Name = 'productCustomer'
+        DataType = ftInteger
+      end
+      item
+        Name = 'productEmploee'
+        DataType = ftInteger
+      end>
+    IndexDefs = <>
+    SortOptions = []
+    PersistentBackup = False
+    ProgressFlags = [mtpcLoad, mtpcSave, mtpcCopy]
+    LoadedCompletely = False
+    SavedCompletely = False
+    FilterOptions = []
+    Version = '5.00 beta'
+    LanguageID = 0
+    SortID = 0
+    SubLanguageID = 1
+    LocaleID = 1024
+    Left = 32
+    Top = 464
+    object mtInvoiceOutproductName: TStringField
+      FieldName = 'productName'
+      Size = 500
+    end
+    object mtInvoiceOutproductCode: TStringField
+      FieldName = 'productCode'
+      Size = 100
+    end
+    object mtInvoiceOutproductCount: TIntegerField
+      FieldName = 'productCount'
+    end
+    object mtInvoiceOutproductMeasured: TStringField
+      FieldName = 'productMeasured'
+      Size = 100
+    end
+    object mtInvoiceOutproductPrice: TFloatField
+      FieldName = 'productPrice'
+    end
+    object mtInvoiceOutproductTotalPrice: TFloatField
+      FieldName = 'productTotalPrice'
+    end
+    object mtInvoiceOutproductStock: TIntegerField
+      FieldName = 'productStock'
+    end
+    object mtInvoiceOutproductEmploee: TIntegerField
+      FieldName = 'productEmploee'
+    end
+    object mtInvoiceOutproductCustomer: TIntegerField
+      FieldName = 'productCustomer'
+    end
+  end
+  object SourceInvoiceOutmt: TDataSource
+    DataSet = mtInvoiceOut
+    Left = 120
+    Top = 464
   end
 end
