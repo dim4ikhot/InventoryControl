@@ -34,7 +34,7 @@ type
 var
   F_InvoiceIn: TF_InvoiceIn;
   F_InvoiceOut: TF_InvoiceIn;
-
+  F_MoveProducts: TF_InvoiceIn;
 implementation
 
 Uses U_ProductsOut;
@@ -42,6 +42,8 @@ Uses U_ProductsOut;
 {$R *.dfm}
 
 procedure TF_InvoiceIn.addInvoiceInClick(Sender: TObject);
+var
+  tmpGridProducts: TDBGridEh;
 begin
   if F_InvoiceIn <> nil then
     addProductProc
@@ -52,6 +54,7 @@ begin
       Application.CreateForm(TF_ProductsOut, F_ProductsOut);
       F_Main.GridProducts.Parent := F_ProductsOut;
       F_Main.PanelSettingsProduct.Parent := F_ProductsOut;
+      F_Main.GBLists.Visible := False;
       F_Main.GBReports.Visible := False;
       F_ProductsOut.ShowModal;
     finally

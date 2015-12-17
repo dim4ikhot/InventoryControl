@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh,
   RzButton, GridsEh, DBAxisGridsEh, DBGridEh, U_Main, U_DM, siComp,
-  siLngLnk, DB, kbmMemTable;
+  siLngLnk, DB, kbmMemTable, ExtCtrls, RzPanel;
 
 type
   TF_MovePosition = class(TForm)
@@ -15,19 +15,14 @@ type
     ApplyMove: TRzBitBtn;
     RzBitBtn1: TRzBitBtn;
     LangMove: TsiLangLinked;
-    mtMoveProducts: TkbmMemTable;
-    SourceMovePositions: TDataSource;
-    mtMoveProductsmoveName: TStringField;
-    mtMoveProductsmoveCount: TIntegerField;
-    mtMoveProductsmoveMeasured: TStringField;
-    mtMoveProductsmovePrice: TFloatField;
-    mtMoveProductsMoveStock: TIntegerField;
-    mtMoveProductsmoveCode: TStringField;
+    RzPanel1: TRzPanel;
+    RzBitBtn2: TRzBitBtn;
     procedure ApplyMoveClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure GridMovePositionsDrawColumnCell(Sender: TObject;
       const Rect: TRect; DataCol: Integer; Column: TColumnEh;
       State: TGridDrawState);
+    procedure RzBitBtn2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,6 +34,7 @@ var
 
 implementation
 
+uses U_ProductsOut;
 {$R *.dfm}
 
 procedure TF_MovePosition.ApplyMoveClick(Sender: TObject);
@@ -54,24 +50,24 @@ procedure TF_MovePosition.FormCreate(Sender: TObject);
 var
   i: Integer;
 begin
-  if not mtMoveProducts.Active then
-    mtMoveProducts.Active := True;
+ { if not DM.mtMoveProducts.Active then
+    DM.mtMoveProducts.Active := True;
   for i := 0 to F_Main.GridProducts.SelectedRows.Count - 1 do
   begin
     DM.tableProducts.Bookmark := F_Main.GridProducts.SelectedRows[i];
-    mtMoveProducts.Append;
-    mtMoveProducts.Edit;
-    mtMoveProductsmoveName.AsString := DM.tableProductsNAME.AsString;
-    mtMoveProductsmoveCount.AsInteger := DM.tableProductsKOLVO.AsInteger;
-    mtMoveProductsmoveMeasured.AsString := DM.tableProductsMEASURE.AsString;
-    mtMoveProductsmovePrice.AsFloat := DM.tableProductsPRICE.AsFloat;
-    mtMoveProductsMoveStock.AsInteger := DM.tableProductsSTOCK_ID.AsInteger;
-    mtMoveProductsmoveCode.AsString := DM.tableProductsKOD.AsString;
-    mtMoveProducts.post;
+    DM.mtMoveProducts.Append;
+    DM.mtMoveProducts.Edit;
+    DM.mtMoveProductsmoveName.AsString := DM.tableProductsNAME.AsString;
+    DM.mtMoveProductsmoveCount.AsInteger := DM.tableProductsKOLVO.AsInteger;
+    DM.mtMoveProductsmoveMeasured.AsString := DM.tableProductsMEASURE.AsString;
+    DM.mtMoveProductsmovePrice.AsFloat := DM.tableProductsPRICE.AsFloat;
+    DM.mtMoveProductsMoveStock.AsInteger := DM.tableProductsSTOCK_ID.AsInteger;
+    DM.mtMoveProductsmoveCode.AsString := DM.tableProductsKOD.AsString;
+    DM.mtMoveProducts.post;
     DM.tableStoks.Locate('ID', DM.tableProductsSTOCK_ID.AsInteger, []);
     GridMovePositions.Columns[6].KeyList.Add(DM.tableProductsSTOCK_ID.AsString);
     GridMovePositions.Columns[6].PickList.Add(DM.tableStoksNAME.AsString);
-  end;
+  end;  }
 end;
 
 procedure TF_MovePosition.GridMovePositionsDrawColumnCell(Sender: TObject;
@@ -82,6 +78,21 @@ begin
     if Column.Index = 0 then                                                   // Ха- ха - ха БЛА!!!
       TDBGridEh(Sender).Canvas.TextOut(Rect.Left + 5, Rect.Top,
           IntToStr(TDBGridEh(Sender).DataSource.DataSet.RecNo));               // Вместо ID пишем порядковый номер в гриде.
+end;
+
+procedure TF_MovePosition.RzBitBtn2Click(Sender: TObject);
+begin
+  try
+    Application.CreateForm(TF_ProductsOut, F_MoveToStock);
+    F_Main.GridProducts.Parent := F_MoveToStock;
+    F_Main.GridProducts.DataSource := DM.SourceMove;
+    F_Main.PanelSettingsProduct.Parent := F_MoveToStock;
+    F_Main.GBLists.Visible := False;
+    F_Main.GBReports.Visible := False;
+    F_MoveToStock.ShowModal;
+  finally
+    FreeAndNil(F_MoveToStock);
+  end;
 end;
 
 end.

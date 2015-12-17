@@ -122,6 +122,29 @@ type
     mtInvoiceOutproductTotalPrice: TFloatField;
     mtInvoiceOutproductStock: TIntegerField;
     mtInvoiceOutproductEmploee: TIntegerField;
+    tableMoveStockPosition: TpFIBDataSet;
+    TRmovePosition: TpFIBTransaction;
+    TRMovePositionWS: TpFIBTransaction;
+    SourceMove: TDataSource;
+    tableMoveStockPositionID: TFIBIntegerField;
+    tableMoveStockPositionNAME: TFIBStringField;
+    tableMoveStockPositionSTOCK_ID: TFIBIntegerField;
+    tableMoveStockPositionARTICUL: TFIBIntegerField;
+    tableMoveStockPositionMEASURE: TFIBStringField;
+    tableMoveStockPositionKOLVO: TFIBIntegerField;
+    tableMoveStockPositionPRICE: TFIBFloatField;
+    tableMoveStockPositionKOD: TFIBStringField;
+    tableMoveStockPositionTOTALPRICE: TFIBFloatField;
+    tableMoveStockPositionREST_COUNT: TFIBIntegerField;
+    mtMoveProducts: TkbmMemTable;
+    mtMoveProductsmoveName: TStringField;
+    mtMoveProductsmoveCount: TIntegerField;
+    mtMoveProductsmoveMeasured: TStringField;
+    mtMoveProductsmovePrice: TFloatField;
+    mtMoveProductsMoveStock: TIntegerField;
+    mtMoveProductsmoveCode: TStringField;
+    SourceMovePositions: TDataSource;
+    mtMoveProductsmoveTotalPrice: TFloatField;
     procedure DataModuleCreate(Sender: TObject);
     procedure tableStoksAfterScroll(DataSet: TDataSet);
   private
@@ -191,7 +214,15 @@ begin
   begin
     //Base connect
     MainBase.LibraryName := ExtractFilePath(Application.ExeName) + 'Gds32.dll';
-    ConnectToBase(ServerName +':'+BasePath);
+    if not ConnectToBase(ServerName +':'+BasePath) then
+    begin
+      try
+        Application.CreateForm(TF_BaseConnection, F_BaseConnection);
+        F_BaseConnection.ShowModal;
+      finally
+        FreeAndNil(F_BaseConnection);
+      end;
+    end;
   end;
 end;
 
@@ -207,6 +238,7 @@ begin
   MainBase.DBName := Server + Local;                                           // ”казываем им€ к базе.
   try
     MainBase.Connected := True;
+    Result := MainBase.Connected;
     TrmainBase.Active := True;
 
     //Table Stock
@@ -246,6 +278,7 @@ begin
 
   except
     ShowMessagerCP('','',mtError,[mbYes,mbNo]);
+    Result := False;
   end;
 end;
 
@@ -253,8 +286,9 @@ procedure TDM.tableStoksAfterScroll(DataSet: TDataSet);
 begin
   if Assigned(F_main) then
   begin
-    F_main.BtnStartStock.Visible := DataSet.FieldByName('STARTED').AsInteger = 0;
+    F_main.StartStock.Visible := DataSet.FieldByName('STARTED').AsInteger = 0;
     F_main.removeStock.Visible := DataSet.FieldByName('STARTED').AsInteger = 0;
+    F_Main.MoveToStock.Visible := DataSet.FieldByName('STARTED').AsInteger <> 0;
   end;
 end;
 

@@ -2,8 +2,8 @@ object DM: TDM
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   Left = 290
-  Top = 134
-  Height = 567
+  Top = 118
+  Height = 569
   Width = 1038
   object SourceStocks: TDataSource
     DataSet = tableStoks
@@ -1116,5 +1116,154 @@ object DM: TDM
     DataSet = mtInvoiceOut
     Left = 120
     Top = 464
+  end
+  object tableMoveStockPosition: TpFIBDataSet
+    SelectSQL.Strings = (
+      'Select * from Products where STOCK_ID <> ?stockId')
+    FilterOptions = [foCaseInsensitive]
+    AutoUpdateOptions.UpdateTableName = 'PRODUCTS'
+    AutoUpdateOptions.KeyFields = 'ID'
+    AutoUpdateOptions.AutoReWriteSqls = True
+    AutoUpdateOptions.GeneratorName = 'GEN_PRODUCTS_ID'
+    AutoUpdateOptions.WhenGetGenID = wgOnNewRecord
+    Transaction = TRmovePosition
+    Database = mainBase
+    UpdateTransaction = TRMovePositionWS
+    AutoCommit = True
+    Filtered = True
+    Left = 376
+    Top = 32
+    object tableMoveStockPositionID: TFIBIntegerField
+      FieldName = 'ID'
+    end
+    object tableMoveStockPositionNAME: TFIBStringField
+      FieldName = 'NAME'
+      Size = 1000
+      EmptyStrToNull = True
+    end
+    object tableMoveStockPositionSTOCK_ID: TFIBIntegerField
+      FieldName = 'STOCK_ID'
+    end
+    object tableMoveStockPositionARTICUL: TFIBIntegerField
+      FieldName = 'ARTICUL'
+    end
+    object tableMoveStockPositionMEASURE: TFIBStringField
+      FieldName = 'MEASURE'
+      Size = 10
+      EmptyStrToNull = True
+    end
+    object tableMoveStockPositionKOLVO: TFIBIntegerField
+      FieldName = 'KOLVO'
+    end
+    object tableMoveStockPositionPRICE: TFIBFloatField
+      FieldName = 'PRICE'
+    end
+    object tableMoveStockPositionKOD: TFIBStringField
+      FieldName = 'KOD'
+      Size = 50
+      EmptyStrToNull = True
+    end
+    object tableMoveStockPositionTOTALPRICE: TFIBFloatField
+      FieldName = 'TOTALPRICE'
+    end
+    object tableMoveStockPositionREST_COUNT: TFIBIntegerField
+      FieldName = 'REST_COUNT'
+    end
+  end
+  object TRmovePosition: TpFIBTransaction
+    DefaultDatabase = mainBase
+    TimeoutAction = TARollback
+    Left = 544
+    Top = 32
+  end
+  object TRMovePositionWS: TpFIBTransaction
+    TimeoutAction = TARollback
+    Left = 632
+    Top = 32
+  end
+  object SourceMove: TDataSource
+    DataSet = tableMoveStockPosition
+    Left = 472
+    Top = 32
+  end
+  object mtMoveProducts: TkbmMemTable
+    DesignActivation = True
+    AttachedAutoRefresh = True
+    AttachMaxCount = 1
+    FieldDefs = <
+      item
+        Name = 'moveName'
+        DataType = ftString
+        Size = 500
+      end
+      item
+        Name = 'moveCount'
+        DataType = ftInteger
+      end
+      item
+        Name = 'moveMeasured'
+        DataType = ftString
+        Size = 100
+      end
+      item
+        Name = 'movePrice'
+        DataType = ftFloat
+      end
+      item
+        Name = 'moveStock'
+        DataType = ftInteger
+      end
+      item
+        Name = 'moveCode'
+        DataType = ftString
+        Size = 100
+      end
+      item
+        Name = 'moveTotalPrice'
+        DataType = ftFloat
+      end>
+    IndexDefs = <>
+    SortOptions = []
+    PersistentBackup = False
+    ProgressFlags = [mtpcLoad, mtpcSave, mtpcCopy]
+    LoadedCompletely = False
+    SavedCompletely = False
+    FilterOptions = []
+    Version = '5.00 beta'
+    LanguageID = 0
+    SortID = 0
+    SubLanguageID = 1
+    LocaleID = 1024
+    Left = 376
+    Top = 88
+    object mtMoveProductsmoveName: TStringField
+      FieldName = 'moveName'
+      Size = 500
+    end
+    object mtMoveProductsmoveCount: TIntegerField
+      FieldName = 'moveCount'
+    end
+    object mtMoveProductsmoveMeasured: TStringField
+      FieldName = 'moveMeasured'
+      Size = 100
+    end
+    object mtMoveProductsmovePrice: TFloatField
+      FieldName = 'movePrice'
+    end
+    object mtMoveProductsMoveStock: TIntegerField
+      FieldName = 'MoveStock'
+    end
+    object mtMoveProductsmoveCode: TStringField
+      FieldName = 'moveCode'
+      Size = 100
+    end
+    object mtMoveProductsmoveTotalPrice: TFloatField
+      FieldName = 'moveTotalPrice'
+    end
+  end
+  object SourceMovePositions: TDataSource
+    DataSet = mtMoveProducts
+    Left = 480
+    Top = 88
   end
 end

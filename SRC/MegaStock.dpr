@@ -21,7 +21,8 @@ uses
   U_Emploee in 'U_Emploee.pas' {F_Emploee},
   U_SettingsInvoice in 'U_SettingsInvoice.pas' {F_PrepareInvoice},
   U_InvoiceIn in 'U_InvoiceIn.pas' {F_InvoiceIn},
-  U_ProductsOut in 'U_ProductsOut.pas' {F_ProductsOut};
+  U_ProductsOut in 'U_ProductsOut.pas' {F_ProductsOut},
+  U_ClientsProviders in 'U_ClientsProviders.pas' {F_ClientsProviders};
 
 {$R *.res}
 var i: Integer = 0;

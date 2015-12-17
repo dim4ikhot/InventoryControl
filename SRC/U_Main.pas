@@ -24,7 +24,7 @@ type
     ExitItem: TMenuItem;
     TabClientsProviders: TRzTabSheet;
     RzSplitter3: TRzSplitter;
-    RzToolbar1: TRzToolbar;
+    ToolbarProviders: TRzToolbar;
     GridProviders: TDBGridEh;
     RzSpacer1: TRzSpacer;
     RzSpacer2: TRzSpacer;
@@ -36,12 +36,9 @@ type
     RzLabel2: TRzLabel;
     PanelSettingsProduct: TRzSizePanel;
     RzLabel3: TRzLabel;
-    addProduct: TRzBitBtn;
     CheckingAccaunt: TRzBitBtn;
-    delProduct: TRzBitBtn;
     InvoiceOut: TRzBitBtn;
     InvoiceBtn: TRzBitBtn;
-    MovoeToOtherStock: TRzBitBtn;
     NameFilter: TRzEdit;
     stockFilter: TRzComboBox;
     GridProducts: TDBGridEh;
@@ -54,15 +51,15 @@ type
     ProgLang: TMenuItem;
     RussianLang: TMenuItem;
     UkraianianLang: TMenuItem;
-    RzPanel1: TRzPanel;
+    PanelProviders: TRzPanel;
     BtnStartStock: TRzBitBtn;
     RzPanel3: TRzPanel;
     ListEmploeeCustomers: TRzSplitter;
-    RzPanel2: TRzPanel;
+    PanelCustomers: TRzPanel;
     GridClients: TDBGridEh;
     RzPanel4: TRzPanel;
     GridEmploee: TDBGridEh;
-    RzToolbar2: TRzToolbar;
+    ToolbarCustomers: TRzToolbar;
     RzSpacer3: TRzSpacer;
     RzSpacer4: TRzSpacer;
     addClient: TRzBitBtn;
@@ -82,6 +79,9 @@ type
     PopupMenuClients: TPopupMenu;
     invoiceOutClient: TMenuItem;
     returnProductToStock: TMenuItem;
+    GBLists: TRzGroupBox;
+    BtnProviders: TRzBitBtn;
+    btnCustomers: TRzBitBtn;
     procedure addStockClick(Sender: TObject);
     procedure removeStockClick(Sender: TObject);
     procedure delProductClick(Sender: TObject);
@@ -121,6 +121,9 @@ type
       var AllowChange: Boolean);
     procedure addnewProductsClick(Sender: TObject);
     procedure invoiceOutClientClick(Sender: TObject);
+    procedure BtnProvidersClick(Sender: TObject);
+    procedure btnCustomersClick(Sender: TObject);
+    procedure MoveToStockClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -140,7 +143,8 @@ var
 
 implementation
 
-uses U_MovePositions, U_SettingsInvoice,U_InvoiceIn;
+uses U_MovePositions, U_SettingsInvoice,U_InvoiceIn, U_ClientsProviders,
+     U_ProductsOut;
 
 {$R *.dfm}
 
@@ -459,7 +463,9 @@ procedure TF_Main.BtnStartStockClick(Sender: TObject);
 begin
   if ShowMessagerCP(LangMain.GetText('Attention'),LangMain.GetText('AttentionCapt'),mtWarning,[mbYes,mbNo]) = 6 then
   begin
+    DM.tableStoks.edit;
     DM.tableStoksSTARTED.AsInteger := 1;
+    DM.tableStoks.Post;
     BtnStartStock.Visible := False;
     removeStock.Visible := false;
   end;
@@ -488,16 +494,32 @@ end;
 
 procedure TF_Main.NameFilterChange(Sender: TObject);
 begin
-  if NameFilter.Text <> '' then
+  if GridProducts.DataSource.DataSet = DM.tableProducts then
   begin
-    DM.tableProducts.Filtered := True;
-    if FindingBy.ItemIndex = 0 then
-      DM.tableProducts.Filter := 'NAME LIKE '+''''+ NameFilter.Text+'%'''
+    if NameFilter.Text <> '' then
+    begin
+      DM.tableProducts.Filtered := True;
+      if FindingBy.ItemIndex = 0 then
+        DM.tableProducts.Filter := 'NAME LIKE '+''''+ NameFilter.Text+'%'''
+      else
+        DM.tableProducts.Filter := 'KOD LIKE '+''''+ NameFilter.Text+'%'''
+    end
     else
-      DM.tableProducts.Filter := 'KOD LIKE '+''''+ NameFilter.Text+'%'''
+      DM.tableProducts.Filtered := False;
   end
   else
-    DM.tableProducts.Filtered := False;
+  begin
+    if NameFilter.Text <> '' then
+    begin
+      DM.tableMoveStockPosition.Filtered := True;
+      if FindingBy.ItemIndex = 0 then
+        DM.tableMoveStockPosition.Filter := 'NAME LIKE '+''''+ NameFilter.Text+'%'''
+      else
+        DM.tableMoveStockPosition.Filter := 'KOD LIKE '+''''+ NameFilter.Text+'%'''
+    end
+    else
+      DM.tableMoveStockPosition.Filtered := False;
+  end;
 end;
 
 procedure TF_Main.PCMainTabsChanging(Sender: TObject; NewIndex: Integer;
@@ -535,6 +557,45 @@ begin
     F_InvoiceOut.ShowModal;
   finally
     FreeAndNil(F_InvoiceOut);
+  end;
+end;
+
+procedure TF_Main.BtnProvidersClick(Sender: TObject);
+begin
+  try
+    Application.CreateForm(TF_ClientsProviders, F_Providers);
+    GridProviders.Parent := F_Providers;
+    PanelProviders.Parent := F_Providers;
+    ToolbarProviders.Parent := F_Providers;
+    F_Providers.ShowModal;
+  finally
+    FreeAndNil(F_Providers);
+  end;
+end;
+
+procedure TF_Main.btnCustomersClick(Sender: TObject);
+begin
+  try
+    Application.CreateForm(TF_ClientsProviders, F_Clients);
+    GridClients.Parent := F_Clients;
+    PanelCustomers.Parent := F_Clients;
+    ToolbarCustomers.Parent := F_Clients;
+    F_Clients.ShowModal;
+  finally
+    FreeAndNil(F_Clients);
+  end;
+end;
+
+procedure TF_Main.MoveToStockClick(Sender: TObject);
+begin
+  try
+    Application.CreateForm(TF_MovePosition, F_MovePosition);
+    DM.tableMoveStockPosition.Active := False;
+    DM.tableMoveStockPosition.ParamByName('stockId').AsInteger := DM.tableStoksID.AsInteger;
+    DM.tableMoveStockPosition.Active := True;
+    F_MovePosition.ShowModal;
+  finally
+    FreeANdNIl(F_MovePosition);
   end;
 end;
 

@@ -3,6 +3,7 @@ object F_ProductsOut: TF_ProductsOut
   Top = 156
   Width = 928
   Height = 506
+  Anchors = []
   Caption = #1057#1087#1080#1089#1086#1082' '#1090#1086#1074#1072#1088#1086#1074
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -12,6 +13,7 @@ object F_ProductsOut: TF_ProductsOut
   Font.Style = []
   OldCreateOrder = False
   Position = poOwnerFormCenter
+  WindowState = wsMaximized
   OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 14
@@ -24,10 +26,11 @@ object F_ProductsOut: TF_ProductsOut
     BorderOuter = fsFlatRounded
     TabOrder = 0
     object AddSelectedProducts: TRzBitBtn
-      Left = 728
+      Left = 748
       Top = 2
       Width = 83
       Default = True
+      Align = alRight
       Caption = #1044#1086#1073#1072#1074#1080#1090#1100
       HotTrack = True
       TabOrder = 0
@@ -86,9 +89,10 @@ object F_ProductsOut: TF_ProductsOut
       NumGlyphs = 2
     end
     object RzBitBtn2: TRzBitBtn
-      Left = 824
+      Left = 831
       Top = 2
       Width = 83
+      Align = alRight
       Caption = #1047#1072#1082#1088#1099#1090#1100
       HotTrack = True
       TabOrder = 1

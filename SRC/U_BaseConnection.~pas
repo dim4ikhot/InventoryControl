@@ -511,6 +511,7 @@ begin
     EditServerNAme.Text := ServerName;
     remoteBasePath.Text := ini.ReadString('ProgramSettings','BasePath','');
   end;
+
 end;
 
 procedure TF_BaseConnection.FormDestroy(Sender: TObject);

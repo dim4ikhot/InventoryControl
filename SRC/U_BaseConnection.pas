@@ -488,8 +488,13 @@ end;
 procedure TF_BaseConnection.CancelConnectClick(Sender: TObject);
 begin
   BasePath := ini.ReadString('ProgramSettings','BasePath','');
+  ServerName := ini.ReadString('ProgramSettings','ServerName','');
   if (BasePath = '') then
-    ExitProcess(1);
+    ExitProcess(1)
+  else
+  begin
+    DM.ConnectToBase(ServerName +':'+BasePath);
+  end;
 end;
 
 procedure TF_BaseConnection.FormCreate(Sender: TObject);
@@ -533,7 +538,8 @@ begin
   end;
   ini.WriteString('ProgramSettings','BasePath',BasePath);
   ini.WriteString('ProgramSettings','ServerName',ServerName);
-  Ini.WriteBool('ProgramSettings','ShowFormConnection',doNotAskAnyMore.Checked);
+  Ini.WriteBool('ProgramSettings','ShowFormConnection',not doNotAskAnyMore.Checked);
+  DM.ConnectToBase(ServerName +':'+BasePath);
 end;
 
 end.
