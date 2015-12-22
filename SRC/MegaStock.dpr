@@ -15,20 +15,23 @@ uses
   U_BaseUpdate in 'U_BaseUpdate.pas',
   U_about in 'U_about.pas' {F_About},
   U_FR in 'U_FR.pas' {F_FR},
-  XLSFile in 'XLSFile.pas',
   U_MessageCP in 'U_MessageCP.pas' {F_MessageCP},
   U_Splash in 'U_Splash.pas' {F_Splash},
   U_Emploee in 'U_Emploee.pas' {F_Emploee},
   U_SettingsInvoice in 'U_SettingsInvoice.pas' {F_PrepareInvoice},
   U_InvoiceIn in 'U_InvoiceIn.pas' {F_InvoiceIn},
   U_ProductsOut in 'U_ProductsOut.pas' {F_ProductsOut},
-  U_ClientsProviders in 'U_ClientsProviders.pas' {F_ClientsProviders};
+  U_ClientsProviders in 'U_ClientsProviders.pas' {F_ClientsProviders},
+  U_Autority in 'U_Autority.pas' {F_Autority},
+  U_InOrder in 'U_InOrder.pas' {F_InOrder},
+  U_ProvSelect in 'U_ProvSelect.pas' {F_ProvSelect};
 
 {$R *.res}
 var i: Integer = 0;
-
+    Autorized: Boolean;
 begin
   Application.Initialize;
+  Autorized := False;
   try
     F_Splash := TF_Splash.Create(Application);
     F_Splash.Show;
@@ -43,9 +46,26 @@ begin
     freeAndNil(F_Splash);
   end;
   Application.CreateForm(TDM, DM);
-  Application.Title := 'Складской учет';
+  Application.CreateForm(TF_Autority, F_Autority);
+  Application.CreateForm(TF_InOrder, F_InOrder);
+  Application.CreateForm(TF_ProvSelect, F_ProvSelect);
+  Application.Title := 'Мега-склад';
   Application.CreateForm(TF_Main, F_Main);
-
-
-  Application.Run;
+  Application.CreateForm(TF_Autority, F_Autority);
+  F_Autority.ShowModal;
+  if (F_Autority.ModalResult = 6) and (dm.Autority_Table.Active and (not dm.Autority_Table.IsEmpty)) then
+  begin
+    //Application.CreateForm(TF_InOrder, F_InOrder);
+    F_Main.Show;
+    Application.Run;
+  end
+  else
+  begin
+    //Application.Destroy;
+   // Application.Terminate;
+   DM.Free;
+   F_Main.OnClose := nil;
+   F_Main.Free;
+   Application.Terminate;
+  end;
 end.

@@ -4,7 +4,7 @@ interface
 
 uses
   SysUtils, Classes, DB, FIBDatabase, pFIBDatabase, FIBDataSet,
-  pFIBDataSet, kbmMemTable, pFIBQuery, siComp, IniFiles, Forms;
+  pFIBDataSet, kbmMemTable, pFIBQuery, siComp, IniFiles, Forms, FIBQuery;
 
 type
   TDM = class(TDataModule)
@@ -122,6 +122,7 @@ type
     mtInvoiceOutproductTotalPrice: TFloatField;
     mtInvoiceOutproductStock: TIntegerField;
     mtInvoiceOutproductEmploee: TIntegerField;
+
     tableMoveStockPosition: TpFIBDataSet;
     TRmovePosition: TpFIBTransaction;
     TRMovePositionWS: TpFIBTransaction;
@@ -145,6 +146,10 @@ type
     mtMoveProductsmoveCode: TStringField;
     SourceMovePositions: TDataSource;
     mtMoveProductsmoveTotalPrice: TFloatField;
+    //added by Tolik
+    Autority_Table: TpFIBDataSet;
+    pFIBUpdateObject1: TpFIBUpdateObject;
+
     procedure DataModuleCreate(Sender: TObject);
     procedure tableStoksAfterScroll(DataSet: TDataSet);
   private
@@ -162,7 +167,7 @@ var
   BasePath, ServerName:string;
 implementation
 
-uses U_BaseConnection,U_MessageCP,U_Common,U_Main;
+uses U_BaseConnection,U_MessageCP,U_Common,U_Main, U_InOrder;
 
 {$R *.dfm}
 function TDM.CreateFIBQuery: TpFIBQuery;                                  // Создаем временный Query.
@@ -213,7 +218,6 @@ begin
   else
   begin
     //Base connect
-    MainBase.LibraryName := ExtractFilePath(Application.ExeName) + 'Gds32.dll';
     if not ConnectToBase(ServerName +':'+BasePath) then
     begin
       try
@@ -230,6 +234,7 @@ function TDM.ConnectToBase(basePath: String): Boolean;
 var
   Server, Local: String;
 begin
+  MainBase.LibraryName := ExtractFilePath(Application.ExeName) + 'Gds32.dll';
   MainBase.Connected := False;
   Result := MainBase.Connected;
   ExtractServerName(basePath, Server, Local);                                  // Делим строку на имя серва и путь к базе.
