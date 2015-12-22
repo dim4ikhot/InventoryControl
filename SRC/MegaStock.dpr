@@ -46,9 +46,6 @@ begin
     freeAndNil(F_Splash);
   end;
   Application.CreateForm(TDM, DM);
-  Application.CreateForm(TF_Autority, F_Autority);
-  Application.CreateForm(TF_InOrder, F_InOrder);
-  Application.CreateForm(TF_ProvSelect, F_ProvSelect);
   Application.Title := 'Мега-склад';
   Application.CreateForm(TF_Main, F_Main);
   Application.CreateForm(TF_Autority, F_Autority);
