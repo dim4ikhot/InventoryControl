@@ -140,7 +140,7 @@ var
 
 implementation
 
-uses U_MovePositions, U_SettingsInvoice,U_InvoiceIn;
+uses U_MovePositions, U_SettingsInvoice,U_InvoiceIn, U_InOrder;
 
 {$R *.dfm}
 
@@ -400,11 +400,17 @@ end;
 
 procedure TF_Main.InvoiceBtnClick(Sender: TObject);
 begin
-  try
+{  try
     Application.CreateForm(TF_PrepareInvoice, F_PrepareInvoice);
     F_PrepareInvoice.showModal;
   finally
     FreeAndNil(F_PrepareInvoice);
+  end;}
+  try
+    Application.CreateForm(TF_InOrder, F_InOrder);
+    F_InOrder.showModal;
+  finally
+    FreeAndNil(F_InOrder);
   end;
 end;
 
@@ -440,6 +446,9 @@ procedure TF_Main.FormCreate(Sender: TObject);
 begin
   createIniFile;
   DM.ProgramLangs.ActiveLanguage := Inif.ReadInteger('ProgramSettings', 'Language',1);
+  //Tolik
+  dm.tableStoks.open;
+  //
   dm.tableStoks.First;
   while not dm.tableStoks.Eof do
   begin

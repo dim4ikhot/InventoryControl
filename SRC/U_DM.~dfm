@@ -1,8 +1,8 @@
 object DM: TDM
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 290
-  Top = 134
+  Left = 245
+  Top = 117
   Height = 567
   Width = 1038
   object SourceStocks: TDataSource
@@ -26,6 +26,7 @@ object DM: TDM
     Top = 200
   end
   object mtAddProducts: TkbmMemTable
+    Active = True
     DesignActivation = True
     AttachedAutoRefresh = True
     AttachMaxCount = 1
@@ -42,7 +43,7 @@ object DM: TDM
       end
       item
         Name = 'productCount'
-        DataType = ftInteger
+        DataType = ftFloat
       end
       item
         Name = 'productMeasured'
@@ -115,7 +116,7 @@ object DM: TDM
     end
   end
   object mainBase: TpFIBDatabase
-    DBName = 'D:\PROJECTS\'#1057#1082#1083#1072#1076#1089#1082#1086#1081' '#1091#1095#1077#1090'\Data\STOCK.DAT'
+    DBName = 'G:\WORK\SKLADGIT\InventoryControl\Data\STOCK.DAT'
     DBParams.Strings = (
       'user_name=SYSDBA'
       'password=masterkey'
@@ -125,7 +126,7 @@ object DM: TDM
     SQLDialect = 3
     Timeout = 0
     DesignDBOptions = []
-    LibraryName = 'D:\PROJECTS\'#1057#1082#1083#1072#1076#1089#1082#1086#1081' '#1091#1095#1077#1090'\GDS32.dll'
+    LibraryName = 'G:\WORK\SKLADGIT\InventoryControl\GDS32.dll'
     WaitForRestoreConnect = 0
     Left = 24
     Top = 8
@@ -591,7 +592,7 @@ object DM: TDM
     end
     object tableProvidersNAME: TFIBStringField
       FieldName = 'NAME'
-      Size = 120
+      Size = 200
       EmptyStrToNull = True
     end
     object tableProvidersPOSTIND: TFIBIntegerField
@@ -599,7 +600,7 @@ object DM: TDM
     end
     object tableProvidersADDR1: TFIBStringField
       FieldName = 'ADDR1'
-      Size = 200
+      Size = 500
       EmptyStrToNull = True
     end
     object tableProvidersPHONE: TFIBStringField
@@ -816,6 +817,7 @@ object DM: TDM
     end
     object tableInvoiceInDATEIN: TFIBDateField
       FieldName = 'DATEIN'
+      DisplayFormat = 'dd.mm.yyyy'
     end
     object tableInvoiceInPROVIDER_ID: TFIBIntegerField
       FieldName = 'PROVIDER_ID'
@@ -1024,6 +1026,7 @@ object DM: TDM
     end
   end
   object mtInvoiceOut: TkbmMemTable
+    Active = True
     DesignActivation = True
     AttachedAutoRefresh = True
     AttachMaxCount = 1
@@ -1031,7 +1034,7 @@ object DM: TDM
       item
         Name = 'productName'
         DataType = ftString
-        Size = 1000
+        Size = 500
       end
       item
         Name = 'productCode'
@@ -1060,11 +1063,11 @@ object DM: TDM
         DataType = ftInteger
       end
       item
-        Name = 'productCustomer'
+        Name = 'productEmploee'
         DataType = ftInteger
       end
       item
-        Name = 'productEmploee'
+        Name = 'productCustomer'
         DataType = ftInteger
       end>
     IndexDefs = <>
@@ -1081,31 +1084,31 @@ object DM: TDM
     LocaleID = 1024
     Left = 32
     Top = 464
-    object StringField1: TStringField
+    object mtInvoiceOutproductName: TStringField
       FieldName = 'productName'
-      Size = 1000
+      Size = 500
     end
-    object StringField2: TStringField
+    object mtInvoiceOutproductCode: TStringField
       FieldName = 'productCode'
       Size = 100
     end
-    object FloatField1: TFloatField
+    object mtInvoiceOutproductCount: TIntegerField
       FieldName = 'productCount'
     end
-    object StringField3: TStringField
+    object mtInvoiceOutproductMeasured: TStringField
       FieldName = 'productMeasured'
       Size = 100
     end
-    object FloatField2: TFloatField
+    object mtInvoiceOutproductPrice: TFloatField
       FieldName = 'productPrice'
     end
-    object FloatField3: TFloatField
+    object mtInvoiceOutproductTotalPrice: TFloatField
       FieldName = 'productTotalPrice'
     end
-    object IntegerField1: TIntegerField
+    object mtInvoiceOutproductStock: TIntegerField
       FieldName = 'productStock'
     end
-    object IntegerField3: TIntegerField
+    object mtInvoiceOutproductEmploee: TIntegerField
       FieldName = 'productEmploee'
     end
     object mtInvoiceOutproductCustomer: TIntegerField
@@ -1116,5 +1119,25 @@ object DM: TDM
     DataSet = mtInvoiceOut
     Left = 120
     Top = 464
+  end
+  object Autority_Table: TpFIBDataSet
+    SelectSQL.Strings = (
+      'SELECT'
+      '    *    '
+      'FROM'
+      '    EMPLOYEE ')
+    Transaction = TrmainBase
+    Database = mainBase
+    Filtered = True
+    Left = 328
+    Top = 136
+  end
+  object pFIBUpdateObject1: TpFIBUpdateObject
+    Transaction = TrmainBase
+    Database = mainBase
+    DataSet = Autority_Table
+    OrderInList = 0
+    Left = 384
+    Top = 136
   end
 end

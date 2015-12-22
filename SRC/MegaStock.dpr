@@ -21,13 +21,15 @@ uses
   U_Emploee in 'U_Emploee.pas' {F_Emploee},
   U_SettingsInvoice in 'U_SettingsInvoice.pas' {F_PrepareInvoice},
   U_InvoiceIn in 'U_InvoiceIn.pas' {F_InvoiceIn},
-  U_ProductsOut in 'U_ProductsOut.pas' {F_ProductsOut};
+  U_ProductsOut in 'U_ProductsOut.pas' {F_ProductsOut},
+  U_Autority in 'U_Autority.pas' {F_Autority};
 
 {$R *.res}
 var i: Integer = 0;
-
+    Autorized: Boolean;
 begin
   Application.Initialize;
+  Autorized := False;
   try
     F_Splash := TF_Splash.Create(Application);
     F_Splash.Show;
@@ -44,7 +46,21 @@ begin
   Application.CreateForm(TDM, DM);
   Application.Title := 'Складской учет';
   Application.CreateForm(TF_Main, F_Main);
-
-
-  Application.Run;
+  Application.CreateForm(TF_Autority, F_Autority);
+  F_Autority.ShowModal;
+  if (F_Autority.ModalResult = 6) and (dm.Autority_Table.Active and (not dm.Autority_Table.IsEmpty)) then
+  begin
+    //Application.CreateForm(TF_InOrder, F_InOrder);
+    F_Main.Show;
+    Application.Run;
+  end
+  else
+  begin
+    //Application.Destroy;
+   // Application.Terminate;
+   DM.Free;
+   F_Main.OnClose := nil;
+   F_Main.Free;
+   Application.Terminate;
+  end;
 end.

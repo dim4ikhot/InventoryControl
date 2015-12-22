@@ -4,7 +4,7 @@ interface
 
 uses
   SysUtils, Classes, DB, FIBDatabase, pFIBDatabase, FIBDataSet,
-  pFIBDataSet, kbmMemTable, pFIBQuery, siComp, IniFiles, Forms;
+  pFIBDataSet, kbmMemTable, pFIBQuery, siComp, IniFiles, Forms, FIBQuery;
 
 type
   TDM = class(TDataModule)
@@ -112,16 +112,18 @@ type
     tableInvoiceInKOD: TFIBStringField;
     mtAddProductsproductEmploee: TIntegerField;
     mtInvoiceOut: TkbmMemTable;
-    StringField1: TStringField;
-    StringField2: TStringField;
-    FloatField1: TFloatField;
-    StringField3: TStringField;
-    FloatField2: TFloatField;
-    FloatField3: TFloatField;
-    IntegerField1: TIntegerField;
-    IntegerField3: TIntegerField;
     SourceInvoiceOutmt: TDataSource;
     mtInvoiceOutproductCustomer: TIntegerField;
+    mtInvoiceOutproductName: TStringField;
+    mtInvoiceOutproductCode: TStringField;
+    mtInvoiceOutproductCount: TIntegerField;
+    mtInvoiceOutproductMeasured: TStringField;
+    mtInvoiceOutproductPrice: TFloatField;
+    mtInvoiceOutproductTotalPrice: TFloatField;
+    mtInvoiceOutproductStock: TIntegerField;
+    mtInvoiceOutproductEmploee: TIntegerField;
+    Autority_Table: TpFIBDataSet;
+    pFIBUpdateObject1: TpFIBUpdateObject;
     procedure DataModuleCreate(Sender: TObject);
     procedure tableStoksAfterScroll(DataSet: TDataSet);
   private

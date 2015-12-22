@@ -1,7 +1,7 @@
 object F_Main: TF_Main
-  Left = 265
-  Top = 113
-  Width = 1084
+  Left = 126
+  Top = 166
+  Width = 1044
   Height = 601
   Caption = #1052#1077#1075#1072' '#1089#1082#1083#1072#1076
   Color = clBtnFace
@@ -1103,8 +1103,8 @@ object F_Main: TF_Main
   TextHeight = 15
   object RzStatusBar1: TRzStatusBar
     Left = 0
-    Top = 528
-    Width = 1072
+    Top = 524
+    Width = 1028
     Height = 19
     BorderInner = fsNone
     BorderOuter = fsNone
@@ -1112,7 +1112,7 @@ object F_Main: TF_Main
     BorderWidth = 0
     TabOrder = 0
     DesignSize = (
-      1072
+      1028
       19)
     object ProgressAllOperations: TRzProgressBar
       Left = 96
@@ -1144,12 +1144,12 @@ object F_Main: TF_Main
   object PCMainTabs: TRzPageControl
     Left = 0
     Top = 0
-    Width = 1072
-    Height = 528
-    ActivePage = TabClientsProviders
+    Width = 1028
+    Height = 524
+    ActivePage = TabProducts
     ActivePageDefault = TabProducts
     Align = alClient
-    TabIndex = 2
+    TabIndex = 1
     TabOrder = 1
     TabOrientation = toBottom
     TabStyle = tsCutCorner
@@ -1158,10 +1158,10 @@ object F_Main: TF_Main
     object TabStock: TRzTabSheet
       Caption = #1057#1082#1083#1072#1076
       object RzSizePanel2: TRzSizePanel
-        Left = 917
+        Left = 873
         Top = 0
         Width = 153
-        Height = 504
+        Height = 500
         Align = alRight
         BorderOuter = fsFlatRounded
         HotSpotIgnoreMargins = True
@@ -1198,7 +1198,7 @@ object F_Main: TF_Main
         end
         object RzPanel3: TRzPanel
           Left = 10
-          Top = 461
+          Top = 457
           Width = 141
           Height = 41
           Align = alBottom
@@ -1225,8 +1225,8 @@ object F_Main: TF_Main
       object DBGridEh1: TDBGridEh
         Left = 0
         Top = 0
-        Width = 917
-        Height = 504
+        Width = 873
+        Height = 500
         Align = alClient
         AutoFitColWidths = True
         DataSource = DM.SourceStocks
@@ -1296,7 +1296,7 @@ object F_Main: TF_Main
       object PanelSettingsProduct: TRzSizePanel
         Left = 0
         Top = 0
-        Width = 1070
+        Width = 1026
         Height = 80
         Align = alTop
         BorderOuter = fsFlatRounded
@@ -1305,7 +1305,7 @@ object F_Main: TF_Main
         SizeBarWidth = 7
         TabOrder = 0
         DesignSize = (
-          1070
+          1026
           72)
         object FindingBy: TRzRadioGroup
           Left = 2
@@ -1373,7 +1373,7 @@ object F_Main: TF_Main
             ItemHeight = 15
             ParentCtl3D = False
             ParentFont = False
-            TabOrder = 3
+            TabOrder = 1
             Text = #1042#1089#1077
             OnChange = stockFilterChange
             Items.Strings = (
@@ -1427,7 +1427,7 @@ object F_Main: TF_Main
           Images = ProjIcon
         end
         object GBReports: TRzGroupBox
-          Left = 688
+          Left = 644
           Top = 2
           Width = 380
           Height = 68
@@ -1510,8 +1510,8 @@ object F_Main: TF_Main
       object GridProducts: TDBGridEh
         Left = 0
         Top = 80
-        Width = 1070
-        Height = 424
+        Width = 1026
+        Height = 420
         Align = alClient
         AutoFitColWidths = True
         DataSource = DM.SourceProducts
@@ -1615,10 +1615,10 @@ object F_Main: TF_Main
       object RzSplitter3: TRzSplitter
         Left = 0
         Top = 0
-        Width = 1070
-        Height = 504
+        Width = 1026
+        Height = 500
         Orientation = orVertical
-        Position = 250
+        Position = 248
         UsePercent = True
         SplitterStyle = ssBump
         SplitterWidth = 7
@@ -1626,9 +1626,9 @@ object F_Main: TF_Main
         TabOrder = 0
         BarSize = (
           0
-          250
-          1070
-          257)
+          248
+          1026
+          255)
         UpperLeftControls = (
           RzToolbar1
           GridProviders
@@ -1637,8 +1637,8 @@ object F_Main: TF_Main
           ListEmploeeCustomers)
         object RzToolbar1: TRzToolbar
           Left = 0
-          Top = 221
-          Width = 1070
+          Top = 219
+          Width = 1026
           Height = 29
           Align = alBottom
           Images = ProjIcon
@@ -1691,8 +1691,8 @@ object F_Main: TF_Main
         object GridProviders: TDBGridEh
           Left = 0
           Top = 25
-          Width = 1070
-          Height = 196
+          Width = 1026
+          Height = 194
           Align = alClient
           AutoFitColWidths = True
           DataSource = DM.SourceProviders
@@ -1776,7 +1776,7 @@ object F_Main: TF_Main
         object RzPanel1: TRzPanel
           Left = 0
           Top = 0
-          Width = 1070
+          Width = 1026
           Height = 25
           Align = alTop
           BorderOuter = fsFlatRounded
@@ -1792,9 +1792,10 @@ object F_Main: TF_Main
         object ListEmploeeCustomers: TRzSplitter
           Left = 0
           Top = 0
-          Width = 1070
-          Height = 247
+          Width = 1026
+          Height = 245
           Position = 536
+          Percent = 52
           SplitterStyle = ssGroove
           SplitterWidth = 7
           Align = alClient
@@ -1803,7 +1804,7 @@ object F_Main: TF_Main
             536
             0
             543
-            247)
+            245)
           UpperLeftControls = (
             RzPanel2
             GridClients
@@ -1832,7 +1833,7 @@ object F_Main: TF_Main
             Left = 0
             Top = 25
             Width = 536
-            Height = 193
+            Height = 191
             Align = alClient
             AutoFitColWidths = True
             DataSource = DM.SourceClients
@@ -1904,7 +1905,7 @@ object F_Main: TF_Main
           end
           object RzToolbar2: TRzToolbar
             Left = 0
-            Top = 218
+            Top = 216
             Width = 536
             Height = 29
             Align = alBottom
@@ -1958,7 +1959,7 @@ object F_Main: TF_Main
           object RzPanel4: TRzPanel
             Left = 0
             Top = 0
-            Width = 527
+            Width = 483
             Height = 25
             Align = alTop
             BorderOuter = fsFlatRounded
@@ -1974,8 +1975,8 @@ object F_Main: TF_Main
           object GridEmploee: TDBGridEh
             Left = 0
             Top = 25
-            Width = 527
-            Height = 193
+            Width = 483
+            Height = 191
             Align = alClient
             AutoFitColWidths = True
             DataSource = DM.SourceEmploee
@@ -2027,8 +2028,8 @@ object F_Main: TF_Main
           end
           object RzToolbar3: TRzToolbar
             Left = 0
-            Top = 218
-            Width = 527
+            Top = 216
+            Width = 483
             Height = 29
             Align = alBottom
             BorderInner = fsNone

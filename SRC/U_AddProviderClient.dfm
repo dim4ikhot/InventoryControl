@@ -1,6 +1,6 @@
 object F_AddClientProvider: TF_AddClientProvider
-  Left = 723
-  Top = 289
+  Left = 521
+  Top = 217
   BorderStyle = bsDialog
   Caption = #1044#1086#1073#1072#1074#1080#1090#1100
   ClientHeight = 230

@@ -4,7 +4,7 @@ interface
 
 uses
   SysUtils, Classes, DB, FIBDatabase, pFIBDatabase, FIBDataSet,
-  pFIBDataSet, kbmMemTable, pFIBQuery, siComp, IniFiles, Forms;
+  pFIBDataSet, kbmMemTable, pFIBQuery, siComp, IniFiles, Forms, FIBQuery;
 
 type
   TDM = class(TDataModule)
@@ -122,6 +122,8 @@ type
     mtInvoiceOutproductTotalPrice: TFloatField;
     mtInvoiceOutproductStock: TIntegerField;
     mtInvoiceOutproductEmploee: TIntegerField;
+    Autority_Table: TpFIBDataSet;
+    pFIBUpdateObject1: TpFIBUpdateObject;
     procedure DataModuleCreate(Sender: TObject);
     procedure tableStoksAfterScroll(DataSet: TDataSet);
   private
@@ -139,7 +141,7 @@ var
   BasePath, ServerName:string;
 implementation
 
-uses U_BaseConnection,U_MessageCP,U_Common,U_Main;
+uses U_BaseConnection,U_MessageCP,U_Common,U_Main, U_InOrder;
 
 {$R *.dfm}
 function TDM.CreateFIBQuery: TpFIBQuery;                                  // Создаем временный Query.
