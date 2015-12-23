@@ -104,7 +104,7 @@ object F_ProductInfo: TF_ProductInfo
     Transparent = True
   end
   object RzLabel7: TRzLabel
-    Left = 240
+    Left = 464
     Top = 104
     Width = 39
     Height = 15
@@ -146,7 +146,7 @@ object F_ProductInfo: TF_ProductInfo
     Transparent = True
   end
   object RzLabel10: TRzLabel
-    Left = 464
+    Left = 240
     Top = 104
     Width = 63
     Height = 15
@@ -228,9 +228,9 @@ object F_ProductInfo: TF_ProductInfo
     TabOrder = 3
   end
   object infoProductStock: TRzEdit
-    Left = 240
+    Left = 464
     Top = 120
-    Width = 217
+    Width = 153
     Height = 23
     Color = clInfoBk
     Font.Charset = RUSSIAN_CHARSET
@@ -393,9 +393,9 @@ object F_ProductInfo: TF_ProductInfo
     TabOrder = 10
   end
   object infoProductEmploee: TRzEdit
-    Left = 464
+    Left = 240
     Top = 120
-    Width = 153
+    Width = 217
     Height = 23
     Color = clInfoBk
     Font.Charset = DEFAULT_CHARSET

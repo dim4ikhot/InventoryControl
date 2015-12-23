@@ -60,20 +60,6 @@ begin
     finally
       FreeAndNil(F_ProductsOut);
     end;
-  end
-  else
-  if F_MoveProducts <> nil then
-  begin
-    try
-      Application.CreateForm(TF_ProductsOut, F_MoveToStock);
-      F_Main.GridProducts.Parent := F_MoveToStock;
-      F_Main.PanelSettingsProduct.Parent := F_MoveToStock;
-      F_Main.GBLists.Visible := False;
-      F_Main.GBReports.Visible := False;
-      F_MoveToStock.ShowModal;
-    finally
-      FreeAndNil(F_MoveToStock);
-    end;
   end;
 end;
 

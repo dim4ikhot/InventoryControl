@@ -54,7 +54,7 @@ begin
 
       DM.mtInvoiceOut.Append;
       DM.mtInvoiceOut.Edit;
-      DM.mtInvoiceOutproductName.AsString := DM.tableProductsNAME.AsString;
+      DM.mtInvoiceOutproductName.AsInteger := DM.tableProductsNAME_ID.AsInteger;
       DM.mtInvoiceOutproductCustomer.AsInteger := DM.tableClientsID.AsInteger;
       DM.mtInvoiceOutproductCode.asstring := DM.tableProductsKOD.AsString;
       DM.mtInvoiceOutproductCount.asinteger := DM.tableProductsKOLVO.AsInteger;
@@ -77,7 +77,7 @@ begin
 
       DM.mtMoveProducts.Append;
       DM.mtMoveProducts.Edit;
-      DM.mtMoveProductsmoveName.AsString := DM.tableProductsNAME.AsString;
+      DM.mtMoveProductsmoveName.AsInteger := DM.tableProductsNAME_ID.AsInteger;
       //DM.mtMoveProductsmoveCustomer.AsInteger := DM.tableClientsID.AsInteger;
       DM.mtMoveProductsmoveCode.asstring := DM.tableProductsKOD.AsString;
       DM.mtMoveProductsmoveCount.asinteger := DM.tableProductsKOLVO.AsInteger;

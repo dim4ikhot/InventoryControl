@@ -35,6 +35,7 @@ type
     invoiceNumber: TRzEdit;
     RzLabel10: TRzLabel;
     CBAllEmploees: TRzComboBox;
+    CBNames: TRzComboBox;
     procedure AddToMemTableClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ProductCountChange(Sender: TObject);
@@ -79,7 +80,8 @@ var
   providerIndex:Integer;
 begin
   try
-    if (CBAllStocks.Text <> '')and(CBAllProviders.Text <> '')and(ProductName.Text <> '')
+    if (CBAllStocks.Text <> '')and(CBAllProviders.Text <> '')and
+    ({ProductName.Text <> ''}(CBNames.ItemIndex <> -1)or(CBNames.Text <> ''))
         and (ProductMeasured.Text <> '')and(ProductCode.Text <> '')and
         (ProductCount.Value <> 0)and(ProductPrice.Value <> 0) then
     begin
@@ -116,6 +118,15 @@ begin
           DM.tableInvoiceInNUMBER.AsInteger := StrToIntDef(invoiceNumber.Text,0);
           DM.tableInvoiceIn.Post;
           }
+          if(CBNames.ItemIndex = -1)then
+          begin
+            DM.tableNames.Insert;
+            DM.tableNames.Edit;
+            DM.tableNamesNAME.AsString := CBNames.Text;
+            DM.tableNames.Post;
+            CBNames.AddItemValue(dm.tableNamesNAME.AsString, dm.tableNamesID.AsString);
+          end;
+
           if not DM.mtAddProducts.Active then
             DM.mtAddProducts.Active := True;
 
@@ -126,7 +137,10 @@ begin
           dm.mtAddProductsproductPrice.AsFloat := ProductPrice.Value;
           dm.mtAddProductsproductCode.AsString := ProductCode.Text;
           dm.mtAddProductsproductTotalPrice.AsFloat := StrToFloatDef(ProductTotalPrice.Text,0);
-          dm.mtAddProductsproductName.AsString := ProductName.Text;
+          if(CBNames.ItemIndex <> -1)then
+            dm.mtAddProductsproductName.AsString := CBNames.Values[CBNames.ItemIndex] //ProductName.Text;
+          else
+            dm.mtAddProductsproductName.AsString := CBNames.Text;
           dm.mtAddProductsproductEmploee.AsInteger := StrToIntDef(CBAllEmploees.Values[CBAllEmploees.itemIndex-1],0);
           dm.mtAddProductsproductProvider.AsInteger := StrToIntDef(CBAllProviders.Values[CBAllProviders.itemIndex-1],0);
           dm.mtAddProductsproductStock.AsInteger := StrToIntDef(CBAllStocks.Values[CBAllStocks.ItemIndex-1],0);
@@ -139,7 +153,8 @@ begin
           ProductPrice.Value := 0;
           ProductTotalPrice.Text := '';
           invoiceNumber.Text := '';
-          CBAllProviders.ItemIndex := -1;
+          CBNames.ItemIndex := -1;
+          //CBAllProviders.ItemIndex := -1;
           CBAllEmploees.ItemIndex := -1;
           CBAllStocks.ItemIndex := -1;
         except
@@ -156,7 +171,8 @@ begin
           DM.tableProductsMEASURE.AsString := ProductMeasured.Text;
           DM.tableProductsKOLVO.AsInteger := DM.tableProductsKOLVO.AsInteger + ProductCount.IntValue;
           DM.tableProductsPRICE.AsFloat := ProductPrice.Value;
-          DM.tableProductsNAME.AsString := ProductName.Text;
+          // TODO:  ProductName.Text change to ID
+          DM.tableProductsNAME_ID.AsString := ProductName.Text;
           DM.tableProductsKOD.AsString := ProductCode.Text;
           DM.tableProductsTOTALPRICE.AsFloat := DM.tableProductsTOTALPRICE.AsFloat +
                                                                StrToIntDef(ProductTotalPrice.Text,0);
@@ -234,13 +250,18 @@ begin
   end;
   CBAllProviders.ItemIndex := providerItemIndex;
 
-
-
   dm.tableEmploee.First;
   while not dm.tableEmploee.Eof do
   begin
     CBAllEmploees.AddItemValue(dm.tableEmploeeNAME.AsString, dm.tableEmploeeID.AsString);
     dm.tableEmploee.Next;
+  end;
+
+  dm.tableNames.First;
+  while not dm.tableNames.Eof do
+  begin
+    CBNames.AddItemValue(dm.tableNamesNAME.AsString, dm.tableNamesID.AsString);
+    dm.tableNames.Next;
   end;
 
 end;

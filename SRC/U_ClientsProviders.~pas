@@ -4,10 +4,11 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs;
+  Dialogs, U_Main;
 
 type
   TF_ClientsProviders = class(TForm)
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -20,5 +21,22 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TF_ClientsProviders.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  if F_Providers <> nil then
+  begin
+    F_Main.GridProviders.Parent := F_Main.RzSplitter3;
+    F_Main.PanelProviders.Parent := F_Main.RzSplitter3;
+    F_Main.ToolbarProviders.Parent := F_Main.RzSplitter3;
+  end
+  else
+  begin
+    GridClients.Parent := F_Main.ListEmploeeCustomers;
+    PanelCustomers.Parent := F_Main.ListEmploeeCustomers;
+    ToolbarCustomers.Parent := F_Main.ListEmploeeCustomers;
+  end;
+end;
 
 end.

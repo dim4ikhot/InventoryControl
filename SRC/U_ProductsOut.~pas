@@ -36,6 +36,8 @@ begin
   F_Main.PanelSettingsProduct.Parent := F_Main.TabProducts;
   F_Main.GBLists.Visible := True;
   F_Main.GBReports.Visible := True;
+  if F_MoveToStock <> nil then
+    F_Main.GridProducts.DataSource := DM.SourceProducts;
 end;
 
 procedure TF_ProductsOut.AddSelectedProductsClick(Sender: TObject);
@@ -52,7 +54,7 @@ begin
 
       DM.mtInvoiceOut.Append;
       DM.mtInvoiceOut.Edit;
-      DM.mtInvoiceOutproductName.AsString := DM.tableProductsNAME.AsString;
+      DM.mtInvoiceOutproductName.AsInteger := DM.tableProductsNAME_ID.AsInteger;
       DM.mtInvoiceOutproductCustomer.AsInteger := DM.tableClientsID.AsInteger;
       DM.mtInvoiceOutproductCode.asstring := DM.tableProductsKOD.AsString;
       DM.mtInvoiceOutproductCount.asinteger := DM.tableProductsKOLVO.AsInteger;

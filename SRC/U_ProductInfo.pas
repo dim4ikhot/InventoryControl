@@ -69,7 +69,8 @@ end;
 procedure TF_ProductInfo.FormCreate(Sender: TObject);
 begin
   DM.tableInvoiceIn.Locate('KOD',DM.tableProductsKOD.AsInteger,[]);
-  infoProductName.Text := DM.tableProductsNAME.AsString;
+  DM.tableNames.Locate('ID', DM.tableProductsNAME_ID.AsInteger, []);
+  infoProductName.Text := DM.tableNamesNAME.AsString; //DM.tableProductsNAME_ID.AsString;
   infoProductCode.Text := IntToStr(DM.tableProductsKOD.AsInteger);
   infoProductMeasured.Text := DM.tableProductsMEASURE.AsString;
   infoProductTotalPrice.Text := DM.tableProductsTOTALPRICE.AsString;

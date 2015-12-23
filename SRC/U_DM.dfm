@@ -32,11 +32,6 @@ object DM: TDM
     AttachMaxCount = 1
     FieldDefs = <
       item
-        Name = 'productName'
-        DataType = ftString
-        Size = 1000
-      end
-      item
         Name = 'productCode'
         DataType = ftString
         Size = 100
@@ -69,6 +64,10 @@ object DM: TDM
       item
         Name = 'productEmploee'
         DataType = ftInteger
+      end
+      item
+        Name = 'productName'
+        DataType = ftInteger
       end>
     IndexDefs = <>
     SortOptions = []
@@ -84,10 +83,6 @@ object DM: TDM
     LocaleID = 1024
     Left = 32
     Top = 408
-    object mtAddProductsproductName: TStringField
-      FieldName = 'productName'
-      Size = 1000
-    end
     object mtAddProductsproductCode: TStringField
       FieldName = 'productCode'
       Size = 100
@@ -114,9 +109,12 @@ object DM: TDM
     object mtAddProductsproductEmploee: TIntegerField
       FieldName = 'productEmploee'
     end
+    object mtAddProductsproductName: TIntegerField
+      FieldName = 'productName'
+    end
   end
   object mainBase: TpFIBDatabase
-    DBName = 'G:\WORK\SKLADGIT\InventoryControl\Data\STOCK.DAT'
+    DBName = 'D:\PROJECTS\'#1057#1082#1083#1072#1076#1089#1082#1086#1081' '#1091#1095#1077#1090'\Data\STOCK.DAT'
     DBParams.Strings = (
       'user_name=SYSDBA'
       'password=masterkey'
@@ -126,7 +124,7 @@ object DM: TDM
     SQLDialect = 3
     Timeout = 0
     DesignDBOptions = []
-    LibraryName = 'G:\WORK\SKLADGIT\InventoryControl\GDS32.dll'
+    LibraryName = 'D:\PROJECTS\'#1057#1082#1083#1072#1076#1089#1082#1086#1081' '#1091#1095#1077#1090'\GDS32.dll'
     WaitForRestoreConnect = 0
     Left = 24
     Top = 8
@@ -220,7 +218,7 @@ object DM: TDM
   object tableProducts: TpFIBDataSet
     UpdateSQL.Strings = (
       'UPDATE PRODUCTS set'
-      '    NAME = ?NAME,'
+      '    NAME_ID = ?NAME_ID,'
       '    STOCK_ID = ?STOCK_ID,'
       '    ARTICUL = ?ARTICUL,'
       '    MEASURE = ?MEASURED,'
@@ -236,7 +234,7 @@ object DM: TDM
     InsertSQL.Strings = (
       'INSERT INTO PRODUCTS('
       '    ID,'
-      '    NAME,'
+      '    NAME_ID,'
       '    STOCK_ID,'
       '    ARTICUL,'
       '    MEASURE,'
@@ -248,7 +246,7 @@ object DM: TDM
       ')'
       'VALUES('
       '    ?ID,'
-      '    ?NAME,'
+      '    ?NAME_ID,'
       '    ?STOCK_ID,'
       '    ?ARTICUL,'
       '    ?MEASURE,'
@@ -261,7 +259,7 @@ object DM: TDM
     RefreshSQL.Strings = (
       'SELECT'
       '    ID,'
-      '    NAME,'
+      '    NAME_ID,'
       '    STOCK_ID,'
       '    ARTICUL,'
       '    MEASURE,'
@@ -277,7 +275,7 @@ object DM: TDM
     SelectSQL.Strings = (
       'SELECT'
       '    ID,'
-      '    NAME,'
+      '    NAME_ID,'
       '    STOCK_ID,'
       '    ARTICUL,'
       '    MEASURE,'
@@ -324,11 +322,6 @@ object DM: TDM
     object tableProductsTOTALPRICE: TFIBFloatField
       FieldName = 'TOTALPRICE'
     end
-    object tableProductsNAME: TFIBStringField
-      FieldName = 'NAME'
-      Size = 1000
-      EmptyStrToNull = True
-    end
     object tableProductsREST_COUNT: TFIBIntegerField
       FieldName = 'REST_COUNT'
     end
@@ -336,6 +329,9 @@ object DM: TDM
       FieldName = 'KOD'
       Size = 50
       EmptyStrToNull = True
+    end
+    object tableProductsNAME_ID: TFIBIntegerField
+      FieldName = 'NAME_ID'
     end
   end
   object tableClients: TpFIBDataSet
@@ -453,9 +449,6 @@ object DM: TDM
       Size = 50
       EmptyStrToNull = True
     end
-    object tableClientsACCNUM: TFIBIntegerField
-      FieldName = 'ACCNUM'
-    end
     object tableClientsACCPERSON: TFIBStringField
       FieldName = 'ACCPERSON'
       Size = 70
@@ -469,15 +462,21 @@ object DM: TDM
     object tableClientsEDRPOU: TFIBIntegerField
       FieldName = 'EDRPOU'
     end
-    object tableClientsIPN: TFIBIntegerField
-      FieldName = 'IPN'
-    end
     object tableClientsMFO: TFIBIntegerField
       FieldName = 'MFO'
     end
     object tableClientsACCBANK: TFIBStringField
       FieldName = 'ACCBANK'
       Size = 50
+      EmptyStrToNull = True
+    end
+    object tableClientsACCNUM: TFIBStringField
+      FieldName = 'ACCNUM'
+      Size = 50
+      EmptyStrToNull = True
+    end
+    object tableClientsIPN: TFIBStringField
+      FieldName = 'IPN'
       EmptyStrToNull = True
     end
   end
@@ -636,18 +635,21 @@ object DM: TDM
     object tableProvidersEDRPOU: TFIBIntegerField
       FieldName = 'EDRPOU'
     end
-    object tableProvidersIPN: TFIBIntegerField
-      FieldName = 'IPN'
-    end
     object tableProvidersMFO: TFIBIntegerField
       FieldName = 'MFO'
-    end
-    object tableProvidersACCNUMBER: TFIBIntegerField
-      FieldName = 'ACCNUMBER'
     end
     object tableProvidersACCBANK: TFIBStringField
       FieldName = 'ACCBANK'
       Size = 50
+      EmptyStrToNull = True
+    end
+    object tableProvidersACCNUMBER: TFIBStringField
+      FieldName = 'ACCNUMBER'
+      Size = 50
+      EmptyStrToNull = True
+    end
+    object tableProvidersIPN: TFIBStringField
+      FieldName = 'IPN'
       EmptyStrToNull = True
     end
   end
@@ -725,7 +727,7 @@ object DM: TDM
       'UPDATE DELIVERYIN SET    '
       '    DATEIN = ?DATEIN,'
       '    PROVIDER_ID = ?PROVIDER_ID,'
-      '    NAME = ?NAME,'
+      '    NAME_ID = ?NAME_ID,'
       '    ARTICUL = ?ARTICUL,'
       '    MEASURE = ?MEASURE,'
       '    KOLVO = ?KOLVO,'
@@ -743,7 +745,7 @@ object DM: TDM
       '    ID,'
       '    DATEIN,'
       '    PROVIDER_ID,'
-      '    NAME,'
+      '    NAME_ID,'
       '    ARTICUL,'
       '    MEASURE,'
       '    KOLVO,'
@@ -757,7 +759,7 @@ object DM: TDM
       '    ?ID,'
       '    ?DATEIN,'
       '    ?PROVIDER_ID,'
-      '    ?NAME,'
+      '    ?NAME_ID,'
       '    ?ARTICUL,'
       '    ?MEASURE,'
       '    ?KOLVO,'
@@ -772,7 +774,7 @@ object DM: TDM
       '    ID,'
       '    DATEIN,'
       '    PROVIDER_ID,'
-      '    NAME,'
+      '    NAME_ID,'
       '    ARTICUL,'
       '    MEASURE,'
       '    KOLVO,'
@@ -790,7 +792,7 @@ object DM: TDM
       '    ID,'
       '    DATEIN,'
       '    PROVIDER_ID,'
-      '    NAME,'
+      '    NAME_ID,'
       '    ARTICUL,'
       '    MEASURE,'
       '    KOLVO,'
@@ -845,15 +847,13 @@ object DM: TDM
     object tableInvoiceInTOTALPRICE: TFIBFloatField
       FieldName = 'TOTALPRICE'
     end
-    object tableInvoiceInNAME: TFIBStringField
-      FieldName = 'NAME'
-      Size = 1000
-      EmptyStrToNull = True
-    end
     object tableInvoiceInKOD: TFIBStringField
       FieldName = 'KOD'
       Size = 50
       EmptyStrToNull = True
+    end
+    object tableInvoiceInNAME_ID: TFIBIntegerField
+      FieldName = 'NAME_ID'
     end
   end
   object tableInvoiceOut: TpFIBDataSet
@@ -1032,11 +1032,6 @@ object DM: TDM
     AttachMaxCount = 1
     FieldDefs = <
       item
-        Name = 'productName'
-        DataType = ftString
-        Size = 500
-      end
-      item
         Name = 'productCode'
         DataType = ftString
         Size = 100
@@ -1069,6 +1064,10 @@ object DM: TDM
       item
         Name = 'productCustomer'
         DataType = ftInteger
+      end
+      item
+        Name = 'productName'
+        DataType = ftInteger
       end>
     IndexDefs = <>
     SortOptions = []
@@ -1084,10 +1083,6 @@ object DM: TDM
     LocaleID = 1024
     Left = 32
     Top = 464
-    object mtInvoiceOutproductName: TStringField
-      FieldName = 'productName'
-      Size = 500
-    end
     object mtInvoiceOutproductCode: TStringField
       FieldName = 'productCode'
       Size = 100
@@ -1113,6 +1108,9 @@ object DM: TDM
     end
     object mtInvoiceOutproductCustomer: TIntegerField
       FieldName = 'productCustomer'
+    end
+    object mtInvoiceOutproductName: TIntegerField
+      FieldName = 'productName'
     end
   end
   object SourceInvoiceOutmt: TDataSource
@@ -1196,8 +1194,7 @@ object DM: TDM
     FieldDefs = <
       item
         Name = 'moveName'
-        DataType = ftString
-        Size = 500
+        DataType = ftInteger
       end
       item
         Name = 'moveCount'
@@ -1239,10 +1236,6 @@ object DM: TDM
     LocaleID = 1024
     Left = 376
     Top = 88
-    object mtMoveProductsmoveName: TStringField
-      FieldName = 'moveName'
-      Size = 500
-    end
     object mtMoveProductsmoveCount: TIntegerField
       FieldName = 'moveCount'
     end
@@ -1263,6 +1256,9 @@ object DM: TDM
     object mtMoveProductsmoveTotalPrice: TFloatField
       FieldName = 'moveTotalPrice'
     end
+    object mtMoveProductsmoveName: TIntegerField
+      FieldName = 'moveName'
+    end
   end
   object SourceMovePositions: TDataSource
     DataSet = mtMoveProducts
@@ -1275,10 +1271,11 @@ object DM: TDM
       '    *    '
       'FROM'
       '    EMPLOYEE ')
+    AutoUpdateOptions.WhenGetGenID = wgOnNewRecord
     Transaction = TrmainBase
     Database = mainBase
     Filtered = True
-    Left = 328
+    Left = 376
     Top = 136
   end
   object pFIBUpdateObject1: TpFIBUpdateObject
@@ -1286,7 +1283,70 @@ object DM: TDM
     Database = mainBase
     DataSet = Autority_Table
     OrderInList = 0
-    Left = 384
+    Left = 488
     Top = 136
+  end
+  object tableNames: TpFIBDataSet
+    UpdateSQL.Strings = (
+      'UPDATE PRODNAMES SET NAME = ?NAME WHERE ID = ?OLD_ID')
+    DeleteSQL.Strings = (
+      'DELETE FROM PRODNAMES WHERE ID = ?OLD_ID')
+    InsertSQL.Strings = (
+      'INSERT INTO PRODNAMES('
+      '    ID,'
+      '    NAME'
+      ')'
+      'VALUES('
+      '    ?ID,'
+      '    ?NAME'
+      ')'
+      '    ')
+    RefreshSQL.Strings = (
+      'SELECT'
+      '    ID,'
+      '    NAME'
+      'FROM'
+      '    PRODNAMES'
+      'WHERE ID = ?OLD_ID')
+    SelectSQL.Strings = (
+      'SELECT'
+      '    ID,'
+      '    NAME'
+      'FROM'
+      '    PRODNAMES ')
+    AutoUpdateOptions.AutoReWriteSqls = True
+    AutoUpdateOptions.GeneratorName = 'GEN__ID'
+    AutoUpdateOptions.WhenGetGenID = wgOnNewRecord
+    Transaction = TRName
+    Database = mainBase
+    UpdateTransaction = TrNameWS
+    AutoCommit = True
+    Left = 376
+    Top = 192
+    object tableNamesID: TFIBIntegerField
+      FieldName = 'ID'
+    end
+    object tableNamesNAME: TFIBStringField
+      FieldName = 'NAME'
+      Size = 1000
+      EmptyStrToNull = True
+    end
+  end
+  object TRName: TpFIBTransaction
+    DefaultDatabase = mainBase
+    TimeoutAction = TARollback
+    Left = 528
+    Top = 192
+  end
+  object TrNameWS: TpFIBTransaction
+    DefaultDatabase = mainBase
+    TimeoutAction = TARollback
+    Left = 592
+    Top = 192
+  end
+  object SourceName: TDataSource
+    DataSet = tableNames
+    Left = 456
+    Top = 192
   end
 end

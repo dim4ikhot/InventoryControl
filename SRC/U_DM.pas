@@ -27,7 +27,6 @@ type
     TrProviders: TpFIBTransaction;
     TrProvidersUpd: TpFIBTransaction;
     SourceAddProducts: TDataSource;
-    mtAddProductsproductName: TStringField;
     mtAddProductsproductCode: TStringField;
     mtAddProductsproductCount: TFloatField;
     mtAddProductsproductMeasured: TStringField;
@@ -52,11 +51,9 @@ type
     tableClientsADDR1: TFIBStringField;
     tableClientsPHONE: TFIBStringField;
     tableClientsPHONEFAX: TFIBStringField;
-    tableClientsACCNUM: TFIBIntegerField;
     tableClientsACCPERSON: TFIBStringField;
     tableClientsACCBOSS: TFIBStringField;
     tableClientsEDRPOU: TFIBIntegerField;
-    tableClientsIPN: TFIBIntegerField;
     tableClientsMFO: TFIBIntegerField;
     tableClientsACCBANK: TFIBStringField;
     tableProvidersID: TFIBIntegerField;
@@ -70,9 +67,7 @@ type
     tableProvidersCONTACTOR: TFIBStringField;
     tableProvidersCONT_POST: TFIBStringField;
     tableProvidersEDRPOU: TFIBIntegerField;
-    tableProvidersIPN: TFIBIntegerField;
     tableProvidersMFO: TFIBIntegerField;
-    tableProvidersACCNUMBER: TFIBIntegerField;
     tableProvidersACCBANK: TFIBStringField;
     tableInvoiceIn: TpFIBDataSet;
     tableInvoiceOut: TpFIBDataSet;
@@ -105,8 +100,6 @@ type
     tableEmploeeNAME: TFIBStringField;
     tableEmploeeTELEPHONE: TFIBStringField;
     tableEmploeePOSHTA: TFIBStringField;
-    tableProductsNAME: TFIBStringField;
-    tableInvoiceInNAME: TFIBStringField;
     tableProductsREST_COUNT: TFIBIntegerField;
     tableProductsKOD: TFIBStringField;
     tableInvoiceInKOD: TFIBStringField;
@@ -114,7 +107,6 @@ type
     mtInvoiceOut: TkbmMemTable;
     SourceInvoiceOutmt: TDataSource;
     mtInvoiceOutproductCustomer: TIntegerField;
-    mtInvoiceOutproductName: TStringField;
     mtInvoiceOutproductCode: TStringField;
     mtInvoiceOutproductCount: TIntegerField;
     mtInvoiceOutproductMeasured: TStringField;
@@ -138,7 +130,6 @@ type
     tableMoveStockPositionTOTALPRICE: TFIBFloatField;
     tableMoveStockPositionREST_COUNT: TFIBIntegerField;
     mtMoveProducts: TkbmMemTable;
-    mtMoveProductsmoveName: TStringField;
     mtMoveProductsmoveCount: TIntegerField;
     mtMoveProductsmoveMeasured: TStringField;
     mtMoveProductsmovePrice: TFloatField;
@@ -149,6 +140,21 @@ type
     //added by Tolik
     Autority_Table: TpFIBDataSet;
     pFIBUpdateObject1: TpFIBUpdateObject;
+    tableProvidersACCNUMBER: TFIBStringField;
+    tableClientsACCNUM: TFIBStringField;
+    tableClientsIPN: TFIBStringField;
+    tableProvidersIPN: TFIBStringField;
+    tableNames: TpFIBDataSet;
+    TRName: TpFIBTransaction;
+    TrNameWS: TpFIBTransaction;
+    SourceName: TDataSource;
+    tableNamesID: TFIBIntegerField;
+    tableNamesNAME: TFIBStringField;
+    tableProductsNAME_ID: TFIBIntegerField;
+    mtAddProductsproductName: TIntegerField;
+    tableInvoiceInNAME_ID: TFIBIntegerField;
+    mtInvoiceOutproductName: TIntegerField;
+    mtMoveProductsmoveName: TIntegerField;
 
     procedure DataModuleCreate(Sender: TObject);
     procedure tableStoksAfterScroll(DataSet: TDataSet);
@@ -281,8 +287,13 @@ begin
     TrEmploee.Active := True;
     TrEmploeeUpd.Active := True;
 
+    //table NAMES
+    tableNames.Active := True;
+    TRName.Active := True;
+    TrNameWS.Active := True;
+
   except
-    ShowMessagerCP('','',mtError,[mbYes,mbNo]);
+    ShowMessagerCP('Ошибка...','Невозможно подключиться к базе.Желаете проверить правильность пути?',mtError,[mbYes,mbNo]);
     Result := False;
   end;
 end;

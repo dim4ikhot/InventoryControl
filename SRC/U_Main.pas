@@ -267,7 +267,7 @@ procedure addNewClient;
 begin
   try
     Application.CreateForm(TF_AddClientProvider, F_AddClient);
-    F_AddClient.ProviderClientAdress.Visible := False;
+    {F_AddClient.ProviderClientAdress.Visible := False;
     F_AddClient.RzLabel2.Visible := False;
 
     F_AddClient.ProviderClientPhone.Top := F_AddClient.ProviderClientBank.Top;
@@ -278,7 +278,7 @@ begin
 
     F_AddClient.ProviderClientBank.Top := F_AddClient.ProviderClientAdress.Top;
     F_AddClient.ProviderClientAccmun.Top := F_AddClient.ProviderClientAdress.Top;
-    F_AddClient.ClientHeight := 190;
+    F_AddClient.ClientHeight := 190;   }
     F_AddClient.ShowModal;
   finally
     FreeAndNil(F_AddClient);
@@ -460,6 +460,14 @@ begin
     GridProducts.Columns[7].KeyList.Add(dm.tableStoksID.AsString);
     GridProducts.Columns[7].PickList.Add(dm.tableStoksNAME.AsString);
     dm.tableStoks.Next;
+  end;
+
+  DM.tableNames.First;
+  while not dm.tableNames.Eof do
+  begin
+    GridProducts.Columns[1].KeyList.Add(dm.tableNamesID.AsString);
+    GridProducts.Columns[1].PickList.Add(dm.tableNamesNAME.AsString);
+    dm.tableNames.Next;
   end;
 end;
 

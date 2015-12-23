@@ -1,9 +1,9 @@
 object F_AddClientProvider: TF_AddClientProvider
-  Left = 723
-  Top = 289
+  Left = 521
+  Top = 217
   BorderStyle = bsDialog
   Caption = #1044#1086#1073#1072#1074#1080#1090#1100
-  ClientHeight = 230
+  ClientHeight = 266
   ClientWidth = 329
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -16,7 +16,7 @@ object F_AddClientProvider: TF_AddClientProvider
   ShowHint = True
   DesignSize = (
     329
-    230)
+    266)
   PixelsPerInch = 96
   TextHeight = 14
   object RzLabel1: TRzLabel
@@ -49,7 +49,7 @@ object F_AddClientProvider: TF_AddClientProvider
   end
   object RzLabel3: TRzLabel
     Left = 8
-    Top = 142
+    Top = 180
     Width = 72
     Height = 15
     Caption = #8470' '#1090#1077#1083#1077#1092#1086#1085#1072':'
@@ -77,7 +77,7 @@ object F_AddClientProvider: TF_AddClientProvider
   end
   object RzLabel5: TRzLabel
     Left = 8
-    Top = 96
+    Top = 136
     Width = 32
     Height = 15
     Caption = #1041#1072#1085#1082':'
@@ -91,10 +91,38 @@ object F_AddClientProvider: TF_AddClientProvider
   end
   object RzLabel6: TRzLabel
     Left = 168
-    Top = 96
+    Top = 136
     Width = 91
     Height = 15
     Caption = #1056#1072#1089#1095#1077#1090#1085#1099#1081' '#1089#1095#1077#1090':'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Times New Roman'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Transparent = True
+  end
+  object RzLabel7: TRzLabel
+    Left = 8
+    Top = 96
+    Width = 31
+    Height = 15
+    Caption = #1048#1055#1053':'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Times New Roman'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Transparent = True
+  end
+  object RzLabel8: TRzLabel
+    Left = 168
+    Top = 96
+    Width = 35
+    Height = 15
+    Caption = #1052#1060#1054':'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -12
@@ -123,7 +151,7 @@ object F_AddClientProvider: TF_AddClientProvider
   end
   object ProviderClientPhone: TRzEdit
     Left = 8
-    Top = 158
+    Top = 196
     Width = 145
     Height = 22
     FrameHotTrack = True
@@ -132,7 +160,7 @@ object F_AddClientProvider: TF_AddClientProvider
   end
   object RzBitBtn1: TRzBitBtn
     Left = 167
-    Top = 195
+    Top = 231
     Width = 73
     Anchors = [akRight, akBottom]
     HotTrack = True
@@ -142,7 +170,7 @@ object F_AddClientProvider: TF_AddClientProvider
   end
   object RzBitBtn2: TRzBitBtn
     Left = 247
-    Top = 195
+    Top = 231
     Width = 73
     Anchors = [akRight, akBottom]
     Caption = #1054#1090#1084#1077#1085#1072
@@ -162,7 +190,7 @@ object F_AddClientProvider: TF_AddClientProvider
   end
   object ProviderClientBank: TRzEdit
     Left = 8
-    Top = 112
+    Top = 152
     Width = 145
     Height = 22
     FrameHotTrack = True
@@ -171,12 +199,33 @@ object F_AddClientProvider: TF_AddClientProvider
   end
   object ProviderClientAccmun: TRzEdit
     Left = 168
-    Top = 112
+    Top = 152
     Width = 153
     Height = 22
     FrameHotTrack = True
     FrameVisible = True
     TabOrder = 7
+    OnKeyPress = ProviderClientAccmunKeyPress
+  end
+  object ProviderClientIPN: TRzEdit
+    Left = 8
+    Top = 112
+    Width = 145
+    Height = 22
+    FrameHotTrack = True
+    FrameVisible = True
+    TabOrder = 8
+    OnKeyPress = ProviderClientAccmunKeyPress
+  end
+  object ProviderClientMFO: TRzEdit
+    Left = 168
+    Top = 112
+    Width = 153
+    Height = 22
+    FrameHotTrack = True
+    FrameVisible = True
+    TabOrder = 9
+    OnKeyPress = ProviderClientAccmunKeyPress
   end
   object LangClientProv: TsiLangLinked
     Version = '6.5.4.5'
@@ -222,7 +271,7 @@ object F_AddClientProvider: TF_AddClientProvider
       'KeyField'
       'ListField')
     Left = 32
-    Top = 208
+    Top = 176
     TranslationData = {
       737443617074696F6E730D0A54465F416464436C69656E7450726F7669646572
       01C4EEE1E0E2E8F2FC01C4EEE4E0F2E8010D0A527A4C6162656C3101CDE0E8EC

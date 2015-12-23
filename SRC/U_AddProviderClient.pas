@@ -24,8 +24,13 @@ type
     RzLabel5: TRzLabel;
     RzLabel6: TRzLabel;
     ProviderClientAccmun: TRzEdit;
+    RzLabel7: TRzLabel;
+    ProviderClientIPN: TRzEdit;
+    ProviderClientMFO: TRzEdit;
+    RzLabel8: TRzLabel;
     procedure RzBitBtn1Click(Sender: TObject);
     procedure ProviderClientEDRPOUKeyPress(Sender: TObject; var Key: Char);
+    procedure ProviderClientAccmunKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -52,6 +57,8 @@ begin
     DM.tableProvidersEDRPOU.AsString := ProviderClientEDRPOU.Text;
     DM.tableProvidersACCBANK.AsString := ProviderClientBank.Text;
     DM.tableProvidersACCNUMBER.AsString := ProviderClientAccmun.Text;
+    DM.tableProvidersIPN.AsString := ProviderClientIPN.Text;
+    DM.tableProvidersMFO.AsString := ProviderClientMFO.Text;
     DM.tableProviders.Post;
   end
   else
@@ -60,7 +67,12 @@ begin
     DM.tableClients.Edit;
     DM.tableClientsNAME.AsString := ProviderClientName.Text;
     DM.tableClientsPHONE.AsString := ProviderClientPhone.Text;
+    DM.tableClientsADDR1.AsString := ProviderClientAdress.Text;
+    DM.tableClientsEDRPOU.AsString := ProviderClientEDRPOU.Text;
+    DM.tableClientsIPN.AsString := ProviderClientIPN.Text;
+    DM.tableClientsMFO.AsString := ProviderClientMFO.Text;
     DM.tableClientsACCBANK.AsString := ProviderClientBank.Text;
+    DM.tableClientsACCNUM.AsString := ProviderClientAccmun.Text;
     DM.tableClients.Post;
   end;
 end;
@@ -70,6 +82,13 @@ procedure TF_AddClientProvider.ProviderClientEDRPOUKeyPress(
 begin
   if (not (key in ['0'..'9',#8]))or((Length(ProviderClientEDRPOU.Text)>7)and(Key <> #8) ) then
     Key := #0;
+end;
+
+procedure TF_AddClientProvider.ProviderClientAccmunKeyPress(
+  Sender: TObject; var Key: Char);
+begin
+  if not (key in ['0'..'9',#8]) then
+    key := #0;
 end;
 
 end.
