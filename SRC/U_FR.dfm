@@ -125,7 +125,7 @@ object F_FR: TF_FR
   object RzToolbar1: TRzToolbar
     Left = 0
     Top = 0
-    Width = 900
+    Width = 904
     Height = 29
     Images = ImageList1
     BorderInner = fsNone
@@ -413,8 +413,8 @@ object F_FR: TF_FR
   end
   object RzStatusBar1: TRzStatusBar
     Left = 0
-    Top = 517
-    Width = 900
+    Top = 521
+    Width = 904
     Height = 19
     BorderInner = fsNone
     BorderOuter = fsNone
@@ -448,8 +448,8 @@ object F_FR: TF_FR
   object frxPreview1: TfrxPreview
     Left = 0
     Top = 29
-    Width = 900
-    Height = 488
+    Width = 904
+    Height = 492
     Align = alClient
     BevelInner = bvNone
     OutlineVisible = False

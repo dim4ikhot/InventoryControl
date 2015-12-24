@@ -1,41 +1,38 @@
 [Closed Files]
 File_0=SourceModule,'D:\PROJECTS\Components\INSTALL_FOR_DXE-2015-11-25\INSTALL_FOR_DXE\FIB_6.9.9\fibplus_6_9_9_D5-2007\sources\fib.pas',0,1,523,1,534,0,0
-File_1=SourceModule,'D:\PROJECTS\Components\INSTALL_FOR_DXE-2015-11-25\INSTALL_FOR_DXE\FIB_6.9.9\fibplus_6_9_9_D5-2007\sources\IB_Intf.pas',0,1,1992,1,2003,0,0
-File_2=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_NewStock.pas',0,1,25,39,45,0,0
-File_3=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_about.pas',0,1,1,11,8,1,0
-File_4=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_SettingsInvoice.pas',0,1,22,41,8,1,0
-File_5=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_ProvSelect.pas',0,1,1,1,1,0,0
+File_1=SourceModule,'c:\program files\borland\delphi7\source\vcl\DB.pas',0,1,48,1,59,0,0
+File_2=SourceModule,'D:\PROJECTS\Components\INSTALL_FOR_DXE-2015-11-25\INSTALL_FOR_DXE\FIB_6.9.9\fibplus_6_9_9_D5-2007\sources\IB_Intf.pas',0,1,1992,1,2003,0,0
+File_3=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_NewStock.pas',0,1,25,39,45,0,0
+File_4=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_about.pas',0,1,1,11,8,1,0
+File_5=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_SettingsInvoice.pas',0,1,22,41,8,1,0
+File_6=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_ProvSelect.pas',0,1,1,1,1,0,0
 
 [Modules]
-Module0=D:\PROJECTS\Складской учет\SRC\U_PassWord.pas
-Module1=D:\PROJECTS\Складской учет\SRC\U_Autority.pas
-Module2=D:\PROJECTS\Складской учет\SRC\U_Users.pas
-Module3=D:\PROJECTS\Складской учет\SRC\U_Main.pas
-Module4=D:\PROJECTS\Складской учет\SRC\MegaStock.dpr
-Module5=D:\PROJECTS\Складской учет\SRC\U_DM.pas
-Module6=D:\PROJECTS\Складской учет\SRC\U_ProductsOut.pas
-Module7=D:\PROJECTS\Складской учет\SRC\U_BaseConnection.pas
-Module8=D:\PROJECTS\Складской учет\SRC\U_FR.pas
-Module9=D:\PROJECTS\Складской учет\SRC\U_ClientsProviders.pas
-Module10=D:\PROJECTS\Складской учет\SRC\U_InvoiceIn.pas
-Module11=D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas
-Module12=D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas
-Module13=D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas
-Module14=D:\PROJECTS\Складской учет\SRC\U_Common.pas
-Count=15
+Module0=D:\PROJECTS\Складской учет\SRC\MegaStock.dpr
+Module1=D:\PROJECTS\Складской учет\SRC\U_InvoiceFakt.pas
+Module2=D:\PROJECTS\Складской учет\SRC\U_Main.pas
+Module3=D:\PROJECTS\Складской учет\SRC\U_DM.pas
+Module4=D:\PROJECTS\Складской учет\SRC\U_FR.pas
+Module5=D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas
+Module6=D:\PROJECTS\Складской учет\SRC\U_InvoiceIn.pas
+Module7=D:\PROJECTS\Складской учет\SRC\U_ClientsProviders.pas
+Module8=D:\PROJECTS\Складской учет\SRC\U_BaseConnection.pas
+Module9=D:\PROJECTS\Складской учет\SRC\U_ProductsOut.pas
+Module10=D:\PROJECTS\Складской учет\SRC\U_Users.pas
+Module11=D:\PROJECTS\Складской учет\SRC\U_Autority.pas
+Module12=D:\PROJECTS\Складской учет\SRC\U_PassWord.pas
+Module13=D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas
+Module14=D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas
+Module15=D:\PROJECTS\Складской учет\SRC\U_Common.pas
+Count=16
 EditWindowCount=1
 
-[D:\PROJECTS\Складской учет\SRC\U_PassWord.pas]
+[D:\PROJECTS\Складской учет\SRC\MegaStock.dpr]
 ModuleType=SourceModule
-FormState=1
+FormState=0
 FormOnTop=0
 
-[D:\PROJECTS\Складской учет\SRC\U_Autority.pas]
-ModuleType=SourceModule
-FormState=1
-FormOnTop=0
-
-[D:\PROJECTS\Складской учет\SRC\U_Users.pas]
+[D:\PROJECTS\Складской учет\SRC\U_InvoiceFakt.pas]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=0
@@ -45,32 +42,17 @@ ModuleType=SourceModule
 FormState=1
 FormOnTop=0
 
-[D:\PROJECTS\Складской учет\SRC\MegaStock.dpr]
-ModuleType=SourceModule
-FormState=0
-FormOnTop=0
-
 [D:\PROJECTS\Складской учет\SRC\U_DM.pas]
 ModuleType=SourceModule
 FormState=1
-FormOnTop=0
-
-[D:\PROJECTS\Складской учет\SRC\U_ProductsOut.pas]
-ModuleType=SourceModule
-FormState=1
-FormOnTop=0
-
-[D:\PROJECTS\Складской учет\SRC\U_BaseConnection.pas]
-ModuleType=SourceModule
-FormState=1
-FormOnTop=0
+FormOnTop=1
 
 [D:\PROJECTS\Складской учет\SRC\U_FR.pas]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=0
 
-[D:\PROJECTS\Складской учет\SRC\U_ClientsProviders.pas]
+[D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=0
@@ -80,7 +62,32 @@ ModuleType=SourceModule
 FormState=1
 FormOnTop=0
 
-[D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas]
+[D:\PROJECTS\Складской учет\SRC\U_ClientsProviders.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_BaseConnection.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_ProductsOut.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_Users.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_Autority.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_PassWord.pas]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=0
@@ -105,8 +112,8 @@ FormState=0
 FormOnTop=0
 
 [EditWindow0]
-ViewCount=15
-CurrentView=6
+ViewCount=16
+CurrentView=0
 View0=0
 View1=1
 View2=2
@@ -122,6 +129,7 @@ View11=11
 View12=12
 View13=13
 View14=14
+View15=15
 CodeExplorer=CodeExplorer@EditWindow0
 MessageView=MessageView@EditWindow0
 Create=1
@@ -145,103 +153,110 @@ BottomPanelData=00000400000000005A0400000000000002550000000000000001000000000000
 
 [View0]
 Module=D:\PROJECTS\Складской учет\SRC\MegaStock.dpr
-CursorX=35
-CursorY=50
-TopLine=40
+CursorX=38
+CursorY=33
+TopLine=21
 LeftCol=1
 
 [View1]
+Module=D:\PROJECTS\Складской учет\SRC\U_InvoiceFakt.pas
+CursorX=1
+CursorY=1
+TopLine=1
+LeftCol=1
+
+[View2]
 Module=D:\PROJECTS\Складской учет\SRC\U_Common.pas
 CursorX=1
 CursorY=65
 TopLine=60
 LeftCol=1
 
-[View2]
+[View3]
 Module=D:\PROJECTS\Складской учет\SRC\U_DM.pas
-CursorX=33
-CursorY=290
-TopLine=284
+CursorX=1
+CursorY=167
+TopLine=302
 LeftCol=1
 
-[View3]
+[View4]
 Module=D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas
 CursorX=1
 CursorY=132
 TopLine=115
 LeftCol=1
 
-[View4]
+[View5]
 Module=D:\PROJECTS\Складской учет\SRC\U_ProductsOut.pas
 CursorX=69
 CursorY=80
 TopLine=69
 LeftCol=1
 
-[View5]
+[View6]
 Module=D:\PROJECTS\Складской учет\SRC\U_Users.pas
 CursorX=42
 CursorY=181
 TopLine=170
 LeftCol=1
 
-[View6]
+[View7]
 Module=D:\PROJECTS\Складской учет\SRC\U_PassWord.pas
 CursorX=12
 CursorY=87
 TopLine=57
 LeftCol=1
 
-[View7]
+[View8]
 Module=D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas
 CursorX=54
 CursorY=73
 TopLine=61
 LeftCol=1
 
-[View8]
+[View9]
 Module=D:\PROJECTS\Складской учет\SRC\U_BaseConnection.pas
 CursorX=1
 CursorY=529
 TopLine=527
 LeftCol=1
 
-[View9]
+[View10]
 Module=D:\PROJECTS\Складской учет\SRC\U_Main.pas
-CursorX=39
-CursorY=149
-TopLine=133
+CursorX=36
+CursorY=12
+TopLine=1
 LeftCol=1
 
-[View10]
+[View11]
 Module=D:\PROJECTS\Складской учет\SRC\U_InvoiceIn.pas
 CursorX=36
 CursorY=88
 TopLine=73
 LeftCol=1
 
-[View11]
+[View12]
 Module=D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas
 CursorX=1
 CursorY=73
 TopLine=57
 LeftCol=1
 
-[View12]
+[View13]
 Module=D:\PROJECTS\Складской учет\SRC\U_ClientsProviders.pas
 CursorX=12
 CursorY=38
 TopLine=22
 LeftCol=1
 
-[View13]
+[View14]
 Module=D:\PROJECTS\Складской учет\SRC\U_FR.pas
 CursorX=1
 CursorY=661
 TopLine=721
 LeftCol=1
 
-[View14]
+[View15]
 Module=D:\PROJECTS\Складской учет\SRC\U_Autority.pas
 CursorX=41
 CursorY=46
@@ -253,7 +268,7 @@ Count=0
 
 [Breakpoints]
 Count=2
-Breakpoint0='D:\PROJECTS\Складской учет\SRC\MegaStock.dpr',50,'',0,0,'',1,0,0,'',1,'','',''
+Breakpoint0='D:\PROJECTS\Складской учет\SRC\MegaStock.dpr',48,'',0,0,'',1,0,0,'',1,'','',''
 Breakpoint1='D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas',121,'',0,1,'',1,0,0,'',1,'','',''
 
 [AddressBreakpoints]
@@ -318,7 +333,7 @@ LRDockWidth=190
 Dockable=1
 SplitPos=85
 ArrangeBy=Name
-SelectedItem=ImageIndex
+SelectedItem=Name
 ExpandedItems=Title
 HiddenCategories=
 

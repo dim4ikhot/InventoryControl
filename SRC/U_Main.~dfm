@@ -1103,8 +1103,8 @@ object F_Main: TF_Main
   TextHeight = 15
   object RzStatusBar1: TRzStatusBar
     Left = 0
-    Top = 524
-    Width = 1028
+    Top = 528
+    Width = 1032
     Height = 19
     BorderInner = fsNone
     BorderOuter = fsNone
@@ -1112,7 +1112,7 @@ object F_Main: TF_Main
     BorderWidth = 0
     TabOrder = 0
     DesignSize = (
-      1028
+      1032
       19)
     object ProgressAllOperations: TRzProgressBar
       Left = 96
@@ -1144,8 +1144,8 @@ object F_Main: TF_Main
   object PCMainTabs: TRzPageControl
     Left = 0
     Top = 0
-    Width = 1028
-    Height = 524
+    Width = 1032
+    Height = 528
     ActivePage = TabProducts
     ActivePageDefault = TabProducts
     Align = alClient
@@ -1158,10 +1158,10 @@ object F_Main: TF_Main
     object TabStock: TRzTabSheet
       Caption = #1057#1082#1083#1072#1076
       object RzSizePanel2: TRzSizePanel
-        Left = 873
+        Left = 877
         Top = 0
         Width = 153
-        Height = 500
+        Height = 504
         Align = alRight
         BorderOuter = fsFlatRounded
         HotSpotIgnoreMargins = True
@@ -1198,7 +1198,7 @@ object F_Main: TF_Main
         end
         object RzPanel3: TRzPanel
           Left = 10
-          Top = 457
+          Top = 461
           Width = 141
           Height = 41
           Align = alBottom
@@ -1225,8 +1225,8 @@ object F_Main: TF_Main
       object DBGridEh1: TDBGridEh
         Left = 0
         Top = 0
-        Width = 873
-        Height = 500
+        Width = 877
+        Height = 504
         Align = alClient
         AutoFitColWidths = True
         DataSource = DM.SourceStocks
@@ -1296,7 +1296,7 @@ object F_Main: TF_Main
       object PanelSettingsProduct: TRzSizePanel
         Left = 0
         Top = 0
-        Width = 1026
+        Width = 1030
         Height = 80
         Align = alTop
         BorderOuter = fsFlatRounded
@@ -1380,7 +1380,7 @@ object F_Main: TF_Main
           end
         end
         object GBReports: TRzGroupBox
-          Left = 524
+          Left = 528
           Top = 2
           Width = 380
           Height = 68
@@ -1461,7 +1461,7 @@ object F_Main: TF_Main
           end
         end
         object GBLists: TRzGroupBox
-          Left = 904
+          Left = 908
           Top = 2
           Width = 120
           Height = 68
@@ -1499,8 +1499,8 @@ object F_Main: TF_Main
       object GridProducts: TDBGridEh
         Left = 0
         Top = 80
-        Width = 1026
-        Height = 420
+        Width = 1030
+        Height = 424
         Align = alClient
         AutoFitColWidths = True
         DataSource = DM.SourceProducts
@@ -1605,10 +1605,10 @@ object F_Main: TF_Main
       object RzSplitter3: TRzSplitter
         Left = 0
         Top = 0
-        Width = 1026
-        Height = 500
+        Width = 1030
+        Height = 504
         Orientation = orVertical
-        Position = 248
+        Position = 250
         UsePercent = True
         SplitterStyle = ssBump
         SplitterWidth = 7
@@ -1616,9 +1616,9 @@ object F_Main: TF_Main
         TabOrder = 0
         BarSize = (
           0
-          248
-          1026
-          255)
+          250
+          1030
+          257)
         UpperLeftControls = (
           ToolbarProviders
           GridProviders
@@ -1782,8 +1782,8 @@ object F_Main: TF_Main
         object ListEmploeeCustomers: TRzSplitter
           Left = 0
           Top = 0
-          Width = 1026
-          Height = 245
+          Width = 1030
+          Height = 247
           Position = 536
           Percent = 52
           SplitterStyle = ssGroove
@@ -1794,7 +1794,7 @@ object F_Main: TF_Main
             536
             0
             543
-            245)
+            247)
           UpperLeftControls = (
             PanelCustomers
             GridClients
@@ -2074,7 +2074,7 @@ object F_Main: TF_Main
     Left = 25
     Top = 254
     Bitmap = {
-      494C01010D000E00040010001000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
+      494C01010D000E00040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       00000000000000000000000000000000000017243039273E577A713A25B0CB70
       34FFD27E41FFD37E41FFD17C41FFCD7A3FFF933E1EDF323A49801E4785A8023C
@@ -2606,7 +2606,8 @@ object F_Main: TF_Main
       FC3FFFFFC001FFFFFC3FFFFFC001FFFFFC3FFFFFC001FF00FC3FFFFFC0013F00
       FC3F8001C0010F8080018001C001020080018001C001000080018001C0018000
       80018001C001C000FC3FFFFFC001E01CFC3FFFFFC001FFFFFC3FFFFFC001FFFF
-      FC3FFFFFC003FFFFFC3FFFFFC00FFFFF}
+      FC3FFFFFC003FFFFFC3FFFFFC00FFFFF00000000000000000000000000000000
+      000000000000}
   end
   object MainMenu: TMainMenu
     Images = ProjIcon

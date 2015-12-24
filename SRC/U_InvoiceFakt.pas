@@ -5,7 +5,9 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComCtrls, Grids, DBGrids, StdCtrls, RzLabel, RzButton, Menus,
-  DB, kbmMemTable, RzDBGrid, Mask, RzEdit;
+  DB, kbmMemTable, RzDBGrid, Mask, RzEdit, DBGridEhGrouping, ToolCtrlsEh,
+  DBGridEhToolCtrls, DynVarsEh, GridsEh, DBAxisGridsEh, DBGridEh, ExtCtrls,
+  RzPanel, RzDTP;
 
 type
   TF_InvoiceFakt = class(TForm)
@@ -17,15 +19,18 @@ type
     PopupMenu1: TPopupMenu;
     N1: TMenuItem;
     N2: TMenuItem;
-    RzDBGrid1: TRzDBGrid;
     RzLabel3: TRzLabel;
-    DateTimePicker1: TDateTimePicker;
     RzLabel4: TRzLabel;
     RzLabel5: TRzLabel;
     RzLabel6: TRzLabel;
     RzEdit1: TRzEdit;
     RzEdit2: TRzEdit;
     RzEdit3: TRzEdit;
+    DateTimePicker1: TRzDateTimePicker;
+    RzPanel1: TRzPanel;
+    RzPanel2: TRzPanel;
+    RzPanel3: TRzPanel;
+    DBGridEh1: TDBGridEh;
     procedure FormShow(Sender: TObject);
     procedure RzBitBtn3Click(Sender: TObject);
   private

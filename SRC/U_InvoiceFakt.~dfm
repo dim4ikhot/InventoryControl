@@ -1,6 +1,6 @@
 object F_InvoiceFakt: TF_InvoiceFakt
-  Left = 344
-  Top = 200
+  Left = 398
+  Top = 77
   Width = 661
   Height = 638
   Caption = #1052#1077#1075#1072'-'#1089#1082#1083#1072#1076'. -- '#1057#1095#1077#1090' - '#1092#1072#1082#1090#1091#1088#1072
@@ -11,13 +11,14 @@ object F_InvoiceFakt: TF_InvoiceFakt
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  Position = poMainFormCenter
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object RzLabel1: TRzLabel
     Left = 168
     Top = 8
-    Width = 185
+    Width = 168
     Height = 22
     Caption = #1057#1095#1077#1090' - '#1092#1072#1082#1090#1091#1088#1072' '#8470
     Font.Charset = RUSSIAN_CHARSET
@@ -26,6 +27,7 @@ object F_InvoiceFakt: TF_InvoiceFakt
     Font.Name = 'Arial'
     Font.Style = [fsBold]
     ParentFont = False
+    Transparent = True
   end
   object RzLabel2: TRzLabel
     Left = 367
@@ -39,6 +41,7 @@ object F_InvoiceFakt: TF_InvoiceFakt
     Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
     ParentFont = False
+    Transparent = True
   end
   object RzLabel3: TRzLabel
     Left = 184
@@ -52,6 +55,7 @@ object F_InvoiceFakt: TF_InvoiceFakt
     Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
     ParentFont = False
+    Transparent = True
   end
   object RzLabel4: TRzLabel
     Left = 249
@@ -65,6 +69,7 @@ object F_InvoiceFakt: TF_InvoiceFakt
     Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
     ParentFont = False
+    Transparent = True
   end
   object RzLabel5: TRzLabel
     Left = 355
@@ -78,6 +83,7 @@ object F_InvoiceFakt: TF_InvoiceFakt
     Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
     ParentFont = False
+    Transparent = True
   end
   object RzLabel6: TRzLabel
     Left = 270
@@ -91,11 +97,12 @@ object F_InvoiceFakt: TF_InvoiceFakt
     Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
     ParentFont = False
+    Transparent = True
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 581
-    Width = 645
+    Top = 585
+    Width = 649
     Height = 19
     Panels = <
       item
@@ -112,12 +119,14 @@ object F_InvoiceFakt: TF_InvoiceFakt
     Left = 560
     Top = 88
     Caption = #1055#1077#1095#1072#1090#1100
+    HotTrack = True
     TabOrder = 1
   end
   object RzBitBtn3: TRzBitBtn
     Left = 560
     Top = 128
     Caption = #1042#1099#1093#1086#1076
+    HotTrack = True
     TabOrder = 2
     OnClick = RzBitBtn3Click
   end
