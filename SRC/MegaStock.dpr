@@ -24,7 +24,9 @@ uses
   U_ClientsProviders in 'U_ClientsProviders.pas' {F_ClientsProviders},
   U_Autority in 'U_Autority.pas' {F_Autority},
   U_InOrder in 'U_InOrder.pas' {F_InOrder},
-  U_ProvSelect in 'U_ProvSelect.pas' {F_ProvSelect};
+  U_ProvSelect in 'U_ProvSelect.pas' {F_ProvSelect},
+  U_Users in 'U_Users.pas' {F_Users},
+  U_PassWord in 'U_PassWord.pas' {F_Password};
 
 {$R *.res}
 var i: Integer = 0;

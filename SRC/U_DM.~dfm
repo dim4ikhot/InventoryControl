@@ -1026,14 +1026,11 @@ object DM: TDM
     end
   end
   object mtInvoiceOut: TkbmMemTable
+    Active = True
     DesignActivation = True
     AttachedAutoRefresh = True
     AttachMaxCount = 1
     FieldDefs = <
-      item
-        Name = 'productName'
-        DataType = ftInteger
-      end
       item
         Name = 'productCode'
         DataType = ftString
@@ -1066,6 +1063,10 @@ object DM: TDM
       end
       item
         Name = 'productCustomer'
+        DataType = ftInteger
+      end
+      item
+        Name = 'productName'
         DataType = ftInteger
       end>
     IndexDefs = <>
@@ -1193,8 +1194,7 @@ object DM: TDM
     FieldDefs = <
       item
         Name = 'moveName'
-        DataType = ftString
-        Size = 500
+        DataType = ftInteger
       end
       item
         Name = 'moveCount'
@@ -1236,10 +1236,6 @@ object DM: TDM
     LocaleID = 1024
     Left = 376
     Top = 88
-    object mtMoveProductsmoveName: TStringField
-      FieldName = 'moveName'
-      Size = 500
-    end
     object mtMoveProductsmoveCount: TIntegerField
       FieldName = 'moveCount'
     end
@@ -1259,6 +1255,9 @@ object DM: TDM
     end
     object mtMoveProductsmoveTotalPrice: TFloatField
       FieldName = 'moveTotalPrice'
+    end
+    object mtMoveProductsmoveName: TIntegerField
+      FieldName = 'moveName'
     end
   end
   object SourceMovePositions: TDataSource

@@ -155,6 +155,10 @@ type
     tableInvoiceInNAME_ID: TFIBIntegerField;
     mtInvoiceOutproductName: TIntegerField;
     mtMoveProductsmoveName: TIntegerField;
+    tableEmploeeUSERNAME: TFIBStringField;
+    tableEmploeeUSERPASS: TFIBStringField;
+    tableEmploeeISADMIN: TFIBIntegerField;
+    tableEmploeePOST: TFIBStringField;
 
     procedure DataModuleCreate(Sender: TObject);
     procedure tableStoksAfterScroll(DataSet: TDataSet);

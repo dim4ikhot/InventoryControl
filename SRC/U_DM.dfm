@@ -960,7 +960,11 @@ object DM: TDM
       'UPDATE EMPLOYEE SET'
       '    NAME = ?NAME,'
       '    TELEPHONE = ?TELEPHONE,'
-      '    POSHTA = ?POSHTA'
+      '    POSHTA = ?POSHTA,'
+      '    USERNAME = ?USERNAME,'
+      '    USERPASS = ?USERPASS,'
+      '    ISADMIN = ?ISADMIN,'
+      '    POST = ?POST'
       'WHERE'
       '    ID = ?OLD_ID')
     DeleteSQL.Strings = (
@@ -970,20 +974,32 @@ object DM: TDM
       '    ID,'
       '    NAME,'
       '    TELEPHONE,'
-      '    POSHTA'
+      '    POSHTA,'
+      '    USERNAME,'
+      '    USERPASS,'
+      '    ISADMIN,'
+      '    POST'
       ')'
       'VALUES('
       '    ?ID,'
       '    ?NAME,'
       '    ?TELEPHONE,'
-      '    ?POSHTA'
+      '    ?POSHTA,'
+      '    ?USERNAME,'
+      '    ?USERPASS,'
+      '    ?ISADMIN,'
+      '    ?POST'
       ')')
     RefreshSQL.Strings = (
       'SELECT'
       '    ID,'
       '    NAME,'
       '    TELEPHONE,'
-      '    POSHTA'
+      '    POSHTA,'
+      '    USERNAME,'
+      '    USERPASS,'
+      '    ISADMIN,'
+      '    POST'
       'FROM'
       '    EMPLOYEE '
       'WHERE'
@@ -993,7 +1009,11 @@ object DM: TDM
       '    ID,'
       '    NAME,'
       '    TELEPHONE,'
-      '    POSHTA'
+      '    POSHTA,'
+      '    USERNAME,'
+      '    USERPASS,'
+      '    ISADMIN,'
+      '    POST'
       'FROM'
       '    EMPLOYEE ')
     AutoUpdateOptions.UpdateTableName = 'EMPLOYEE'
@@ -1021,6 +1041,22 @@ object DM: TDM
     end
     object tableEmploeePOSHTA: TFIBStringField
       FieldName = 'POSHTA'
+      Size = 50
+      EmptyStrToNull = True
+    end
+    object tableEmploeeUSERNAME: TFIBStringField
+      FieldName = 'USERNAME'
+      EmptyStrToNull = True
+    end
+    object tableEmploeeUSERPASS: TFIBStringField
+      FieldName = 'USERPASS'
+      EmptyStrToNull = True
+    end
+    object tableEmploeeISADMIN: TFIBIntegerField
+      FieldName = 'ISADMIN'
+    end
+    object tableEmploeePOST: TFIBStringField
+      FieldName = 'POST'
       Size = 50
       EmptyStrToNull = True
     end

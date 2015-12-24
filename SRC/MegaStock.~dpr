@@ -24,7 +24,9 @@ uses
   U_ClientsProviders in 'U_ClientsProviders.pas' {F_ClientsProviders},
   U_Autority in 'U_Autority.pas' {F_Autority},
   U_InOrder in 'U_InOrder.pas' {F_InOrder},
-  U_ProvSelect in 'U_ProvSelect.pas' {F_ProvSelect};
+  U_ProvSelect in 'U_ProvSelect.pas' {F_ProvSelect},
+  U_Users in 'U_Users.pas' {F_Users},
+  U_PassWord in 'U_PassWord.pas' {F_Password};
 
 {$R *.res}
 var i: Integer = 0;
@@ -46,9 +48,8 @@ begin
     freeAndNil(F_Splash);
   end;
   Application.CreateForm(TDM, DM);
-  Application.CreateForm(TF_Autority, F_Autority);
-  Application.CreateForm(TF_InOrder, F_InOrder);
-  Application.CreateForm(TF_ProvSelect, F_ProvSelect);
+  Application.CreateForm(TF_Users, F_Users);
+  Application.CreateForm(TF_Password, F_Password);
   Application.Title := 'Мега-склад';
   Application.CreateForm(TF_Main, F_Main);
   Application.CreateForm(TF_Autority, F_Autority);

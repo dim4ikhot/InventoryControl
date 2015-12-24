@@ -82,6 +82,7 @@ type
     GBLists: TRzGroupBox;
     BtnProviders: TRzBitBtn;
     btnCustomers: TRzBitBtn;
+    AllUsers: TMenuItem;
     procedure addStockClick(Sender: TObject);
     procedure removeStockClick(Sender: TObject);
     procedure delProductClick(Sender: TObject);
@@ -124,6 +125,7 @@ type
     procedure BtnProvidersClick(Sender: TObject);
     procedure btnCustomersClick(Sender: TObject);
     procedure MoveToStockClick(Sender: TObject);
+    procedure AllUsersClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -144,7 +146,7 @@ var
 implementation
 
 uses U_MovePositions, U_SettingsInvoice,U_InvoiceIn, U_ClientsProviders,
-     U_ProductsOut, U_InOrder;
+     U_ProductsOut, U_InOrder, U_Users;
 
 {$R *.dfm}
 
@@ -614,6 +616,16 @@ begin
   finally
     FreeANdNIl(F_MovePosition);
   end;
+end;
+
+procedure TF_Main.AllUsersClick(Sender: TObject);
+begin
+  try
+    Application.CreateForm(TF_Users, F_Users);
+    F_Users.ShowModal;
+  finally
+    FreeAndNil(F_Users);
+  end
 end;
 
 end.

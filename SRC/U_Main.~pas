@@ -461,6 +461,14 @@ begin
     GridProducts.Columns[7].PickList.Add(dm.tableStoksNAME.AsString);
     dm.tableStoks.Next;
   end;
+
+  DM.tableNames.First;
+  while not dm.tableNames.Eof do
+  begin
+    GridProducts.Columns[1].KeyList.Add(dm.tableNamesID.AsString);
+    GridProducts.Columns[1].PickList.Add(dm.tableNamesNAME.AsString);
+    dm.tableNames.Next;
+  end;
 end;
 
 procedure TF_Main.FormDestroy(Sender: TObject);

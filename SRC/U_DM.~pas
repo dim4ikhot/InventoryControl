@@ -130,7 +130,6 @@ type
     tableMoveStockPositionTOTALPRICE: TFIBFloatField;
     tableMoveStockPositionREST_COUNT: TFIBIntegerField;
     mtMoveProducts: TkbmMemTable;
-    mtMoveProductsmoveName: TStringField;
     mtMoveProductsmoveCount: TIntegerField;
     mtMoveProductsmoveMeasured: TStringField;
     mtMoveProductsmovePrice: TFloatField;
@@ -155,6 +154,7 @@ type
     mtAddProductsproductName: TIntegerField;
     tableInvoiceInNAME_ID: TFIBIntegerField;
     mtInvoiceOutproductName: TIntegerField;
+    mtMoveProductsmoveName: TIntegerField;
 
     procedure DataModuleCreate(Sender: TObject);
     procedure tableStoksAfterScroll(DataSet: TDataSet);
