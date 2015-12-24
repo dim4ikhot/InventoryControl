@@ -82,6 +82,11 @@ type
     GBLists: TRzGroupBox;
     BtnProviders: TRzBitBtn;
     btnCustomers: TRzBitBtn;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
+    N5: TMenuItem;
     procedure addStockClick(Sender: TObject);
     procedure removeStockClick(Sender: TObject);
     procedure delProductClick(Sender: TObject);
@@ -124,10 +129,12 @@ type
     procedure BtnProvidersClick(Sender: TObject);
     procedure btnCustomersClick(Sender: TObject);
     procedure MoveToStockClick(Sender: TObject);
+    procedure N2Click(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    Current_User: string;
   end;
   procedure removeProductProc;
   procedure removeStockProc;
@@ -144,7 +151,7 @@ var
 implementation
 
 uses U_MovePositions, U_SettingsInvoice,U_InvoiceIn, U_ClientsProviders,
-     U_ProductsOut, U_InOrder;
+     U_ProductsOut, U_InOrder,  U_InvoiceFakt;
 
 {$R *.dfm}
 
@@ -461,6 +468,14 @@ begin
     GridProducts.Columns[7].PickList.Add(dm.tableStoksNAME.AsString);
     dm.tableStoks.Next;
   end;
+
+  DM.tableNames.First;
+  while not dm.tableNames.Eof do
+  begin
+    GridProducts.Columns[1].KeyList.Add(dm.tableNamesID.AsString);
+    GridProducts.Columns[1].PickList.Add(dm.tableNamesNAME.AsString);
+    dm.tableNames.Next;
+  end;
 end;
 
 procedure TF_Main.FormDestroy(Sender: TObject);
@@ -606,6 +621,21 @@ begin
   finally
     FreeANdNIl(F_MovePosition);
   end;
+end;
+
+procedure TF_Main.N2Click(Sender: TObject);
+begin
+  if not Assigned(F_InvoiceFakt) then
+    F_InvoiceFakt := TF_InvoiceFakt.Create(Self);
+ { F_InvoiceFakt.Table_NewInvoice.FieldDefs.Clear;
+  F_InvoiceFakt.Table_NewInvoice.FieldDefs.Add('Name');
+  F_InvoiceFakt.Table_NewInvoice.FieldDefs.Add('Ed_izm');
+  F_InvoiceFakt.Table_NewInvoice.FieldDefs.Add('Kolvo');
+  F_InvoiceFakt.Table_NewInvoice.FieldDefs.Add('Price');
+  F_InvoiceFakt.Table_NewInvoice.FieldDefs.Add('Summa');
+  F_InvoiceFakt.Table_NewInvoice.FieldDefs.Add('Name_id');}
+  
+  F_InvoiceFakt.ShowModal;
 end;
 
 end.

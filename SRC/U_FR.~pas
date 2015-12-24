@@ -152,6 +152,8 @@ type
     frxDBDataset1: TfrxDBDataset;
     frxXLSExport: TfrxXLSExport;
     LangReport: TsiLangLinked;
+    frxReport2: TfrxReport;
+    frxReport3: TfrxReport;
     procedure btPrintClick(Sender: TObject);
     procedure tbZoomChange(Sender: TObject);
     procedure tbZoomKeyDown(Sender: TObject; var Key: Word;

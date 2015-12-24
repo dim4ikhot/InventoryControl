@@ -16,6 +16,7 @@ type
     Edit2: TRzEdit;
     procedure RzBitBtn2Click(Sender: TObject);
     procedure RzBitBtn1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -27,7 +28,7 @@ var
 
 implementation
 
-uses U_DM;
+uses U_DM, U_Main;
 
 {$R *.dfm}
 
@@ -55,9 +56,15 @@ begin
   end
   else
   begin
+    F_Main.Current_User := DM.Autority_Table.FieldValues['Name'];
     Close;
     F_Autority.ModalResult := 6;
   end;
+end;
+
+procedure TF_Autority.FormShow(Sender: TObject);
+begin
+  Edit1.SetFocus;
 end;
 
 end.

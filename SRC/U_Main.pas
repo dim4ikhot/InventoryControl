@@ -82,6 +82,11 @@ type
     GBLists: TRzGroupBox;
     BtnProviders: TRzBitBtn;
     btnCustomers: TRzBitBtn;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
+    N5: TMenuItem;
     procedure addStockClick(Sender: TObject);
     procedure removeStockClick(Sender: TObject);
     procedure delProductClick(Sender: TObject);
@@ -124,10 +129,12 @@ type
     procedure BtnProvidersClick(Sender: TObject);
     procedure btnCustomersClick(Sender: TObject);
     procedure MoveToStockClick(Sender: TObject);
+    procedure N2Click(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    Current_User: string;
   end;
   procedure removeProductProc;
   procedure removeStockProc;
@@ -144,7 +151,7 @@ var
 implementation
 
 uses U_MovePositions, U_SettingsInvoice,U_InvoiceIn, U_ClientsProviders,
-     U_ProductsOut, U_InOrder;
+     U_ProductsOut, U_InOrder,  U_InvoiceFakt;
 
 {$R *.dfm}
 
@@ -614,6 +621,24 @@ begin
   finally
     FreeANdNIl(F_MovePosition);
   end;
+end;
+
+procedure TF_Main.N2Click(Sender: TObject);
+begin
+  if not Assigned(F_InvoiceFakt) then
+    F_InvoiceFakt := TF_InvoiceFakt.Create(Self);
+  DM.Table_NewInvoice.Close;
+  DM.Table_NewInvoice.Open;
+  DM.Table_NewInvoice.FieldDefs.Clear;
+
+//  DM.Table_NewInvoice.FieldDefs.Add('Name', string);
+//  DM.Table_NewInvoice.FieldDefs.Add('Ed_izm', string);
+  DM.Table_NewInvoice.FieldDefs.Add('Kolvo', integer);
+  DM.Table_NewInvoice.FieldDefs.Add('Price', currency);
+  DM.Table_NewInvoice.FieldDefs.Add('Summa', currency);
+  DM.Table_NewInvoice.FieldDefs.Add('Name_id', integer);}
+  DM.Table_NewInvoice.FieldDefs.Add('DateOut', Date)
+  F_InvoiceFakt.ShowModal;
 end;
 
 end.

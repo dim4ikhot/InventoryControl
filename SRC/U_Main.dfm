@@ -1,6 +1,6 @@
 object F_Main: TF_Main
-  Left = 223
-  Top = 115
+  Left = 123
+  Top = 193
   Width = 1044
   Height = 601
   Caption = #1052#1077#1075#1072' '#1089#1082#1083#1072#1076
@@ -1103,8 +1103,8 @@ object F_Main: TF_Main
   TextHeight = 15
   object RzStatusBar1: TRzStatusBar
     Left = 0
-    Top = 528
-    Width = 1032
+    Top = 524
+    Width = 1028
     Height = 19
     BorderInner = fsNone
     BorderOuter = fsNone
@@ -1112,7 +1112,7 @@ object F_Main: TF_Main
     BorderWidth = 0
     TabOrder = 0
     DesignSize = (
-      1032
+      1028
       19)
     object ProgressAllOperations: TRzProgressBar
       Left = 96
@@ -1144,8 +1144,8 @@ object F_Main: TF_Main
   object PCMainTabs: TRzPageControl
     Left = 0
     Top = 0
-    Width = 1032
-    Height = 528
+    Width = 1028
+    Height = 524
     ActivePage = TabProducts
     ActivePageDefault = TabProducts
     Align = alClient
@@ -1158,10 +1158,10 @@ object F_Main: TF_Main
     object TabStock: TRzTabSheet
       Caption = #1057#1082#1083#1072#1076
       object RzSizePanel2: TRzSizePanel
-        Left = 877
+        Left = 873
         Top = 0
         Width = 153
-        Height = 504
+        Height = 500
         Align = alRight
         BorderOuter = fsFlatRounded
         HotSpotIgnoreMargins = True
@@ -1198,7 +1198,7 @@ object F_Main: TF_Main
         end
         object RzPanel3: TRzPanel
           Left = 10
-          Top = 461
+          Top = 457
           Width = 141
           Height = 41
           Align = alBottom
@@ -1225,8 +1225,8 @@ object F_Main: TF_Main
       object DBGridEh1: TDBGridEh
         Left = 0
         Top = 0
-        Width = 877
-        Height = 504
+        Width = 873
+        Height = 500
         Align = alClient
         AutoFitColWidths = True
         DataSource = DM.SourceStocks
@@ -1296,7 +1296,7 @@ object F_Main: TF_Main
       object PanelSettingsProduct: TRzSizePanel
         Left = 0
         Top = 0
-        Width = 1030
+        Width = 1026
         Height = 80
         Align = alTop
         BorderOuter = fsFlatRounded
@@ -1380,7 +1380,7 @@ object F_Main: TF_Main
           end
         end
         object GBReports: TRzGroupBox
-          Left = 528
+          Left = 524
           Top = 2
           Width = 380
           Height = 68
@@ -1461,7 +1461,7 @@ object F_Main: TF_Main
           end
         end
         object GBLists: TRzGroupBox
-          Left = 908
+          Left = 904
           Top = 2
           Width = 120
           Height = 68
@@ -1499,8 +1499,8 @@ object F_Main: TF_Main
       object GridProducts: TDBGridEh
         Left = 0
         Top = 80
-        Width = 1030
-        Height = 424
+        Width = 1026
+        Height = 420
         Align = alClient
         AutoFitColWidths = True
         DataSource = DM.SourceProducts
@@ -1605,10 +1605,10 @@ object F_Main: TF_Main
       object RzSplitter3: TRzSplitter
         Left = 0
         Top = 0
-        Width = 1030
-        Height = 504
+        Width = 1026
+        Height = 500
         Orientation = orVertical
-        Position = 250
+        Position = 248
         UsePercent = True
         SplitterStyle = ssBump
         SplitterWidth = 7
@@ -1616,9 +1616,9 @@ object F_Main: TF_Main
         TabOrder = 0
         BarSize = (
           0
-          250
-          1030
-          257)
+          248
+          1026
+          255)
         UpperLeftControls = (
           ToolbarProviders
           GridProviders
@@ -1782,8 +1782,8 @@ object F_Main: TF_Main
         object ListEmploeeCustomers: TRzSplitter
           Left = 0
           Top = 0
-          Width = 1030
-          Height = 247
+          Width = 1026
+          Height = 245
           Position = 536
           Percent = 52
           SplitterStyle = ssGroove
@@ -1794,7 +1794,7 @@ object F_Main: TF_Main
             536
             0
             543
-            247)
+            245)
           UpperLeftControls = (
             PanelCustomers
             GridClients
@@ -2619,6 +2619,22 @@ object F_Main: TF_Main
         Caption = #1042#1099#1093#1086#1076
         ImageIndex = 4
         OnClick = ExitItemClick
+      end
+    end
+    object N1: TMenuItem
+      Caption = #1044#1086#1082#1091#1084#1077#1085#1090#1099
+      object N2: TMenuItem
+        Caption = #1042#1099#1087#1080#1089#1072#1090#1100' '#1089#1095#1077#1090
+        OnClick = N2Click
+      end
+      object N3: TMenuItem
+        Caption = '-'
+      end
+      object N4: TMenuItem
+        Caption = #1055#1088#1080#1093#1086#1076#1085#1072#1103' '#1085#1072#1082#1083#1072#1076#1085#1072#1103
+      end
+      object N5: TMenuItem
+        Caption = #1056#1072#1089#1093#1086#1076#1085#1072#1103' '#1085#1072#1082#1083#1072#1076#1085#1072#1103
       end
     end
     object Option: TMenuItem

@@ -155,6 +155,9 @@ type
     tableInvoiceInNAME_ID: TFIBIntegerField;
     mtInvoiceOutproductName: TIntegerField;
     mtMoveProductsmoveName: TIntegerField;
+    Table_NewInvoice: TkbmMemTable;
+    kbmThreadDataSet1: TkbmThreadDataSet;
+    NewInvoice: TDataSource;
 
     procedure DataModuleCreate(Sender: TObject);
     procedure tableStoksAfterScroll(DataSet: TDataSet);

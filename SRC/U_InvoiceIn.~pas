@@ -85,6 +85,14 @@ begin
     DM.tableStoks.Next;
   end;
 
+  DM.tableNames.First;
+  while not DM.tableNames.Eof do
+  begin
+    GridInvoiceIn.Columns[1].KeyList.Add(DM.tableNamesID.AsString);
+    GridInvoiceIn.Columns[1].PickList.Add(DM.tableNamesNAME.AsString);
+    DM.tableNames.Next;
+  end;
+
   rememberEmploee := DM.tableEmploeeID.AsInteger;
   DM.tableEmploee.First;
   while not DM.tableEmploee.Eof do
