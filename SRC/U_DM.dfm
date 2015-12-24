@@ -1,8 +1,8 @@
 object DM: TDM
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 290
-  Top = 118
+  Left = 117
+  Top = 191
   Height = 569
   Width = 1038
   object SourceStocks: TDataSource
@@ -114,7 +114,7 @@ object DM: TDM
     end
   end
   object mainBase: TpFIBDatabase
-    DBName = 'D:\PROJECTS\'#1057#1082#1083#1072#1076#1089#1082#1086#1081' '#1091#1095#1077#1090'\Data\STOCK.DAT'
+    DBName = 'G:\WORK\SKLADGIT\InventoryControl\Data\STOCK.DAT'
     DBParams.Strings = (
       'user_name=SYSDBA'
       'password=masterkey'
@@ -124,7 +124,7 @@ object DM: TDM
     SQLDialect = 3
     Timeout = 0
     DesignDBOptions = []
-    LibraryName = 'D:\PROJECTS\'#1057#1082#1083#1072#1076#1089#1082#1086#1081' '#1091#1095#1077#1090'\GDS32.dll'
+    LibraryName = 'G:\WORK\SKLADGIT\InventoryControl\GDS32.dll'
     WaitForRestoreConnect = 0
     Left = 24
     Top = 8
@@ -1224,14 +1224,11 @@ object DM: TDM
     Top = 32
   end
   object mtMoveProducts: TkbmMemTable
+    Active = True
     DesignActivation = True
     AttachedAutoRefresh = True
     AttachMaxCount = 1
     FieldDefs = <
-      item
-        Name = 'moveName'
-        DataType = ftInteger
-      end
       item
         Name = 'moveCount'
         DataType = ftInteger
@@ -1246,7 +1243,7 @@ object DM: TDM
         DataType = ftFloat
       end
       item
-        Name = 'moveStock'
+        Name = 'MoveStock'
         DataType = ftInteger
       end
       item
@@ -1257,6 +1254,10 @@ object DM: TDM
       item
         Name = 'moveTotalPrice'
         DataType = ftFloat
+      end
+      item
+        Name = 'moveName'
+        DataType = ftInteger
       end>
     IndexDefs = <>
     SortOptions = []
@@ -1384,5 +1385,35 @@ object DM: TDM
     DataSet = tableNames
     Left = 456
     Top = 192
+  end
+  object Table_NewInvoice: TkbmMemTable
+    DesignActivation = True
+    AttachedAutoRefresh = True
+    AttachMaxCount = 1
+    FieldDefs = <>
+    IndexDefs = <>
+    SortOptions = []
+    PersistentBackup = False
+    ProgressFlags = [mtpcLoad, mtpcSave, mtpcCopy]
+    LoadedCompletely = False
+    SavedCompletely = False
+    FilterOptions = []
+    Version = '5.00 beta'
+    LanguageID = 0
+    SortID = 0
+    SubLanguageID = 1
+    LocaleID = 1024
+    Left = 368
+    Top = 320
+  end
+  object kbmThreadDataSet1: TkbmThreadDataSet
+    Dataset = Table_NewInvoice
+    Left = 472
+    Top = 320
+  end
+  object NewInvoice: TDataSource
+    DataSet = Table_NewInvoice
+    Left = 552
+    Top = 320
   end
 end

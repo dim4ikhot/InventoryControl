@@ -30,3 +30,11 @@ DIMKA-ой	Thu Dec 17 23:23:58 2015
 DIMKA-ой	Thu Dec 17 23:24:00 2015
 	INET/INET_connect: gethostbyname (DIMKA-п÷п ) failed, error code = 11004
 
+
+DIMKA-ой	Thu Dec 24 23:33:33 2015
+	INET/INET_connect: gethostbyname (G) failed, error code = 11004
+
+
+DIMKA-ой	Thu Dec 24 23:33:38 2015
+	INET/INET_connect: gethostbyname (G) failed, error code = 11004
+

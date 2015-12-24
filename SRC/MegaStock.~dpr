@@ -25,8 +25,12 @@ uses
   U_Autority in 'U_Autority.pas' {F_Autority},
   U_InOrder in 'U_InOrder.pas' {F_InOrder},
   U_ProvSelect in 'U_ProvSelect.pas' {F_ProvSelect},
+<<<<<<< HEAD
   U_Users in 'U_Users.pas' {F_Users},
   U_PassWord in 'U_PassWord.pas' {F_Password};
+=======
+  U_InvoiceFakt in 'U_InvoiceFakt.pas' {F_InvoiceFakt};
+>>>>>>> TolikReport
 
 {$R *.res}
 var i: Integer = 0;
@@ -48,8 +52,6 @@ begin
     freeAndNil(F_Splash);
   end;
   Application.CreateForm(TDM, DM);
-  Application.CreateForm(TF_Users, F_Users);
-  Application.CreateForm(TF_Password, F_Password);
   Application.Title := 'Мега-склад';
   Application.CreateForm(TF_Main, F_Main);
   Application.CreateForm(TF_Autority, F_Autority);

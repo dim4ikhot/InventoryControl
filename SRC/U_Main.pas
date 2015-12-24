@@ -9,7 +9,7 @@ uses
   DynVarsEh, Menus, GridsEh, DBAxisGridsEh, DBGridEh, StdCtrls, RzCmboBx,
   RzLabel, U_AddProviderClient, U_ProductInfo, U_DM, U_BaseConnection,
   RzPrgres, U_about, Mask, RzEdit, U_FR, siComp, siLngLnk, U_MessageCP,
-  U_Common, U_Emploee, RzRadGrp;
+  U_Common, U_Emploee, RzRadGrp, DB;
 
 type
   TF_Main = class(TForm)
@@ -82,7 +82,15 @@ type
     GBLists: TRzGroupBox;
     BtnProviders: TRzBitBtn;
     btnCustomers: TRzBitBtn;
+
     AllUsers: TMenuItem;
+
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
+    N5: TMenuItem;
+
     procedure addStockClick(Sender: TObject);
     procedure removeStockClick(Sender: TObject);
     procedure delProductClick(Sender: TObject);
@@ -126,10 +134,13 @@ type
     procedure btnCustomersClick(Sender: TObject);
     procedure MoveToStockClick(Sender: TObject);
     procedure AllUsersClick(Sender: TObject);
+    procedure N2Click(Sender: TObject);
+
   private
     { Private declarations }
   public
     { Public declarations }
+    Current_User: string;
   end;
   procedure removeProductProc;
   procedure removeStockProc;
@@ -146,7 +157,7 @@ var
 implementation
 
 uses U_MovePositions, U_SettingsInvoice,U_InvoiceIn, U_ClientsProviders,
-     U_ProductsOut, U_InOrder, U_Users;
+     U_ProductsOut, U_InOrder, U_Users,  U_InvoiceFakt;
 
 {$R *.dfm}
 
@@ -626,6 +637,24 @@ begin
   finally
     FreeAndNil(F_Users);
   end
+end;
+
+procedure TF_Main.N2Click(Sender: TObject);
+begin
+  if not Assigned(F_InvoiceFakt) then
+    F_InvoiceFakt := TF_InvoiceFakt.Create(Self);
+  DM.Table_NewInvoice.Close;
+  DM.Table_NewInvoice.Open;
+  DM.Table_NewInvoice.FieldDefs.Clear;
+
+//  DM.Table_NewInvoice.FieldDefs.Add('Name', string);
+//  DM.Table_NewInvoice.FieldDefs.Add('Ed_izm', string);
+  DM.Table_NewInvoice.FieldDefs.Add('Kolvo', ftinteger);
+  DM.Table_NewInvoice.FieldDefs.Add('Price', ftcurrency);
+  DM.Table_NewInvoice.FieldDefs.Add('Summa', ftcurrency);
+  DM.Table_NewInvoice.FieldDefs.Add('Name_id', ftinteger);
+  DM.Table_NewInvoice.FieldDefs.Add('DateOut', ftDate);
+  F_InvoiceFakt.ShowModal;
 end;
 
 end.

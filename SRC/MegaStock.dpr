@@ -26,7 +26,9 @@ uses
   U_InOrder in 'U_InOrder.pas' {F_InOrder},
   U_ProvSelect in 'U_ProvSelect.pas' {F_ProvSelect},
   U_Users in 'U_Users.pas' {F_Users},
-  U_PassWord in 'U_PassWord.pas' {F_Password};
+  U_PassWord in 'U_PassWord.pas' {F_Password},
+  U_InvoiceFakt in 'U_InvoiceFakt.pas' {F_InvoiceFakt};
+
 
 {$R *.res}
 var i: Integer = 0;
@@ -48,6 +50,7 @@ begin
     freeAndNil(F_Splash);
   end;
   Application.CreateForm(TDM, DM);
+ // Application.CreateForm(TF_InvoiceFakt, F_InvoiceFakt);
   Application.Title := 'Мега-склад';
   Application.CreateForm(TF_Main, F_Main);
   Application.CreateForm(TF_Autority, F_Autority);
