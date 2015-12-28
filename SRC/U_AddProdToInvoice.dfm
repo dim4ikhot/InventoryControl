@@ -11,6 +11,7 @@ object AddProdToInvoice: TAddProdToInvoice
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  Position = poOwnerFormCenter
   PixelsPerInch = 96
   TextHeight = 13
   object DBGridEh1: TDBGridEh
@@ -20,8 +21,10 @@ object AddProdToInvoice: TAddProdToInvoice
     Height = 377
     AllowedOperations = []
     AllowedSelections = [gstRecordBookmarks, gstAll]
+    AutoFitColWidths = True
     DataSource = DM.DataSource_ProductsSelect
     DynProps = <>
+    Flat = True
     IndicatorOptions = [gioShowRowIndicatorEh]
     TabOrder = 0
     OnCellClick = DBGridEh1CellClick

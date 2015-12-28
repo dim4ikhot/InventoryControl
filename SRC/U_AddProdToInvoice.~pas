@@ -62,7 +62,7 @@ begin
       DM.Table_NewInvoice.Last;
     end;
     DM.Table_NewInvoice.EnableControls;
-  end;  
+  end;
   Close;
 
 end;
@@ -96,8 +96,9 @@ begin
         DM.Table_NewInvoice.Edit;
         DM.Table_NewInvoice.FieldByName('Npp').AsInteger :=
             DM.Table_NewInvoice.RecNo;
+        DM.Table_NewInvoice.post;
        // SumInvoice := SumInvoice + dm.Table_NewInvoice.FieldValues['RowSum'];
-          while not DM.Table_NewInvoice.Eof do
+          while not DM.Table_NewInvoice.EOF do
           begin
             DM.Table_NewInvoice.Next;
             DM.Table_NewInvoice.Edit;
