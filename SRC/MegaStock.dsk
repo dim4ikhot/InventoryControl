@@ -1,5 +1,5 @@
 [Closed Files]
-File_0=SourceModule,'D:\PROJECTS\Components\INSTALL_FOR_DXE-2015-11-25\INSTALL_FOR_DXE\FIB_6.9.9\fibplus_6_9_9_D5-2007\sources\fib.pas',0,1,523,1,534,0,0
+File_0=SourceModule,'D:\PROJECTS\Components\INSTALL_FOR_DXE-2015-11-25\INSTALL_FOR_DXE\FIB_6.9.9\fibplus_6_9_9_D5-2007\sources\fib.pas',0,1,429,1,440,0,0
 File_1=SourceModule,'D:\PROJECTS\Components\INSTALL_FOR_DXE-2015-11-25\INSTALL_FOR_DXE\FIB_6.9.9\fibplus_6_9_9_D5-2007\sources\DBParsers.pas',0,1,63,1,74,0,0
 File_2=SourceModule,'D:\PROJECTS\Components\INSTALL_FOR_DXE-2015-11-25\INSTALL_FOR_DXE\kbmmemtab500\Source\kbmMemTable.pas',0,1,10236,1,10247,0,0
 File_3=SourceModule,'c:\program files\borland\delphi7\source\vcl\DB.pas',0,1,48,1,59,0,0
@@ -14,16 +14,16 @@ Module1=D:\PROJECTS\Складской учет\SRC\U_FR.pas
 Module2=D:\PROJECTS\Складской учет\SRC\U_ClientsProviders.pas
 Module3=D:\PROJECTS\Складской учет\SRC\U_InvoiceFakt.pas
 Module4=D:\PROJECTS\Складской учет\SRC\U_PassWord.pas
-Module5=D:\PROJECTS\Складской учет\SRC\U_BaseConnection.pas
-Module6=D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas
-Module7=D:\PROJECTS\Складской учет\SRC\U_MovePositions.pas
-Module8=D:\PROJECTS\Складской учет\SRC\U_InvoiceIn.pas
-Module9=D:\PROJECTS\Складской учет\SRC\U_NewStock.pas
-Module10=D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas
-Module11=D:\PROJECTS\Складской учет\SRC\U_ProductsOut.pas
-Module12=D:\PROJECTS\Складской учет\SRC\U_Users.pas
-Module13=D:\PROJECTS\Складской учет\SRC\U_DM.pas
-Module14=D:\PROJECTS\Складской учет\SRC\U_Autority.pas
+Module5=D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas
+Module6=D:\PROJECTS\Складской учет\SRC\U_MovePositions.pas
+Module7=D:\PROJECTS\Складской учет\SRC\U_InvoiceIn.pas
+Module8=D:\PROJECTS\Складской учет\SRC\U_NewStock.pas
+Module9=D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas
+Module10=D:\PROJECTS\Складской учет\SRC\U_ProductsOut.pas
+Module11=D:\PROJECTS\Складской учет\SRC\U_Users.pas
+Module12=D:\PROJECTS\Складской учет\SRC\U_Autority.pas
+Module13=D:\PROJECTS\Складской учет\SRC\U_BaseConnection.pas
+Module14=D:\PROJECTS\Складской учет\SRC\U_DM.pas
 Module15=D:\PROJECTS\Складской учет\SRC\U_InOrder.pas
 Module16=D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas
 Module17=D:\PROJECTS\Складской учет\SRC\U_Common.pas
@@ -52,11 +52,6 @@ FormState=1
 FormOnTop=0
 
 [D:\PROJECTS\Складской учет\SRC\U_PassWord.pas]
-ModuleType=SourceModule
-FormState=1
-FormOnTop=0
-
-[D:\PROJECTS\Складской учет\SRC\U_BaseConnection.pas]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=0
@@ -96,12 +91,17 @@ ModuleType=SourceModule
 FormState=1
 FormOnTop=0
 
-[D:\PROJECTS\Складской учет\SRC\U_DM.pas]
+[D:\PROJECTS\Складской учет\SRC\U_Autority.pas]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=0
 
-[D:\PROJECTS\Складской учет\SRC\U_Autority.pas]
+[D:\PROJECTS\Складской учет\SRC\U_BaseConnection.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_DM.pas]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=0
@@ -196,9 +196,9 @@ LeftCol=1
 
 [View3]
 Module=D:\PROJECTS\Складской учет\SRC\U_DM.pas
-CursorX=1
-CursorY=262
-TopLine=260
+CursorX=31
+CursorY=296
+TopLine=287
 LeftCol=1
 
 [View4]
@@ -259,8 +259,8 @@ LeftCol=1
 
 [View12]
 Module=D:\PROJECTS\Складской учет\SRC\U_BaseConnection.pas
-CursorX=1
-CursorY=529
+CursorX=13
+CursorY=542
 TopLine=527
 LeftCol=1
 
@@ -394,7 +394,7 @@ LRDockWidth=190
 Dockable=1
 SplitPos=85
 ArrangeBy=Name
-SelectedItem=OnClose
+SelectedItem=Action
 ExpandedItems=Title
 HiddenCategories=
 

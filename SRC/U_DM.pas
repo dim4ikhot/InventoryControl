@@ -293,8 +293,8 @@ function TDM.ConnectToBase(basePath: String): Boolean;
 var
   Server, Local: String;
 begin
-  MainBase.LibraryName := ExtractFilePath(Application.ExeName) + 'Gds32.dll';
   MainBase.Connected := False;
+  MainBase.LibraryName := ExtractFilePath(Application.ExeName) + 'Gds32.dll';
   Result := MainBase.Connected;
   ExtractServerName(basePath, Server, Local);                                  // Делим строку на имя серва и путь к базе.
   if trim(Server) <> '' then                                                   // Если удаленно тогда дописывать ":"
