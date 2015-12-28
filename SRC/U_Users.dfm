@@ -1,6 +1,6 @@
 object F_Users: TF_Users
-  Left = 393
-  Top = 267
+  Left = 255
+  Top = 235
   Anchors = [akLeft, akTop, akBottom]
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle

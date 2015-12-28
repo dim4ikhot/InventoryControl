@@ -90,7 +90,6 @@ type
     Datasetinvoicein: TfrxDBDataset;
     frxXLSExport: TfrxXLSExport;
     LangReport: TsiLangLinked;
-    Report: TfrxReport;
     ReportInvoiceIn: TfrxReport;
     PBOperations: TRzProgressBar;
     RzLabel1: TRzLabel;
@@ -102,6 +101,10 @@ type
     DatasetInvoiceRest: TfrxDBDataset;
     DatasetMove: TfrxDBDataset;
     ReportMove: TfrxReport;
+    frxInvoice: TfrxReport;
+    frxDBDataset2: TfrxDBDataset;
+    frxDBDataset3: TfrxDBDataset;
+    frxDBDataset4: TfrxDBDataset;
     procedure btPrintClick(Sender: TObject);
     procedure tbZoomChange(Sender: TObject);
     procedure tbZoomKeyDown(Sender: TObject; var Key: Word;

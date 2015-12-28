@@ -33,9 +33,9 @@ begin
   end
   else
   begin
-    GridClients.Parent := F_Main.ListEmploeeCustomers;
-    PanelCustomers.Parent := F_Main.ListEmploeeCustomers;
-    ToolbarCustomers.Parent := F_Main.ListEmploeeCustomers;
+    F_Main.GridClients.Parent := F_Main.ListEmploeeCustomers;
+    F_Main.PanelCustomers.Parent := F_Main.ListEmploeeCustomers;
+    F_Main.ToolbarCustomers.Parent := F_Main.ListEmploeeCustomers;
   end;
 end;
 

@@ -180,7 +180,11 @@ begin
   DBUsersGrid.Columns[3].KeyList.Add('0');    //'Чтение/запись';
   DBUsersGrid.Columns[3].KeyList.Add('1');     //'Администрирование'
 
+<<<<<<< HEAD
   RzLabel2.Caption := currentUser.UFullName;
+=======
+ // RzLabel2.Caption := ActiveUSer.UserName;
+>>>>>>> LastVersion
   UsersTimer.Enabled := true;
 end;
 

@@ -163,6 +163,20 @@ type
     Table_NewInvoice: TkbmMemTable;
     kbmThreadDataSet1: TkbmThreadDataSet;
     NewInvoice: TDataSource;
+	tableProductsSelect: TpFIBDataSet;
+	DataSource_ProductsSelect: TDataSource;
+	tableProductsSelectNAME: TFIBStringField;
+	tableProductsSelectMEASURE: TFIBStringField;
+	tableProductsSelectKOLVO: TFIBIntegerField;
+	tableProductsSelectPRICE: TFIBFloatField;
+	tableProductsSelectARTICUL: TFIBIntegerField;
+	tableProductsSelectKOD: TFIBStringField;
+	Table_NewInvoiceNpp: TIntegerField;
+	Table_NewInvoiceName: TStringField;
+	Table_NewInvoicemeasure: TStringField;
+	Table_NewInvoicekolvo: TIntegerField;
+	Table_NewInvoicePrice: TCurrencyField;
+	Table_NewInvoiceRowsum: TCurrencyField;
     mtAddProductsproductNumber: TIntegerField;
     mtAddProductsproductFullName: TStringField;
     tableInvoiceOutDATEOUT: TFIBDateField;
@@ -207,10 +221,15 @@ type
     Autority_TableISADMIN: TFIBIntegerField;
     Autority_TablePOST: TFIBStringField;
     Autority_TableSTOCK_ID: TFIBIntegerField;
+    TableMaxInvoiceNumber: TpFIBDataSet;
+    Table_Invoices: TpFIBDataSet;
+    Table_Clients: TpFIBDataSet;
+    DataSource1: TDataSource;
 
 
     procedure DataModuleCreate(Sender: TObject);
     procedure tableStoksAfterScroll(DataSet: TDataSet);
+    procedure Table_NewInvoiceAfterPost(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -293,8 +312,8 @@ function TDM.ConnectToBase(basePath: String): Boolean;
 var
   Server, Local: String;
 begin
-  MainBase.Connected := False;
   MainBase.LibraryName := ExtractFilePath(Application.ExeName) + 'Gds32.dll';
+  MainBase.Connected := False;
   Result := MainBase.Connected;
   ExtractServerName(basePath, Server, Local);                                  // Делим строку на имя серва и путь к базе.
   if trim(Server) <> '' then                                                   // Если удаленно тогда дописывать ":"
@@ -359,6 +378,14 @@ begin
     F_main.removeStock.Visible := DataSet.FieldByName('STARTED').AsInteger = 0;
     F_Main.MoveToStock.Visible := DataSet.FieldByName('STARTED').AsInteger <> 0;
   end;
+end;
+
+procedure TDM.Table_NewInvoiceAfterPost(DataSet: TDataSet);
+begin
+  Table_NewInvoice.Edit;
+  Table_NewInvoice.Fields.FieldByName('Npp').AsInteger := Table_NewInvoice.RecNo; 
+  Table_NewInvoice.Fields.FieldByName('RowSum').AsCurrency :=
+  Table_NewInvoice.Fields.Fields[3].Value * Table_NewInvoice.Fields.Fields[4].Value;
 end;
 
 end.

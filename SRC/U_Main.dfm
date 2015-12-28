@@ -1298,18 +1298,20 @@ object F_Main: TF_Main
         Left = 0
         Top = 0
         Width = 1030
-        Height = 80
+        Height = 73
         Align = alTop
         BorderOuter = fsFlatRounded
         HotSpotIgnoreMargins = True
         HotSpotVisible = True
         SizeBarWidth = 7
         TabOrder = 0
+        HotSpotClosed = True
+        HotSpotPosition = 9
         object FindingBy: TRzRadioGroup
-          Left = 2
-          Top = 2
+          Left = 0
+          Top = 0
           Width = 465
-          Height = 68
+          Height = 65
           Align = alLeft
           Caption = #1055#1086#1080#1089#1082':'
           Columns = 2
@@ -1381,10 +1383,10 @@ object F_Main: TF_Main
           end
         end
         object GBReports: TRzGroupBox
-          Left = 528
-          Top = 2
+          Left = 530
+          Top = 0
           Width = 380
-          Height = 68
+          Height = 65
           Align = alRight
           Caption = #1054#1090#1095#1077#1090#1099':'
           Font.Charset = RUSSIAN_CHARSET
@@ -1397,10 +1399,10 @@ object F_Main: TF_Main
           Visible = False
           DesignSize = (
             380
-            68)
+            65)
           object InvoiceBtn: TRzBitBtn
             Left = 136
-            Top = 23
+            Top = 20
             Width = 116
             Height = 33
             Hint = #1057#1092#1086#1088#1084#1080#1088#1086#1074#1072#1090#1100' '#1087#1088#1080#1093#1086#1076#1085#1091#1102' '#1085#1072#1082#1083#1072#1076#1085#1091#1102
@@ -1420,12 +1422,12 @@ object F_Main: TF_Main
           end
           object CheckingAccaunt: TRzBitBtn
             Left = 256
-            Top = 23
+            Top = 20
             Width = 116
             Height = 33
             Hint = #1057#1092#1086#1088#1084#1080#1088#1086#1074#1072#1090#1100' '#1088#1072#1089#1095#1077#1090#1085#1099#1081' '#1089#1095#1077#1090
             Anchors = [akRight, akBottom]
-            Caption = #1056#1072#1089#1095#1077#1090#1085#1099#1081' '#1089#1095#1077#1090
+            Caption = #1042#1099#1087#1080#1089#1072#1090#1100' '#1089#1095#1077#1090
             Font.Charset = RUSSIAN_CHARSET
             Font.Color = clWindowText
             Font.Height = -12
@@ -1441,7 +1443,7 @@ object F_Main: TF_Main
           end
           object InvoiceOut: TRzBitBtn
             Left = 10
-            Top = 23
+            Top = 20
             Width = 116
             Height = 33
             Hint = #1057#1092#1086#1088#1084#1080#1088#1086#1074#1072#1090#1100' '#1088#1072#1089#1093#1086#1076#1085#1091#1102' '#1085#1072#1082#1083#1072#1076#1085#1091#1102
@@ -1462,18 +1464,18 @@ object F_Main: TF_Main
           end
         end
         object GBLists: TRzGroupBox
-          Left = 908
-          Top = 2
+          Left = 910
+          Top = 0
           Width = 120
-          Height = 68
+          Height = 65
           Align = alRight
           TabOrder = 2
           DesignSize = (
             120
-            68)
+            65)
           object BtnProviders: TRzBitBtn
             Left = 8
-            Top = 10
+            Top = 7
             Width = 107
             Anchors = [akRight, akBottom]
             Caption = #1055#1086#1089#1090#1072#1074#1097#1080#1082#1080
@@ -1485,7 +1487,7 @@ object F_Main: TF_Main
           end
           object btnCustomers: TRzBitBtn
             Left = 8
-            Top = 40
+            Top = 37
             Width = 107
             Anchors = [akRight, akBottom]
             Caption = #1047#1072#1082#1072#1079#1095#1080#1082#1080
@@ -1499,9 +1501,9 @@ object F_Main: TF_Main
       end
       object GridProducts: TDBGridEh
         Left = 0
-        Top = 80
+        Top = 73
         Width = 1030
-        Height = 424
+        Height = 431
         Align = alClient
         AutoFitColWidths = True
         DataSource = DM.SourceProducts
