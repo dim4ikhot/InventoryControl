@@ -90,7 +90,7 @@ MaxStackSize=1048576
 ImageBase=4194304
 ExeDescription=
 [Directories]
-OutputDir=D:\PROJECTS\Складской учет
+OutputDir=G:\WORK\SKLADGIT\InventoryControl
 UnitOutputDir=
 PackageDLLOutputDir=
 PackageDCPOutputDir=
@@ -139,5 +139,5 @@ Count=1
 Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
 [HistoryLists\hlOutputDirectorry]
 Count=2
-Item0=D:\PROJECTS\Складской учет
-Item1=G:\WORK\SKLADGIT\InventoryControl
+Item0=G:\WORK\SKLADGIT\InventoryControl
+Item1=D:\PROJECTS\Складской учет

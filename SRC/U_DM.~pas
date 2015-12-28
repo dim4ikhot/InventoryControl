@@ -155,19 +155,45 @@ type
     tableInvoiceInNAME_ID: TFIBIntegerField;
     mtInvoiceOutproductName: TIntegerField;
     mtMoveProductsmoveName: TIntegerField;
-<<<<<<< HEAD
+
     tableEmploeeUSERNAME: TFIBStringField;
     tableEmploeeUSERPASS: TFIBStringField;
     tableEmploeeISADMIN: TFIBIntegerField;
     tableEmploeePOST: TFIBStringField;
-=======
+
     Table_NewInvoice: TkbmMemTable;
     kbmThreadDataSet1: TkbmThreadDataSet;
     NewInvoice: TDataSource;
->>>>>>> TolikReport
+    tableProductsSelect: TpFIBDataSet;
+    DataSource_ProductsSelect: TDataSource;
+    tableProductsSelectNAME: TFIBStringField;
+    tableProductsSelectMEASURE: TFIBStringField;
+    tableProductsSelectKOLVO: TFIBIntegerField;
+    tableProductsSelectPRICE: TFIBFloatField;
+    tableProductsSelectARTICUL: TFIBIntegerField;
+    tableProductsSelectKOD: TFIBStringField;
+    Table_NewInvoiceNpp: TIntegerField;
+    Table_NewInvoiceName: TStringField;
+    Table_NewInvoicemeasure: TStringField;
+    Table_NewInvoicekolvo: TIntegerField;
+    Table_NewInvoicePrice: TCurrencyField;
+    Table_NewInvoiceRowsum: TCurrencyField;
+    tableStoksADDR2: TFIBStringField;
+    tableStoksMFO: TFIBIntegerField;
+    tableStoksIPN: TFIBStringField;
+    tableStoksSVIDNUM: TFIBIntegerField;
+    tableStoksACCNUM: TFIBStringField;
+    tableStoksACCBANK: TFIBStringField;
+    tableStoksEDRPOU: TFIBIntegerField;
+    TableMaxInvoiceNumber: TpFIBDataSet;
+    Table_Invoices: TpFIBDataSet;
+    Table_Clients: TpFIBDataSet;
+    DataSource1: TDataSource;
+
 
     procedure DataModuleCreate(Sender: TObject);
     procedure tableStoksAfterScroll(DataSet: TDataSet);
+    procedure Table_NewInvoiceAfterPost(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -316,6 +342,14 @@ begin
     F_main.removeStock.Visible := DataSet.FieldByName('STARTED').AsInteger = 0;
     F_Main.MoveToStock.Visible := DataSet.FieldByName('STARTED').AsInteger <> 0;
   end;
+end;
+
+procedure TDM.Table_NewInvoiceAfterPost(DataSet: TDataSet);
+begin
+  Table_NewInvoice.Edit;
+  Table_NewInvoice.Fields.FieldByName('Npp').AsInteger := Table_NewInvoice.RecNo; 
+  Table_NewInvoice.Fields.FieldByName('RowSum').AsCurrency :=
+  Table_NewInvoice.Fields.Fields[3].Value * Table_NewInvoice.Fields.Fields[4].Value;
 end;
 
 end.

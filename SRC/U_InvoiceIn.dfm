@@ -1,6 +1,6 @@
 object F_InvoiceIn: TF_InvoiceIn
-  Left = 170
-  Top = 210
+  Left = 29
+  Top = 122
   BorderStyle = bsDialog
   Caption = #1055#1088#1080#1093#1086#1076#1085#1072#1103' '#1085#1072#1082#1083#1072#1076#1085#1072#1103
   ClientHeight = 496

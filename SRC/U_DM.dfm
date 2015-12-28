@@ -1,9 +1,9 @@
 object DM: TDM
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 117
-  Top = 191
-  Height = 569
+  Left = 187
+  Top = 112
+  Height = 658
   Width = 1038
   object SourceStocks: TDataSource
     DataSet = tableStoks
@@ -176,7 +176,14 @@ object DM: TDM
       '    PHONE,'
       '    ADDR1,'
       '    NDS,'
-      '    STARTED'
+      '    STARTED,'
+      '    ADDR2,'
+      '    MFO,'
+      '    IPN,'
+      '    SVIDNuM,'
+      '    ACCNum,'
+      '    ACCBank,'
+      '    EdrPou'
       'FROM'
       '    STOCK ')
     AutoUpdateOptions.UpdateTableName = 'STOCK'
@@ -213,6 +220,34 @@ object DM: TDM
     end
     object tableStoksSTARTED: TFIBSmallIntField
       FieldName = 'STARTED'
+    end
+    object tableStoksADDR2: TFIBStringField
+      FieldName = 'ADDR2'
+      Size = 500
+      EmptyStrToNull = True
+    end
+    object tableStoksMFO: TFIBIntegerField
+      FieldName = 'MFO'
+    end
+    object tableStoksIPN: TFIBStringField
+      FieldName = 'IPN'
+      EmptyStrToNull = True
+    end
+    object tableStoksSVIDNUM: TFIBIntegerField
+      FieldName = 'SVIDNUM'
+    end
+    object tableStoksACCNUM: TFIBStringField
+      FieldName = 'ACCNUM'
+      Size = 50
+      EmptyStrToNull = True
+    end
+    object tableStoksACCBANK: TFIBStringField
+      FieldName = 'ACCBANK'
+      Size = 200
+      EmptyStrToNull = True
+    end
+    object tableStoksEDRPOU: TFIBIntegerField
+      FieldName = 'EDRPOU'
     end
   end
   object tableProducts: TpFIBDataSet
@@ -1387,14 +1422,33 @@ object DM: TDM
     Top = 192
   end
   object Table_NewInvoice: TkbmMemTable
+    Active = True
     DesignActivation = True
     AttachedAutoRefresh = True
     AttachMaxCount = 1
-    FieldDefs = <>
+    FieldDefs = <
+      item
+        Name = 'Npp'
+        DataType = ftInteger
+      end
+      item
+        Name = 'Name'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'measure'
+        DataType = ftString
+        Size = 20
+      end
+      item
+        Name = 'kolvo'
+        DataType = ftInteger
+      end>
     IndexDefs = <>
     SortOptions = []
     PersistentBackup = False
-    ProgressFlags = [mtpcLoad, mtpcSave, mtpcCopy]
+    ProgressFlags = [mtpcLoad, mtpcSave, mtpcEmpty, mtpcCopy, mtpcUpdate]
     LoadedCompletely = False
     SavedCompletely = False
     FilterOptions = []
@@ -1403,8 +1457,33 @@ object DM: TDM
     SortID = 0
     SubLanguageID = 1
     LocaleID = 1024
+    AfterPost = Table_NewInvoiceAfterPost
     Left = 368
     Top = 320
+    object Table_NewInvoiceNpp: TIntegerField
+      FieldName = 'Npp'
+    end
+    object Table_NewInvoiceName: TStringField
+      FieldName = 'Name'
+    end
+    object Table_NewInvoicemeasure: TStringField
+      FieldName = 'measure'
+    end
+    object Table_NewInvoicekolvo: TIntegerField
+      FieldName = 'kolvo'
+      EditFormat = '#'
+      MaxValue = 10000000
+    end
+    object Table_NewInvoicePrice: TCurrencyField
+      FieldKind = fkCalculated
+      FieldName = 'Price'
+      Calculated = True
+    end
+    object Table_NewInvoiceRowsum: TCurrencyField
+      FieldKind = fkCalculated
+      FieldName = 'Rowsum'
+      Calculated = True
+    end
   end
   object kbmThreadDataSet1: TkbmThreadDataSet
     Dataset = Table_NewInvoice
@@ -1415,5 +1494,97 @@ object DM: TDM
     DataSet = Table_NewInvoice
     Left = 552
     Top = 320
+  end
+  object tableProductsSelect: TpFIBDataSet
+    SelectSQL.Strings = (
+      'SELECT    '
+      '    ProdNames.Name,    '
+      '    PRODUCTS.Measure,'
+      '    PRODUCTS.Kolvo,  '
+      '    PRODUCTS.Price,'
+      '    PRODUCTS.Articul, '
+      '    PRODUCTS.Kod    '
+      'FROM'
+      '    PRODNAMES, PRODUCTS '
+      'WHERE'
+      '   ProdNames.ID = Products.Name_ID')
+    Transaction = TrmainBase
+    Database = mainBase
+    AutoCommit = True
+    Left = 368
+    Top = 384
+    object tableProductsSelectNAME: TFIBStringField
+      FieldName = 'NAME'
+      Size = 1000
+      EmptyStrToNull = True
+    end
+    object tableProductsSelectMEASURE: TFIBStringField
+      FieldName = 'MEASURE'
+      Size = 10
+      EmptyStrToNull = True
+    end
+    object tableProductsSelectKOLVO: TFIBIntegerField
+      FieldName = 'KOLVO'
+    end
+    object tableProductsSelectPRICE: TFIBFloatField
+      FieldName = 'PRICE'
+    end
+    object tableProductsSelectARTICUL: TFIBIntegerField
+      FieldName = 'ARTICUL'
+    end
+    object tableProductsSelectKOD: TFIBStringField
+      FieldName = 'KOD'
+      Size = 50
+      EmptyStrToNull = True
+    end
+  end
+  object DataSource_ProductsSelect: TDataSource
+    DataSet = tableProductsSelect
+    Left = 560
+    Top = 384
+  end
+  object TableMaxInvoiceNumber: TpFIBDataSet
+    SelectSQL.Strings = (
+      'SELECT  MAX(Number) as MaxInvoiceNumber'
+      '   from'
+      '   Invoices'
+      '   ')
+    Transaction = TrmainBase
+    Database = mainBase
+    Left = 240
+    Top = 416
+  end
+  object Table_Invoices: TpFIBDataSet
+    SelectSQL.Strings = (
+      'SELECT'
+      '    ID,    '
+      '    Customer_id,'
+      '    Stock_Id,'
+      '    dateOut,'
+      '    Emploee_ID,'
+      '    Number'
+      'FROM'
+      '    INVOICES ')
+    Transaction = TrmainBase
+    Database = mainBase
+    Left = 240
+    Top = 472
+  end
+  object Table_Clients: TpFIBDataSet
+    SelectSQL.Strings = (
+      'SELECT'
+      '    Name'
+      'FROM'
+      '    CUSTOMERS '
+      'Order by Name')
+    Transaction = TrmainBase
+    Database = mainBase
+    Left = 328
+    Top = 472
+  end
+  object DataSource1: TDataSource
+    DataSet = Table_Clients
+    Left = 408
+    Top = 472
   end
 end

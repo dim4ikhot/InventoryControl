@@ -176,6 +176,10 @@ begin
   DBUsersGrid.Columns[3].PickList.Add(User_Lang.GetText('ReadWrite'));    //'Чтение/запись';
   DBUsersGrid.Columns[3].PickList.Add(User_Lang.GetText('Administrator'));//'Администрирование'
 
+  DBUsersGrid.Columns[3].KeyList.Clear;
+  DBUsersGrid.Columns[3].KeyList.Add('0');    //'Чтение/запись';
+  DBUsersGrid.Columns[3].KeyList.Add('1');     //'Администрирование'
+
  // RzLabel2.Caption := ActiveUSer.UserName;
   UsersTimer.Enabled := true;
 end;

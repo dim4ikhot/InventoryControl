@@ -654,6 +654,15 @@ begin
     DM.Table_NewInvoice.FieldDefs.Add('Name_id', ftinteger);
     DM.Table_NewInvoice.FieldDefs.Add('DateOut', ftDate);
     DM.Table_NewInvoice.Open;
+    // макс номер
+    DM.TableMaxInvoiceNumber.Active := False;
+    DM.TableMaxInvoiceNumber.Active := True;
+    if DM.Table_Invoices.IsEmpty then
+      F_InvoiceFakt.RzLabel2.Caption := '1'
+    else
+      F_InvoiceFakt.RzLabel2.Caption := inttostr(DM.TableMaxInvoiceNumber.FieldValues['MaxInvoiceNumber'] + 1);
+    //
+    dm.Table_Clients.Active := true;
 
     F_InvoiceFakt.ShowModal;
   finally

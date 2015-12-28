@@ -1,10 +1,10 @@
 object F_InvoiceFakt: TF_InvoiceFakt
-  Left = 398
-  Top = 77
+  Left = 290
+  Top = 79
   BorderStyle = bsDialog
   Caption = #1052#1077#1075#1072'-'#1089#1082#1083#1072#1076'. -- '#1057#1095#1077#1090' - '#1092#1072#1082#1090#1091#1088#1072
-  ClientHeight = 604
-  ClientWidth = 649
+  ClientHeight = 680
+  ClientWidth = 640
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,8 +18,8 @@ object F_InvoiceFakt: TF_InvoiceFakt
   TextHeight = 13
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 585
-    Width = 649
+    Top = 661
+    Width = 640
     Height = 19
     Panels = <
       item
@@ -34,8 +34,8 @@ object F_InvoiceFakt: TF_InvoiceFakt
   end
   object RzPanel1: TRzPanel
     Left = 0
-    Top = 558
-    Width = 649
+    Top = 634
+    Width = 640
     Height = 27
     Align = alBottom
     BorderOuter = fsFlatRounded
@@ -56,6 +56,7 @@ object F_InvoiceFakt: TF_InvoiceFakt
       Caption = #1055#1077#1095#1072#1090#1100
       HotTrack = True
       TabOrder = 1
+      OnClick = RzBitBtn1Click
       Glyph.Data = {
         36060000424D3606000000000000360400002800000020000000100000000100
         0800000000000002000000000000000000000001000000000000000000003300
@@ -113,8 +114,8 @@ object F_InvoiceFakt: TF_InvoiceFakt
   object RzPanel2: TRzPanel
     Left = 0
     Top = 0
-    Width = 649
-    Height = 89
+    Width = 640
+    Height = 161
     Align = alTop
     BorderOuter = fsFlatRounded
     TabOrder = 2
@@ -160,6 +161,32 @@ object F_InvoiceFakt: TF_InvoiceFakt
       ParentFont = False
       Transparent = True
     end
+    object RzLabel7: TRzLabel
+      Left = 16
+      Top = 132
+      Width = 95
+      Height = 16
+      Caption = #1055#1086#1083#1091#1095#1072#1090#1077#1083#1100':'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object RzLabel8: TRzLabel
+      Left = 16
+      Top = 96
+      Width = 95
+      Height = 16
+      Caption = #1055#1083#1072#1090#1077#1083#1100#1097#1080#1082':'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
     object DateTimePicker1: TRzDateTimePicker
       Left = 272
       Top = 46
@@ -178,55 +205,59 @@ object F_InvoiceFakt: TF_InvoiceFakt
       FrameHotTrack = True
       FrameVisible = True
     end
+    object RzEdit4: TRzEdit
+      Left = 56
+      Top = 0
+      Width = 465
+      Height = 21
+      Enabled = False
+      FrameSides = []
+      TabOrder = 1
+    end
+    object RzEdit5: TRzEdit
+      Left = 120
+      Top = 128
+      Width = 465
+      Height = 28
+      Text = #1090#1086#1090' '#1078#1077
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 2
+    end
+    object RzDBComboBox1: TRzDBComboBox
+      Left = 120
+      Top = 96
+      Width = 463
+      Height = 21
+      DataField = 'NAME'
+      DataSource = DM.DataSource1
+      ItemHeight = 13
+      TabOrder = 3
+    end
   end
   object RzPanel3: TRzPanel
     Left = 0
-    Top = 504
-    Width = 649
+    Top = 580
+    Width = 640
     Height = 54
     Align = alBottom
     BorderOuter = fsGroove
     TabOrder = 3
     DesignSize = (
-      649
+      640
       54)
-    object RzLabel4: TRzLabel
-      Left = 15
-      Top = 21
-      Width = 107
-      Height = 19
-      Anchors = [akLeft, akBottom]
-      Caption = #1048#1090#1086#1075#1086' '#1073#1077#1079' '#1053#1044#1057
-      Font.Charset = RUSSIAN_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Times New Roman'
-      Font.Style = [fsBold]
-      ParentFont = False
-      Transparent = True
-    end
-    object RzLabel5: TRzLabel
-      Left = 264
-      Top = 21
-      Width = 34
-      Height = 19
-      Anchors = [akLeft, akBottom]
-      Caption = #1053#1044#1057
-      Font.Charset = RUSSIAN_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Times New Roman'
-      Font.Style = [fsBold]
-      ParentFont = False
-      Transparent = True
-    end
     object RzLabel6: TRzLabel
-      Left = 426
+      Left = 469
       Top = 21
-      Width = 98
+      Width = 53
       Height = 19
       Anchors = [akLeft, akBottom]
-      Caption = #1057#1091#1084#1084#1072' '#1089' '#1053#1044#1057
+      Caption = #1057#1091#1084#1084#1072' '
       Font.Charset = RUSSIAN_CHARSET
       Font.Color = clWindowText
       Font.Height = -16
@@ -234,59 +265,44 @@ object F_InvoiceFakt: TF_InvoiceFakt
       Font.Style = [fsBold]
       ParentFont = False
       Transparent = True
-    end
-    object RzEdit1: TRzEdit
-      Left = 133
-      Top = 20
-      Width = 100
-      Height = 21
-      Anchors = [akLeft, akBottom]
-      Enabled = False
-      FrameHotTrack = True
-      FrameVisible = True
-      TabOrder = 0
-    end
-    object RzEdit2: TRzEdit
-      Left = 305
-      Top = 20
-      Width = 100
-      Height = 21
-      Anchors = [akLeft, akBottom]
-      Enabled = False
-      FrameHotTrack = True
-      FrameVisible = True
-      TabOrder = 1
     end
     object RzEdit3: TRzEdit
       Left = 534
       Top = 20
       Width = 100
       Height = 21
+      Text = '0'
       Anchors = [akLeft, akBottom]
       Enabled = False
       FrameHotTrack = True
       FrameVisible = True
-      TabOrder = 2
+      TabOrder = 0
     end
   end
-  object DBGridEh1: TDBGridEh
+  object InvoiceGrid: TDBGridEh
     Left = 0
-    Top = 89
-    Width = 649
-    Height = 415
+    Top = 161
+    Width = 640
+    Height = 419
     Align = alClient
     AutoFitColWidths = True
     DataSource = DM.NewInvoice
     DynProps = <>
+    EditActions = [geaCutEh, geaCopyEh, geaPasteEh, geaDeleteEh, geaSelectAllEh]
     Flat = True
     IndicatorOptions = [gioShowRowIndicatorEh]
+    EmptyDataInfo.Active = True
+    PopupMenu = PopupMenu2
+    EditButtonsShowOptions = [sebShowOnlyForCurCellEh, sebShowOnlyForCurRowEh, sebShowOnlyWhenGridActiveEh, sebShowOnlyWhenDataEditingEh]
     TabOrder = 4
     VertScrollBar.VisibleMode = sbAlwaysShowEh
     Columns = <
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'Npp'
         Footers = <>
+        ReadOnly = True
         Title.Alignment = taCenter
         Title.Caption = #8470
         Width = 50
@@ -294,7 +310,9 @@ object F_InvoiceFakt: TF_InvoiceFakt
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'Name'
         Footers = <>
+        ReadOnly = True
         Title.Alignment = taCenter
         Title.Caption = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
         Width = 250
@@ -302,7 +320,9 @@ object F_InvoiceFakt: TF_InvoiceFakt
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'measure'
         Footers = <>
+        ReadOnly = True
         Title.Alignment = taCenter
         Title.Caption = #1045#1076'. '#1080#1079#1084'.'
         Width = 70
@@ -310,15 +330,19 @@ object F_InvoiceFakt: TF_InvoiceFakt
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'kolvo'
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1050#1086#1083#1080#1095#1077#1089#1090#1074#1086
         Width = 70
+        OnUpdateData = InvoiceGridColumns3UpdateData
       end
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'Price'
         Footers = <>
+        ReadOnly = True
         Title.Alignment = taCenter
         Title.Caption = #1062#1077#1085#1072
         Width = 75
@@ -326,7 +350,9 @@ object F_InvoiceFakt: TF_InvoiceFakt
       item
         DynProps = <>
         EditButtons = <>
+        FieldName = 'Rowsum'
         Footers = <>
+        ReadOnly = True
         Title.Alignment = taCenter
         Title.Caption = #1057#1091#1084#1084#1072
         Width = 75
@@ -334,16 +360,21 @@ object F_InvoiceFakt: TF_InvoiceFakt
     object RowDetailData: TRowDetailPanelControlEh
     end
   end
-  object PopupMenu1: TPopupMenu
-    Left = 304
-    Top = 256
-    object N1: TMenuItem
-      Caption = #1044#1086#1073#1072#1074#1080#1090#1100
+  object PopupMenu2: TPopupMenu
+    Images = F_Main.ProjIcon
+    Left = 160
+    Top = 336
+    object N3: TMenuItem
+      Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1087#1086#1079#1080#1094#1080#1102
+      ImageIndex = 0
       ShortCut = 45
+      OnClick = N3Click
     end
-    object N2: TMenuItem
-      Caption = #1059#1076#1072#1083#1080#1090#1100
+    object N4: TMenuItem
+      Caption = #1059#1076#1072#1083#1080#1090#1100' '#1087#1086#1079#1080#1094#1080#1102
+      ImageIndex = 1
       ShortCut = 46
+      OnClick = N4Click
     end
   end
 end

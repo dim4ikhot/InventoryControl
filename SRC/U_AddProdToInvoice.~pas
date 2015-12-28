@@ -1,0 +1,117 @@
+unit U_AddProdToInvoice;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh,
+  GridsEh, DBAxisGridsEh, DBGridEh;
+
+type
+  TAddProdToInvoice = class(TForm)
+    DBGridEh1: TDBGridEh;
+    procedure DBGridEh1CellClick(Column: TColumnEh);
+    procedure DBGridEh1KeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  AddProdToInvoice: TAddProdToInvoice;
+
+implementation
+
+uses U_DM, U_InvoiceFakt;
+
+{$R *.dfm}
+
+procedure TAddProdToInvoice.DBGridEh1CellClick(Column: TColumnEh);
+var  SumInvoice: double;
+begin
+  SumInvoice := 0;
+  dm.Table_NewInvoice.Insert;
+  //номер по порядку
+  dm.Table_NewInvoice.FieldByName('Npp').AsInteger := dm.Table_NewInvoice.RecNo;
+  dm.Table_NewInvoice.FieldByName('Name').AsString := dm.tableProductsSelect.FieldValues['Name'];
+  dm.Table_NewInvoice.FieldByName('Measure').AsString := dm.tableProductsSelect.FieldValues['Measure'];
+  dm.Table_NewInvoice.FieldByName('Kolvo').AsInteger := 1;
+  dm.Table_NewInvoice.FieldByName('Price').AsCurrency := dm.tableProductsSelect.FieldValues['Price'];
+  //dm.Table_NewInvoice.FieldByName('RowSum').AsCurrency := dm.tableProductsSelect.FieldValues['Price'];
+  dm.Table_NewInvoice.Post;
+  if not DM.Table_NewInvoice.IsEmpty then
+  begin
+    DM.Table_NewInvoice.DisableControls;
+    // пересчитываем позиции в счете для оставшихся строчек
+    if DM.Table_NewInvoice.RecordCount > 0 then
+    begin
+      DM.Table_NewInvoice.First;
+      DM.Table_NewInvoice.Edit;
+      DM.Table_NewInvoice.FieldByName('Npp').AsInteger :=
+          DM.Table_NewInvoice.RecNo;
+      DM.Table_NewInvoice.Post;
+        while not DM.Table_NewInvoice.Eof do
+        begin
+          DM.Table_NewInvoice.Next;
+          DM.Table_NewInvoice.Edit;
+          DM.Table_NewInvoice.FieldByName('Npp').AsInteger :=
+            DM.Table_NewInvoice.RecNo;
+          DM.Table_NewInvoice.Post;
+        end;
+      DM.Table_NewInvoice.Last;
+    end;
+    DM.Table_NewInvoice.EnableControls;
+  end;  
+  Close;
+
+end;
+
+procedure TAddProdToInvoice.DBGridEh1KeyPress(Sender: TObject;
+  var Key: Char);
+var  SumInvoice: double;
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+    SumInvoice := 0;
+    dm.Table_NewInvoice.Insert;
+    //номер по порядку
+    dm.Table_NewInvoice.FieldByName('Npp').AsInteger := dm.Table_NewInvoice.RecNo;
+    dm.Table_NewInvoice.FieldByName('Name').AsString := dm.tableProductsSelect.FieldValues['Name'];
+    dm.Table_NewInvoice.FieldByName('Measure').AsString := dm.tableProductsSelect.FieldValues['Measure'];
+    dm.Table_NewInvoice.FieldByName('Kolvo').AsInteger := 1;
+    dm.Table_NewInvoice.FieldByName('Price').AsCurrency := dm.tableProductsSelect.FieldValues['Price'];
+    dm.Table_NewInvoice.FieldByName('RowSum').AsCurrency := dm.tableProductsSelect.FieldValues['Price'];
+                                                           // dm.tableProductsSelect.FieldValues['Kolvo'];
+
+    dm.Table_NewInvoice.Post;
+    if not DM.Table_NewInvoice.IsEmpty then
+    begin
+      DM.Table_NewInvoice.DisableControls;
+      // пересчитываем позиции в счете для оставшихся строчек
+      if DM.Table_NewInvoice.RecordCount > 0 then
+      begin
+        DM.Table_NewInvoice.First;
+        DM.Table_NewInvoice.Edit;
+        DM.Table_NewInvoice.FieldByName('Npp').AsInteger :=
+            DM.Table_NewInvoice.RecNo;
+       // SumInvoice := SumInvoice + dm.Table_NewInvoice.FieldValues['RowSum'];
+          while not DM.Table_NewInvoice.Eof do
+          begin
+            DM.Table_NewInvoice.Next;
+            DM.Table_NewInvoice.Edit;
+            DM.Table_NewInvoice.FieldByName('Npp').AsInteger :=
+              DM.Table_NewInvoice.RecNo;
+            SumInvoice := SumInvoice + dm.Table_NewInvoice.FieldValues['RowSum'];
+          end;
+        DM.Table_NewInvoice.Last;
+      end;
+      DM.Table_NewInvoice.EnableControls;
+    end;
+  end;
+  F_InvoiceFakt.RzEdit3.text := formatFloat('#', SumInvoice);
+  Close;
+end;
+
+end.
