@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, RzButton, StdCtrls, ActnList, Mask, RzEdit;
+  Dialogs, RzButton, StdCtrls, ActnList, Mask, RzEdit, U_Common, siComp,
+  siLngLnk;
 
 type
   TF_Autority = class(TForm)
@@ -14,6 +15,7 @@ type
     RzBitBtn2: TRzBitBtn;
     Edit1: TRzEdit;
     Edit2: TRzEdit;
+    Lang_Autority: TsiLangLinked;
     procedure RzBitBtn2Click(Sender: TObject);
     procedure RzBitBtn1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -28,7 +30,7 @@ var
 
 implementation
 
-uses U_DM, U_Main;
+uses U_DM, U_Main, FIBDataSet,U_MessageCP;
 
 {$R *.dfm}
 
@@ -46,17 +48,23 @@ begin
   DM.Autority_Table.SQLs.SelectSQL.Clear;
   DM.Autority_Table.SQLs.SelectSQL.add('Select * from Employee');
   DM.Autority_Table.SQLs.SelectSQL.add('WHERE UserName = '+''''+Edit1.Text+''''+
-                                       ' and UserPass = '+''''+Edit2.Text+'''' );
+                                       ' and ((UserPass = '+''''+Edit2.Text+''')or(UserPass is null)) ' );
   DM.Autority_Table.SQLs.SelectSQL.EndUpdate;
   DM.Autority_Table.Active := True;
   if DM.Autority_Table.IsEmpty then
   begin
-    Showmessage('Неверное имя пользователя или пароль!');
+    ShowMessagerCP(Lang_Autority.GetText('ErrorTitle'),Lang_Autority.GetText('ErrorCaption'),mtError, [mbOk]);
     F_Autority.ModalResult := 0;
   end
   else
   begin
-    
+    F_Main.Current_User := DM.Autority_Table.FieldValues['Name'];
+    currentUser.userID := DM.Autority_Table.FieldValues['ID'];
+    currentUser.UFullName := DM.Autority_Table.FieldValues['Name'];
+    currentUser.UName := DM.Autority_Table.FieldValues['UserName'];
+    currentUser.UIsAdmin := Boolean(DM.Autority_Table.FieldValues['IsAdmin']);
+    if DM.Autority_Table.FieldValues['STOCK_ID'] <> 'null' then
+      currentUser.userStockId := DM.Autority_Table.FieldValues['STOCK_ID'];
     Close;
     F_Autority.ModalResult := 6;
   end;

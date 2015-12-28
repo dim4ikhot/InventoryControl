@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, U_DM, DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh,
   ExtCtrls, RzPanel, GridsEh, DBAxisGridsEh, DBGridEh, U_Main, RzButton,
-  siComp, siLngLnk, DB;
+  siComp, siLngLnk, DB, U_FR, U_MessageCP;
 
 type
   TF_InvoiceIn = class(TForm)
@@ -25,6 +25,7 @@ type
     procedure GridInvoiceInCellClick(Column: TColumnEh);
     procedure GridInvoiceInKeyPress(Sender: TObject; var Key: Char);
     procedure CancelInvoiceInClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -33,11 +34,12 @@ type
 
 var
   F_InvoiceIn: TF_InvoiceIn;
+  F_InvoiceInRest: TF_InvoiceIn;
   F_InvoiceOut: TF_InvoiceIn;
   F_MoveProducts: TF_InvoiceIn;
 implementation
 
-Uses U_ProductsOut;
+Uses U_ProductsOut , RzCmboBx, U_Common;
 
 {$R *.dfm}
 
@@ -45,7 +47,7 @@ procedure TF_InvoiceIn.addInvoiceInClick(Sender: TObject);
 var
   tmpGridProducts: TDBGridEh;
 begin
-  if F_InvoiceIn <> nil then
+  if (F_InvoiceIn <> nil)or(F_InvoiceInRest <> nil) then
     addProductProc
   else
   if F_InvoiceOut <> nil then
@@ -54,6 +56,12 @@ begin
       Application.CreateForm(TF_ProductsOut, F_ProductsOut);
       F_Main.GridProducts.Parent := F_ProductsOut;
       F_Main.PanelSettingsProduct.Parent := F_ProductsOut;
+      DM.tableStoks.Locate('EMPLOEE_ID', currentUser.userID, []);
+      DM.tableProducts.Filtered := True;
+      DM.tableProducts.Filter := 'STOCK_ID = '+''''+ DM.tableStoksID.AsString +'''';
+
+      F_Main.stockFilter.ItemIndex := F_Main.stockFilter.IndexOf(DM.tableStoksNAME.AsString);
+      F_Main.stockFilter.Enabled := False;
       F_Main.GBLists.Visible := False;
       F_Main.GBReports.Visible := False;
       F_ProductsOut.ShowModal;
@@ -75,8 +83,12 @@ end;
 
 procedure TF_InvoiceIn.FormCreate(Sender: TObject);
 var
-  RememberProvider,rememberEmploee,rememberClient:Integer;
+  RememberProvider,
+  rememberEmploee,
+  rememberClient,
+  rememberStockID: Integer;
 begin
+  rememberStockID := DM.tableStoksID.AsInteger;
   DM.tableStoks.First;
   while not DM.tableStoks.Eof do
   begin
@@ -84,6 +96,7 @@ begin
     GridInvoiceIn.Columns[9].PickList.Add(DM.tableStoksNAME.AsString);
     DM.tableStoks.Next;
   end;
+  DM.tableStoks.Locate('ID', rememberStockID,[]);
 
   DM.tableNames.First;
   while not DM.tableNames.Eof do
@@ -126,11 +139,44 @@ end;
 
 procedure TF_InvoiceIn.ReportInvoiceClick(Sender: TObject);
 begin
-  if F_InvoiceIn <> nil then
+  if (F_InvoiceIn <> nil)then
+  begin
   //Create invoice in
+    try
+      Application.CreateForm(TF_FR ,F_PrinInvoiceIn);
+      F_PrinInvoiceIn.ReportInvoiceIn.Preview := F_PrinInvoiceIn.frxPreview1;
+      F_PrinInvoiceIn.ReportInvoiceIn.PrepareReport;
+      F_PrinInvoiceIn.ShowModal;
+    finally
+      FreeAndNil(F_PrinInvoiceIn);
+    end;
+  end
+  else
+  if (F_InvoiceInRest <> nil) then
+  begin
+  //Create invoice in
+    try
+      Application.CreateForm(TF_FR ,F_PrinInvoiceIn);
+      F_PrinInvoiceIn.ReportInvoiceRest.Preview := F_PrinInvoiceIn.frxPreview1;
+      F_PrinInvoiceIn.ReportInvoiceRest.PrepareReport;
+      F_PrinInvoiceIn.ShowModal;
+    finally
+      FreeAndNil(F_PrinInvoiceIn);
+    end;
+  end
   else
   if F_InvoiceOut <> nil then
-  //create invoice out
+  begin
+    //create invoice out
+    try
+      Application.CreateForm(TF_FR ,F_PrinInvoiceOut);
+      F_PrinInvoiceOut.ReportInvoiceOut.Preview := F_PrinInvoiceOut.frxPreview1;
+      F_PrinInvoiceOut.ReportInvoiceOut.PrepareReport;
+      F_PrinInvoiceOut.ShowModal;
+    finally
+      FreeAndNil(F_PrinInvoiceOut);
+    end;
+  end;
 end;
 
 procedure TF_InvoiceIn.GridInvoiceInCellClick(Column: TColumnEh);
@@ -139,10 +185,21 @@ begin
   begin
     if DM.mtInvoiceOut.State = dsEdit then
     begin
+      DM.tableProducts.Locate('KOD', DM.mtInvoiceOutproductCode.AsString, []);
+      if DM.tableProductsREST_COUNT.AsInteger > DM.mtInvoiceOutproductCount.AsInteger then
       begin
         DM.mtInvoiceOutproductTotalPrice.AsFloat :=
           DM.mtInvoiceOutproductCount.AsInteger *
             DM.mtInvoiceOutproductPrice.AsFloat;
+      end
+      else
+      begin
+        ShowMessagerCP(LangInvoices.GetText('ErrorTitle'),LangInvoices.GetText('ToMachCountEntered'),mtError,[mbOK]);
+        DM.mtInvoiceOutproductCount.AsInteger := DM.tableProductsREST_COUNT.AsInteger;
+        DM.mtInvoiceOutproductTotalPrice.AsFloat :=
+          DM.tableProductsREST_COUNT.AsInteger *
+            DM.mtInvoiceOutproductPrice.AsFloat;
+
       end;
       DM.mtInvoiceOut.Post;
     end;
@@ -158,10 +215,21 @@ begin
     begin
       if DM.mtInvoiceOut.State = dsEdit then
       begin
+        DM.tableProducts.Locate('KOD', DM.mtInvoiceOutproductCode.AsString, []);
+        if DM.tableProductsRest_Count.AsInteger > DM.mtInvoiceOutproductCount.AsInteger then
         begin
           DM.mtInvoiceOutproductTotalPrice.AsFloat :=
             DM.mtInvoiceOutproductCount.AsInteger *
               DM.mtInvoiceOutproductPrice.AsFloat;
+        end
+        else
+        begin
+          ShowMessagerCP(LangInvoices.GetText('ErrorTitle'),LangInvoices.GetText('ToMachCountEntered'),mtError,[mbOK]);
+          DM.mtInvoiceOutproductCount.AsInteger := DM.tableProductsREST_COUNT.AsInteger;
+          DM.mtInvoiceOutproductTotalPrice.AsFloat :=
+            DM.tableProductsREST_COUNT.AsInteger *
+              DM.mtInvoiceOutproductPrice.AsFloat;
+
         end;
         DM.mtInvoiceOut.Post;
       end;
@@ -176,6 +244,14 @@ begin
   else
   if F_InvoiceOut <> nil then
     DM.mtInvoiceOut.EmptyTable;
+end;
+
+procedure TF_InvoiceIn.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  DM.mtAddProducts.EmptyTable;
+  DM.mtInvoiceOut.EmptyTable;
+  DM.mtMoveProducts.EmptyTable;
 end;
 
 end.

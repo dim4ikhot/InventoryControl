@@ -70,7 +70,7 @@ begin
     if NumStr <> '' then
     begin
       try
-        UserNum := Strtoint(NumStr);
+        UserNum := StrToIntDef(NumStr,0);
         inc(RecCnt);
       except
       end;
@@ -180,7 +180,7 @@ begin
   DBUsersGrid.Columns[3].KeyList.Add('0');    //'Чтение/запись';
   DBUsersGrid.Columns[3].KeyList.Add('1');     //'Администрирование'
 
- // RzLabel2.Caption := ActiveUSer.UserName;
+  RzLabel2.Caption := currentUser.UFullName;
   UsersTimer.Enabled := true;
 end;
 

@@ -225,7 +225,7 @@ object F_AddClientProvider: TF_AddClientProvider
     FrameHotTrack = True
     FrameVisible = True
     TabOrder = 9
-    OnKeyPress = ProviderClientAccmunKeyPress
+    OnKeyPress = ProviderClientMFOKeyPress
   end
   object LangClientProv: TsiLangLinked
     Version = '6.5.4.5'

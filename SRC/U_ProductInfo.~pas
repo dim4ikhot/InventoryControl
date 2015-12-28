@@ -35,6 +35,9 @@ type
     infoProductEmploee: TRzEdit;
     RzLabel10: TRzLabel;
     procedure FormCreate(Sender: TObject);
+    procedure InfoProductOutDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumnEh;
+      State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -48,7 +51,7 @@ var
 
 implementation
 
-uses U_Main;
+uses U_Main, DB;
 
 {$R *.dfm}
 
@@ -69,8 +72,9 @@ end;
 procedure TF_ProductInfo.FormCreate(Sender: TObject);
 begin
   DM.tableInvoiceIn.Locate('KOD',DM.tableProductsKOD.AsInteger,[]);
-  infoProductName.Text := DM.tableProductsNAME_ID.AsString;
-  infoProductCode.Text := IntToStr(DM.tableProductsKOD.AsInteger);
+  DM.tableNames.Locate('ID', DM.tableProductsNAME_ID.AsInteger, []);
+  infoProductName.Text := DM.tableNamesNAME.AsString; //DM.tableProductsNAME_ID.AsString;
+  infoProductCode.Text := DM.tableProductsKOD.AsString;
   infoProductMeasured.Text := DM.tableProductsMEASURE.AsString;
   infoProductTotalPrice.Text := DM.tableProductsTOTALPRICE.AsString;
   infoProductAddDate.Text := DM.tableInvoiceInDATEIN.AsString;
@@ -83,6 +87,28 @@ begin
 
   DM.tableEmploee.Locate('ID', DM.tableInvoiceInEMPLOEE_ID.AsInteger,[]);
   infoProductEmploee.Text := DM.tableEmploeeNAME.AsString;
+
+  DM.tableInvoiceOut.Active := False;
+  DM.tableInvoiceOut.ParamByName('CODE').AsString :=  DM.tableProductsKOD.AsString;
+  DM.tableInvoiceOut.Active := True;
+
+  Dm.tableClients.First;
+  while not Dm.tableClients.Eof do
+  begin
+    InfoProductOut.Columns[2].KeyList.Add(Dm.tableClientsID.AsString);
+    InfoProductOut.Columns[2].PickList.Add(Dm.tableClientsNAME.AsString);
+    Dm.tableClients.Next;
+  end;
+end;
+
+procedure TF_ProductInfo.InfoProductOutDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumnEh;
+  State: TGridDrawState);
+begin
+  if TDBGridEh(Sender).DataSource.DataSet.RecNo > 0 then
+    if Column.Index = 0 then                                                   // ’‡- ı‡ - ı‡ ¡À¿!!!
+      TDBGridEh(Sender).Canvas.TextOut(Rect.Left + 5, Rect.Top,
+          IntToStr(TDBGridEh(Sender).DataSource.DataSet.RecNo));
 end;
 
 end.

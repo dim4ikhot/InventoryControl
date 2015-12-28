@@ -120,7 +120,6 @@ type
     TRMovePositionWS: TpFIBTransaction;
     SourceMove: TDataSource;
     tableMoveStockPositionID: TFIBIntegerField;
-    tableMoveStockPositionNAME: TFIBStringField;
     tableMoveStockPositionSTOCK_ID: TFIBIntegerField;
     tableMoveStockPositionARTICUL: TFIBIntegerField;
     tableMoveStockPositionMEASURE: TFIBStringField;
@@ -155,16 +154,60 @@ type
     tableInvoiceInNAME_ID: TFIBIntegerField;
     mtInvoiceOutproductName: TIntegerField;
     mtMoveProductsmoveName: TIntegerField;
-<<<<<<< HEAD
+
     tableEmploeeUSERNAME: TFIBStringField;
     tableEmploeeUSERPASS: TFIBStringField;
     tableEmploeeISADMIN: TFIBIntegerField;
     tableEmploeePOST: TFIBStringField;
-=======
+
     Table_NewInvoice: TkbmMemTable;
     kbmThreadDataSet1: TkbmThreadDataSet;
     NewInvoice: TDataSource;
->>>>>>> TolikReport
+    mtAddProductsproductNumber: TIntegerField;
+    mtAddProductsproductFullName: TStringField;
+    tableInvoiceOutDATEOUT: TFIBDateField;
+    tableInvoiceOutARTICUL: TFIBIntegerField;
+    tableInvoiceOutNAME_ID: TFIBIntegerField;
+    tableInvoiceOutCOUNT: TFIBIntegerField;
+    tableInvoiceOutMEASURE: TFIBStringField;
+    tableInvoiceOutPRICE: TFIBFloatField;
+    tableInvoiceOutCODE: TFIBStringField;
+    tableInvoiceOutEMPLOEE_ID: TFIBIntegerField;
+    tableInvoiceOutNUMBER: TFIBIntegerField;
+    mtInvoiceOutproductNumber: TIntegerField;
+    mtInvoiceOutproductFullName: TStringField;
+    tableInvoiceOutTOTALPRICE: TFIBFloatField;
+    tableMoveStockPositionNAME_ID: TFIBIntegerField;
+    mtMoveProductsmoveEmploee: TIntegerField;
+    mtMoveProductsmoveNumber: TIntegerField;
+    mtMoveProductsmoveFullName: TStringField;
+    mtInvoiceOutproductStockName: TStringField;
+    mtInvoiceOutproductIPN: TStringField;
+    mtInvoiceOutproductMFO: TIntegerField;
+    mtInvoiceOutproductAccNum: TStringField;
+    mtInvoiceOutproductAccBank: TStringField;
+    mtInvoiceOutproductAdres: TStringField;
+    mtInvoiceOutproductPhone: TStringField;
+    mtInvoiceOutproductEDRPOU: TIntegerField;
+    tableStoksMFO: TFIBIntegerField;
+    tableStoksEDRPOU: TFIBIntegerField;
+    tableStoksIPN: TFIBStringField;
+    tableStoksACCNUM: TFIBStringField;
+    tableStoksACCBANK: TFIBStringField;
+    mtAddProductsproductStockName: TStringField;
+    tableStoksADDR2: TFIBStringField;
+    tableStoksSVIDNUM: TFIBIntegerField;
+    tableEmploeeSTOCK_ID: TFIBIntegerField;
+    Autority_TableID: TFIBIntegerField;
+    Autority_TableNAME: TFIBStringField;
+    Autority_TableTELEPHONE: TFIBStringField;
+    Autority_TablePOSHTA: TFIBStringField;
+    Autority_TableUSERNAME: TFIBStringField;
+    Autority_TableUSERPASS: TFIBStringField;
+    Autority_TableISADMIN: TFIBIntegerField;
+    Autority_TablePOST: TFIBStringField;
+    Autority_TableSTOCK_ID: TFIBIntegerField;
+
 
     procedure DataModuleCreate(Sender: TObject);
     procedure tableStoksAfterScroll(DataSet: TDataSet);

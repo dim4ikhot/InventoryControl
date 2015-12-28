@@ -276,7 +276,7 @@ object F_InvoiceFakt: TF_InvoiceFakt
     Height = 415
     Align = alClient
     AutoFitColWidths = True
-    DataSource = DM.NewInvoice
+    DataSource = DM.DataSource1
     DynProps = <>
     Flat = True
     IndicatorOptions = [gioShowRowIndicatorEh]

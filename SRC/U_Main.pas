@@ -90,6 +90,8 @@ type
     N3: TMenuItem;
     N4: TMenuItem;
     N5: TMenuItem;
+    AddRests: TMenuItem;
+    Timer: TTimer;
 
     procedure addStockClick(Sender: TObject);
     procedure removeStockClick(Sender: TObject);
@@ -135,6 +137,10 @@ type
     procedure MoveToStockClick(Sender: TObject);
     procedure AllUsersClick(Sender: TObject);
     procedure N2Click(Sender: TObject);
+    procedure OptionClick(Sender: TObject);
+    procedure AddRestsClick(Sender: TObject);
+    procedure TimerTimer(Sender: TObject);
+    procedure PopupMenuStockPopup(Sender: TObject);
 
   private
     { Private declarations }
@@ -173,7 +179,11 @@ end;
 
 procedure TF_Main.addStockClick(Sender: TObject);
 begin
-  addStockProc;
+  if not currentUser.UIsAdmin then
+    addStockProc
+  else
+    ShowMessagerCP(LangMain.GetText('Attention'),
+                                LangMain.GetText('AdminHasntAddStock'),mtWarning,[mbOK]);  
 end;
 
 procedure removeStockProc;
@@ -181,6 +191,8 @@ begin
 //  if MessageBox(F_Main.Handle,'Вы действительно желаете удалить склад?', 'Удаление...', MB_YESNO) = 6 then
   if ShowMessagerCP( F_Main.LangMain.gettext('Deleting'), F_Main.LangMain.gettext('DeletingStock'),mtConfirmation,[mbYes, mbNo]) = 6 then
   begin
+    DM.tableStoks.Delete;
+    DM.tableProducts.CloseOpen(True);
   end;
 end;
 
@@ -440,7 +452,9 @@ procedure TF_Main.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
 //  if MessageBox(Self.Handle,'Закрыть программу?','Закрыть...', MB_YESNO) = mrNo then
   if ShowMessagerCP(LangMain.GetText('ClosintProg'), LangMain.GetText('ExitProgram'),mtConfirmation,[mbYes, mbNo]) = mrNo then
-    Action := caNone;
+    Action := caNone
+  else
+    DM.mainBase.Connected := False;  
 end;
 
 procedure TF_Main.RussianLangClick(Sender: TObject);
@@ -530,7 +544,10 @@ begin
     begin
       DM.tableProducts.Filtered := True;
       if FindingBy.ItemIndex = 0 then
-        DM.tableProducts.Filter := 'NAME LIKE '+''''+ NameFilter.Text+'%'''
+      begin
+        DM.tableNames.Filter := 'NAME LIKE '+''''+ NameFilter.Text+'%''';
+        DM.tableProducts.Filter := 'NAME_ID = '+''''+ DM.tableNamesID.AsString+'''';
+      end
       else
         DM.tableProducts.Filter := 'KOD LIKE '+''''+ NameFilter.Text+'%'''
     end
@@ -543,7 +560,10 @@ begin
     begin
       DM.tableMoveStockPosition.Filtered := True;
       if FindingBy.ItemIndex = 0 then
-        DM.tableMoveStockPosition.Filter := 'NAME LIKE '+''''+ NameFilter.Text+'%'''
+      begin
+        DM.tableNames.Filter := 'NAME LIKE '+''''+ NameFilter.Text+'%''';
+        DM.tableMoveStockPosition.Filter := 'NAME_ID = '+''''+ DM.tableNamesID.AsString+''''
+      end
       else
         DM.tableMoveStockPosition.Filter := 'KOD LIKE '+''''+ NameFilter.Text+'%'''
     end
@@ -567,27 +587,39 @@ end;
 
 procedure TF_Main.addnewProductsClick(Sender: TObject);
 begin
-  try
-    Application.CreateForm(TF_InvoiceIn, F_InvoiceIn);
-    F_InvoiceIn.ShowModal;
-  finally
-    FreeAndNil(F_InvoiceIn);
-  end;
+  if not currentUser.UIsAdmin then
+  begin
+    try
+      Application.CreateForm(TF_InvoiceIn, F_InvoiceIn);
+      F_InvoiceIn.ShowModal;
+    finally
+      FreeAndNil(F_InvoiceIn);
+    end;
+  end
+  else
+    ShowMessagerCP(LangMain.GetText('Attention'),
+                                LangMain.GetText('AdminHasntAddStock'),mtWarning,[mbOK]);
 end;
 
 procedure TF_Main.invoiceOutClientClick(Sender: TObject);
 begin
-  try
-    Application.CreateForm(TF_InvoiceIn, F_InvoiceOut);
-    F_InvoiceOut.GridInvoiceIn.DataSource := DM.SourceInvoiceOutmt;
-    F_InvoiceOut.Caption := LangMain.GetText('InputOutFormCaption');
-    F_InvoiceOut.GridInvoiceIn.Columns[7].Visible := False;
-    F_InvoiceOut.GridInvoiceIn.Columns[8].FieldName := 'productCustomer';
-    F_InvoiceOut.GridInvoiceIn.Columns[8].Visible := True;
-    F_InvoiceOut.ShowModal;
-  finally
-    FreeAndNil(F_InvoiceOut);
-  end;
+  if not currentUser.UIsAdmin then
+  begin
+    try
+      Application.CreateForm(TF_InvoiceIn, F_InvoiceOut);
+      F_InvoiceOut.GridInvoiceIn.DataSource := DM.SourceInvoiceOutmt;
+      F_InvoiceOut.Caption := LangMain.GetText('InputOutFormCaption');
+      F_InvoiceOut.GridInvoiceIn.Columns[7].Visible := False;
+      F_InvoiceOut.GridInvoiceIn.Columns[8].FieldName := 'productCustomer';
+      F_InvoiceOut.GridInvoiceIn.Columns[8].Visible := True;
+      F_InvoiceOut.ShowModal;
+    finally
+      FreeAndNil(F_InvoiceOut);
+    end;
+  end
+  else
+    ShowMessagerCP(LangMain.GetText('Attention'),
+                                LangMain.GetText('AdminHasntAddStock'),mtWarning,[mbOK]);
 end;
 
 procedure TF_Main.BtnProvidersClick(Sender: TObject);
@@ -660,6 +692,43 @@ begin
     FreeAndNil(F_InvoiceFakt);
   end;
 
+end;
+
+procedure TF_Main.OptionClick(Sender: TObject);
+begin
+  if not currentUser.UIsAdmin then
+    AllUsers.Visible := False
+  else
+    AllUsers.Visible := True;
+end;
+
+procedure TF_Main.AddRestsClick(Sender: TObject);
+begin
+  if DM.tableStoksID.AsInteger = currentUser.userStockId then
+  begin
+    try
+      Application.CreateForm(TF_InvoiceIn, F_InvoiceInRest);
+      F_InvoiceInRest.ShowModal;
+    finally
+      FreeAndNil(F_InvoiceInRest);
+    end;
+  end
+  else
+  begin
+    ShowMessagerCP(LangMain.GetText('ErrorTitle'),LangMain.GetText('ErrorAddingRests'),mtWarning,[mbOK])
+  end;
+end;
+
+procedure TF_Main.TimerTimer(Sender: TObject);
+begin
+  FindingBy.Enabled := DM.tableProducts.RecordCount > 0;
+end;
+
+procedure TF_Main.PopupMenuStockPopup(Sender: TObject);
+begin
+  StartStock.Visible := DM.tableStoksSTARTED.AsInteger = 0;
+  AddRests.Visible := DM.tableStoksSTARTED.AsInteger = 0;
+ // MoveToStock.Visible := DM.tableStoksSTARTED.AsInteger <> 0;
 end;
 
 end.

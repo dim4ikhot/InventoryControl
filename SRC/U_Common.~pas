@@ -7,6 +7,15 @@ uses
   DateUtils, StdCtrls, ExtCtrls, INIFiles, Graphics, Math, DB, WinSock,
   tlhelp32, ShellAPI;
 
+type
+
+  TCurrentUser = record
+    UName:string;
+    UIsAdmin: Boolean;
+    UFullName: String;
+    userID: Integer;
+  end;
+
   procedure ExtractServerName(const AFileName: String; var AServerName, ALocalPath: String);
   function GetCharCountFromStr(AChar: Char; AStr: String): Integer;
   function RoundX(Num: Extended; Dig: integer): Extended;
@@ -16,11 +25,12 @@ uses
 
 var
   Inif: TIniFile;
+  currentUser: TCurrentUser;
 implementation
 
 procedure createIniFile;
 begin
-  Inif = TIniFile.Create(ExtractFilePath(Application.ExeName) + '\settings.ini');
+  Inif := TIniFile.Create(ExtractFilePath(Application.ExeName) + '\settings.ini');
 end;
 
 procedure destroyIniFile;

@@ -299,11 +299,14 @@ object F_ProductInfo: TF_ProductInfo
       Height = 224
       Align = alClient
       AutoFitColWidths = True
+      DataSource = DM.SourceInvoiceOut
       DynProps = <>
       Flat = True
       IndicatorOptions = [gioShowRowIndicatorEh]
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
       TabOrder = 0
       VertScrollBar.VisibleMode = sbAlwaysShowEh
+      OnDrawColumnCell = InfoProductOutDrawColumnCell
       Columns = <
         item
           Color = clBtnFace
@@ -317,34 +320,29 @@ object F_ProductInfo: TF_ProductInfo
         item
           DynProps = <>
           EditButtons = <>
+          FieldName = 'DATEOUT'
           Footers = <>
           Title.Alignment = taCenter
           Title.Caption = #1044#1072#1090#1072' '#1074#1099#1076#1072#1095#1080
-          Width = 87
+          Width = 126
         end
         item
           DynProps = <>
           EditButtons = <>
+          FieldName = 'CUSTOMER_ID'
           Footers = <>
           Title.Alignment = taCenter
           Title.Caption = #1050#1086#1084#1091' '#1074#1099#1076#1072#1085#1086
-          Width = 190
+          Width = 204
         end
         item
           DynProps = <>
           EditButtons = <>
+          FieldName = 'COUNT'
           Footers = <>
           Title.Alignment = taCenter
           Title.Caption = #1042#1099#1076#1072#1085#1086' '#1082#1086#1083'-'#1074#1086
-          Width = 91
-        end
-        item
-          DynProps = <>
-          EditButtons = <>
-          Footers = <>
-          Title.Alignment = taCenter
-          Title.Caption = #1055#1088#1080#1084#1077#1095#1072#1085#1080#1077
-          Width = 165
+          Width = 108
         end>
       object RowDetailData: TRowDetailPanelControlEh
       end

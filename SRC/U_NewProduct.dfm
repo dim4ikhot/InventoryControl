@@ -273,6 +273,7 @@ object F_NewProduct: TF_NewProduct
       Height = 23
       Anchors = [akLeft, akBottom]
       Ctl3D = False
+      Enabled = False
       FlatButtons = True
       FrameHotTrack = True
       FrameVisible = True
@@ -287,6 +288,7 @@ object F_NewProduct: TF_NewProduct
       Height = 23
       Anchors = [akLeft, akBottom]
       Ctl3D = False
+      Enabled = False
       FlatButtons = True
       FrameHotTrack = True
       FrameVisible = True
@@ -313,6 +315,7 @@ object F_NewProduct: TF_NewProduct
       Width = 129
       Height = 23
       Ctl3D = False
+      Enabled = False
       FlatButtons = True
       FrameHotTrack = True
       FrameVisible = True

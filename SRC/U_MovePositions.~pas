@@ -23,6 +23,10 @@ type
       const Rect: TRect; DataCol: Integer; Column: TColumnEh;
       State: TGridDrawState);
     procedure RzBitBtn2Click(Sender: TObject);
+    procedure RzBitBtn1Click(Sender: TObject);
+    procedure GridMovePositionsCellClick(Column: TColumnEh);
+    procedure GridMovePositionsKeyPress(Sender: TObject; var Key: Char);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -34,7 +38,7 @@ var
 
 implementation
 
-uses U_ProductsOut;
+uses U_ProductsOut, U_FR, U_MessageCP;
 {$R *.dfm}
 
 procedure TF_MovePosition.ApplyMoveClick(Sender: TObject);
@@ -49,6 +53,7 @@ end;
 procedure TF_MovePosition.FormCreate(Sender: TObject);
 var
   i: Integer;
+  rememberStckID: Integer;
 begin
  { if not DM.mtMoveProducts.Active then
     DM.mtMoveProducts.Active := True;
@@ -68,6 +73,23 @@ begin
     GridMovePositions.Columns[6].KeyList.Add(DM.tableProductsSTOCK_ID.AsString);
     GridMovePositions.Columns[6].PickList.Add(DM.tableStoksNAME.AsString);
   end;  }
+  rememberStckID := DM.tableStoksID.AsInteger;
+  DM.tableStoks.First;
+  while not DM.tableStoks.Eof do
+  begin
+    GridMovePositions.Columns[6].KeyList.Add(DM.tableStoksID.AsString);
+    GridMovePositions.Columns[6].PickList.Add(DM.tableStoksNAME.AsString);
+    DM.tableStoks.Next;
+  end;
+  DM.tableStoks.Locate('ID', rememberStckID, []);
+
+  DM.tableNames.First;
+  while not DM.tableNames.Eof do
+  begin
+    GridMovePositions.Columns[1].KeyList.Add(DM.tableNamesID.AsString);
+    GridMovePositions.Columns[1].PickList.Add(DM.tableNamesNAME.AsString);
+    DM.tableNames.Next;
+  end;
 end;
 
 procedure TF_MovePosition.GridMovePositionsDrawColumnCell(Sender: TObject;
@@ -85,7 +107,7 @@ begin
   try
     Application.CreateForm(TF_ProductsOut, F_MoveToStock);
     F_Main.GridProducts.Parent := F_MoveToStock;
-    F_Main.GridProducts.DataSource := DM.SourceMovePositions;
+    F_Main.GridProducts.DataSource := DM.SourceMove;
     F_Main.PanelSettingsProduct.Parent := F_MoveToStock;
     F_Main.GBLists.Visible := False;
     F_Main.GBReports.Visible := False;
@@ -93,6 +115,75 @@ begin
   finally
     FreeAndNil(F_MoveToStock);
   end;
+end;
+
+procedure TF_MovePosition.RzBitBtn1Click(Sender: TObject);
+begin
+  //Create invoice in
+  try
+    Application.CreateForm(TF_FR ,F_PrinInvoiceMove);
+    F_PrinInvoiceMove.ReportInvoiceIn.Preview := F_PrinInvoiceMove.frxPreview1;
+    F_PrinInvoiceMove.ReportInvoiceIn.PrepareReport;
+    F_PrinInvoiceMove.ShowModal;
+  finally
+    FreeAndNil(F_PrinInvoiceIn);
+  end;
+end;
+
+procedure TF_MovePosition.GridMovePositionsCellClick(Column: TColumnEh);
+begin
+  if DM.mtMoveProducts.State = dsEdit then
+  begin
+    DM.tableProducts.Locate('KOD', DM.mtMoveProductsmoveCode.AsString, []);
+    if DM.tableProductsKOLVO.AsInteger > DM.mtMoveProductsmoveCount.AsInteger then
+    begin
+      DM.mtMoveProductsmoveTotalPrice.AsFloat :=
+        DM.mtMoveProductsmoveCount.AsInteger *
+          DM.mtMoveProductsmovePrice.AsFloat;
+    end
+    else
+    begin
+      ShowMessagerCP(LangMove.GetText('ErrorTitle'),LangMove.GetText('ToMachCountMove'),mtError,[mbOK]);
+      DM.mtMoveProductsmoveCount.AsInteger := DM.tableProductsKOLVO.AsInteger;
+      DM.mtMoveProductsmoveTotalPrice.AsFloat :=
+        DM.tableProductsKOLVO.AsInteger *
+          DM.mtMoveProductsmovePrice.AsFloat;
+    end;
+    DM.mtMoveProducts.Post;
+  end;
+end;
+
+procedure TF_MovePosition.GridMovePositionsKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+if Key = #13 then
+  begin
+    if DM.mtMoveProducts.State = dsEdit then
+    begin
+      DM.tableProducts.Locate('KOD', DM.mtMoveProductsmoveCode.AsString, []);
+      if DM.tableProductsKOLVO.AsInteger > DM.mtMoveProductsmoveCount.AsInteger then
+      begin
+        DM.mtMoveProductsmoveTotalPrice.AsFloat :=
+          DM.mtMoveProductsmoveCount.AsInteger *
+            DM.mtMoveProductsmovePrice.AsFloat;
+      end
+      else
+      begin
+        ShowMessagerCP(LangMove.GetText('ErrorTitle'),LangMove.GetText('ToMachCountMove'),mtError,[mbOK]);
+        DM.mtMoveProductsmoveCount.AsInteger := DM.tableProductsKOLVO.AsInteger;
+        DM.mtMoveProductsmoveTotalPrice.AsFloat :=
+          DM.tableProductsKOLVO.AsInteger *
+            DM.mtMoveProductsmovePrice.AsFloat;
+      end;
+      DM.mtMoveProducts.Post;
+    end;
+  end;
+end;
+
+procedure TF_MovePosition.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  DM.mtMoveProducts.EmptyTable;
 end;
 
 end.

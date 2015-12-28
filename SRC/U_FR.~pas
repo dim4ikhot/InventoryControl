@@ -17,7 +17,7 @@ uses
   Menus, FIBQuery, DateUtils, U_Common, kbmMemTable, pFIBQuery,
   Grids, DBGrids, RzDBGrid, Math, {U_ProgressExp,}
   frxClass, frxDBSet, frxDesgn,frxRich, frxPreview, frxExportXLS, siComp,
-  siLngLnk;
+  siLngLnk, RzLabel, RzPrgres;
 
 const
   msDemo: String = 'В демо версии эта функция недоступна!';
@@ -80,80 +80,28 @@ type
     N2: TMenuItem;
     N3: TMenuItem;
     eCountPages: TRzStatusPane;
-    mtRes: TkbmMemTable;
-    ID: TIntegerField;
-    Name: TStringField;
-    Shifr: TStringField;
-    IZM: TStringField;
-    Vsego: TFloatField;
-    Stoim: TFloatField;
-    Kolvo: TFloatField;
-    Start: TDateTimeField;
-    Stop: TDateTimeField;
     QueryRes: TpFIBQuery;
     TransactionRes: TpFIBTransaction;
-    SourceRes: TDataSource;
-    fWork: TFloatField;
     RzSpacer9: TRzSpacer;
     SavetoExcel: TRzToolButton;
-    mtMachine: TkbmMemTable;
-    mtMachineID: TIntegerField;
-    mtMachineName: TStringField;
-    mtMachineShifr: TStringField;
-    mtMachineKolvo: TFloatField;
-    mtMachineStoim: TFloatField;
-    mtMachineVsego: TFloatField;
-    mtMachineIZM: TStringField;
-    mtMachineStart: TDateTimeField;
-    mtMachineStop: TDateTimeField;
-    mtMachinefWork: TFloatField;
-    SourceMachine: TDataSource;
-    mtZP: TkbmMemTable;
-    SourceZP: TDataSource;
-    mtZPID: TIntegerField;
-    mtZPName: TStringField;
-    mtZPShifr: TStringField;
-    mtZPKolvo: TFloatField;
-    mtZPStoim: TFloatField;
-    mtZPVsego: TFloatField;
-    mtZPIZM: TStringField;
-    mtZPStart: TDateTimeField;
-    mtZPStop: TDateTimeField;
-    mtZPfWork: TFloatField;
-    mtMaterials: TkbmMemTable;
-    SourceMaterials: TDataSource;
-    mtMaterialsID: TIntegerField;
-    mtMaterialsName: TStringField;
-    mtMaterialsShifr: TStringField;
-    mtMaterialsKolvo: TFloatField;
-    mtMaterialsStoim: TFloatField;
-    mtMaterialsVsego: TFloatField;
-    mtMaterialsIZM: TStringField;
-    mtMaterialsStart: TDateTimeField;
-    mtMaterialsStop: TDateTimeField;
-    mtMaterialsfWork: TFloatField;
-    mtMachinebalancecost: TFloatField;
-    mtMachinecountcost: TFloatField;
-    mtZPbalancecost: TFloatField;
-    mtZPcountcost: TFloatField;
-    mtMaterialsbalancecost: TFloatField;
-    mtMaterialscountcost: TFloatField;
-    mtTotalDiagramm: TkbmMemTable;
-    mtTotalDiagrammStart: TDateTimeField;
-    mtTotalDiagrammTotalOwnStreinght: TFloatField;
-    mtTotalDiagrammTotalSubContract: TFloatField;
-    mtTotalDiagrammTotalSubContractMater: TFloatField;
-    mtTotalDiagrammTotalScheduleFin: TFloatField;
-    mtTotalDiagrammStop: TDateTimeField;
     RzSpacer10: TRzSpacer;
-    frxPreview1: TfrxPreview;
-    frxReport1: TfrxReport;
+    ReportInvoiceOut: TfrxReport;
     frxDesigner: TfrxDesigner;
-    frxDBDataset1: TfrxDBDataset;
+    Datasetinvoicein: TfrxDBDataset;
     frxXLSExport: TfrxXLSExport;
     LangReport: TsiLangLinked;
-    frxReport2: TfrxReport;
-    frxReport3: TfrxReport;
+    Report: TfrxReport;
+    ReportInvoiceIn: TfrxReport;
+    PBOperations: TRzProgressBar;
+    RzLabel1: TRzLabel;
+    DataSetProviders: TfrxDBDataset;
+    DataSetClients: TfrxDBDataset;
+    DataSetInvoiceOut: TfrxDBDataset;
+    frxPreview1: TfrxPreview;
+    ReportInvoiceRest: TfrxReport;
+    DatasetInvoiceRest: TfrxDBDataset;
+    DatasetMove: TfrxDBDataset;
+    ReportMove: TfrxReport;
     procedure btPrintClick(Sender: TObject);
     procedure tbZoomChange(Sender: TObject);
     procedure tbZoomKeyDown(Sender: TObject; var Key: Word;
@@ -179,7 +127,7 @@ type
       p3: Variant; var Val: Variant);
     procedure FormCreate(Sender: TObject);
     procedure SavetoExcelClick(Sender: TObject);
-    procedure frxReport1GetValue(const VarName: String;
+    procedure ReportInvoiceOutGetValue(const VarName: String;
       var Value: Variant);
   private
     { Private declarations }
@@ -214,11 +162,14 @@ type
 
 var
   F_FR: TF_FR;
+  F_PrinInvoiceIn: TF_FR;
+  F_PrinInvoiceOut: TF_FR;
+  F_PrinInvoiceMove: TF_FR;
   Vedomost: TVedomost;
 implementation
 
 uses
-  U_Main;
+  U_Main, U_InvoiceIn;
 
 {$R *.dfm}
 
@@ -588,7 +539,7 @@ begin
       begin
        // F_FR.frxReport1.LoadFromFile(rFileName);
        // F_FR.frxReport1.Preview := F_FR.frxPreview1;
-        F_FR.frxReport1.PrepareReport;
+        F_FR.ReportInvoiceIn.PrepareReport;
         F_FR.ShowModal;
       end
       else
@@ -612,6 +563,185 @@ begin
   ShowMessage(msDemo);
 {$ELSE}
   frxPreview1.Print;
+  if F_PrinInvoiceIn <> nil then
+  begin
+    PBOperations.TotalParts := DM.mtAddProducts.RecordCount;
+    DM.mtAddProducts.First;
+    while not DM.mtAddProducts.Eof do
+    begin
+      if (not (DM.tableProducts.Locate('KOD;STOCK_ID', VarArrayOf([DM.mtAddProductsproductCode.AsString,
+        DM.mtAddProductsproductStock.AsInteger]), [])))or
+      ((DM.tableProducts.Locate('KOD;STOCK_ID', VarArrayOf([DM.mtAddProductsproductCode.AsString,
+        DM.mtAddProductsproductStock.AsInteger]), []))and
+         (DM.tableProductsPRICE.AsFloat <> DM.mtAddProductsproductPrice.AsFloat)) then
+      begin
+        DM.tableProducts.Insert;
+        DM.tableProducts.Edit;
+        DM.tableProductsSTOCK_ID.AsInteger := DM.mtAddProductsproductStock.AsInteger;
+        DM.tableProductsMEASURE.AsString := DM.mtAddProductsproductMeasured.AsString;
+        DM.tableProductsKOLVO.AsInteger := DM.mtAddProductsproductCount.AsInteger;
+        DM.tableProductsPRICE.AsFloat := DM.mtAddProductsproductPrice.AsFloat;
+        DM.tableProductsNAME_ID.AsInteger := DM.mtAddProductsproductName.AsInteger;
+        DM.tableProductsKOD.AsString := DM.mtAddProductsproductCode.AsString;
+        DM.tableProductsTOTALPRICE.AsFloat := DM.mtAddProductsproductTotalPrice.AsFloat;
+        DM.tableProductsREST_COUNT.AsInteger := DM.mtAddProductsproductCount.AsInteger;
+        DM.tableProducts.Post;
+      end
+      else
+      begin
+        DM.tableProducts.Edit;
+        DM.tableProductsSTOCK_ID.AsInteger := DM.mtAddProductsproductStock.AsInteger;
+        DM.tableProductsMEASURE.AsString := DM.mtAddProductsproductMeasured.AsString;
+        DM.tableProductsKOLVO.AsInteger := DM.tableProductsKOLVO.AsInteger +
+                                                    DM.mtAddProductsproductCount.AsInteger;
+        DM.tableProductsPRICE.AsFloat := DM.mtAddProductsproductPrice.AsFloat;
+        DM.tableProductsNAME_ID.AsInteger := DM.mtAddProductsproductName.AsInteger;
+        DM.tableProductsKOD.AsString := DM.mtAddProductsproductCode.AsString;
+        DM.tableProductsTOTALPRICE.AsFloat := DM.tableProductsTOTALPRICE.AsFloat +
+                                                    DM.mtAddProductsproductTotalPrice.AsFloat;
+        DM.tableProductsREST_COUNT.AsInteger := DM.tableProductsREST_COUNT.AsInteger +
+                                                     DM.mtAddProductsproductCount.AsInteger;
+        DM.tableProducts.Post;
+      end;
+
+      DM.tableInvoiceIn.Insert;
+      DM.tableInvoiceIn.Edit;
+      DM.tableInvoiceInMEASURE.AsString := DM.mtAddProductsproductMeasured.AsString;
+      DM.tableInvoiceInKOLVO.AsFloat := DM.mtAddProductsproductCount.AsInteger;
+      DM.tableInvoiceInPRICE.AsFloat := DM.mtAddProductsproductPrice.AsInteger;
+      DM.tableInvoiceInKOD.AsString := DM.mtAddProductsproductCode.AsString;
+      DM.tableInvoiceInTOTALPRICE.AsFloat := DM.mtAddProductsproductTotalPrice.AsFloat;
+      DM.tableInvoiceInNAME_ID.AsInteger := DM.mtAddProductsproductName.AsInteger;
+      DM.tableInvoiceInDATEIN.AsDateTime := Now;
+      DM.tableInvoiceInEMPLOEE_ID.AsInteger := DM.mtAddProductsproductEmploee.AsInteger;
+      if F_InvoiceInRest <> nil then
+        DM.tableInvoiceInPROVIDER_ID.AsInteger := 0
+      else
+        DM.tableInvoiceInPROVIDER_ID.AsInteger := DM.mtAddProductsproductProvider.AsInteger;
+      DM.tableInvoiceInNUMBER.AsInteger := DM.mtAddProductsproductNumber.AsInteger;
+      DM.tableInvoiceIn.Post;
+
+      PBOperations.PartsComplete := PBOperations.PartsComplete + 1;
+
+      DM.mtAddProducts.Next;
+    end;
+    PBOperations.TotalParts := 0;
+  end
+  else if F_PrinInvoiceOut <> nil then
+  begin
+    PBOperations.TotalParts := DM.mtInvoiceOut.RecordCount;
+    DM.mtInvoiceOut.First;
+    while not DM.mtInvoiceOut.Eof do
+    begin
+      if DM.tableProducts.Locate('KOD', DM.mtInvoiceOutproductCode.AsInteger, []) then
+      begin
+        DM.tableProducts.Edit;
+        DM.tableProductsREST_COUNT.AsInteger := DM.tableProductsREST_COUNT.AsInteger -
+          DM.mtInvoiceOutproductCount.AsInteger;
+        DM.tableProducts.Post;
+      end;
+      DM.tableInvoiceOut.Insert;
+      DM.tableInvoiceOut.Edit;
+      DM.tableInvoiceOutMEASURE.AsString := DM.mtInvoiceOutproductMeasured.AsString;
+      DM.tableInvoiceOutCOUNT.AsFloat := DM.mtInvoiceOutproductCount.AsInteger;
+      DM.tableInvoiceOutPRICE.AsFloat := DM.mtInvoiceOutproductPrice.AsInteger;
+      DM.tableInvoiceOutCODE.AsString := DM.mtInvoiceOutproductCode.AsString;
+      DM.tableInvoiceOutTOTALPRICE.AsFloat := DM.mtInvoiceOutproductTotalPrice.AsFloat;
+      DM.tableInvoiceOutNAME_ID.AsInteger := DM.mtInvoiceOutproductName.AsInteger;
+      DM.tableInvoiceOutDATEOUT.AsDateTime := Now;
+      DM.tableInvoiceOutEMPLOEE_ID.AsInteger := DM.mtInvoiceOutproductEmploee.AsInteger;
+      DM.tableInvoiceOutCUSTOMER_ID.AsInteger := DM.mtInvoiceOutproductCustomer.AsInteger;
+      DM.tableInvoiceOutNUMBER.AsInteger := DM.mtInvoiceOutproductNumber.AsInteger;
+      DM.tableInvoiceOut.Post;
+      PBOperations.PartsComplete := PBOperations.PartsComplete + 1;
+      DM.mtInvoiceOut.Next;
+    end;
+    PBOperations.TotalParts := 0;
+  end
+  else
+  if F_PrinInvoiceMove <> nil then
+  begin
+    PBOperations.TotalParts := DM.mtInvoiceOut.RecordCount;
+    DM.mtMoveProducts.First;
+    while not DM.mtMoveProducts.Eof do
+    begin
+      if DM.tableProducts.Locate('KOD;STOCK_ID', VarArrayOf([DM.mtMoveProductsmoveCode.AsInteger,
+      DM.mtMoveProductsMoveStock.AsInteger]), []) then
+      begin
+        DM.tableProducts.Edit;
+        DM.tableProductsREST_COUNT.AsInteger := DM.tableProductsREST_COUNT.AsInteger -
+          DM.mtMoveProductsmoveCount.AsInteger;
+        DM.tableProducts.Post;
+      end;
+
+      DM.tableInvoiceOut.Insert;
+      DM.tableInvoiceOut.Edit;
+      DM.tableInvoiceOutMEASURE.AsString := DM.mtMoveProductsmoveMeasured.AsString;
+      DM.tableInvoiceOutCOUNT.AsFloat := DM.mtMoveProductsmoveCount.AsInteger;
+      DM.tableInvoiceOutPRICE.AsFloat := DM.mtMoveProductsmovePrice.AsInteger;
+      DM.tableInvoiceOutCODE.AsString := DM.mtMoveProductsmoveCode.AsString;
+      DM.tableInvoiceOutTOTALPRICE.AsFloat := DM.mtMoveProductsmoveTotalPrice.AsFloat;
+      DM.tableInvoiceOutNAME_ID.AsInteger := DM.mtMoveProductsmoveName.AsInteger;
+      DM.tableInvoiceOutDATEOUT.AsDateTime := Now;
+      DM.tableInvoiceOutEMPLOEE_ID.AsInteger := DM.mtMoveProductsmoveEmploee.AsInteger;
+      DM.tableInvoiceOutCUSTOMER_ID.AsInteger := 0;
+      DM.tableInvoiceOutNUMBER.AsInteger := DM.mtMoveProductsmoveNumber.AsInteger;
+      DM.tableInvoiceOut.Post;
+
+      if (not (DM.tableProducts.Locate('KOD;STOCK_ID', VarArrayOf([DM.mtMoveProductsmoveCode.AsString,
+        DM.TableStoksID.asinteger]), [])))or
+      ((DM.tableProducts.Locate('KOD;STOCK_ID', VarArrayOf([DM.mtMoveProductsmoveCode.AsString,
+        DM.TableStoksID.asinteger]), []))and
+         (DM.tableProductsPRICE.AsFloat <> DM.mtMoveProductsmovePrice.AsFloat)) then
+      begin
+        DM.tableProducts.Insert;
+        DM.tableProducts.Edit;
+        DM.tableProductsSTOCK_ID.AsInteger := DM.TableStoksID.asinteger;
+        DM.tableProductsMEASURE.AsString := DM.mtMoveProductsmoveMeasured.AsString;
+        DM.tableProductsKOLVO.AsInteger := DM.mtMoveProductsmoveCount.AsInteger;
+        DM.tableProductsPRICE.AsFloat := DM.mtMoveProductsmovePrice.AsFloat;
+        DM.tableProductsNAME_ID.AsInteger := DM.mtMoveProductsmoveName.AsInteger;
+        DM.tableProductsKOD.AsString := DM.mtMoveProductsmoveCode.AsString;
+        DM.tableProductsTOTALPRICE.AsFloat := DM.mtMoveProductsmoveTotalPrice.AsFloat;
+        DM.tableProductsREST_COUNT.AsInteger := DM.mtMoveProductsmoveCount.AsInteger;
+        DM.tableProducts.Post;
+      end
+      else
+      begin
+        DM.tableProducts.Edit;
+        DM.tableProductsSTOCK_ID.AsInteger := DM.TableStoksID.asinteger;
+        DM.tableProductsMEASURE.AsString := DM.mtMoveProductsmoveMeasured.AsString;
+        DM.tableProductsKOLVO.AsInteger := DM.tableProductsKOLVO.AsInteger +
+                                                     DM.mtMoveProductsmoveCount.AsInteger;
+        DM.tableProductsPRICE.AsFloat := DM.mtMoveProductsmovePrice.AsFloat;
+        DM.tableProductsNAME_ID.AsInteger := DM.mtMoveProductsmoveName.AsInteger;
+        DM.tableProductsKOD.AsString := DM.mtMoveProductsmoveCode.AsString;
+        DM.tableProductsTOTALPRICE.AsFloat := DM.tableProductsTOTALPRICE.AsFloat +
+                                                 DM.mtMoveProductsmoveTotalPrice.AsFloat;
+        DM.tableProductsREST_COUNT.AsInteger := DM.tableProductsREST_COUNT.AsInteger +
+                                                      DM.mtMoveProductsmoveCount.AsInteger;
+        DM.tableProducts.Post;
+      end;
+      DM.tableInvoiceIn.Insert;
+      DM.tableInvoiceIn.Edit;
+      DM.tableInvoiceInMEASURE.AsString := DM.mtMoveProductsmoveMeasured.AsString;
+      DM.tableInvoiceInKOLVO.AsFloat := DM.mtMoveProductsmoveCount.AsInteger;
+      DM.tableInvoiceInPRICE.AsFloat := DM.mtMoveProductsmovePrice.AsInteger;
+      DM.tableInvoiceInKOD.AsString := DM.mtMoveProductsmoveCode.AsString;
+      DM.tableInvoiceInTOTALPRICE.AsFloat := DM.mtMoveProductsmoveTotalPrice.AsFloat;
+      DM.tableInvoiceInNAME_ID.AsInteger := DM.mtMoveProductsmoveName.AsInteger;
+      DM.tableInvoiceInDATEIN.AsDateTime := Now;
+      DM.tableInvoiceInEMPLOEE_ID.AsInteger := DM.mtMoveProductsmoveEmploee.AsInteger;
+      DM.tableInvoiceInPROVIDER_ID.AsInteger := 0;
+      DM.tableInvoiceInNUMBER.AsInteger := DM.mtMoveProductsmoveNumber.AsInteger;
+      DM.tableInvoiceIn.Post;
+
+      PBOperations.PartsComplete := PBOperations.PartsComplete + 1;
+
+      DM.mtMoveProducts.Next;
+    end;
+    PBOperations.TotalParts := 0;
+  end;
 {$IFEND}
 end;
 
@@ -686,9 +816,18 @@ end;
 
 procedure TF_FR.RzToolButton9Click(Sender: TObject);
 begin
-  frxReport1.Modified := true;
-  frxPreview1.Edit;
-  frxReport1.Modified := false;
+  if F_PrinInvoiceIn <> nil then
+  begin
+    ReportInvoiceIn.Modified := true;
+    frxPreview1.Edit;
+    ReportInvoiceIn.Modified := false;
+  end;
+  if F_PrinInvoiceOut <> nil then
+  begin
+    ReportInvoiceOut.Modified := true;
+    frxPreview1.Edit;
+    ReportInvoiceOut.Modified := false;
+  end;
 end;
 
 procedure TF_FR.RzToolButton11Click(Sender: TObject);
@@ -704,7 +843,10 @@ begin
     FileName := 'Raport';
     if Execute then
     begin
-      frxReport1.SaveToFile(FileName + '.fp3');
+      if F_PrinInvoiceIn <> nil then
+        ReportInvoiceIn.SaveToFile(FileName + '.fp3');
+      if F_PrinInvoiceOut <> nil then
+        ReportInvoiceOut.SaveToFile(FileName + '.fp3');
     end;
   end;
 {$IFEND}
@@ -784,7 +926,10 @@ end;
 
 procedure TF_FR.FormCreate(Sender: TObject);
 begin
-  frxReport1.Modified := False;
+  if F_PrinInvoiceIn <> nil then
+    ReportInvoiceIn.Modified := False;
+  if F_PrinInvoiceOut <> nil then
+    ReportInvoiceOut.Modified := False;
 end;
 
 
@@ -803,7 +948,7 @@ begin
   end;  }
 end;
 
-procedure TF_FR.frxReport1GetValue(const VarName: String;
+procedure TF_FR.ReportInvoiceOutGetValue(const VarName: String;
   var Value: Variant);
 begin
   if VarName = 'GetVerCP()' then
