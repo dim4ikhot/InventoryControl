@@ -1,9 +1,9 @@
 object F_ClientsProviders: TF_ClientsProviders
-  Left = 333
+  Left = 261
   Top = 104
   BorderStyle = bsDialog
   ClientHeight = 561
-  ClientWidth = 1028
+  ClientWidth = 1058
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

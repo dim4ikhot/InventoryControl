@@ -31,6 +31,7 @@ type
     procedure RzBitBtn1Click(Sender: TObject);
     procedure ProviderClientEDRPOUKeyPress(Sender: TObject; var Key: Char);
     procedure ProviderClientAccmunKeyPress(Sender: TObject; var Key: Char);
+    procedure ProviderClientMFOKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -87,7 +88,14 @@ end;
 procedure TF_AddClientProvider.ProviderClientAccmunKeyPress(
   Sender: TObject; var Key: Char);
 begin
-  if not (key in ['0'..'9',#8]) then
+  if (not (key in ['0'..'9',#8])) then
+    key := #0;
+end;
+
+procedure TF_AddClientProvider.ProviderClientMFOKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  if (not (key in ['0'..'9',#8]))or((Length(ProviderClientMFO.Text)>5)and(Key <> #8) ) then
     key := #0;
 end;
 

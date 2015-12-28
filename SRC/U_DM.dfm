@@ -1,9 +1,9 @@
 object DM: TDM
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 187
-  Top = 112
-  Height = 658
+  Left = 300
+  Top = 130
+  Height = 569
   Width = 1038
   object SourceStocks: TDataSource
     DataSet = tableStoks
@@ -68,6 +68,20 @@ object DM: TDM
       item
         Name = 'productName'
         DataType = ftInteger
+      end
+      item
+        Name = 'productNumber'
+        DataType = ftInteger
+      end
+      item
+        Name = 'productFullName'
+        DataType = ftString
+        Size = 1000
+      end
+      item
+        Name = 'productStockName'
+        DataType = ftString
+        Size = 500
       end>
     IndexDefs = <>
     SortOptions = []
@@ -112,9 +126,20 @@ object DM: TDM
     object mtAddProductsproductName: TIntegerField
       FieldName = 'productName'
     end
+    object mtAddProductsproductNumber: TIntegerField
+      FieldName = 'productNumber'
+    end
+    object mtAddProductsproductFullName: TStringField
+      FieldName = 'productFullName'
+      Size = 1000
+    end
+    object mtAddProductsproductStockName: TStringField
+      FieldName = 'productStockName'
+      Size = 500
+    end
   end
   object mainBase: TpFIBDatabase
-    DBName = 'G:\WORK\SKLADGIT\InventoryControl\Data\STOCK.DAT'
+    DBName = 'D:\PROJECTS\'#1057#1082#1083#1072#1076#1089#1082#1086#1081' '#1091#1095#1077#1090'\Data\STOCK.DAT'
     DBParams.Strings = (
       'user_name=SYSDBA'
       'password=masterkey'
@@ -124,7 +149,7 @@ object DM: TDM
     SQLDialect = 3
     Timeout = 0
     DesignDBOptions = []
-    LibraryName = 'G:\WORK\SKLADGIT\InventoryControl\GDS32.dll'
+    LibraryName = 'D:\PROJECTS\'#1057#1082#1083#1072#1076#1089#1082#1086#1081' '#1091#1095#1077#1090'\GDS32.dll'
     WaitForRestoreConnect = 0
     Left = 24
     Top = 8
@@ -136,7 +161,14 @@ object DM: TDM
       '    phone = ?phone,'
       '    ADDR1 = ?ADDR1,'
       '    NDS = ?NDS,'
-      '    STARTED = ?STARTED'
+      '    STARTED = ?STARTED,'
+      '    MFO = ?MFO,'
+      '    EDRPOU = ?EDRPOU,'
+      '    IPN = ?IPN,'
+      '    ACCNUM = ?ACCNUM,'
+      '    ACCBANK =ACCBANK,'
+      '    ADDR2 = ?ADDR2,'
+      '    SVIDNUM = ?SVIDNUM'
       'WHERE'
       '  ID = ?OLD_ID')
     DeleteSQL.Strings = (
@@ -148,14 +180,28 @@ object DM: TDM
       '    phone,'
       '    ADDR1,'
       '    NDS,'
-      '    STARTED'
+      '    STARTED,    '
+      '    MFO,'
+      '    EDRPOU,'
+      '    IPN,'
+      '    ACCNUM,'
+      '    ACCBANK,'
+      '    ADDR2,'
+      '    SVIDNUM'
       ')values('
       '    ?ID,'
       '    ?Name,'
       '    ?phone,'
       '    ?ADDR1,'
       '    ?NDS,'
-      '    ?STARTED'
+      '    ?STARTED,'
+      '    ?MFO,'
+      '    ?EDRPOU,'
+      '    ?IPN,'
+      '    ?ACCNUM,'
+      '    ?ACCBANK,'
+      '    ?ADDR2,'
+      '    ?SVIDNUM'
       ')')
     RefreshSQL.Strings = (
       'SELECT'
@@ -164,7 +210,14 @@ object DM: TDM
       '    PHONE,'
       '    ADDR1,'
       '    NDS,'
-      '    STARTED'
+      '    STARTED,'
+      '    MFO,'
+      '    EDRPOU,'
+      '    IPN,'
+      '    ACCNUM,'
+      '    ACCBANK,'
+      '    ADDR2,'
+      '    SVIDNUM'
       'FROM'
       '    STOCK '
       'WHERE'
@@ -177,13 +230,13 @@ object DM: TDM
       '    ADDR1,'
       '    NDS,'
       '    STARTED,'
-      '    ADDR2,'
       '    MFO,'
+      '    EDRPOU,'
       '    IPN,'
-      '    SVIDNuM,'
-      '    ACCNum,'
-      '    ACCBank,'
-      '    EdrPou'
+      '    ACCNUM,'
+      '    ACCBANK,'
+      '    ADDR2,'
+      '    SVIDNUM'
       'FROM'
       '    STOCK ')
     AutoUpdateOptions.UpdateTableName = 'STOCK'
@@ -221,20 +274,15 @@ object DM: TDM
     object tableStoksSTARTED: TFIBSmallIntField
       FieldName = 'STARTED'
     end
-    object tableStoksADDR2: TFIBStringField
-      FieldName = 'ADDR2'
-      Size = 500
-      EmptyStrToNull = True
-    end
     object tableStoksMFO: TFIBIntegerField
       FieldName = 'MFO'
+    end
+    object tableStoksEDRPOU: TFIBIntegerField
+      FieldName = 'EDRPOU'
     end
     object tableStoksIPN: TFIBStringField
       FieldName = 'IPN'
       EmptyStrToNull = True
-    end
-    object tableStoksSVIDNUM: TFIBIntegerField
-      FieldName = 'SVIDNUM'
     end
     object tableStoksACCNUM: TFIBStringField
       FieldName = 'ACCNUM'
@@ -246,8 +294,13 @@ object DM: TDM
       Size = 200
       EmptyStrToNull = True
     end
-    object tableStoksEDRPOU: TFIBIntegerField
-      FieldName = 'EDRPOU'
+    object tableStoksADDR2: TFIBStringField
+      FieldName = 'ADDR2'
+      Size = 500
+      EmptyStrToNull = True
+    end
+    object tableStoksSVIDNUM: TFIBIntegerField
+      FieldName = 'SVIDNUM'
     end
   end
   object tableProducts: TpFIBDataSet
@@ -310,7 +363,6 @@ object DM: TDM
     SelectSQL.Strings = (
       'SELECT'
       '    ID,'
-      '    NAME_ID,'
       '    STOCK_ID,'
       '    ARTICUL,'
       '    MEASURE,'
@@ -318,7 +370,8 @@ object DM: TDM
       '    PRICE,'
       '    KOD,'
       '    TOTALPRICE,'
-      '    REST_COUNT'
+      '    REST_COUNT,'
+      '    NAME_ID'
       'FROM'
       '    PRODUCTS ')
     FilterOptions = [foCaseInsensitive]
@@ -738,7 +791,7 @@ object DM: TDM
   end
   object SourceAddProducts: TDataSource
     DataSet = mtAddProducts
-    Left = 128
+    Left = 120
     Top = 408
   end
   object TrmainBase: TpFIBTransaction
@@ -827,7 +880,6 @@ object DM: TDM
       '    ID,'
       '    DATEIN,'
       '    PROVIDER_ID,'
-      '    NAME_ID,'
       '    ARTICUL,'
       '    MEASURE,'
       '    KOLVO,'
@@ -835,7 +887,8 @@ object DM: TDM
       '    EMPLOEE_ID,'
       '    PRICE,'
       '    NUMBER,'
-      '    TOTALPRICE'
+      '    TOTALPRICE,'
+      '    NAME_ID'
       'FROM'
       '    DELIVERYIN ')
     AutoUpdateOptions.UpdateTableName = 'DELIVERYIN'
@@ -894,23 +947,63 @@ object DM: TDM
   object tableInvoiceOut: TpFIBDataSet
     UpdateSQL.Strings = (
       'UPDATE DELIVERYOUT SET'
-      '   CUSTOMER_ID = ?CUSTOMER_ID'
+      '    CUSTOMER_ID = ?CUSTOMER_ID,'
+      '    DATEOUT = ?DATEOUT,'
+      '    ARTICUL = ?ARTICUL,'
+      '    NAME_ID = ?NAME_ID,'
+      '    "COUNT" = ?CNT,'
+      '    MEASURE = ?MEASURE,'
+      '    PRICE = ?PRICE,'
+      '    CODE = ?CODE,'
+      '    EMPLOEE_ID = ?EMPLOEE_ID,'
+      '    NUMBER = ?NUMBER,'
+      '    TOTALPRICE = ?TOTALPRICE'
       'WHERE ID = ?OLD_ID')
     DeleteSQL.Strings = (
       'DELETE FROM DELIVERYOUT WHERE ID = ?OLD_ID')
     InsertSQL.Strings = (
       'INSERT INTO DELIVERYOUT('
       '    ID,'
-      '    CUSTOMER_ID'
+      '    DATEOUT,'
+      '    CUSTOMER_ID,'
+      '    ARTICUL,'
+      '    NAME_ID,'
+      '    "COUNT",'
+      '    MEASURE,'
+      '    PRICE,'
+      '    CODE,'
+      '    EMPLOEE_ID,'
+      '    NUMBER,'
+      '    TOTALPRICE'
       ')'
       'VALUES('
       '    ?ID,'
-      '    ?CUSTOMER_ID'
+      '    ?DATEOUT,'
+      '    ?CUSTOMER_ID,'
+      '    ?ARTICUL,'
+      '    ?NAME_ID,'
+      '    ?"COUNT",'
+      '    ?MEASURE,'
+      '    ?PRICE,'
+      '    ?CODE,'
+      '    ?EMPLOEE_ID,'
+      '    ?NUMBER,'
+      '    ?TOTALPRICE'
       ')')
     RefreshSQL.Strings = (
       'SELECT'
       '    ID,'
-      '    CUSTOMER_ID'
+      '    DATEOUT,'
+      '    CUSTOMER_ID,'
+      '    ARTICUL,'
+      '    NAME_ID,'
+      '    "COUNT",'
+      '    MEASURE,'
+      '    PRICE,'
+      '    CODE,'
+      '    EMPLOEE_ID,'
+      '    NUMBER,'
+      '    TOTALPRICE'
       'FROM'
       '    DELIVERYOUT '
       'WHERE '
@@ -918,9 +1011,20 @@ object DM: TDM
     SelectSQL.Strings = (
       'SELECT'
       '    ID,'
-      '    CUSTOMER_ID'
+      '    DATEOUT,'
+      '    CUSTOMER_ID,'
+      '    ARTICUL,'
+      '    NAME_ID,'
+      '    "COUNT",'
+      '    MEASURE,'
+      '    PRICE,'
+      '    CODE,'
+      '    EMPLOEE_ID,'
+      '    NUMBER,'
+      '    TOTALPRICE'
       'FROM'
-      '    DELIVERYOUT ')
+      '    DELIVERYOUT '
+      'WHERE CODE = ?CODE')
     AutoUpdateOptions.UpdateTableName = 'DELIVERYOUT'
     AutoUpdateOptions.KeyFields = 'ID'
     AutoUpdateOptions.AutoReWriteSqls = True
@@ -937,6 +1041,40 @@ object DM: TDM
     end
     object tableInvoiceOutCUSTOMER_ID: TFIBIntegerField
       FieldName = 'CUSTOMER_ID'
+    end
+    object tableInvoiceOutDATEOUT: TFIBDateField
+      FieldName = 'DATEOUT'
+    end
+    object tableInvoiceOutARTICUL: TFIBIntegerField
+      FieldName = 'ARTICUL'
+    end
+    object tableInvoiceOutNAME_ID: TFIBIntegerField
+      FieldName = 'NAME_ID'
+    end
+    object tableInvoiceOutCOUNT: TFIBIntegerField
+      FieldName = 'COUNT'
+    end
+    object tableInvoiceOutMEASURE: TFIBStringField
+      FieldName = 'MEASURE'
+      Size = 100
+      EmptyStrToNull = True
+    end
+    object tableInvoiceOutPRICE: TFIBFloatField
+      FieldName = 'PRICE'
+    end
+    object tableInvoiceOutCODE: TFIBStringField
+      FieldName = 'CODE'
+      Size = 100
+      EmptyStrToNull = True
+    end
+    object tableInvoiceOutEMPLOEE_ID: TFIBIntegerField
+      FieldName = 'EMPLOEE_ID'
+    end
+    object tableInvoiceOutNUMBER: TFIBIntegerField
+      FieldName = 'NUMBER'
+    end
+    object tableInvoiceOutTOTALPRICE: TFIBFloatField
+      FieldName = 'TOTALPRICE'
     end
   end
   object trInvoiceIn: TpFIBTransaction
@@ -999,7 +1137,8 @@ object DM: TDM
       '    USERNAME = ?USERNAME,'
       '    USERPASS = ?USERPASS,'
       '    ISADMIN = ?ISADMIN,'
-      '    POST = ?POST'
+      '    POST = ?POST,'
+      '    STOCK_ID = ?STOCK_ID'
       'WHERE'
       '    ID = ?OLD_ID')
     DeleteSQL.Strings = (
@@ -1013,7 +1152,8 @@ object DM: TDM
       '    USERNAME,'
       '    USERPASS,'
       '    ISADMIN,'
-      '    POST'
+      '    POST,'
+      '    STOCK_ID'
       ')'
       'VALUES('
       '    ?ID,'
@@ -1023,7 +1163,8 @@ object DM: TDM
       '    ?USERNAME,'
       '    ?USERPASS,'
       '    ?ISADMIN,'
-      '    ?POST'
+      '    ?POST,'
+      '    ?STOCK_ID'
       ')')
     RefreshSQL.Strings = (
       'SELECT'
@@ -1034,7 +1175,8 @@ object DM: TDM
       '    USERNAME,'
       '    USERPASS,'
       '    ISADMIN,'
-      '    POST'
+      '    POST,'
+      '    STOCK_ID'
       'FROM'
       '    EMPLOYEE '
       'WHERE'
@@ -1048,9 +1190,11 @@ object DM: TDM
       '    USERNAME,'
       '    USERPASS,'
       '    ISADMIN,'
-      '    POST'
+      '    POST,'
+      '    STOCK_ID'
       'FROM'
-      '    EMPLOYEE ')
+      '    EMPLOYEE '
+      'ORDER BY ID')
     AutoUpdateOptions.UpdateTableName = 'EMPLOYEE'
     AutoUpdateOptions.KeyFields = 'ID'
     AutoUpdateOptions.AutoReWriteSqls = True
@@ -1095,9 +1239,11 @@ object DM: TDM
       Size = 50
       EmptyStrToNull = True
     end
+    object tableEmploeeSTOCK_ID: TFIBIntegerField
+      FieldName = 'STOCK_ID'
+    end
   end
   object mtInvoiceOut: TkbmMemTable
-    Active = True
     DesignActivation = True
     AttachedAutoRefresh = True
     AttachMaxCount = 1
@@ -1138,6 +1284,53 @@ object DM: TDM
       end
       item
         Name = 'productName'
+        DataType = ftInteger
+      end
+      item
+        Name = 'productNumber'
+        DataType = ftInteger
+      end
+      item
+        Name = 'productFullName'
+        DataType = ftString
+        Size = 1000
+      end
+      item
+        Name = 'productStockName'
+        DataType = ftString
+        Size = 500
+      end
+      item
+        Name = 'productIPN'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'productMFO'
+        DataType = ftInteger
+      end
+      item
+        Name = 'productAccNum'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'productAccBank'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'productAdres'
+        DataType = ftString
+        Size = 200
+      end
+      item
+        Name = 'productPhone'
+        DataType = ftString
+        Size = 50
+      end
+      item
+        Name = 'productEDRPOU'
         DataType = ftInteger
       end>
     IndexDefs = <>
@@ -1182,6 +1375,42 @@ object DM: TDM
     end
     object mtInvoiceOutproductName: TIntegerField
       FieldName = 'productName'
+    end
+    object mtInvoiceOutproductNumber: TIntegerField
+      FieldName = 'productNumber'
+    end
+    object mtInvoiceOutproductFullName: TStringField
+      FieldName = 'productFullName'
+      Size = 1000
+    end
+    object mtInvoiceOutproductStockName: TStringField
+      FieldName = 'productStockName'
+      Size = 500
+    end
+    object mtInvoiceOutproductIPN: TStringField
+      FieldName = 'productIPN'
+    end
+    object mtInvoiceOutproductMFO: TIntegerField
+      FieldName = 'productMFO'
+    end
+    object mtInvoiceOutproductAccNum: TStringField
+      FieldName = 'productAccNum'
+      Size = 50
+    end
+    object mtInvoiceOutproductAccBank: TStringField
+      FieldName = 'productAccBank'
+      Size = 50
+    end
+    object mtInvoiceOutproductAdres: TStringField
+      FieldName = 'productAdres'
+      Size = 200
+    end
+    object mtInvoiceOutproductPhone: TStringField
+      FieldName = 'productPhone'
+      Size = 50
+    end
+    object mtInvoiceOutproductEDRPOU: TIntegerField
+      FieldName = 'productEDRPOU'
     end
   end
   object SourceInvoiceOutmt: TDataSource
@@ -1241,6 +1470,9 @@ object DM: TDM
     object tableMoveStockPositionREST_COUNT: TFIBIntegerField
       FieldName = 'REST_COUNT'
     end
+    object tableMoveStockPositionNAME_ID: TFIBIntegerField
+      FieldName = 'NAME_ID'
+    end
   end
   object TRmovePosition: TpFIBTransaction
     DefaultDatabase = mainBase
@@ -1293,6 +1525,19 @@ object DM: TDM
       item
         Name = 'moveName'
         DataType = ftInteger
+      end
+      item
+        Name = 'moveEmploee'
+        DataType = ftInteger
+      end
+      item
+        Name = 'moveNumber'
+        DataType = ftInteger
+      end
+      item
+        Name = 'moveFullName'
+        DataType = ftString
+        Size = 1000
       end>
     IndexDefs = <>
     SortOptions = []
@@ -1331,6 +1576,16 @@ object DM: TDM
     object mtMoveProductsmoveName: TIntegerField
       FieldName = 'moveName'
     end
+    object mtMoveProductsmoveEmploee: TIntegerField
+      FieldName = 'moveEmploee'
+    end
+    object mtMoveProductsmoveNumber: TIntegerField
+      FieldName = 'moveNumber'
+    end
+    object mtMoveProductsmoveFullName: TStringField
+      FieldName = 'moveFullName'
+      Size = 1000
+    end
   end
   object SourceMovePositions: TDataSource
     DataSet = mtMoveProducts
@@ -1346,9 +1601,46 @@ object DM: TDM
     AutoUpdateOptions.WhenGetGenID = wgOnNewRecord
     Transaction = TrmainBase
     Database = mainBase
+    AutoCommit = True
     Filtered = True
     Left = 376
     Top = 136
+    object Autority_TableID: TFIBIntegerField
+      FieldName = 'ID'
+    end
+    object Autority_TableNAME: TFIBStringField
+      FieldName = 'NAME'
+      Size = 100
+      EmptyStrToNull = True
+    end
+    object Autority_TableTELEPHONE: TFIBStringField
+      FieldName = 'TELEPHONE'
+      EmptyStrToNull = True
+    end
+    object Autority_TablePOSHTA: TFIBStringField
+      FieldName = 'POSHTA'
+      Size = 50
+      EmptyStrToNull = True
+    end
+    object Autority_TableUSERNAME: TFIBStringField
+      FieldName = 'USERNAME'
+      EmptyStrToNull = True
+    end
+    object Autority_TableUSERPASS: TFIBStringField
+      FieldName = 'USERPASS'
+      EmptyStrToNull = True
+    end
+    object Autority_TableISADMIN: TFIBIntegerField
+      FieldName = 'ISADMIN'
+    end
+    object Autority_TablePOST: TFIBStringField
+      FieldName = 'POST'
+      Size = 50
+      EmptyStrToNull = True
+    end
+    object Autority_TableSTOCK_ID: TFIBIntegerField
+      FieldName = 'STOCK_ID'
+    end
   end
   object pFIBUpdateObject1: TpFIBUpdateObject
     Transaction = TrmainBase
@@ -1386,13 +1678,17 @@ object DM: TDM
       '    NAME'
       'FROM'
       '    PRODNAMES ')
+    FilterOptions = [foCaseInsensitive]
+    AutoUpdateOptions.UpdateTableName = 'PRODNAMES'
+    AutoUpdateOptions.KeyFields = 'ID'
     AutoUpdateOptions.AutoReWriteSqls = True
-    AutoUpdateOptions.GeneratorName = 'GEN__ID'
+    AutoUpdateOptions.GeneratorName = 'GEN_PRODNAMES_ID'
     AutoUpdateOptions.WhenGetGenID = wgOnNewRecord
     Transaction = TRName
     Database = mainBase
     UpdateTransaction = TrNameWS
     AutoCommit = True
+    Filtered = True
     Left = 376
     Top = 192
     object tableNamesID: TFIBIntegerField
