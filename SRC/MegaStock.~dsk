@@ -11,20 +11,22 @@ File_8=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_Users.pas',0,1,193,48,203,
 File_9=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_MovePositions.pas',0,1,120,33,126,0,0
 
 [Modules]
-Module0=D:\PROJECTS\Складской учет\SRC\MegaStock.dpr
-Module1=D:\PROJECTS\Складской учет\SRC\U_Main.pas
+Module0=D:\PROJECTS\Складской учет\SRC\U_DM.pas
+Module1=D:\PROJECTS\Складской учет\SRC\U_AddProdToInvoice.pas
 Module2=D:\PROJECTS\Складской учет\SRC\U_FR.pas
-Count=3
+Module3=D:\PROJECTS\Складской учет\SRC\U_Main.pas
+Module4=D:\PROJECTS\Складской учет\SRC\MegaStock.dpr
+Count=5
 EditWindowCount=1
 
-[D:\PROJECTS\Складской учет\SRC\MegaStock.dpr]
-ModuleType=SourceModule
-FormState=0
-FormOnTop=0
-
-[D:\PROJECTS\Складской учет\SRC\U_Main.pas]
+[D:\PROJECTS\Складской учет\SRC\U_DM.pas]
 ModuleType=SourceModule
 FormState=1
+FormOnTop=1
+
+[D:\PROJECTS\Складской учет\SRC\U_AddProdToInvoice.pas]
+ModuleType=SourceModule
+FormState=0
 FormOnTop=0
 
 [D:\PROJECTS\Складской учет\SRC\U_FR.pas]
@@ -32,20 +34,28 @@ ModuleType=SourceModule
 FormState=1
 FormOnTop=0
 
+[D:\PROJECTS\Складской учет\SRC\U_Main.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\MegaStock.dpr]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
 [C:\Program Files\Borland\Delphi7\Bin\ProjectGroup1.bpg]
 FormState=0
 FormOnTop=0
 
-[D:\PROJECTS\Складской учет\SRC\U_DM.pas]
-FormState=0
-FormOnTop=0
-
 [EditWindow0]
-ViewCount=3
-CurrentView=0
+ViewCount=5
+CurrentView=3
 View0=0
 View1=1
 View2=2
+View3=3
+View4=4
 CodeExplorer=CodeExplorer@EditWindow0
 MessageView=MessageView@EditWindow0
 Create=1
@@ -63,9 +73,9 @@ LeftPanelSize=140
 LeftPanelClients=CodeExplorer@EditWindow0
 LeftPanelData=000004000000000000000000000000000000000000000000000100000000000000000C000000436F64654578706C6F726572FFFFFFFF
 RightPanelSize=0
-BottomPanelSize=0
+BottomPanelSize=85
 BottomPanelClients=MessageView@EditWindow0
-BottomPanelData=00000400010000000B0000004D657373616765566965775A040000000000000255000000000000000100000000000000000000000001000000005A04000000000000FFFFFFFF
+BottomPanelData=00000400000000005A040000000000000255000000000000000100000000000000000000000001000000005A0400000000000001000000005A0400000B0000004D65737361676556696577FFFFFFFF
 
 [View0]
 Module=D:\PROJECTS\Складской учет\SRC\MegaStock.dpr
@@ -76,12 +86,26 @@ LeftCol=1
 
 [View1]
 Module=D:\PROJECTS\Складской учет\SRC\U_FR.pas
-CursorX=107
-CursorY=566
-TopLine=555
+CursorX=6
+CursorY=565
+TopLine=554
 LeftCol=1
 
 [View2]
+Module=D:\PROJECTS\Складской учет\SRC\U_AddProdToInvoice.pas
+CursorX=77
+CursorY=37
+TopLine=26
+LeftCol=1
+
+[View3]
+Module=D:\PROJECTS\Складской учет\SRC\U_DM.pas
+CursorX=16
+CursorY=1
+TopLine=1
+LeftCol=1
+
+[View4]
 Module=D:\PROJECTS\Складской учет\SRC\U_Main.pas
 CursorX=36
 CursorY=457
@@ -94,7 +118,7 @@ Count=0
 [Breakpoints]
 Count=3
 Breakpoint0='D:\PROJECTS\Складской учет\SRC\MegaStock.dpr',48,'',0,0,'',1,0,0,'',1,'','',''
-Breakpoint1='D:\PROJECTS\Складской учет\SRC\U_FR.pas',566,'',0,0,'',1,0,0,'',1,'','',''
+Breakpoint1='D:\PROJECTS\Складской учет\SRC\U_FR.pas',565,'',0,0,'',1,0,0,'',1,'','',''
 Breakpoint2='D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas',93,'',0,0,'',1,0,0,'',1,'','',''
 
 [AddressBreakpoints]
@@ -159,7 +183,7 @@ LRDockWidth=190
 Dockable=1
 SplitPos=85
 ArrangeBy=Name
-SelectedItem=Caption
+SelectedItem=FieldDefs
 ExpandedItems=Title
 HiddenCategories=
 
@@ -186,18 +210,18 @@ State=0
 Left=0
 Top=12
 Width=140
-Height=574
+Height=486
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=140
-ClientHeight=574
+ClientHeight=486
 TBDockHeight=305
 LRDockWidth=140
 Dockable=1
 
 [MessageView@EditWindow0]
 Create=1
-Visible=0
+Visible=1
 State=0
 Left=12
 Top=0

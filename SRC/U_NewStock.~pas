@@ -80,9 +80,9 @@ begin
     DM.tableStoksNAME.AsString := StockName.Text;
     DM.tableStoksPHONE.AsString := StockPhone.Text;
     DM.tableStoksADDR1.AsString := StockAddr.Text;
+    DM.tableStoksADDR2.AsString := StockLegalAddr.Text;
     DM.tableStoksNDS.AsFloat := StockNds.Value;
     DM.tableStoksSTARTED.AsInteger := 0;
-    DM.tableStoksEMPLOEE_ID.AsInteger := emploeeID;
 
     DM.tableStoksMFO.AsString := StockMFO.Text;
     DM.tableStoksEDRPOU.AsString := StockEdrpou.Text;
@@ -90,6 +90,10 @@ begin
     DM.tableStoksACCNUM.AsString := StockAccNum.Text;
     DM.tableStoksACCBANK.AsString := StockBank.Text;
     DM.tableStoks.Post;
+
+    DM.tableEmploee.Edit;
+    DM.tableEmploeeSTOCK_ID.AsInteger := DM.tableStoksID.AsInteger;
+    DM.tableEmploee.Post;
 
     //Add Data to grid visible
     F_main.stockFilter.AddItemValue(dm.tableStoksNAME.AsString, dm.tableStoksID.AsString);

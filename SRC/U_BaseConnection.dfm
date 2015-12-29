@@ -12,7 +12,7 @@ object F_BaseConnection: TF_BaseConnection
   Font.Name = 'Times New Roman'
   Font.Style = []
   OldCreateOrder = False
-  Position = poOwnerFormCenter
+  Position = poScreenCenter
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   DesignSize = (

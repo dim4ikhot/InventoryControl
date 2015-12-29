@@ -117,9 +117,9 @@ begin
   begin
     if dm.tableEmploeeISADMIN.AsInteger <> 1 then
     begin
-      CBEmploeers.AddItemValue(dm.tableEmploeeNAME.AsString, dm.tableEmploeeID.AsString);
+      CBEmploeers.AddItemValue(dm.tableEmploeeUSERNAME.AsString, dm.tableEmploeeID.AsString);
       if dm.tableEmploeeID.AsInteger = currentUser.userID then
-        rememberEmploeeIndex := CBEmploeers.IndexOf(dm.tableEmploeeNAME.AsString);
+        rememberEmploeeIndex := CBEmploeers.IndexOf(dm.tableEmploeeUSERNAME.AsString);
     end;
     dm.tableEmploee.Next;
   end;

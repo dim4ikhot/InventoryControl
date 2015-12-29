@@ -30,7 +30,7 @@ var
 
 implementation
 
-uses U_DM, U_Main, FIBDataSet,U_MessageCP;
+uses U_DM, U_Main, FIBDataSet,U_MessageCP, DB;
 
 {$R *.dfm}
 
@@ -48,7 +48,7 @@ begin
   DM.Autority_Table.SQLs.SelectSQL.Clear;
   DM.Autority_Table.SQLs.SelectSQL.add('Select * from Employee');
   DM.Autority_Table.SQLs.SelectSQL.add('WHERE UserName = '+''''+Edit1.Text+''''+
-                                       ' and ((UserPass = '+''''+Edit2.Text+''')or(UserPass is null)) ' );
+                                       ' and ((UserPass = '+''''+Edit2.Text+''') or(UserPass is null)) ' );
   DM.Autority_Table.SQLs.SelectSQL.EndUpdate;
   DM.Autority_Table.Active := True;
   if DM.Autority_Table.IsEmpty then
@@ -60,11 +60,11 @@ begin
   begin
     F_Main.Current_User := DM.Autority_Table.FieldValues['Name'];
     currentUser.userID := DM.Autority_Table.FieldValues['ID'];
-    currentUser.UFullName := DM.Autority_Table.FieldValues['Name'];
-    currentUser.UName := DM.Autority_Table.FieldValues['UserName'];
-    currentUser.UIsAdmin := Boolean(DM.Autority_Table.FieldValues['IsAdmin']);
-    if DM.Autority_Table.FieldValues['STOCK_ID'] <> 'null' then
-      currentUser.userStockId := DM.Autority_Table.FieldValues['STOCK_ID'];
+    currentUser.UFullName := DM.Autority_TableNAME.AsString;
+    currentUser.UName := DM.Autority_TableUSERNAME.AsString;
+    currentUser.UIsAdmin := Boolean(DM.Autority_TableISADMIN.AsInteger);
+    if DM.Autority_TableSTOCK_ID.AsString <> '' then
+      currentUser.userStockId := DM.Autority_TableSTOCK_ID.AsInteger;
     Close;
     F_Autority.ModalResult := 6;
   end;

@@ -90,7 +90,6 @@ type
     Datasetinvoicein: TfrxDBDataset;
     frxXLSExport: TfrxXLSExport;
     LangReport: TsiLangLinked;
-    Report: TfrxReport;
     ReportInvoiceIn: TfrxReport;
     PBOperations: TRzProgressBar;
     RzLabel1: TRzLabel;
@@ -103,7 +102,6 @@ type
     DatasetMove: TfrxDBDataset;
     ReportMove: TfrxReport;
     frxInvoice: TfrxReport;
-    frxUserDataSet1: TfrxUserDataSet;
     frxDBDataset2: TfrxDBDataset;
     frxDBDataset3: TfrxDBDataset;
     frxDBDataset4: TfrxDBDataset;

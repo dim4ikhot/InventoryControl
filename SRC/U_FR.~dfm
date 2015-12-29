@@ -125,7 +125,7 @@ object F_FR: TF_FR
   object RzToolbar1: TRzToolbar
     Left = 0
     Top = 0
-    Width = 900
+    Width = 904
     Height = 29
     Images = ImageList1
     BorderInner = fsNone
@@ -413,8 +413,8 @@ object F_FR: TF_FR
   end
   object RzStatusBar1: TRzStatusBar
     Left = 0
-    Top = 517
-    Width = 900
+    Top = 521
+    Width = 904
     Height = 19
     BorderInner = fsNone
     BorderOuter = fsNone
@@ -1995,7 +1995,7 @@ object F_FR: TF_FR
     Left = 240
     Top = 144
   end
-   object Datasetinvoicein: TfrxDBDataset
+  object Datasetinvoicein: TfrxDBDataset
     UserName = 'frxDBDataset1'
     CloseDataSource = False
     DataSet = DM.mtAddProducts
@@ -2401,7 +2401,8 @@ object F_FR: TF_FR
           Font.Height = -13
           Font.Name = 'Arial'
           Font.Style = []
-          Memo.UTF8 = (           
+          Memo.UTF8 = (
+            
               #1056#1113#1056#1105#1057#1026#1056#1109#1056#1030#1056#1109#1056#1110#1057#1026#1056#176#1056#1169#1057#1027#1056#1108#1056#1109#1056#1112' '#1056#1109#1057#8218#1056#1169#1056#181#1056#187#1056#181#1056#1029#1056#1105#1056#1105' '#1056#1106#1056#1119#1056#1119#1056#8216' "'#1056#1106#1056#8217#1056#1106 +
               #1056#8250#1056#172'"')
           ParentFont = False
@@ -2967,7 +2968,7 @@ object F_FR: TF_FR
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           HAlign = haRight
           Memo.UTF8 = (
-          #1056#152#1056#1118#1056#1115#1056#8220#1056#1115':  ')
+            #1056#152#1056#1118#1056#1115#1056#8220#1056#1115':  ')
           ParentFont = False
         end
         object Memo30: TfrxMemoView
@@ -3017,10 +3018,10 @@ object F_FR: TF_FR
           Font.Style = []
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           Memo.UTF8 = (
-               '[SUM(<frxDBDataset3."Rowsum">,MasterData1)] ')
+            '[SUM(<frxDBDataset3."Rowsum">,MasterData1)] ')
           ParentFont = False
-          end
-       object Memo33: TfrxMemoView
+        end
+        object Memo33: TfrxMemoView
           Left = 582.047620000000000000
           Top = 27.015769999999970000
           Width = 120.944960000000000000
@@ -4394,7 +4395,6 @@ object F_FR: TF_FR
           Frame.Typ = [ftBottom]
           ParentFont = False
         end
-        
         object Memo29: TfrxMemoView
           Top = 3.779530000000000000
           Width = 566.929500000000000000
@@ -4567,7 +4567,7 @@ object F_FR: TF_FR
     BCDToCurrency = False
     Left = 360
     Top = 144
-  end  
+  end
   object DatasetInvoiceRest: TfrxDBDataset
     UserName = 'DatasetInvoiceRest'
     CloseDataSource = False
@@ -5295,5 +5295,5 @@ object F_FR: TF_FR
         end
       end
     end
-  end  
+  end
 end

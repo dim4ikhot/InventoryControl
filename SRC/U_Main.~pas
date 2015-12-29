@@ -119,7 +119,6 @@ type
     procedure aboutItemClick(Sender: TObject);
     procedure InvoiceBtnClick(Sender: TObject);
     procedure ExitItemClick(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure RussianLangClick(Sender: TObject);
     procedure UkraianianLangClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -141,6 +140,7 @@ type
     procedure AddRestsClick(Sender: TObject);
     procedure TimerTimer(Sender: TObject);
     procedure PopupMenuStockPopup(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 
   private
     { Private declarations }
@@ -189,11 +189,22 @@ end;
 procedure removeStockProc;
 begin
 //  if MessageBox(F_Main.Handle,'Вы действительно желаете удалить склад?', 'Удаление...', MB_YESNO) = 6 then
-  if ShowMessagerCP( F_Main.LangMain.gettext('Deleting'), F_Main.LangMain.gettext('DeletingStock'),mtConfirmation,[mbYes, mbNo]) = 6 then
+  if not currentUser.UIsAdmin then
   begin
-    DM.tableStoks.Delete;
-    DM.tableProducts.CloseOpen(True);
-  end;
+    if DM.tableStoks.RecordCount > 0 then
+    begin
+      if ShowMessagerCP( F_Main.LangMain.gettext('Deleting'), F_Main.LangMain.gettext('DeletingStock'),mtConfirmation,[mbYes, mbNo]) = 6 then
+      begin
+        DM.tableStoks.Delete;
+        DM.tableProducts.CloseOpen(True);
+      end;
+    end
+    else
+      ShowMessagerCP( F_Main.LangMain.gettext('ErrorTitle'), F_Main.LangMain.gettext('StocksForDeletingNotFound'),mtConfirmation,[mbOK]);
+  end
+  else
+    ShowMessagerCP(F_Main.LangMain.GetText('Attention'),
+                                F_Main.LangMain.GetText('AdminHasntAddStock'),mtWarning,[mbOK]);
 end;
 
 procedure TF_Main.removeStockClick(Sender: TObject);
@@ -448,15 +459,6 @@ begin
   close;
 end;
 
-procedure TF_Main.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-//  if MessageBox(Self.Handle,'Закрыть программу?','Закрыть...', MB_YESNO) = mrNo then
-  if ShowMessagerCP(LangMain.GetText('ClosintProg'), LangMain.GetText('ExitProgram'),mtConfirmation,[mbYes, mbNo]) = mrNo then
-    Action := caNone
-  else
-    DM.mainBase.Connected := False;  
-end;
-
 procedure TF_Main.RussianLangClick(Sender: TObject);
 begin
   TMenuItem(Sender).Checked := True;
@@ -589,11 +591,19 @@ procedure TF_Main.addnewProductsClick(Sender: TObject);
 begin
   if not currentUser.UIsAdmin then
   begin
-    try
-      Application.CreateForm(TF_InvoiceIn, F_InvoiceIn);
-      F_InvoiceIn.ShowModal;
-    finally
-      FreeAndNil(F_InvoiceIn);
+    if DM.tableProviders.RecordCount <> 0 then
+    begin
+      try
+        Application.CreateForm(TF_InvoiceIn, F_InvoiceIn);
+        F_InvoiceIn.ShowModal;
+      finally
+        FreeAndNil(F_InvoiceIn);
+      end;
+    end
+    else
+    begin
+      ShowMessagerCP(LangMain.GetText('Attention'),
+                                LangMain.GetText('HaveNoProviders'),mtWarning,[mbOK]);
     end;
   end
   else
@@ -605,17 +615,23 @@ procedure TF_Main.invoiceOutClientClick(Sender: TObject);
 begin
   if not currentUser.UIsAdmin then
   begin
-    try
-      Application.CreateForm(TF_InvoiceIn, F_InvoiceOut);
-      F_InvoiceOut.GridInvoiceIn.DataSource := DM.SourceInvoiceOutmt;
-      F_InvoiceOut.Caption := LangMain.GetText('InputOutFormCaption');
-      F_InvoiceOut.GridInvoiceIn.Columns[7].Visible := False;
-      F_InvoiceOut.GridInvoiceIn.Columns[8].FieldName := 'productCustomer';
-      F_InvoiceOut.GridInvoiceIn.Columns[8].Visible := True;
-      F_InvoiceOut.ShowModal;
-    finally
-      FreeAndNil(F_InvoiceOut);
-    end;
+    if DM.tableProviders.RecordCount <> 0 then
+    begin
+      try
+        Application.CreateForm(TF_InvoiceIn, F_InvoiceOut);
+        F_InvoiceOut.GridInvoiceIn.DataSource := DM.SourceInvoiceOutmt;
+        F_InvoiceOut.Caption := LangMain.GetText('InputOutFormCaption');
+        F_InvoiceOut.GridInvoiceIn.Columns[7].Visible := False;
+        F_InvoiceOut.GridInvoiceIn.Columns[8].FieldName := 'productCustomer';
+        F_InvoiceOut.GridInvoiceIn.Columns[8].Visible := True;
+        F_InvoiceOut.ShowModal;
+      finally
+        FreeAndNil(F_InvoiceOut);
+      end;
+    end
+    else
+      ShowMessagerCP(LangMain.GetText('Attention'),
+                                LangMain.GetText('HaveNoProviders'),mtWarning,[mbOK]);
   end
   else
     ShowMessagerCP(LangMain.GetText('Attention'),
@@ -738,6 +754,14 @@ begin
   StartStock.Visible := DM.tableStoksSTARTED.AsInteger = 0;
   AddRests.Visible := DM.tableStoksSTARTED.AsInteger = 0;
  // MoveToStock.Visible := DM.tableStoksSTARTED.AsInteger <> 0;
+end;
+
+procedure TF_Main.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+  if ShowMessagerCP(LangMain.GetText('ClosintProg'), LangMain.GetText('ExitProgram'),mtConfirmation,[mbYes, mbNo]) = mrNo then
+    CanClose := False
+  else
+    DM.mainBase.Connected := False;
 end;
 
 end.

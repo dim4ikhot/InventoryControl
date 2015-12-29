@@ -41,6 +41,7 @@ type
     procedure ShowPasswordClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure UsersTimerTimer(Sender: TObject);
+    procedure CancelBtnClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -52,7 +53,7 @@ var
 
 implementation
 
-Uses U_DM, U_Main, U_Password, U_Common;
+Uses U_DM, U_Main, U_Password, U_Common, U_MessageCP;
 
 {$R *.dfm}
 
@@ -82,13 +83,16 @@ begin
   end;
   IF (UserNum > 0)or(RecCnt > 0) then
     Inc(UserNum);
+
   DM.tableEmploee.Append;
   DM.tableEmploeeISADMIN.AsInteger := 0;
   if UserNum <> 0 then
     DM.tableEmploeeUSERNAME.AsString := 'User' + InttoStr(UserNum)
   else
     DM.tableEmploeeUserName.AsString := 'User';
+  DM.tableEmploeeUSERPASS.AsString := '';  
   DM.tableEmploee.Post;
+
 end;
 
 procedure TF_Users.DBUsersGridDrawColumnCell(Sender: TObject;
@@ -180,11 +184,15 @@ begin
   DBUsersGrid.Columns[3].KeyList.Add('0');    //'Чтение/запись';
   DBUsersGrid.Columns[3].KeyList.Add('1');     //'Администрирование'
 
-<<<<<<< HEAD
+  dm.tableStoks.First;
+  while not dm.tableStoks.Eof do
+  begin
+    DBUsersGrid.Columns[6].PickList.Add(dm.tableStoksNAME.AsString);
+    DBUsersGrid.Columns[6].KeyList.Add(dm.tableStoksID.AsString);
+    dm.tableStoks.Next;
+  end;
+
   RzLabel2.Caption := currentUser.UFullName;
-=======
- // RzLabel2.Caption := ActiveUSer.UserName;
->>>>>>> LastVersion
   UsersTimer.Enabled := true;
 end;
 
@@ -192,6 +200,25 @@ procedure TF_Users.OkBtnClick(Sender: TObject);
 begin
   if DM.tableEmploee.State = dsEdit then
     DM.tableEmploee.Post;
+  DM.tableEmploee.DisableControls;
+  DM.tableEmploee.First;
+  while not DM.tableEmploee.Eof do
+  begin
+    if DM.tableEmploeeNAME.AsString = '' then
+    begin
+      ShowMessagerCP(User_Lang.GetText('AttentionTitle'),User_Lang.GetText('FullNameIsEmpty'), mtWarning, [mbOK]);
+      ModalResult := mrNone;
+      Break;
+    end
+    else if ((DM.tableEmploeeSTOCK_ID.AsInteger = 0)and(DM.tableEmploeeISADMIN = 0)) then
+    begin
+      ShowMessagerCP(User_Lang.GetText('AttentionTitle'),User_Lang.GetText('StockIdEmpty'), mtWarning, [mbOK]);
+      ModalResult := mrNone;
+      Break;
+    end;
+    DM.tableEmploee.Next;
+  end;
+  DM.tableEmploee.EnableControls;
 end;
 
 procedure TF_Users.DeleteUserClick(Sender: TObject);
@@ -217,7 +244,7 @@ procedure TF_Users.ShowPasswordClick(Sender: TObject);
 begin
   if ShowPassword.Checked then
   begin
-    DBUsersGrid.Columns[1].FieldName := 'PASSWORD';
+    DBUsersGrid.Columns[1].FieldName := 'UserPASS';
   end
   else
     DBUsersGrid.Columns[1].FieldName := '';
@@ -260,6 +287,29 @@ begin
       end; }
     end;
   end;
+end;
+
+procedure TF_Users.CancelBtnClick(Sender: TObject);
+begin
+  DM.tableEmploee.DisableControls;
+  DM.tableEmploee.First;
+  while not DM.tableEmploee.Eof do
+  begin
+    if DM.tableEmploeeNAME.AsString = '' then
+    begin
+      ShowMessagerCP(User_Lang.GetText('AttentionTitle'),User_Lang.GetText('FullNameIsEmpty'), mtWarning, [mbOK]);
+      ModalResult := mrNone;
+      Break;
+    end
+    else if ((DM.tableEmploeeSTOCK_ID.AsInteger = 0)and(DM.tableEmploeeISADMIN = 0)) then
+    begin
+      ShowMessagerCP(User_Lang.GetText('AttentionTitle'),User_Lang.GetText('StockIdEmpty'), mtWarning, [mbOK]);
+      ModalResult := mrNone;
+      Break;
+    end;
+    DM.tableEmploee.Next;
+  end;
+  DM.tableEmploee.EnableControls;
 end;
 
 end.

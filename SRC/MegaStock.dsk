@@ -1,40 +1,69 @@
 [Closed Files]
-File_0=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_InOrder.pas',0,1,52,3,45,0,0
-File_1=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_Autority.pas',0,1,53,1,66,0,0
-File_2=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_ClientsProviders.pas',0,1,22,12,38,0,0
-File_3=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas',0,1,57,1,73,0,0
-File_4=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_NewStock.pas',0,1,80,67,95,0,0
-File_5=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_BaseConnection.pas',0,1,527,13,542,0,0
-File_6=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas',0,1,73,55,77,0,0
+File_0=SourceModule,'D:\PROJECTS\Components\INSTALL_FOR_DXE-2015-11-25\INSTALL_FOR_DXE\FIB_6.9.9\fibplus_6_9_9_D5-2007\sources\FIBDataSetLocate.inc',0,1,874,1,885,0,0
+File_1=SourceModule,'D:\PROJECTS\Components\INSTALL_FOR_DXE-2015-11-25\INSTALL_FOR_DXE\FIB_6.9.9\fibplus_6_9_9_D5-2007\sources\fib.pas',0,1,429,1,440,0,0
+File_2=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_InOrder.pas',0,1,52,3,45,0,0
+File_3=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_Autority.pas',0,1,53,1,66,0,0
+File_4=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_ClientsProviders.pas',0,1,22,12,38,0,0
+File_5=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_AddProviderClient.pas',0,1,57,1,73,0,0
+File_6=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_NewStock.pas',0,1,80,67,95,0,0
 File_7=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_PassWord.pas',0,1,57,12,87,0,0
 File_8=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_Users.pas',0,1,193,48,203,0,0
-File_9=SourceModule,'D:\PROJECTS\Складской учет\SRC\U_MovePositions.pas',0,1,120,33,126,0,0
 
 [Modules]
-Module0=D:\PROJECTS\Складской учет\SRC\U_DM.pas
-Module1=D:\PROJECTS\Складской учет\SRC\U_AddProdToInvoice.pas
-Module2=D:\PROJECTS\Складской учет\SRC\U_FR.pas
-Module3=D:\PROJECTS\Складской учет\SRC\U_Main.pas
-Module4=D:\PROJECTS\Складской учет\SRC\MegaStock.dpr
-Count=5
+Module0=D:\PROJECTS\Складской учет\SRC\U_InvoiceIn.pas
+Module1=D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas
+Module2=D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas
+Module3=D:\PROJECTS\Складской учет\SRC\U_DM.pas
+Module4=D:\PROJECTS\Складской учет\SRC\U_InvoiceFakt.pas
+Module5=D:\PROJECTS\Складской учет\SRC\U_AddProdToInvoice.pas
+Module6=D:\PROJECTS\Складской учет\SRC\U_BaseConnection.pas
+Module7=D:\PROJECTS\Складской учет\SRC\U_Main.pas
+Module8=D:\PROJECTS\Складской учет\SRC\U_FR.pas
+Module9=D:\PROJECTS\Складской учет\SRC\MegaStock.dpr
+Count=10
 EditWindowCount=1
 
-[D:\PROJECTS\Складской учет\SRC\U_DM.pas]
-ModuleType=SourceModule
-FormState=1
-FormOnTop=1
-
-[D:\PROJECTS\Складской учет\SRC\U_AddProdToInvoice.pas]
+[D:\PROJECTS\Складской учет\SRC\U_InvoiceIn.pas]
 ModuleType=SourceModule
 FormState=0
 FormOnTop=0
 
-[D:\PROJECTS\Складской учет\SRC\U_FR.pas]
+[D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_DM.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_InvoiceFakt.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_AddProdToInvoice.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_BaseConnection.pas]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=0
 
 [D:\PROJECTS\Складской учет\SRC\U_Main.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[D:\PROJECTS\Складской учет\SRC\U_FR.pas]
 ModuleType=SourceModule
 FormState=1
 FormOnTop=0
@@ -49,13 +78,18 @@ FormState=0
 FormOnTop=0
 
 [EditWindow0]
-ViewCount=5
-CurrentView=3
+ViewCount=10
+CurrentView=8
 View0=0
 View1=1
 View2=2
 View3=3
 View4=4
+View5=5
+View6=6
+View7=7
+View8=8
+View9=9
 CodeExplorer=CodeExplorer@EditWindow0
 MessageView=MessageView@EditWindow0
 Create=1
@@ -79,7 +113,7 @@ BottomPanelData=00000400000000005A0400000000000002550000000000000001000000000000
 
 [View0]
 Module=D:\PROJECTS\Складской учет\SRC\MegaStock.dpr
-CursorX=38
+CursorX=11
 CursorY=33
 TopLine=16
 LeftCol=1
@@ -87,25 +121,60 @@ LeftCol=1
 [View1]
 Module=D:\PROJECTS\Складской учет\SRC\U_FR.pas
 CursorX=6
-CursorY=565
-TopLine=554
+CursorY=563
+TopLine=552
 LeftCol=1
 
 [View2]
 Module=D:\PROJECTS\Складской учет\SRC\U_AddProdToInvoice.pas
-CursorX=77
-CursorY=37
-TopLine=26
+CursorX=1
+CursorY=33
+TopLine=22
 LeftCol=1
 
 [View3]
-Module=D:\PROJECTS\Складской учет\SRC\U_DM.pas
-CursorX=16
-CursorY=1
-TopLine=1
+Module=D:\PROJECTS\Складской учет\SRC\U_InvoiceFakt.pas
+CursorX=1
+CursorY=122
+TopLine=120
 LeftCol=1
 
 [View4]
+Module=D:\PROJECTS\Складской учет\SRC\U_BaseConnection.pas
+CursorX=19
+CursorY=556
+TopLine=541
+LeftCol=1
+
+[View5]
+Module=D:\PROJECTS\Складской учет\SRC\U_DM.pas
+CursorX=25
+CursorY=313
+TopLine=306
+LeftCol=1
+
+[View6]
+Module=D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas
+CursorX=16
+CursorY=222
+TopLine=208
+LeftCol=1
+
+[View7]
+Module=D:\PROJECTS\Складской учет\SRC\U_ProductInfo.pas
+CursorX=4
+CursorY=87
+TopLine=77
+LeftCol=1
+
+[View8]
+Module=D:\PROJECTS\Складской учет\SRC\U_InvoiceIn.pas
+CursorX=57
+CursorY=59
+TopLine=45
+LeftCol=1
+
+[View9]
 Module=D:\PROJECTS\Складской учет\SRC\U_Main.pas
 CursorX=36
 CursorY=457
@@ -118,7 +187,7 @@ Count=0
 [Breakpoints]
 Count=3
 Breakpoint0='D:\PROJECTS\Складской учет\SRC\MegaStock.dpr',48,'',0,0,'',1,0,0,'',1,'','',''
-Breakpoint1='D:\PROJECTS\Складской учет\SRC\U_FR.pas',565,'',0,0,'',1,0,0,'',1,'','',''
+Breakpoint1='D:\PROJECTS\Складской учет\SRC\U_FR.pas',563,'',0,0,'',1,0,0,'',1,'','',''
 Breakpoint2='D:\PROJECTS\Складской учет\SRC\U_NewProduct.pas',93,'',0,0,'',1,0,0,'',1,'','',''
 
 [AddressBreakpoints]
@@ -153,6 +222,23 @@ TBDockHeight=313
 LRDockWidth=446
 Dockable=1
 
+[CPUWindow]
+Create=1
+Visible=0
+State=0
+Left=114
+Top=101
+Width=1138
+Height=565
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=1126
+ClientHeight=531
+DumpPane=79
+DisassemblyPane=187
+RegisterPane=231
+FlagPane=64
+
 [AlignmentPalette]
 Create=1
 Visible=0
@@ -183,7 +269,7 @@ LRDockWidth=190
 Dockable=1
 SplitPos=85
 ArrangeBy=Name
-SelectedItem=FieldDefs
+SelectedItem=Name
 ExpandedItems=Title
 HiddenCategories=
 
