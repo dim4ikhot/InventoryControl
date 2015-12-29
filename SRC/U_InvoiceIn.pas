@@ -56,7 +56,7 @@ begin
       Application.CreateForm(TF_ProductsOut, F_ProductsOut);
       F_Main.GridProducts.Parent := F_ProductsOut;
       F_Main.PanelSettingsProduct.Parent := F_ProductsOut;
-      DM.tableStoks.Locate('EMPLOEE_ID', currentUser.userID, []);
+      DM.tableStoks.Locate('ID', currentUser.userStockId, []);
       DM.tableProducts.Filtered := True;
       DM.tableProducts.Filter := 'STOCK_ID = '+''''+ DM.tableStoksID.AsString +'''';
 

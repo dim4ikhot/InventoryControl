@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, RzLabel, Mask, RzEdit, RzRadChk, ExtCtrls, RzPanel,
   RzButton, RzShellDialogs, ShlObj, ShellAPI, ActiveX, U_Common,U_DM,
-  siComp, siLngLnk, IniFiles;
+  siComp, siLngLnk, IniFiles, WinSock;
 
 type
   TShareInfo2 = packed record
@@ -83,6 +83,9 @@ type
     { Public declarations }
   end;
 
+const
+  WINSOCK_VERSION = $0101;
+
 var
   F_BaseConnection: TF_BaseConnection;
   ini: TIniFile;
@@ -90,6 +93,17 @@ var
 implementation
 
 {$R *.dfm}
+
+function GetIPAddress(name: string): string;
+var
+  WSAData: TWSAData;
+  p: PHostEnt;
+begin
+  WSAStartup(WINSOCK_VERSION, WSAData);
+  p := GetHostByName(PChar(name));
+  Result := inet_ntoa(PInAddr(p.h_addr_list^)^);
+  WSACleanup;
+end;
 
 // Диалог выбора компа в сети.
 function BrowseComputer(ADialogTitle, ADefComputer: string; bNewStyle: boolean=false): String;
@@ -452,7 +466,7 @@ end;
 
 procedure TF_BaseConnection.BrowseServerClick(Sender: TObject);
 begin
-  EditServerNAme.Text := BrowseComputer('Выберете сервер','\\');
+  EditServerNAme.Text := GetIPAddress(BrowseComputer('Выберете сервер','\\'));
 end;
 
 procedure TF_BaseConnection.ServerBasePathClick(Sender: TObject);

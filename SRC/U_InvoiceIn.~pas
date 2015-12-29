@@ -57,6 +57,9 @@ begin
       F_Main.GridProducts.Parent := F_ProductsOut;
       F_Main.PanelSettingsProduct.Parent := F_ProductsOut;
       DM.tableStoks.Locate('EMPLOEE_ID', currentUser.userID, []);
+      DM.tableProducts.Filtered := True;
+      DM.tableProducts.Filter := 'STOCK_ID = '+''''+ DM.tableStoksID.AsString +'''';
+
       F_Main.stockFilter.ItemIndex := F_Main.stockFilter.IndexOf(DM.tableStoksNAME.AsString);
       F_Main.stockFilter.Enabled := False;
       F_Main.GBLists.Visible := False;

@@ -26,7 +26,6 @@ type
     InvoiceGrid: TDBGridEh;
     RzLabel7: TRzLabel;
     RzLabel8: TRzLabel;
-    RzEdit4: TRzEdit;
     RzEdit5: TRzEdit;
     PopupMenu2: TPopupMenu;
     N3: TMenuItem;
@@ -120,14 +119,46 @@ begin
   F_InvoiceFakt.InvoiceGrid.Refresh;
 end;
 
+Procedure ChangeTotalSum;
+var I :integer;
+    SumInvoice: double;
+begin
+  SumInvoice := 0;
+  if not DM.Table_NewInvoice.IsEmpty then
+  begin
+    DM.Table_NewInvoice.First;
+    SumInvoice := SumInvoice + dm.Table_NewInvoice.FieldValues['RowSum'];
+    // other records
+    if DM.Table_NewInvoice.RecordCount > 1 then
+    begin
+      for i := 1 to DM.Table_NewInvoice.RecordCount - 1  do
+      begin
+        DM.Table_NewInvoice.Next;
+        SumInvoice := SumInvoice + dm.Table_NewInvoice.FieldValues['RowSum'];
+      end;
+    end;
+  end;
+  F_InvoiceFakt.RzEdit3.text := formatFloat('#', SumInvoice);
+end;
+
 procedure TF_InvoiceFakt.InvoiceGridColumns3UpdateData(Sender: TObject;
   var Text: String; var Value: Variant; var UseText, Handled: Boolean);
+var i: Integer;
+    NewInvoice_bookmark: TBookmark;
 begin
   DM.Table_NewInvoice.Edit;
   DM.Table_NewInvoice.FieldByName('Kolvo').AsInteger := Value;
   DM.Table_NewInvoice.FieldByName('RowSum').AsCurrency :=
     DM.Table_NewInvoice.FieldValues['Kolvo'] * DM.Table_NewInvoice.FieldValues['Price'];
   DM.Table_NewInvoice.post;
+
+
+  NewInvoice_bookmark := DM.Table_NewInvoice.GetBookmark;
+  DM.Table_NewInvoice.DisableControls;
+
+  ChangeTotalSum;
+  DM.Table_NewInvoice.GotoBookmark(NewInvoice_bookmark);
+  DM.Table_NewInvoice.EnableControls;
 end;
 
 end.

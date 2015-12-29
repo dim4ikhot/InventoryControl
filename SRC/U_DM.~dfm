@@ -1,15 +1,9 @@
 object DM: TDM
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-<<<<<<< HEAD
   Left = 300
   Top = 130
   Height = 569
-=======
-  Left = 187
-  Top = 112
-  Height = 658
->>>>>>> LastVersion
   Width = 1038
   object SourceStocks: TDataSource
     DataSet = tableStoks
@@ -236,7 +230,6 @@ object DM: TDM
       '    ADDR1,'
       '    NDS,'
       '    STARTED,'
-<<<<<<< HEAD
       '    MFO,'
       '    EDRPOU,'
       '    IPN,'
@@ -244,15 +237,6 @@ object DM: TDM
       '    ACCBANK,'
       '    ADDR2,'
       '    SVIDNUM'
-=======
-      '    ADDR2,'
-      '    MFO,'
-      '    IPN,'
-      '    SVIDNuM,'
-      '    ACCNum,'
-      '    ACCBank,'
-      '    EdrPou'
->>>>>>> LastVersion
       'FROM'
       '    STOCK ')
     AutoUpdateOptions.UpdateTableName = 'STOCK'
@@ -290,33 +274,16 @@ object DM: TDM
     object tableStoksSTARTED: TFIBSmallIntField
       FieldName = 'STARTED'
     end
-<<<<<<< HEAD
     object tableStoksMFO: TFIBIntegerField
       FieldName = 'MFO'
     end
     object tableStoksEDRPOU: TFIBIntegerField
       FieldName = 'EDRPOU'
     end
-=======
-    object tableStoksADDR2: TFIBStringField
-      FieldName = 'ADDR2'
-      Size = 500
-      EmptyStrToNull = True
-    end
-    object tableStoksMFO: TFIBIntegerField
-      FieldName = 'MFO'
-    end
->>>>>>> LastVersion
     object tableStoksIPN: TFIBStringField
       FieldName = 'IPN'
       EmptyStrToNull = True
     end
-<<<<<<< HEAD
-=======
-    object tableStoksSVIDNUM: TFIBIntegerField
-      FieldName = 'SVIDNUM'
-    end
->>>>>>> LastVersion
     object tableStoksACCNUM: TFIBStringField
       FieldName = 'ACCNUM'
       Size = 50
@@ -327,7 +294,6 @@ object DM: TDM
       Size = 200
       EmptyStrToNull = True
     end
-<<<<<<< HEAD
     object tableStoksADDR2: TFIBStringField
       FieldName = 'ADDR2'
       Size = 500
@@ -335,10 +301,6 @@ object DM: TDM
     end
     object tableStoksSVIDNUM: TFIBIntegerField
       FieldName = 'SVIDNUM'
-=======
-    object tableStoksEDRPOU: TFIBIntegerField
-      FieldName = 'EDRPOU'
->>>>>>> LastVersion
     end
   end
   object tableProducts: TpFIBDataSet
@@ -1912,7 +1874,7 @@ object DM: TDM
   end
   object DataSource1: TDataSource
     DataSet = Table_Clients
-    Left = 376
+    Left = 408
     Top = 472
   end
 end

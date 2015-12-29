@@ -163,7 +163,20 @@ type
     Table_NewInvoice: TkbmMemTable;
     kbmThreadDataSet1: TkbmThreadDataSet;
     NewInvoice: TDataSource;
-<<<<<<< HEAD
+	tableProductsSelect: TpFIBDataSet;
+	DataSource_ProductsSelect: TDataSource;
+	tableProductsSelectNAME: TFIBStringField;
+	tableProductsSelectMEASURE: TFIBStringField;
+	tableProductsSelectKOLVO: TFIBIntegerField;
+	tableProductsSelectPRICE: TFIBFloatField;
+	tableProductsSelectARTICUL: TFIBIntegerField;
+	tableProductsSelectKOD: TFIBStringField;
+	Table_NewInvoiceNpp: TIntegerField;
+	Table_NewInvoiceName: TStringField;
+	Table_NewInvoicemeasure: TStringField;
+	Table_NewInvoicekolvo: TIntegerField;
+	Table_NewInvoicePrice: TCurrencyField;
+	Table_NewInvoiceRowsum: TCurrencyField;
     mtAddProductsproductNumber: TIntegerField;
     mtAddProductsproductFullName: TStringField;
     tableInvoiceOutDATEOUT: TFIBDateField;
@@ -208,33 +221,10 @@ type
     Autority_TableISADMIN: TFIBIntegerField;
     Autority_TablePOST: TFIBStringField;
     Autority_TableSTOCK_ID: TFIBIntegerField;
-=======
-    tableProductsSelect: TpFIBDataSet;
-    DataSource_ProductsSelect: TDataSource;
-    tableProductsSelectNAME: TFIBStringField;
-    tableProductsSelectMEASURE: TFIBStringField;
-    tableProductsSelectKOLVO: TFIBIntegerField;
-    tableProductsSelectPRICE: TFIBFloatField;
-    tableProductsSelectARTICUL: TFIBIntegerField;
-    tableProductsSelectKOD: TFIBStringField;
-    Table_NewInvoiceNpp: TIntegerField;
-    Table_NewInvoiceName: TStringField;
-    Table_NewInvoicemeasure: TStringField;
-    Table_NewInvoicekolvo: TIntegerField;
-    Table_NewInvoicePrice: TCurrencyField;
-    Table_NewInvoiceRowsum: TCurrencyField;
-    tableStoksADDR2: TFIBStringField;
-    tableStoksMFO: TFIBIntegerField;
-    tableStoksIPN: TFIBStringField;
-    tableStoksSVIDNUM: TFIBIntegerField;
-    tableStoksACCNUM: TFIBStringField;
-    tableStoksACCBANK: TFIBStringField;
-    tableStoksEDRPOU: TFIBIntegerField;
     TableMaxInvoiceNumber: TpFIBDataSet;
     Table_Invoices: TpFIBDataSet;
     Table_Clients: TpFIBDataSet;
     DataSource1: TDataSource;
->>>>>>> LastVersion
 
 
     procedure DataModuleCreate(Sender: TObject);

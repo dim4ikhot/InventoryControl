@@ -1,19 +1,10 @@
 object F_InvoiceIn: TF_InvoiceIn
-<<<<<<< HEAD
   Left = 271
   Top = 150
   BorderStyle = bsDialog
   Caption = #1055#1088#1080#1093#1086#1076#1085#1072#1103' '#1085#1072#1082#1083#1072#1076#1085#1072#1103
   ClientHeight = 496
   ClientWidth = 1049
-=======
-  Left = 170
-  Top = 210
-  BorderStyle = bsDialog
-  Caption = #1055#1088#1080#1093#1086#1076#1085#1072#1103' '#1085#1072#1082#1083#1072#1076#1085#1072#1103
-  ClientHeight = 496
-  ClientWidth = 1028
->>>>>>> LastVersion
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -29,11 +20,7 @@ object F_InvoiceIn: TF_InvoiceIn
   object GridInvoiceIn: TDBGridEh
     Left = 0
     Top = 0
-<<<<<<< HEAD
     Width = 1049
-=======
-    Width = 1028
->>>>>>> LastVersion
     Height = 455
     Align = alClient
     AutoFitColWidths = True
@@ -153,11 +140,7 @@ object F_InvoiceIn: TF_InvoiceIn
   object RzPanel1: TRzPanel
     Left = 0
     Top = 455
-<<<<<<< HEAD
     Width = 1049
-=======
-    Width = 1028
->>>>>>> LastVersion
     Height = 41
     Align = alBottom
     BorderOuter = fsFlatRounded

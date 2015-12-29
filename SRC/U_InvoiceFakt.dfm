@@ -205,15 +205,6 @@ object F_InvoiceFakt: TF_InvoiceFakt
       FrameHotTrack = True
       FrameVisible = True
     end
-    object RzEdit4: TRzEdit
-      Left = 56
-      Top = 0
-      Width = 465
-      Height = 21
-      Enabled = False
-      FrameSides = []
-      TabOrder = 1
-    end
     object RzEdit5: TRzEdit
       Left = 120
       Top = 128
@@ -227,7 +218,7 @@ object F_InvoiceFakt: TF_InvoiceFakt
       Font.Name = 'MS Sans Serif'
       Font.Style = [fsBold]
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 1
     end
     object RzDBComboBox1: TRzDBComboBox
       Left = 120
@@ -237,7 +228,7 @@ object F_InvoiceFakt: TF_InvoiceFakt
       DataField = 'NAME'
       DataSource = DM.DataSource1
       ItemHeight = 13
-      TabOrder = 3
+      TabOrder = 2
     end
   end
   object RzPanel3: TRzPanel
@@ -286,7 +277,7 @@ object F_InvoiceFakt: TF_InvoiceFakt
     Height = 419
     Align = alClient
     AutoFitColWidths = True
-    DataSource = DM.DataSource1
+    DataSource = DM.NewInvoice
     DynProps = <>
     EditActions = [geaCutEh, geaCopyEh, geaPasteEh, geaDeleteEh, geaSelectAllEh]
     Flat = True
@@ -338,6 +329,7 @@ object F_InvoiceFakt: TF_InvoiceFakt
         OnUpdateData = InvoiceGridColumns3UpdateData
       end
       item
+        DisplayFormat = '#.00 '#1075#1088#1085'.'
         DynProps = <>
         EditButtons = <>
         FieldName = 'Price'
@@ -348,6 +340,7 @@ object F_InvoiceFakt: TF_InvoiceFakt
         Width = 75
       end
       item
+        DisplayFormat = '#.00 '#1075#1088#1085'.'
         DynProps = <>
         EditButtons = <>
         FieldName = 'Rowsum'
